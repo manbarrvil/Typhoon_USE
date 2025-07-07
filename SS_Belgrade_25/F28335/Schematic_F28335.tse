@@ -1,0 +1,2867 @@
+version = 4.2
+
+//
+// Saved by sw version: 2025.1
+//
+
+model "Schematic_F28335" {
+    configuration {
+        hil_device = "HIL101"
+        hil_configuration_id = 1
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_term_var_location = "local"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        excluded_component_from_locking_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        solver_type = "DAE"
+        integration_method = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.2
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = warning
+    }
+
+    component Subsystem Root {
+        component "core/Three Phase Voltage Source" Vs1 {
+            init_rms_value = "230.0"
+        }
+        [
+            position = 9292, 9688
+            rotation = down
+            scale = 1, -1
+            size = 62, 256
+        ]
+
+        component "core/Series RLC Branch" "Series RLC Branch1" {
+            branch_type = "RL"
+            inductance = "2.5e-3"
+            num_phases = "Three-Phase"
+            resistance = "0.1"
+        }
+        [
+            position = 7692, 9688
+            size = 128, 256
+        ]
+
+        component "core/Series RLC Branch" "Series RLC Branch2" {
+            branch_type = "RL"
+            inductance = "2.5e-3"
+            num_phases = "Three-Phase"
+            resistance = "0.1"
+        }
+        [
+            position = 8404, 9688
+            size = 128, 256
+        ]
+
+        component "core/Series RLC Branch" "Series RLC Branch3" {
+            branch_type = "RC"
+            capacitance = "1e-6"
+            inductance = "L_t"
+            num_phases = "Three-Phase"
+            resistance = "27"
+        }
+        [
+            position = 8180, 9976
+            rotation = right
+            size = 128, 256
+        ]
+
+        component "core/Voltage Source" v_dc {
+            init_const_value = "730.0"
+        }
+        [
+            position = 6680, 9996
+            rotation = right
+        ]
+
+        component "core/Current Measurement" Iag {
+            sig_output = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 9036, 9592
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" Va {
+            sig_output = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 8508, 9924
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Triple Pole Single Throw Contactor" S1 {
+            ctrl_src = "Model"
+            signal_access = "Inherit"
+        }
+        [
+            position = 8692, 9688
+            size = 64, 256
+        ]
+
+        component "core/Current Measurement" Ibg {
+            sig_output = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 9036, 9688
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" Icg {
+            sig_output = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 9044, 9784
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" Vb {
+            sig_output = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 8564, 9968
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" Vc {
+            sig_output = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 8628, 10004
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 8564, 10168
+        ]
+
+        component "core/Ground" gnd2 {
+        }
+        [
+            position = 9412, 9792
+        ]
+
+        component "core/Ground" gnd3 {
+        }
+        [
+            position = 8172, 10184
+        ]
+
+        component "core/Resistor" R1 {
+            resistance = "0.001"
+        }
+        [
+            position = 6680, 9776
+            rotation = left
+        ]
+
+        component "core/Half Bridge" "IGBT Leg1" {
+            S_bot = "24"
+            S_top = "30"
+            fvd_def_method = "LUT"
+            pwm_enable_di = "21"
+            pwm_enabling = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7080, 9592
+            size = 80, 192
+        ]
+
+        component "core/Half Bridge" "IGBT Leg2" {
+            S_bot = "23"
+            S_top = "29"
+            fvd_def_method = "LUT"
+            pwm_enable_di = "21"
+            pwm_enabling = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7184, 9688
+            size = 80, 192
+        ]
+
+        component "core/Half Bridge" "IGBT Leg3" {
+            S_bot = "26"
+            S_top = "32"
+            fvd_def_method = "LUT"
+            pwm_enable_di = "21"
+            pwm_enabling = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7316, 9788
+            size = 80, 192
+        ]
+
+        component "core/Voltage Measurement" v_h {
+        }
+        [
+            position = 6860, 9796
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Capacitor" C1 {
+            capacitance = "2200e-6"
+            initial_voltage = "365"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7004, 9736
+            rotation = right
+        ]
+
+        component "core/Resistor" R9 {
+            resistance = "1e5"
+        }
+        [
+            position = 6916, 9736
+            rotation = right
+        ]
+
+        component "core/Capacitor" C2 {
+            capacitance = "2200e-6"
+            initial_voltage = "365"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7004, 9944
+            rotation = right
+        ]
+
+        component "core/Resistor" R10 {
+            resistance = "1e5"
+        }
+        [
+            position = 6916, 9944
+            rotation = right
+        ]
+
+        component "core/Series RLC Branch" "Series RLC Branch4" {
+            branch_type = "RL"
+            inductance = "0.00002"
+            num_phases = "Three-Phase"
+            resistance = "0.015"
+        }
+        [
+            position = 8868, 9688
+            size = 128, 256
+        ]
+
+        component "core/Series RLC Branch" "Series RLC Branch5" {
+            branch_type = "R"
+            capacitance = "4e-6"
+            inductance = "L_t"
+            num_phases = "Three-Phase"
+            resistance = "1000000"
+        }
+        [
+            position = 8932, 9976
+            rotation = right
+            size = 128, 256
+        ]
+
+        component "core/Probe" p {
+        }
+        [
+            position = 7952, 10536
+        ]
+
+        component "core/Product" Product1 {
+        }
+        [
+            position = 7588, 10472
+        ]
+
+        component "core/Product" Product2 {
+        }
+        [
+            position = 7588, 10528
+        ]
+
+        component "core/Product" Product3 {
+        }
+        [
+            position = 7588, 10584
+        ]
+
+        component "core/Sum" Sum1 {
+            signs = "3"
+        }
+        [
+            position = 7676, 10528
+        ]
+
+        component "core/Product" Product4 {
+        }
+        [
+            position = 7684, 10696
+        ]
+
+        component "core/Product" Product5 {
+        }
+        [
+            position = 7684, 10752
+        ]
+
+        component "core/Product" Product6 {
+        }
+        [
+            position = 7684, 10808
+        ]
+
+        component "core/Sum" Sum2 {
+            signs = "3"
+        }
+        [
+            position = 7772, 10752
+        ]
+
+        component "core/Sum" Sum3 {
+            signs = "+-"
+        }
+        [
+            position = 7476, 10688
+        ]
+
+        component "core/Sum" Sum4 {
+            signs = "+-"
+        }
+        [
+            position = 7476, 10744
+        ]
+
+        component "core/Sum" Sum5 {
+            signs = "+-"
+        }
+        [
+            position = 7476, 10800
+        ]
+
+        component "core/Gain" Gain1 {
+            gain = "0.577350269189626"
+        }
+        [
+            position = 7844, 10752
+        ]
+
+        component "core/Probe" q {
+        }
+        [
+            position = 8204, 10752
+        ]
+
+        component "core/Probe" V_h {
+        }
+        [
+            position = 8592, 8652
+        ]
+
+        component "core/SCADA Input" V_h_ref {
+            execution_rate = "10e-3"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7520, 8352
+        ]
+
+        component "core/CAN Bus Setup" "CAN Setup" {
+            calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+
+                                \'send_num\': 0,
+
+                                \'send_buff_len\': 0,
+
+                                \'receive_num\': 0,
+
+                                \'receive_buff_len\': 0,}"
+            can1_baud_rate = "1000000"
+            can1_cd = "1"
+            can1_ts1 = "1"
+            can1_ts2 = "1"
+            can2_baud_rate = "1000000"
+            can2_cd = "1"
+            can2_ts1 = "1"
+            can2_ts2 = "1"
+            saved_hil_device_config = "{\'11\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'10\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'13\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'12\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'15\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'14\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'1\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'0\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'3\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'2\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'5\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'4\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'7\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'6\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'9\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}, \'8\': {\'CAN2\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}, \'CAN1\': {\'baud\': \'50000\', \'ts1_calc\': \'1\', \'cd\': \'1\', \'ts2_calc\': \'1\', \'er\': \'10e-3\', \'cd_calc\': \'1\', \'sjw\': \'1\', \'sjw_calc\': \'1\', \'ts2\': \'1\', \'method\': \'Automatic\', \'ts1\': \'1\'}}}"
+        }
+        [
+            position = 7280, 8552
+            size = 64, 64
+        ]
+
+        component "core/CAN Bus Send" "CAN Bus Send" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "5"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}]"
+            transmit_period = "250.0"
+            transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+        }
+        [
+            position = 7764, 8408
+            size = 176, 160
+        ]
+
+        component "core/Probe" Fault_type {
+        }
+        [
+            position = 8536, 8692
+        ]
+
+        component "core/Probe" P3f {
+        }
+        [
+            position = 8592, 8732
+        ]
+
+        component "core/Probe" CAN1Status {
+        }
+        [
+            position = 7368, 8532
+        ]
+
+        component "core/Probe" CAN2Status {
+        }
+        [
+            position = 7368, 8580
+        ]
+
+        component "core/CAN Bus Receive" "CAN Bus Receive1" {
+            data_length = "8"
+            execution_rate = "0.0001"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "10"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}]"
+        }
+        [
+            position = 8320, 8708
+            size = 216, 168
+        ]
+
+        component "core/Probe" Q3f {
+        }
+        [
+            position = 8536, 8772
+        ]
+
+        component "core/CAN Bus Send" "CAN Bus Send1" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "2"
+            name = "Can message"
+            signal_names_dict = "{\'signal0\': {\'rename\': \'signal0\', \'delete\': False}, \'signal1\': {\'rename\': \'signal1\', \'delete\': False}, \'signal2\': {\'rename\': \'signal2\', \'delete\': False}, \'signal3\': {\'rename\': \'signal3\', \'delete\': False}}"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}]"
+            transmit_period = "250.0"
+            transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+        }
+        [
+            position = 7332, 8396
+            size = 176, 168
+        ]
+
+        component "core/SCADA Input" etas {
+            execution_rate = "10e-3"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7024, 8336
+        ]
+
+        component "core/CAN Bus Receive" "CAN Bus Receive2" {
+            data_length = "8"
+            execution_rate = "0.0001"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "11"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}]"
+        }
+        [
+            position = 8320, 9004
+            size = 216, 168
+        ]
+
+        component "core/Probe" vd {
+        }
+        [
+            position = 8588, 8944
+        ]
+
+        component "core/Probe" vq {
+        }
+        [
+            position = 8544, 8984
+        ]
+
+        component "core/Probe" id {
+        }
+        [
+            position = 8588, 9024
+        ]
+
+        component "core/Probe" iq {
+        }
+        [
+            position = 8544, 9064
+        ]
+
+        component "core/Termination" Termination1 {
+        }
+        [
+            position = 8420, 8564
+        ]
+
+        component "core/Termination" Termination2 {
+        }
+        [
+            position = 8408, 8868
+        ]
+
+        component "core/CAN Bus Send" "CAN Bus Send2" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "1"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'1\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'1\', \'length\': \'1\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}]"
+            transmit_period = "250.0"
+            transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+        }
+        [
+            position = 7776, 8592
+            size = 160, 120
+        ]
+
+        component "core/SCADA Input" startFSM {
+            execution_rate = "10e-3"
+            format = "uint"
+            max = "1"
+            min = "0"
+            signal_access = "Inherit"
+            signal_type = "uint"
+            unit = ""
+        }
+        [
+            position = 7508, 8552
+        ]
+
+        component "core/SCADA Input" startAC {
+            execution_rate = "10e-3"
+            format = "uint"
+            max = "1"
+            min = "0"
+            signal_access = "Inherit"
+            signal_type = "uint"
+            unit = ""
+        }
+        [
+            position = 7508, 8632
+        ]
+
+        component "core/SCADA Input" eta_dc {
+            execution_rate = "10e-3"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 6980, 8376
+        ]
+
+        component "core/SCADA Input" i_d_ref {
+            execution_rate = "10e-3"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7040, 8416
+        ]
+
+        component "core/SCADA Input" i_q_ref {
+            execution_rate = "10e-3"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 6992, 8456
+        ]
+
+        component "core/Gain" Gain2 {
+        }
+        [
+            position = 7596, 8352
+        ]
+
+        component "core/Gain" Gain5 {
+            gain = "1000"
+        }
+        [
+            position = 7100, 8336
+        ]
+
+        component "core/Gain" Gain6 {
+            gain = "1000"
+        }
+        [
+            position = 7076, 8376
+        ]
+
+        component "core/Gain" Gain7 {
+            gain = "10"
+        }
+        [
+            position = 7112, 8416
+        ]
+
+        component "core/Gain" Gain8 {
+            gain = "10"
+        }
+        [
+            position = 7080, 8456
+        ]
+
+        component "core/Gain" Gain9 {
+            gain = "0.1"
+        }
+        [
+            position = 8504, 8652
+        ]
+
+        component "core/Gain" Gain10 {
+        }
+        [
+            position = 8476, 8692
+        ]
+
+        component "core/Gain" Gain11 {
+        }
+        [
+            position = 8468, 8772
+        ]
+
+        component "core/Gain" Gain12 {
+        }
+        [
+            position = 8504, 8732
+        ]
+
+        component "core/Gain" Gain13 {
+            gain = "0.1"
+        }
+        [
+            position = 8516, 8944
+        ]
+
+        component "core/Gain" Gain14 {
+            gain = "0.1"
+        }
+        [
+            position = 8476, 8984
+        ]
+
+        component "core/Gain" Gain15 {
+            gain = "0.01"
+        }
+        [
+            position = 8516, 9024
+        ]
+
+        component "core/Gain" Gain16 {
+            gain = "0.01"
+        }
+        [
+            position = 8476, 9064
+        ]
+
+        component "core/Probe" I_d_ref {
+        }
+        [
+            position = 7080, 8512
+        ]
+
+        component "core/Probe" I_q_ref {
+        }
+        [
+            position = 7140, 8552
+        ]
+
+        component "core/CAN Bus Receive" "CAN Bus Receive3" {
+            data_length = "8"
+            execution_rate = "0.0001"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "13"
+            name = "Can message"
+            signal_names_dict = "{\'signal0\': {\'rename\': \'signal0\', \'delete\': False}, \'signal1\': {\'rename\': \'signal1\', \'delete\': False}, \'signal2\': {\'rename\': \'signal2\', \'delete\': False}, \'signal3\': {\'rename\': \'signal3\', \'delete\': False}}"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}]"
+        }
+        [
+            position = 8796, 9004
+            size = 216, 168
+        ]
+
+        component "core/Termination" Termination3 {
+        }
+        [
+            position = 8868, 8876
+        ]
+
+        component "core/Probe" iarms {
+        }
+        [
+            position = 9216, 8944
+        ]
+
+        component "core/Probe" ibrms {
+        }
+        [
+            position = 9172, 8984
+        ]
+
+        component "core/Probe" icrms {
+        }
+        [
+            position = 9216, 9024
+        ]
+
+        component "core/Probe" inrms {
+            signal_access = "Public"
+        }
+        [
+            position = 9172, 9064
+        ]
+
+        component "core/Gain" Gain17 {
+            gain = "0.2"
+        }
+        [
+            position = 8992, 8944
+        ]
+
+        component "core/Gain" Gain18 {
+            gain = "0.2"
+        }
+        [
+            position = 8952, 8984
+        ]
+
+        component "core/Gain" Gain19 {
+            gain = "0.2"
+        }
+        [
+            position = 8992, 9024
+        ]
+
+        component "core/Gain" Gain20 {
+            gain = "0.2"
+        }
+        [
+            position = 8952, 9064
+        ]
+
+        component "core/CAN Bus Send" "CAN Bus Send3" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "4"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}, {\'name\': \'signal4\', \'start_bit\': \'56\', \'length\': \'8\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal4\', \'name_changed\': \'False\'}]"
+            transmit_period = "250.0"
+            transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+        }
+        [
+            position = 7344, 8756
+            size = 160, 256
+        ]
+
+        component "core/SCADA Input" P_pu_ref {
+            execution_rate = "10e-3"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 6944, 8660
+        ]
+
+        component "core/SCADA Input" Q_pu_ref {
+            execution_rate = "10e-3"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 6944, 8708
+        ]
+
+        component "core/Data Type Conversion" "Data Type Conversion1" {
+            output_type = "int"
+        }
+        [
+            position = 7204, 8660
+        ]
+
+        component "core/Data Type Conversion" "Data Type Conversion2" {
+            output_type = "int"
+        }
+        [
+            position = 7204, 8708
+        ]
+
+        component "core/Probe" start_ac {
+        }
+        [
+            position = 7648, 8652
+        ]
+
+        component "core/Probe" start_fsm {
+        }
+        [
+            position = 7636, 8584
+        ]
+
+        component "core/CAN Bus Receive" "CAN Bus Receive4" {
+            data_length = "8"
+            execution_rate = "0.0001"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "15"
+            name = "Can message"
+            signal_names_dict = "{\'signal2\': {\'rename\': \'signal2\', \'delete\': False}}"
+            signals = "[{\'name\': \'signal2\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'uint\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}]"
+        }
+        [
+            position = 9352, 9016
+            size = 216, 168
+        ]
+
+        component "core/Probe" f_vsg {
+        }
+        [
+            position = 9588, 9016
+        ]
+
+        component "core/Termination" Termination4 {
+        }
+        [
+            position = 9428, 8892
+        ]
+
+        component "core/Gain" Gain24 {
+            gain = "0.1591549431"
+        }
+        [
+            position = 9520, 9016
+        ]
+
+        component "core/SCADA Input" interruptor_red {
+            def_value = "1"
+            execution_rate = "10e-3"
+            max = "1"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 8500, 9480
+        ]
+
+        component "core/Probe" RED {
+        }
+        [
+            position = 8644, 9432
+        ]
+
+        component "core/SCADA Input" interruptor_STATCOM {
+            def_value = "1"
+            execution_rate = "10e-3"
+            max = "1"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 6508, 9468
+        ]
+
+        component "core/Probe" STATCOM {
+        }
+        [
+            position = 6712, 9392
+        ]
+
+        component "core/Single Pole Single Throw Contactor" S2 {
+            ctrl_src = "Model"
+            signal_access = "Inherit"
+        }
+        [
+            position = 6680, 9608
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Current Source" Is1 {
+        }
+        [
+            position = 6448, 9852
+            rotation = right
+        ]
+
+        component "core/Resistor" R11 {
+            resistance = "10E6"
+        }
+        [
+            position = 6556, 9852
+            rotation = left
+        ]
+
+        component "core/Three Phase Core Coupling" "Core Coupling 1" {
+        }
+        [
+            position = 7884, 9688
+            rotation = down
+            size = 12, 256
+        ]
+
+        component "core/CAN Bus Send" "CAN Bus Send4" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "93"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}]"
+            transmit_period = "250.0"
+            transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+        }
+        [
+            position = 7336, 9040
+            size = 176, 168
+        ]
+
+        component "core/SCADA Input" K_i_p {
+            execution_rate = "10e-3"
+            max = "100"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7088, 8980
+        ]
+
+        component "core/SCADA Input" K_i_i {
+            execution_rate = "10e-3"
+            max = "500"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7044, 9020
+        ]
+
+        component "core/SCADA Input" Kp_dc {
+            execution_rate = "10e-3"
+            max = "100"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7088, 9060
+        ]
+
+        component "core/SCADA Input" Ki_dc {
+            execution_rate = "10e-3"
+            max = "500"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7044, 9096
+        ]
+
+        component "core/Gain" Gain29 {
+            gain = "100"
+        }
+        [
+            position = 7140, 8980
+        ]
+
+        component "core/Gain" Gain30 {
+            gain = "100"
+        }
+        [
+            position = 7132, 9020
+        ]
+
+        component "core/Gain" Gain31 {
+            gain = "100"
+        }
+        [
+            position = 7140, 9060
+        ]
+
+        component "core/Gain" Gain32 {
+            gain = "100"
+        }
+        [
+            position = 7132, 9096
+        ]
+
+        component "core/SCADA Input" H {
+            execution_rate = "10e-3"
+            max = "100"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7172, 8756
+        ]
+
+        component "core/SCADA Input" Control {
+            execution_rate = "10e-3"
+            max = "100"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7052, 8804
+        ]
+
+        component "core/SCADA Input" hilos {
+            execution_rate = "10e-3"
+            max = "100"
+            min = "0"
+            signal_access = "Inherit"
+            unit = ""
+        }
+        [
+            position = 7172, 8852
+        ]
+
+        component "core/Probe" ctrl {
+        }
+        [
+            position = 7124, 8840
+        ]
+
+        component "core/CAN Bus Send" "CAN Bus Send5" {
+            data_length = "8"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "6"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}]"
+            transmit_period = "250.0"
+            transmit_type = "{\'On event\': False, \'On timer\': True, \'On request\': False}"
+        }
+        [
+            position = 7772, 8780
+            size = 176, 168
+        ]
+
+        component "core/SCADA Input" Pa_ref {
+            execution_rate = "10e-3"
+            format = "int"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            signal_type = "int"
+            unit = "W"
+        }
+        [
+            position = 7524, 8412
+        ]
+
+        component "core/SCADA Input" Qa_ref {
+            execution_rate = "10e-3"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            unit = "var"
+        }
+        [
+            position = 7516, 8476
+        ]
+
+        component "core/SCADA Input" Pb_ref {
+            execution_rate = "10e-3"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            unit = "W"
+        }
+        [
+            position = 7604, 8720
+        ]
+
+        component "core/SCADA Input" Qb_ref {
+            execution_rate = "10e-3"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            unit = "var"
+        }
+        [
+            position = 7532, 8760
+        ]
+
+        component "core/SCADA Input" Pc_ref {
+            execution_rate = "10e-3"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            unit = "W"
+        }
+        [
+            position = 7608, 8800
+        ]
+
+        component "core/SCADA Input" Qc_ref {
+            execution_rate = "10e-3"
+            max = "20000"
+            min = "-20000"
+            signal_access = "Inherit"
+            unit = "var"
+        }
+        [
+            position = 7532, 8840
+        ]
+
+        component "core/Probe" q_ref {
+        }
+        [
+            position = 7092, 8760
+        ]
+
+        component "core/Probe" p_ref {
+        }
+        [
+            position = 7092, 8616
+        ]
+
+        component "core/Probe" Vh_ref {
+        }
+        [
+            position = 7644, 8312
+        ]
+
+        component "core/Output Settings" "Output Settings1" {
+            analog_outputs = "[\'AO1;..Icg.Mask@top.current;20;0.00;False;-10;10\', \'AO2;..Iag.Mask@top.current;20;0.00;False;-10;10\', \'AO9;..v_h.Mask@top.voltage;201.85;0.00;False;-10;10\', \'AO11;..Icg.Mask@top.current;20;0.00;False;-10;10\', \'AO12;..Vc.Mask@top.voltage;100.00;0.00;False;-10;10\', \'AO13;..Ibg.Mask@top.current;20;0.00;False;-10;10\', \'AO14;..Vb.Mask@top.voltage;100.00;0.00;False;-10;10\', \'AO15;..Iag.Mask@top.current;20;0.00;False;-10;10\', \'AO16;..Va.Mask@top.voltage;100.00;0.00;False;-10;10\', \'AO4;..AI_1.value;100.00;0.00;False;-10;10\', \'AO6;..AI_11.value;100.00;0.00;False;-10;10\', \'AO7;..AI_12.value;100.00;0.00;False;-10;10\']"
+        }
+        [
+            position = 8500, 10604
+        ]
+
+        component "core/Analog Input" "Analog Input1" {
+        }
+        [
+            position = 8616, 10548
+        ]
+
+        component "core/Probe" AI_1 {
+        }
+        [
+            position = 8692, 10548
+        ]
+
+        component "core/Analog Input" "Analog Input11" {
+            addr = "11"
+        }
+        [
+            position = 8616, 10604
+        ]
+
+        component "core/Probe" AI_11 {
+        }
+        [
+            position = 8692, 10604
+        ]
+
+        component "core/Analog Input" "Analog Input12" {
+            addr = "12"
+        }
+        [
+            position = 8616, 10660
+        ]
+
+        component "core/Probe" AI_12 {
+        }
+        [
+            position = 8692, 10660
+        ]
+
+        component "core/Probe" wires {
+        }
+        [
+            position = 7244, 8912
+        ]
+
+        component "core/Sum" Sum6 {
+        }
+        [
+            position = 7856, 10536
+        ]
+
+        component "core/Unit Delay" "Unit Delay1" {
+        }
+        [
+            position = 7868, 10608
+            rotation = down
+        ]
+
+        component "core/Gain" Gain34 {
+            gain = "1-Tc"
+        }
+        [
+            position = 7780, 10528
+        ]
+
+        component "core/Gain" Gain35 {
+            gain = "Tc"
+        }
+        [
+            position = 7816, 10608
+            rotation = down
+        ]
+
+        component "core/Sum" Sum7 {
+        }
+        [
+            position = 8036, 10760
+        ]
+
+        component "core/Unit Delay" "Unit Delay2" {
+        }
+        [
+            position = 8048, 10832
+            rotation = down
+        ]
+
+        component "core/Gain" Gain36 {
+            gain = "1-Tc"
+        }
+        [
+            position = 7960, 10752
+        ]
+
+        component "core/Gain" Gain37 {
+            gain = "Tc"
+        }
+        [
+            position = 7996, 10832
+            rotation = down
+        ]
+
+        component "core/CAN Bus Receive" "CAN Bus Receive5" {
+            data_length = "8"
+            execution_rate = "0.0001"
+            file_label = "Import DBC file"
+            identifier_type = "CAN 2.0 A (11 bit identifier)"
+            identifier_value = "12"
+            name = "Can message"
+            signals = "[{\'name\': \'signal0\', \'start_bit\': \'0\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal0\', \'name_changed\': \'False\'}, {\'name\': \'signal1\', \'start_bit\': \'16\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal1\', \'name_changed\': \'False\'}, {\'name\': \'signal2\', \'start_bit\': \'32\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal2\', \'name_changed\': \'False\'}, {\'name\': \'signal3\', \'start_bit\': \'48\', \'length\': \'16\', \'byte_order\': \'Little Endian\', \'data_type\': \'int\', \'mux_type\': \'None\', \'mux_val\': \'\', \'scale\': \'\', \'offset\': \'\', \'min\': \'\', \'max\': \'\', \'unit\': \'\', \'name_old\': \'signal3\', \'name_changed\': \'False\'}]"
+        }
+        [
+            position = 8860, 8700
+            size = 216, 168
+        ]
+
+        component "core/Termination" Termination5 {
+        }
+        [
+            position = 8932, 8572
+        ]
+
+        component "core/Probe" varms {
+        }
+        [
+            position = 9224, 8640
+        ]
+
+        component "core/Probe" vbrms {
+        }
+        [
+            position = 9180, 8680
+        ]
+
+        component "core/Probe" vcrms {
+        }
+        [
+            position = 9224, 8720
+        ]
+
+        component "core/Probe" CTRL {
+            signal_access = "Public"
+        }
+        [
+            position = 9084, 8760
+        ]
+
+        component "core/Gain" Gain39 {
+            gain = "2"
+        }
+        [
+            position = 9056, 8640
+        ]
+
+        component "core/Gain" Gain40 {
+            gain = "2"
+        }
+        [
+            position = 9016, 8680
+        ]
+
+        component "core/Gain" Gain41 {
+            gain = "2"
+        }
+        [
+            position = 9056, 8720
+        ]
+
+        component "core/Gain" Gain42 {
+        }
+        [
+            position = 9016, 8760
+        ]
+
+        component "core/Probe" iarms1 {
+        }
+        [
+            position = 7036, 10436
+        ]
+
+        component "core/Probe" ibrms1 {
+        }
+        [
+            position = 7036, 10508
+        ]
+
+        component "core/Probe" icrms1 {
+        }
+        [
+            position = 7036, 10584
+        ]
+
+        component "core/RMS value" "RMS value1" {
+            filter_en = "True"
+            lpf_cutoff = "1000"
+        }
+        [
+            position = 6976, 10436
+        ]
+
+        component "core/RMS value" "RMS value3" {
+            filter_en = "True"
+            lpf_cutoff = "1000"
+        }
+        [
+            position = 6976, 10584
+        ]
+
+        component "core/Probe" varms1 {
+        }
+        [
+            position = 7036, 10684
+        ]
+
+        component "core/Probe" vbrms1 {
+        }
+        [
+            position = 7036, 10756
+        ]
+
+        component "core/Probe" vcrms1 {
+        }
+        [
+            position = 7036, 10832
+        ]
+
+        component "core/RMS value" "RMS value4" {
+            filter_en = "True"
+            lpf_cutoff = "1000"
+        }
+        [
+            position = 6976, 10684
+        ]
+
+        component "core/RMS value" "RMS value6" {
+            filter_en = "True"
+            lpf_cutoff = "1000"
+        }
+        [
+            position = 6976, 10832
+        ]
+
+        component "core/RMS value" "RMS value7" {
+            filter_en = "True"
+            lpf_cutoff = "1000"
+        }
+        [
+            position = 6972, 10508
+        ]
+
+        component "core/RMS value" "RMS value8" {
+            filter_en = "True"
+            lpf_cutoff = "1000"
+        }
+        [
+            position = 6972, 10756
+        ]
+
+        component "core/Mathematical function" "Mathematical function1" {
+            mathematical_fn = "sqrt"
+        }
+        [
+            position = 9132, 8640
+        ]
+
+        component "core/Mathematical function" "Mathematical function2" {
+            mathematical_fn = "sqrt"
+        }
+        [
+            position = 9068, 8680
+        ]
+
+        component "core/Mathematical function" "Mathematical function3" {
+            mathematical_fn = "sqrt"
+        }
+        [
+            position = 9132, 8720
+        ]
+
+        component "core/Mathematical function" "Mathematical function4" {
+            mathematical_fn = "sqrt"
+        }
+        [
+            position = 9112, 8944
+        ]
+
+        component "core/Mathematical function" "Mathematical function5" {
+            mathematical_fn = "sqrt"
+        }
+        [
+            position = 9048, 8984
+        ]
+
+        component "core/Mathematical function" "Mathematical function6" {
+            mathematical_fn = "sqrt"
+        }
+        [
+            position = 9112, 9024
+        ]
+
+        component "core/Mathematical function" "Mathematical function7" {
+            mathematical_fn = "sqrt"
+        }
+        [
+            position = 9048, 9064
+        ]
+
+        tag Goto1 {
+            value = "Ia"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9108, 9552
+            size = 60, 20
+        ]
+
+        tag Goto2 {
+            value = "Ib"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9108, 9648
+            size = 60, 20
+        ]
+
+        tag Goto3 {
+            value = "Ic"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9100, 9752
+            size = 60, 20
+        ]
+
+        tag Goto4 {
+            value = "Vc"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8704, 10004
+            size = 60, 20
+        ]
+
+        tag Goto5 {
+            value = "Vb"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8704, 9968
+            size = 60, 20
+        ]
+
+        tag Goto6 {
+            value = "Va"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8708, 9924
+            size = 60, 20
+        ]
+
+        tag From1 {
+            value = "Va"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7484, 10456
+            size = 60, 20
+        ]
+
+        tag From2 {
+            value = "Vb"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7484, 10512
+            size = 60, 20
+        ]
+
+        tag From3 {
+            value = "Vc"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7484, 10568
+            size = 60, 20
+        ]
+
+        tag From4 {
+            value = "Va"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7372, 10776
+            size = 60, 20
+        ]
+
+        tag From5 {
+            value = "Vb"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7276, 10752
+            size = 60, 20
+        ]
+
+        tag From6 {
+            value = "Vc"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7372, 10720
+            size = 60, 20
+        ]
+
+        tag From7 {
+            value = "Ia"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7484, 10488
+            size = 60, 20
+        ]
+
+        tag From8 {
+            value = "Ib"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7484, 10544
+            size = 60, 20
+        ]
+
+        tag From9 {
+            value = "Ic"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7484, 10600
+            size = 60, 20
+        ]
+
+        tag From10 {
+            value = "Ia"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7588, 10704
+            size = 60, 20
+        ]
+
+        tag From11 {
+            value = "Ib"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7588, 10760
+            size = 60, 20
+        ]
+
+        tag From12 {
+            value = "Ic"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 7588, 10816
+            size = 60, 20
+        ]
+
+        tag From85 {
+            value = "Va"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6884, 10684
+            size = 60, 20
+        ]
+
+        tag From86 {
+            value = "Vb"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6884, 10756
+            size = 60, 20
+        ]
+
+        tag From87 {
+            value = "Vc"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6884, 10832
+            size = 60, 20
+        ]
+
+        tag From88 {
+            value = "Ia"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6876, 10436
+            size = 60, 20
+        ]
+
+        tag From89 {
+            value = "Ib"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6876, 10508
+            size = 60, 20
+        ]
+
+        tag From90 {
+            value = "Ic"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 6880, 10584
+            size = 60, 20
+        ]
+
+        junction Junction7 pe
+        [
+            position = 8084, 9592
+        ]
+
+        junction Junction8 pe
+        [
+            position = 8180, 9688
+        ]
+
+        junction Junction9 pe
+        [
+            position = 8276, 9784
+        ]
+
+        junction Junction10 pe
+        [
+            position = 8180, 10104
+        ]
+
+        junction Junction11 pe
+        [
+            position = 8564, 10068
+        ]
+
+        junction Junction12 pe
+        [
+            position = 8180, 10104
+        ]
+
+        junction Junction16 pe
+        [
+            position = 7184, 10168
+        ]
+
+        junction Junction23 pe
+        [
+            position = 7184, 9448
+        ]
+
+        junction Junction24 pe
+        [
+            position = 7080, 9448
+        ]
+
+        junction Junction18 pe
+        [
+            position = 6916, 9848
+        ]
+
+        junction Junction26 pe
+        [
+            position = 7004, 9848
+        ]
+
+        junction Junction28 pe
+        [
+            position = 6916, 9656
+        ]
+
+        junction Junction31 pe
+        [
+            position = 8508, 9592
+        ]
+
+        junction Junction32 pe
+        [
+            position = 8564, 9688
+        ]
+
+        junction Junction33 pe
+        [
+            position = 8628, 9784
+        ]
+
+        junction Junction34 pe
+        [
+            position = 8564, 10088
+        ]
+
+        junction Junction35 pe
+        [
+            position = 8932, 10088
+        ]
+
+        junction Junction36 pe
+        [
+            position = 8836, 10088
+        ]
+
+        junction Junction37 pe
+        [
+            position = 8508, 9872
+        ]
+
+        junction Junction38 pe
+        [
+            position = 8564, 9888
+        ]
+
+        junction Junction39 pe
+        [
+            position = 8628, 9904
+        ]
+
+        junction Junction40 sp
+        [
+            position = 7436, 10776
+        ]
+
+        junction Junction41 sp
+        [
+            position = 7436, 10720
+        ]
+
+        junction Junction42 sp
+        [
+            position = 7332, 10752
+        ]
+
+        junction Junction43 sp
+        [
+            position = 7072, 8416
+        ]
+
+        junction Junction44 sp
+        [
+            position = 7024, 8456
+        ]
+
+        junction Junction45 sp
+        [
+            position = 7576, 8552
+        ]
+
+        junction Junction46 sp
+        [
+            position = 7576, 8632
+        ]
+
+        junction Junction47 sp
+        [
+            position = 8572, 9480
+        ]
+
+        junction Junction48 pe
+        [
+            position = 7080, 10168
+        ]
+
+        junction Junction49 pe
+        [
+            position = 6860, 10168
+        ]
+
+        junction Junction50 pe
+        [
+            position = 6916, 10168
+        ]
+
+        junction Junction51 pe
+        [
+            position = 6916, 10044
+        ]
+
+        junction Junction56 pe
+        [
+            position = 6680, 10168
+        ]
+
+        junction Junction61 pe
+        [
+            position = 6916, 9448
+        ]
+
+        junction Junction62 pe
+        [
+            position = 6860, 9512
+        ]
+
+        junction Junction63 pe
+        [
+            position = 6680, 9512
+        ]
+
+        junction Junction65 sp
+        [
+            position = 6568, 9468
+        ]
+
+        junction Junction66 pe
+        [
+            position = 6556, 9512
+        ]
+
+        junction Junction67 pe
+        [
+            position = 6556, 10168
+        ]
+
+        junction Junction72 sp
+        [
+            position = 7548, 8352
+        ]
+
+        junction Junction75 sp
+        [
+            position = 7900, 10536
+        ]
+
+        junction Junction76 sp
+        [
+            position = 8080, 10760
+        ]
+
+        junction Junction80 sp
+        [
+            position = 7208, 8852
+        ]
+
+        junction Junction81 sp
+        [
+            position = 7084, 8804
+        ]
+
+        junction Junction82 sp
+        [
+            position = 7024, 8660
+        ]
+
+        junction Junction83 sp
+        [
+            position = 7024, 8712
+        ]
+
+        scheme_area Area1 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">Power computation</span></p></body></html>
+        }
+        [
+            position = 7732, 10640
+            size = 1148, 532
+            background_color = #0eaaaaff
+        ]
+
+        scheme_area Area2 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">CAN receive</span></p></body></html>
+        }
+        [
+            position = 8848, 8840
+            size = 1536, 672
+            background_color = #0eff0000
+            box_outline = True
+        ]
+
+        scheme_area Area3 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">CAN Send</span></p></body></html>
+        }
+        [
+            position = 7388, 8692
+            size = 1180, 988
+            background_color = #0eff0000
+        ]
+
+        scheme_area Area4 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:0; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Model settings</p></body></html>
+        }
+        [
+            position = 8576, 10592
+            size = 416, 232
+            background_color = #0eaaaaff
+        ]
+
+        scheme_area Area5 {
+            title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">Power plant</span></p></body></html>
+        }
+        [
+            position = 7892, 9776
+            size = 3260, 1048
+        ]
+
+        connect Junction7 "Series RLC Branch2.P1_pos" as Connection10
+        connect "Series RLC Branch3.P3_pos" Junction7 as Connection11
+        connect Junction8 "Series RLC Branch2.P2_pos" as Connection37
+        connect "Series RLC Branch3.P2_pos" Junction8 as Connection38
+        connect Junction9 "Series RLC Branch2.P3_pos" as Connection40
+        connect "Series RLC Branch3.P1_pos" Junction9 as Connection41
+        connect "Series RLC Branch3.P3_neg" Junction10 as Connection42
+        [
+            breakpoints = 8092, 10104
+        ]
+        connect Junction10 "Series RLC Branch3.P2_neg" as Connection43
+        connect Vc.n_node Vb.n_node as Connection44
+        [
+            breakpoints = 8628, 10064; 8564, 10064
+        ]
+        connect Va.n_node Junction11 as Connection45
+        [
+            breakpoints = 8508, 10064; 8564, 10064
+        ]
+        connect Junction11 Vb.n_node as Connection46
+        connect gnd2.node Vs1.n_node as Connection47
+        connect "Series RLC Branch3.P1_neg" Junction12 as Connection48
+        connect Junction12 Junction10 as Connection49
+        connect gnd3.node Junction12 as Connection50
+        connect R1.p_node v_dc.p_node as Connection53
+        connect Junction16 "IGBT Leg3.neg_out" as Connection79
+        [
+            breakpoints = 7316, 10064; 7316, 10064
+        ]
+        connect "IGBT Leg2.neg_out" Junction16 as Connection80
+        connect "IGBT Leg1.a_in" "Series RLC Branch1.P1_pos" as Connection88
+        connect "Series RLC Branch1.P3_pos" "IGBT Leg3.a_in" as Connection90
+        connect "IGBT Leg2.pos_out" Junction23 as Connection113
+        connect Junction23 "IGBT Leg3.pos_out" as Connection114
+        [
+            breakpoints = 7244, 9448; 7316, 9448
+        ]
+        connect Junction24 Junction23 as Connection117
+        [
+            breakpoints = 7084, 9448; 7184, 9448; 7184, 9448
+        ]
+        connect "IGBT Leg1.pos_out" Junction24 as Connection118
+        connect R9.n_node Junction18 as Connection122
+        connect Junction18 R10.p_node as Connection123
+        connect C2.p_node Junction26 as Connection111
+        connect Junction26 Junction18 as Connection112
+        connect C1.n_node Junction26 as Connection124
+        connect R9.p_node Junction28 as Connection128
+        connect C1.p_node Junction28 as Connection130
+        connect "Series RLC Branch4.P1_neg" Iag.p_node as Connection137
+        connect Ibg.p_node "Series RLC Branch4.P2_neg" as Connection138
+        connect "Series RLC Branch4.P3_neg" Icg.p_node as Connection139
+        connect "Series RLC Branch4.P3_pos" S1.c_out as Connection140
+        connect S1.b_out "Series RLC Branch4.P2_pos" as Connection141
+        connect "Series RLC Branch4.P1_pos" S1.a_out as Connection142
+        connect Vs1.a_node Iag.n_node as Connection144
+        [
+            breakpoints = 9116, 9592
+        ]
+        connect Vs1.b_node Ibg.n_node as Connection145
+        [
+            breakpoints = 9172, 9688
+        ]
+        connect Vs1.c_node Icg.n_node as Connection143
+        [
+            breakpoints = 9236, 9784
+        ]
+        connect S1.a_in Junction31 as Connection146
+        connect Junction31 "Series RLC Branch2.P1_neg" as Connection147
+        connect S1.b_in Junction32 as Connection149
+        connect Junction32 "Series RLC Branch2.P2_neg" as Connection150
+        connect S1.c_in Junction33 as Connection152
+        connect Junction33 "Series RLC Branch2.P3_neg" as Connection153
+        connect gnd1.node Junction34 as Connection155
+        connect Junction34 Junction11 as Connection156
+        [
+            breakpoints = 8564, 10112; 8564, 10068
+        ]
+        connect "Series RLC Branch5.P1_neg" Junction35 as Connection158
+        connect "Series RLC Branch5.P2_neg" Junction35 as Connection160
+        connect Junction35 Junction36 as Connection161
+        [
+            breakpoints = 8932, 10088; 8836, 10088
+        ]
+        connect Junction36 Junction34 as Connection162
+        [
+            breakpoints = 8836, 10088; 8564, 10088
+        ]
+        connect "Series RLC Branch5.P3_neg" Junction36 as Connection163
+        connect Va.p_node Junction37 as Connection164
+        connect Junction37 Junction31 as Connection165
+        connect "Series RLC Branch5.P3_pos" Junction37 as Connection166
+        connect Vb.p_node Junction38 as Connection167
+        connect Junction38 Junction32 as Connection168
+        connect "Series RLC Branch5.P2_pos" Junction38 as Connection169
+        connect Vc.p_node Junction39 as Connection170
+        connect Junction39 Junction33 as Connection171
+        connect "Series RLC Branch5.P1_pos" Junction39 as Connection172
+        connect Iag.out Goto1 as Connection173
+        connect Ibg.out Goto2 as Connection174
+        connect Goto4 Vc.out as Connection176
+        connect Goto5 Vb.out as Connection177
+        connect Goto6 Va.out as Connection178
+        connect Product1.in From1 as Connection179
+        connect From7 Product1.in1 as Connection180
+        connect Product2.in From2 as Connection181
+        connect From8 Product2.in1 as Connection182
+        connect Product3.in From3 as Connection183
+        connect From9 Product3.in1 as Connection184
+        connect Sum1.in1 Product2.out as Connection185
+        connect Sum1.in Product1.out as Connection186
+        connect Product3.out Sum1.in2 as Connection187
+        connect Sum2.in1 Product5.out as Connection189
+        connect Sum2.in Product4.out as Connection190
+        connect Product6.out Sum2.in2 as Connection191
+        connect Product4.in Sum3.out as Connection192
+        connect Product5.in Sum4.out as Connection193
+        connect Sum5.out Product6.in as Connection194
+        connect Gain1.in Sum2.out as Connection195
+        connect Product4.in1 From10 as Connection196
+        connect From11 Product5.in1 as Connection197
+        connect Product6.in1 From12 as Connection198
+        connect From4 Junction40 as Connection200
+        connect Junction40 Sum4.in1 as Connection201
+        connect Sum5.in Junction40 as Connection202
+        connect From6 Junction41 as Connection204
+        connect Junction41 Sum3.in1 as Connection205
+        connect Sum4.in Junction41 as Connection206
+        connect From5 Junction42 as Connection208
+        connect Junction42 Sum3.in as Connection209
+        [
+            breakpoints = 7332, 10752; 7332, 10680
+        ]
+        connect Sum5.in1 Junction42 as Connection210
+        connect Icg.out Goto3 as Connection216
+        connect "CAN Setup.out1" CAN2Status.in as Connection13
+        connect "CAN Setup.out" CAN1Status.in as Connection14
+        connect "CAN Bus Receive1.rcv_cnt" Termination1.in as Connection218
+        connect "CAN Bus Receive2.rcv_cnt" Termination2.in as Connection219
+        connect etas.out Gain5.in as Connection241
+        connect Gain5.out "CAN Bus Send1.signal0" as Connection242
+        connect eta_dc.out Gain6.in as Connection243
+        connect Gain6.out "CAN Bus Send1.signal1" as Connection244
+        connect V_h.in Gain9.out as Connection249
+        connect Gain9.in "CAN Bus Receive1.signal0" as Connection250
+        connect Fault_type.in Gain10.out as Connection251
+        connect Gain10.in "CAN Bus Receive1.signal1" as Connection252
+        connect "CAN Bus Receive1.signal2" Gain12.in as Connection253
+        connect Gain12.out P3f.in as Connection254
+        connect Q3f.in Gain11.out as Connection255
+        connect Gain11.in "CAN Bus Receive1.signal3" as Connection256
+        connect vd.in Gain13.out as Connection257
+        connect Gain13.in "CAN Bus Receive2.signal0" as Connection258
+        connect vq.in Gain14.out as Connection259
+        connect Gain14.in "CAN Bus Receive2.signal1" as Connection260
+        connect "CAN Bus Receive2.signal2" Gain15.in as Connection261
+        connect Gain15.out id.in as Connection262
+        connect "CAN Bus Receive2.signal3" Gain16.in as Connection263
+        connect Gain16.out iq.in as Connection264
+        connect i_d_ref.out Junction43 as Connection273
+        connect Junction43 Gain7.in as Connection274
+        connect I_d_ref.in Junction43 as Connection275
+        connect i_q_ref.out Junction44 as Connection276
+        connect Junction44 Gain8.in as Connection277
+        connect I_q_ref.in Junction44 as Connection278
+        connect "CAN Bus Receive3.rcv_cnt" Termination3.in as Connection279
+        connect Gain20.in "CAN Bus Receive3.signal3" as Connection284
+        connect "CAN Bus Receive3.signal2" Gain19.in as Connection285
+        connect "CAN Bus Receive3.signal1" Gain18.in as Connection286
+        connect "CAN Bus Receive3.signal0" Gain17.in as Connection287
+        connect "Data Type Conversion1.out" "CAN Bus Send3.signal0" as Connection293
+        connect startFSM.out Junction45 as Connection300
+        connect Junction45 "CAN Bus Send2.signal0" as Connection301
+        connect start_fsm.in Junction45 as Connection302
+        connect "CAN Bus Send2.signal1" Junction46 as Connection303
+        connect Junction46 startAC.out as Connection304
+        connect start_ac.in Junction46 as Connection305
+        connect Termination4.in "CAN Bus Receive4.rcv_cnt" as Connection308
+        connect f_vsg.in Gain24.out as Connection311
+        connect Gain24.in "CAN Bus Receive4.signal2" as Connection312
+        connect Gain2.out "CAN Bus Send.signal0" as Connection316
+        connect S1.ctrl_in Junction47 as Connection338
+        connect Junction47 interruptor_red.out as Connection339
+        connect RED.in Junction47 as Connection340
+        [
+            breakpoints = 8572, 9472
+        ]
+        connect Junction16 Junction48 as Connection342
+        connect "IGBT Leg1.neg_out" Junction48 as Connection344
+        connect v_h.n_node Junction49 as Connection349
+        connect Junction49 Junction50 as Connection350
+        connect Junction50 Junction48 as Connection351
+        [
+            breakpoints = 6912, 10168; 6964, 10168; 6964, 10168; 7080, 10168
+        ]
+        connect R10.n_node Junction51 as Connection353
+        connect Junction51 Junction50 as Connection354
+        connect C2.n_node Junction51 as Connection355
+        connect Junction49 Junction56 as Connection406
+        [
+            breakpoints = 6860, 10168; 6688, 10168
+        ]
+        connect Junction56 v_dc.n_node as Connection407
+        connect Junction61 Junction24 as Connection431
+        [
+            breakpoints = 6916, 9448; 6916, 9448; 7084, 9448
+        ]
+        connect "Series RLC Branch1.P3_neg" "Core Coupling 1.a_out" as Connection442
+        connect "Core Coupling 1.a_in" Junction9 as Connection443
+        connect "Series RLC Branch1.P2_neg" "Core Coupling 1.b_out" as Connection444
+        connect "Core Coupling 1.b_in" Junction8 as Connection445
+        connect "Series RLC Branch1.P1_neg" "Core Coupling 1.c_out" as Connection446
+        connect "Core Coupling 1.c_in" Junction7 as Connection447
+        connect Junction61 Junction28 as Connection459
+        [
+            breakpoints = 6916, 9636
+        ]
+        connect v_h.p_node Junction62 as Connection460
+        connect Junction62 Junction61 as Connection461
+        connect R1.n_node S2.a_out as Connection467
+        connect Junction62 Junction63 as Connection473
+        connect Junction63 S2.a_in as Connection474
+        connect STATCOM.in Junction65 as Connection484
+        [
+            breakpoints = 6568, 9392
+        ]
+        connect Junction65 S2.ctrl_in as Connection485
+        [
+            breakpoints = 6568, 9468; 6712, 9468
+        ]
+        connect interruptor_STATCOM.out Junction65 as Connection486
+        connect R11.n_node Junction66 as Connection489
+        [
+            breakpoints = 6556, 9812; 6556, 9512
+        ]
+        connect Junction66 Junction63 as Connection490
+        connect Is1.p_node Junction66 as Connection491
+        connect R11.p_node Junction67 as Connection492
+        connect Junction67 Junction56 as Connection493
+        [
+            breakpoints = 6680, 10168
+        ]
+        connect Is1.n_node Junction67 as Connection494
+        connect "IGBT Leg2.a_in" "Series RLC Branch1.P2_pos" as Connection495
+        connect K_i_p.out Gain29.in as Connection500
+        connect Gain29.out "CAN Bus Send4.signal0" as Connection501
+        connect K_i_i.out Gain30.in as Connection502
+        connect Gain30.out "CAN Bus Send4.signal1" as Connection503
+        connect Kp_dc.out Gain31.in as Connection504
+        connect Gain31.out "CAN Bus Send4.signal2" as Connection505
+        connect Ki_dc.out Gain32.in as Connection506
+        connect Gain32.out "CAN Bus Send4.signal3" as Connection507
+        connect H.out "CAN Bus Send3.signal2" as Connection516
+        connect V_h_ref.out Junction72 as Connection552
+        connect Junction72 Gain2.in as Connection553
+        connect Vh_ref.in Junction72 as Connection554
+        connect "Analog Input1.out" AI_1.in as Connection559
+        connect "Analog Input11.out" AI_11.in as Connection560
+        connect "Analog Input12.out" AI_12.in as Connection561
+        connect Gain34.out Sum6.in as Connection570
+        connect "Unit Delay1.out" Gain35.in as Connection571
+        connect Gain35.out Sum6.in1 as Connection576
+        connect Gain34.in Sum1.out as Connection578
+        connect Sum6.out Junction75 as Connection579
+        connect Junction75 p.in as Connection580
+        connect "Unit Delay1.in" Junction75 as Connection581
+        connect Gain36.out Sum7.in as Connection583
+        connect "Unit Delay2.out" Gain37.in as Connection584
+        connect Gain37.out Sum7.in1 as Connection585
+        connect Gain1.out Gain36.in as Connection589
+        connect "Unit Delay2.in" Junction76 as Connection590
+        connect Junction76 Sum7.out as Connection591
+        connect q.in Junction76 as Connection592
+        connect "Data Type Conversion2.out" "CAN Bus Send3.signal1" as Connection606
+        connect "CAN Bus Send3.signal4" Junction80 as Connection608
+        connect Junction80 hilos.out as Connection609
+        connect wires.in Junction80 as Connection610
+        connect Control.out Junction81 as Connection612
+        connect Junction81 "CAN Bus Send3.signal3" as Connection613
+        connect ctrl.in Junction81 as Connection614
+        connect "CAN Bus Receive5.rcv_cnt" Termination5.in as Connection616
+        connect Gain42.out CTRL.in as Connection620
+        connect Gain42.in "CAN Bus Receive5.signal3" as Connection621
+        connect "CAN Bus Receive5.signal2" Gain41.in as Connection622
+        connect "CAN Bus Receive5.signal1" Gain40.in as Connection623
+        connect "CAN Bus Receive5.signal0" Gain39.in as Connection624
+        connect Gain7.out "CAN Bus Send1.signal2" as Connection625
+        connect Gain8.out "CAN Bus Send1.signal3" as Connection626
+        connect "CAN Bus Send5.signal0" Pb_ref.out as Connection627
+        connect "CAN Bus Send5.signal1" Qb_ref.out as Connection628
+        connect "CAN Bus Send5.signal2" Pc_ref.out as Connection629
+        connect "CAN Bus Send5.signal3" Qc_ref.out as Connection630
+        connect "CAN Bus Send.signal1" Pa_ref.out as Connection631
+        connect "CAN Bus Send.signal2" Qa_ref.out as Connection632
+        connect "RMS value1.out" iarms1.in as Connection800
+        connect "RMS value3.out" icrms1.in as Connection802
+        connect "RMS value4.out" varms1.in as Connection838
+        connect "RMS value6.out" vcrms1.in as Connection840
+        connect "RMS value7.out" ibrms1.in as Connection854
+        connect "RMS value8.out" vbrms1.in as Connection855
+        connect From85 "RMS value4.in" as Connection856
+        connect From86 "RMS value8.in" as Connection857
+        connect From88 "RMS value1.in" as Connection858
+        connect From89 "RMS value7.in" as Connection859
+        connect From90 "RMS value3.in" as Connection860
+        connect From87 "RMS value6.in" as Connection861
+        connect varms.in "Mathematical function1.out" as Connection862
+        connect "Mathematical function1.in" Gain39.out as Connection863
+        connect vbrms.in "Mathematical function2.out" as Connection864
+        connect "Mathematical function2.in" Gain40.out as Connection865
+        connect Gain41.out "Mathematical function3.in" as Connection866
+        connect "Mathematical function3.out" vcrms.in as Connection867
+        connect ibrms.in "Mathematical function5.out" as Connection868
+        connect "Mathematical function5.in" Gain18.out as Connection869
+        connect iarms.in "Mathematical function4.out" as Connection870
+        connect "Mathematical function4.in" Gain17.out as Connection871
+        connect Gain19.out "Mathematical function6.in" as Connection872
+        connect "Mathematical function6.out" icrms.in as Connection873
+        connect Gain20.out "Mathematical function7.in" as Connection874
+        connect "Mathematical function7.out" inrms.in as Connection875
+        connect p_ref.in Junction82 as Connection878
+        connect "Data Type Conversion1.in" Junction82 as Connection880
+        connect q_ref.in Junction83 as Connection881
+        connect "Data Type Conversion2.in" Junction83 as Connection883
+        connect P_pu_ref.out Junction82 as Connection884
+        [
+            breakpoints = 7024, 8660
+        ]
+        connect Q_pu_ref.out Junction83 as Connection885
+        [
+            breakpoints = 7024, 8708
+        ]
+    }
+
+    default {
+        "core/Analog Input" {
+            addr = "1"
+            ai_offset = "0"
+            ai_gain = "1"
+            execution_rate = "100e-6"
+        }
+
+        "core/Capacitor" {
+            signal_access = "inherit"
+            capacitance = "1e-6"
+            initial_voltage = "0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Current Source" {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            dtsm_switch_name = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R1"
+            R1 = "inf"
+            C1 = "1e-06"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+            dtsm_nb = "0"
+            dtsm_switch_ctrl = ""
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+        }
+
+        "core/Data Type Conversion" {
+            output_type = "real"
+            execution_rate = "inherit"
+        }
+
+        "core/Gain" {
+            gain = "1"
+            multiplication = "Element-wise(K.*u)"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Mathematical function" {
+            mathematical_fn = "exponential"
+            execution_rate = "inherit"
+        }
+
+        "core/Output Settings" {
+            analog_outputs = "[]"
+            digital_outputs = "[]"
+            hil_id = "0"
+            signal = ""
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Product" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/RMS value" {
+            op_mode = "PLL based"
+            frequency = "50"
+            period_timeout = "0.5"
+            period_deadband = "0"
+            filter_en = "False"
+            lpf_cutoff = "500"
+            frequency_src = "Internal"
+            execution_rate = "inherit"
+        }
+
+        "core/Resistor" {
+            resistance = "1"
+            param_set = ""
+        }
+
+        "core/SCADA Input" {
+            signal_access = "inherit"
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
+        }
+
+        "core/Sum" {
+            signs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Termination" {
+            execution_rate = "inherit"
+        }
+
+        "core/Unit Delay" {
+            init_value = "0"
+            signal_out_type = "inherit"
+            execution_rate = "inherit"
+        }
+
+        "core/Voltage Source" {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            dtsm_switch_name = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R2"
+            R2 = "0.0"
+            L1 = "0.1"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/CAN Bus Receive" {
+            hil_id = "0"
+            db_messages = "[]"
+            name = "CAN message"
+            can_controller = "CAN1"
+            data_input = "Dialog window"
+            file_label = "Configuration file"
+            file_path = "Configuration file"
+            choose_message_values = "[]"
+            choose_message = ""
+            identifier_type = "11 bit"
+            identifier_value = "100"
+            data_length = "1"
+            signals = "[]"
+            signal_names_dict = "{}"
+            execution_rate = "100e-6"
+            _supported_platforms = "[\'hil\']"
+        }
+
+        "core/CAN Bus Send" {
+            hil_id = "0"
+            db_messages = "[]"
+            name = "CAN message"
+            can_controller = "CAN1"
+            data_input = "Dialog window"
+            file_label = "Configuration file"
+            file_path = "Configuration file"
+            choose_message_values = "[]"
+            choose_message = ""
+            identifier_type = "11 bit"
+            identifier_value = "100"
+            data_length = "1"
+            transmit_type = "{\'On event\': True, \'On timer\': False}"
+            transmit_period = "100"
+            signals = "[]"
+            signal_names_dict = "{}"
+            _supported_platforms = "[\'hil\']"
+        }
+
+        "core/CAN Bus Setup" {
+            can1_cofig_method = "Automatic"
+            can1_baud_rate = "500000"
+            can1_cd = "0"
+            can1_ts1 = "0"
+            can1_ts2 = "0"
+            can1_sjw = "1"
+            can1_er = "10e-3"
+            can2_cofig_method = "Automatic"
+            can2_baud_rate = "500000"
+            can2_cd = "0"
+            can2_ts1 = "0"
+            can2_ts2 = "0"
+            can2_sjw = "1"
+            can2_er = "10e-3"
+            hil_id = "0"
+            calc_values = "{\'CAN1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, \'CAN2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'},
+                                \'CAN FD1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+                                \'CAN FD2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'},  
+                                \'send_num\': 0,
+                                \'send_buff_len\': 0,
+                                \'receive_num\': 0,}"
+            calc_values_can_fd = "{
+                                \'CAN FD1\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'}, 
+                                \'CAN FD2\': {\'cd_calc\': \'1\', \'ts1_calc\': \'1\', \'ts2_calc\': \'1\', \'sjw_calc\': \'1\'},  
+                                \'send_num\': 0,
+                                \'send_buff_len\': 0,
+                                \'receive_num\': 0,
+                                \'receive_buff_len\': 0,}"
+            execution_rate = "100e-6"
+            can_fd1_config_method = "Automatic"
+            can_fd1_baud_rate = "50000"
+            can_fd1_cd = "0"
+            can_fd1_ts1 = "0"
+            can_fd1_ts2 = "0"
+            can_fd1_sjw = "1"
+            can_fd1_er = "10e-3"
+            can_fd2_config_method = "Automatic"
+            can_fd2_baud_rate = "50000"
+            can_fd2_cd = "0"
+            can_fd2_ts1 = "0"
+            can_fd2_ts2 = "0"
+            can_fd2_sjw = "1"
+            can_fd2_er = "10e-3"
+            hil_device_id_combo_values = "[]"
+            saved_hil_device_config = ""
+        }
+
+        "core/Current Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/Half Bridge" {
+            signal_access = "inherit"
+            model_type = "Global GDS oversampling"
+            ctrl_src = "Digital input per switch"
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            phase_op_mode = "Fixed carrier phase offset"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            execution_rate = "inherit"
+            S_top = "1"
+            S_top_logic = "active high"
+            S_bot = "2"
+            S_bot_logic = "active high"
+            S_top_I = "False"
+            S_bot_I = "False"
+            _control_property = "all high"
+            switches_names_at_mask = "[]"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            delay_enabled = "False"
+            fixed_delay = "1e-6"
+            var_delay_lut = "[-10.0, 1e-6, 10.0, 1e-6]"
+            preview_var_delay = "Preview"
+            vout_cmp_pullup_mode = "False"
+            vout_cmp_timeout = "5e-6"
+            show_monitoring = "False"
+            fvd = "False"
+            losses_estimation = "False"
+            fvd_def_method = "Voltage and Resistance"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            Switch_type = "IGBT"
+            Vce = "1.3"
+            Rce = "0"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            visualize_luts = "Visualize Lookup Tables"
+            show_cnt_out = "False"
+            PESB_Optimization = "True"
+            dtv_flag_en = "True"
+            reserved_parameter1 = "0"
+            predictive_diode_turn_off = "False"
+        }
+
+        "core/Series RLC Branch" {
+            num_phases = "Single-Phase"
+            branch_type = "RLC"
+            resistance = "10"
+            inductance = "10e-3"
+            initial_current = "0"
+            capacitance = "10e-6"
+            initial_voltage = "0"
+        }
+
+        "core/Single Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            switches_option = "False"
+            resistance = "1.0"
+            ctrl_src = "Digital input"
+            ctrl_mode = "switch"
+            Sa = "1"
+            Sa_logic = "active high"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            dtsm_switch_name = ""
+            dtsm_switch_ctrl = ""
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            switching = "any current"
+            hide_int_meas = "False"
+        }
+
+        "core/Three Phase Core Coupling" {
+            snb_type_i = "none"
+            R1 = "100e3"
+            C1 = "1e-06"
+            C2 = "1e-06"
+            fixed_snb_i = "false"
+            snb_type_u = "none"
+            R2 = "0.1"
+            L1 = "0.1"
+            L2 = "0.1"
+            fixed_snb_u = "false"
+            cpl_connection = "star"
+        }
+
+        "core/Three Phase Voltage Source" {
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Triple Pole Single Throw Contactor" {
+            signal_access = "inherit"
+            switches_option = "False"
+            resistance = "1.0"
+            ctrl_src = "Digital input"
+            Sa = "1"
+            Sa_logic = "active high"
+            enable_fb_out = "False"
+            fb_out_type = "real"
+            execution_rate = "inherit"
+            dtsm_switch_name = ""
+            initial_state = "off"
+            on_delay = "0"
+            off_delay = "0"
+            switching = "zero current"
+            hide_int_meas = "False"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        
+        Ts = 100e-6
+        Tc = 0.999
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        omega = 2*np.pi*50
+        L_t = 2.5e-3
+        C = 1e-6
+        L_s = 2.5e-3
+        R_d = 27
+        R_t = omega*L_t/10
+        R_s = omega*L_s/10
+        
+    ENDCODE
+}
