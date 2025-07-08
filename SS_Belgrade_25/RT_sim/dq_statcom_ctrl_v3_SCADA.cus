@@ -1221,8 +1221,8 @@ else:
                 <max>100.0</max>
                 <step>1.0</step>
                 <widget_settings>
-                    <x>110</x>
-                    <y>160</y>
+                    <x>26</x>
+                    <y>400</y>
                     <width>200</width>
                     <height>56</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -1373,8 +1373,8 @@ if control != controlant:
 
 
    elif control ==11:
-      aparecer(Vhref, Idref, ganancias11)
-      desaparecer(Ppuref, Qpuref, Iqref, ganancias2, ganancias3)
+      aparecer(Vhref, Qpuref, ganancias11)
+      desaparecer(Ppuref, Idref, Iqref, ganancias2, ganancias3)
       hil.set_scada_input_value('SCADA.P_pu_ref', 0)
       hil.set_scada_input_value('SCADA.Q_pu_ref', 0)
       hil.set_scada_input_value('SCADA.i_d_ref', 0)
@@ -1510,6 +1510,8 @@ else:
 # NOTE: entered value is available through variable 'inputValue'
 if hil.read_analog_signal(name = "SCADA.ctrl")  == 3:
     hil.set_scada_input_value('SCADA.qref', inputValue)
+if hil.read_analog_signal(name = "SCADA.ctrl")  == 11:
+    hil.set_scada_input_value('SCADA.qref', inputValue)
 ]]></on_use_code>
                 <on_start_code active="True"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
 # NOTE: Variables specified here will be available in other handlers.
@@ -1557,13 +1559,13 @@ else:
     widgetValue = None
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
-                <inputValue><![CDATA[0.0]]></inputValue>
+                <inputValue><![CDATA[5000.0]]></inputValue>
                 <min>-20000.0</min>
                 <max>20000.0</max>
                 <step>1.0</step>
                 <widget_settings>
-                    <x>26</x>
-                    <y>400</y>
+                    <x>110</x>
+                    <y>160</y>
                     <width>200</width>
                     <height>48</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -1600,7 +1602,7 @@ if hil.read_analog_signal(name = "SCADA.ctrl") == 11:
 # Change widget value by setting this variable.
 # NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
 # widget value won't be changed.
-widgetValue = 0
+widgetValue = 650
 controlant=0;]]></on_start_code>
                 <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
 # HIL API is imported as 'hil'
@@ -1634,7 +1636,7 @@ else:
     widgetValue = None
 ]]></on_timer_code>
                 <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
-                <inputValue><![CDATA[800.0]]></inputValue>
+                <inputValue><![CDATA[730.0]]></inputValue>
                 <min>0.0</min>
                 <max>800.0</max>
                 <step>1.0</step>
@@ -2063,8 +2065,8 @@ if control != controlant:
    elif control ==11:
       aparecer1(SCOPE, GUARDAR, FRECUENCIA, PARAMETROS)
       aparecer_otros(marco1,marco2,marco3,display_red,RED,red_info,red)
-      aparecer2(image2, grafica5, grafica2)
-      desaparecer2(image1, image, grafica1, grafica3, grafica4)
+      aparecer2(image2, grafica5, grafica4)
+      desaparecer2(image1, image, grafica1, grafica3, grafica2)
       display_corriente_11(Vbus, Vh,Intensidades,Ia,Ib,Ic,tensiones,Va,Vb,Vc,Potencias,P3f,Q3f)
 
 controlant = control;
@@ -2209,7 +2211,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2221,7 +2223,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2233,7 +2235,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2245,7 +2247,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2257,7 +2259,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
@@ -2297,7 +2299,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2309,7 +2311,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2321,7 +2323,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2333,7 +2335,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2345,7 +2347,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
@@ -2357,7 +2359,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_b]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
                                     <viewports>
@@ -2421,7 +2423,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2433,7 +2435,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2445,7 +2447,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2457,7 +2459,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2469,7 +2471,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
@@ -2499,7 +2501,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2511,7 +2513,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2523,7 +2525,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2535,7 +2537,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2547,7 +2549,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
@@ -2559,7 +2561,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_b]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
                                     <viewports>
@@ -2938,18 +2940,18 @@ data = {
     }
 displayValue = data
 ]]></code>
-                <analog_signals><![CDATA[[]]]></analog_signals>
+                <analog_signals><![CDATA[['SCADA.q_ref_SCADA', 'SCADA.q_fil']]]></analog_signals>
                 <digital_signals><![CDATA[[]]]></digital_signals>
                 <streaming_analog_signals><![CDATA[[]]]></streaming_analog_signals>
                 <streaming_digital_signals><![CDATA[[]]]></streaming_digital_signals>
-                <analog_signals_scaling_factors><![CDATA[{}]]></analog_signals_scaling_factors>
+                <analog_signals_scaling_factors><![CDATA[{'SCADA.q_ref_SCADA': 1.0, 'SCADA.q_fil': 1.0}]]></analog_signals_scaling_factors>
                 <streaming_analog_signals_scaling_factors><![CDATA[{}]]></streaming_analog_signals_scaling_factors>
                 <update_rate>250</update_rate>
                 <execution_rate>None</execution_rate>
                 <background_color>white</background_color>
                 <widget_settings>
-                    <x>6000</x>
-                    <y>3000</y>
+                    <x>1992</x>
+                    <y>1024</y>
                     <width>672</width>
                     <height>320</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -3034,18 +3036,18 @@ data = {
     }
 displayValue = data
 ]]></code>
-                <analog_signals><![CDATA[['SCADA.iq']]]></analog_signals>
+                <analog_signals><![CDATA[['SCADA.is_d_ref', 'SCADA.is_d']]]></analog_signals>
                 <digital_signals><![CDATA[[]]]></digital_signals>
                 <streaming_analog_signals><![CDATA[[]]]></streaming_analog_signals>
                 <streaming_digital_signals><![CDATA[[]]]></streaming_digital_signals>
-                <analog_signals_scaling_factors><![CDATA[{'SCADA.iq': 1.0}]]></analog_signals_scaling_factors>
+                <analog_signals_scaling_factors><![CDATA[{'SCADA.is_d_ref': 1.0, 'SCADA.is_d': 1.0}]]></analog_signals_scaling_factors>
                 <streaming_analog_signals_scaling_factors><![CDATA[{}]]></streaming_analog_signals_scaling_factors>
                 <update_rate>250</update_rate>
                 <execution_rate>None</execution_rate>
                 <background_color>white</background_color>
                 <widget_settings>
-                    <x>1992</x>
-                    <y>1024</y>
+                    <x>6000</x>
+                    <y>3000</y>
                     <width>640</width>
                     <height>328</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -3130,11 +3132,11 @@ data = {
     }
 displayValue = data
 ]]></code>
-                <analog_signals><![CDATA[[]]]></analog_signals>
+                <analog_signals><![CDATA[['SCADA.v_dc_ref_SCADA', 'SCADA.v_dc_SCADA']]]></analog_signals>
                 <digital_signals><![CDATA[[]]]></digital_signals>
                 <streaming_analog_signals><![CDATA[[]]]></streaming_analog_signals>
                 <streaming_digital_signals><![CDATA[[]]]></streaming_digital_signals>
-                <analog_signals_scaling_factors><![CDATA[{}]]></analog_signals_scaling_factors>
+                <analog_signals_scaling_factors><![CDATA[{'SCADA.v_dc_ref_SCADA': 1.0, 'SCADA.v_dc_SCADA': 1.0}]]></analog_signals_scaling_factors>
                 <streaming_analog_signals_scaling_factors><![CDATA[{}]]></streaming_analog_signals_scaling_factors>
                 <update_rate>250</update_rate>
                 <execution_rate>None</execution_rate>

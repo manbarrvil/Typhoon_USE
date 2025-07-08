@@ -185,6 +185,7 @@ typedef double real;
 
 
 
+
 //@cmp.def.end
 
 
@@ -253,7 +254,11 @@ double _scada_c_function_powers__q_f;
 
 double _scada_rms_value6__out;
 X_UnInt32 _scada_rms_value6__zc;
-double _scada_limit1__out;
+double _scada_rate_limiter1__out;
+
+double _scada_rate_limiter1__rising_rate_lim[1];
+double _scada_rate_limiter1__falling_rate_lim[1];
+
 double _controller_c_function_pll__abc[3];
 
 double _controller_c_function_pll__d;
@@ -262,12 +267,7 @@ double _controller_c_function_pll__omega_pll;
 double _controller_c_function_pll__q;
 double _controller_c_function_pll__theta_pll;
 
-double _controller_c_function_pi_voltage_controller__time;
-double _controller_c_function_pi_voltage_controller__v_dc;
-double _controller_c_function_pi_voltage_controller__v_dc_ref;
-
-double _controller_c_function_pi_voltage_controller__p_ref;
-
+double _scada_limit1__out;
 double _controller_bus_join6__out[2];
 double _controller_c_function_abc_to_dq__abc[3];
 double _controller_c_function_abc_to_dq__theta;
@@ -276,10 +276,18 @@ double _controller_c_function_abc_to_dq__d;
 double _controller_c_function_abc_to_dq__q;
 
 double _scada_gain1__out;
-double _controller_bus_join7__out[2];
+double _controller_c_function_pi_voltage_controller__time;
+double _controller_c_function_pi_voltage_controller__v_dc;
+double _controller_c_function_pi_voltage_controller__v_dc_ref;
+
+double _controller_c_function_pi_voltage_controller__p_ref;
+
 double _scada_bus_split3__out;
 double _scada_bus_split3__out1;
 double _controller_bus_join5__out[2];
+double _controller_bus_join7__out[2];
+double _scada_bus_split4__out;
+double _scada_bus_split4__out1;
 double _controller_c_function_current_refer__pq_ref[2];
 double _controller_c_function_current_refer__time;
 double _controller_c_function_current_refer__vs_dq[2];
@@ -287,8 +295,6 @@ double _controller_c_function_current_refer__vs_dq[2];
 double _controller_c_function_current_refer__is_d_ref;
 double _controller_c_function_current_refer__is_q_ref;
 
-double _scada_bus_split4__out;
-double _scada_bus_split4__out1;
 double _controller_bus_join11__out[2];
 double _controller_c_function_pi_current_controller__is_dq[2];
 double _controller_c_function_pi_current_controller__is_dq_ref[2];
@@ -404,6 +410,8 @@ double _scada_rms_value6__previous_value;
 double _scada_rms_value6__correction;
 double _scada_rms_value6__filtered_value;
 double _scada_rms_value6__out_state;
+double _scada_rate_limiter1__state;
+X_Int32 _scada_rate_limiter1__first_step;
 double _controller_c_function_pll__y_q;
 
 double _controller_c_function_pll__theta;
@@ -411,12 +419,12 @@ double _controller_c_function_pll__theta;
 
 
 
+
+
+
 double _controller_c_function_pi_voltage_controller__y_dc;
 
 double _controller_c_function_pi_voltage_controller__e_dc;
-
-
-
 
 
 
@@ -549,6 +557,8 @@ void ReInit_user_sp_cpu0_dev0() {
     HIL_OutAO(0x4001, 0.0f);
     HIL_OutAO(0x4000, 0.0f);
     HIL_OutAO(0x4003, 0.0f);
+    _scada_rate_limiter1__state = 0;
+    _scada_rate_limiter1__first_step = 1;
     HIL_OutAO(0x4002, 0.0f);
     HIL_OutAO(0x401b, 0.0f);
     HIL_OutAO(0x401a, 0.0f);
@@ -567,20 +577,20 @@ void ReInit_user_sp_cpu0_dev0() {
     HIL_OutAO(0x4019, 0.0f);
     HIL_OutAO(0x4023, 0.0f);
     {
+    }
+    HIL_OutAO(0x4014, 0.0f);
+    HIL_OutAO(0x401c, 0.0f);
+    {
         _controller_c_function_pi_voltage_controller__y_dc = 0 ;
         _controller_c_function_pi_voltage_controller__e_dc = 0 ;
     }
     HIL_OutAO(0x401f, 0.0f);
-    {
-    }
-    HIL_OutAO(0x4014, 0.0f);
-    HIL_OutAO(0x401c, 0.0f);
-    HIL_OutAO(0x4017, 0.0f);
     HIL_OutAO(0x4009, 0.0f);
-    {
-    }
+    HIL_OutAO(0x4017, 0.0f);
     HIL_OutAO(0x401d, 0.0f);
     HIL_OutAO(0x4020, 0.0f);
+    {
+    }
     HIL_OutAO(0x4010, 0.0f);
     HIL_OutAO(0x4012, 0.0f);
     {
@@ -595,24 +605,24 @@ void ReInit_user_sp_cpu0_dev0() {
     }
     HIL_OutAO(0x4007, 0.0f);
     HIL_OutAO(0x4008, 0.0f);
-    HIL_OutInt32(0x2000080 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 20000);
-    HIL_OutInt32(0x20000c0 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 40);
+    HIL_OutInt32(0x2000080 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 14000);
+    HIL_OutInt32(0x20000c0 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 28);
     HIL_OutInt32(0x20001c0 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000200 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000240 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000300 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 1);
     HIL_OutInt32(0x2000340 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000140, 0x1);
-    HIL_OutInt32(0x2000080 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 20000);
-    HIL_OutInt32(0x20000c0 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 40);
+    HIL_OutInt32(0x2000080 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 14000);
+    HIL_OutInt32(0x20000c0 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 28);
     HIL_OutInt32(0x20001c0 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000200 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000240 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000300 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 1);
     HIL_OutInt32(0x2000340 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000140, 0x2);
-    HIL_OutInt32(0x2000080 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 20000);
-    HIL_OutInt32(0x20000c0 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 40);
+    HIL_OutInt32(0x2000080 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 14000);
+    HIL_OutInt32(0x20000c0 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 28);
     HIL_OutInt32(0x20001c0 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000200 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000240 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 0);
@@ -835,8 +845,19 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _scada_rms_value6__out = _scada_rms_value6__out_state;
     // Generated from the component: SCADA.Fault_type
     HIL_OutAO(0x4001, (float)_scada_constant1__out);
-    // Generated from the component: SCADA.Limit1
-    _scada_limit1__out = MIN(MAX(_scada_rate_transition10_output__out, 600.0), 800.0);
+    // Generated from the component: SCADA.Rate Limiter1
+    _scada_rate_limiter1__rising_rate_lim[0] = 20.0 * 5e-05;
+    _scada_rate_limiter1__falling_rate_lim[0] = -20.0 * 5e-05;
+    if (_scada_rate_limiter1__first_step) {
+        _scada_rate_limiter1__out = _scada_rate_transition10_output__out;
+        _scada_rate_limiter1__state = _scada_rate_transition10_output__out;
+    } else {
+        _scada_rate_limiter1__out = _scada_rate_transition10_output__out;
+        if (_scada_rate_transition10_output__out - _scada_rate_limiter1__state > _scada_rate_limiter1__rising_rate_lim[0])
+            _scada_rate_limiter1__out = _scada_rate_limiter1__state + (_scada_rate_limiter1__rising_rate_lim[0]);
+        if (_scada_rate_transition10_output__out - _scada_rate_limiter1__state < _scada_rate_limiter1__falling_rate_lim[0])
+            _scada_rate_limiter1__out = _scada_rate_limiter1__state + (_scada_rate_limiter1__falling_rate_lim[0]);
+    }
     // Generated from the component: Plant.S1.Triple S1 ideal.CTC_Wrapper
     if (_scada_rate_transition7_output__out == 0x0) {
         HIL_OutInt32(0x8240480, 0x0);
@@ -881,15 +902,8 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     HIL_OutAO(0x4019, (float)_scada_c_function_powers__q_f);
     // Generated from the component: SCADA.vcrms
     HIL_OutAO(0x4023, (float)_scada_rms_value6__out);
-    // Generated from the component: Controller.C function PI voltage controller
-    _controller_c_function_pi_voltage_controller__time = _scada_rate_transition8_output__out;
-    _controller_c_function_pi_voltage_controller__v_dc = _plant_vdc_va1__out;
-    _controller_c_function_pi_voltage_controller__v_dc_ref = _scada_limit1__out;
-    {
-        _controller_c_function_pi_voltage_controller__p_ref = - ( 0.22 * _controller_c_function_pi_voltage_controller__e_dc + _controller_c_function_pi_voltage_controller__y_dc ) ;
-    }
-    // Generated from the component: SCADA.v_dc_ref_SCADA
-    HIL_OutAO(0x401f, (float)_scada_limit1__out);
+    // Generated from the component: SCADA.Limit1
+    _scada_limit1__out = MIN(MAX(_scada_rate_limiter1__out, 600.0), 800.0);
     // Generated from the component: Controller.Bus Join6
     _controller_bus_join6__out[0] = _controller_c_function_pll__d;
     _controller_bus_join6__out[1] = _controller_c_function_pll__q;
@@ -909,11 +923,15 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     HIL_OutAO(0x4014, (float)_controller_c_function_pll__omega_pll);
     // Generated from the component: SCADA.theta_SCADA
     HIL_OutAO(0x401c, (float)_controller_c_function_pll__theta_pll);
-    // Generated from the component: Controller.Bus Join7
-    _controller_bus_join7__out[0] = _controller_c_function_pi_voltage_controller__p_ref;
-    _controller_bus_join7__out[1] = _scada_rate_transition9_output__out;
-    // Generated from the component: SCADA.p_ref_SCADA
-    HIL_OutAO(0x4017, (float)_controller_c_function_pi_voltage_controller__p_ref);
+    // Generated from the component: Controller.C function PI voltage controller
+    _controller_c_function_pi_voltage_controller__time = _scada_rate_transition8_output__out;
+    _controller_c_function_pi_voltage_controller__v_dc = _plant_vdc_va1__out;
+    _controller_c_function_pi_voltage_controller__v_dc_ref = _scada_limit1__out;
+    {
+        _controller_c_function_pi_voltage_controller__p_ref = - ( 0.22 * _controller_c_function_pi_voltage_controller__e_dc + _controller_c_function_pi_voltage_controller__y_dc ) ;
+    }
+    // Generated from the component: SCADA.v_dc_ref_SCADA
+    HIL_OutAO(0x401f, (float)_scada_limit1__out);
     // Generated from the component: SCADA.Bus Split3
     _scada_bus_split3__out = _controller_bus_join6__out[0];
     _scada_bus_split3__out1 = _controller_bus_join6__out[1];
@@ -922,6 +940,18 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _controller_bus_join5__out[1] = _controller_c_function_abc_to_dq__q;
     // Generated from the component: SCADA.f_PLL
     HIL_OutAO(0x4009, (float)_scada_gain1__out);
+    // Generated from the component: Controller.Bus Join7
+    _controller_bus_join7__out[0] = _controller_c_function_pi_voltage_controller__p_ref;
+    _controller_bus_join7__out[1] = _scada_rate_transition9_output__out;
+    // Generated from the component: SCADA.p_ref_SCADA
+    HIL_OutAO(0x4017, (float)_controller_c_function_pi_voltage_controller__p_ref);
+    // Generated from the component: SCADA.v_d
+    HIL_OutAO(0x401d, (float)_scada_bus_split3__out);
+    // Generated from the component: SCADA.v_q
+    HIL_OutAO(0x4020, (float)_scada_bus_split3__out1);
+    // Generated from the component: SCADA.Bus Split4
+    _scada_bus_split4__out = _controller_bus_join5__out[0];
+    _scada_bus_split4__out1 = _controller_bus_join5__out[1];
     // Generated from the component: Controller.C function current refer
     _controller_c_function_current_refer__pq_ref[0] = _controller_bus_join7__out[0];
     _controller_c_function_current_refer__pq_ref[1] = _controller_bus_join7__out[1];
@@ -936,20 +966,13 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
             _controller_c_function_current_refer__is_q_ref = 2.0 / 3.0 * ( _controller_c_function_current_refer__pq_ref [ 0 ] * _controller_c_function_current_refer__vs_dq [ 1 ] - _controller_c_function_current_refer__pq_ref [ 1 ] * _controller_c_function_current_refer__vs_dq [ 0 ] ) / ( pow ( _controller_c_function_current_refer__vs_dq [ 0 ] , 2 ) + pow ( _controller_c_function_current_refer__vs_dq [ 1 ] , 2 ) ) ;
         }
     }
-    // Generated from the component: SCADA.v_d
-    HIL_OutAO(0x401d, (float)_scada_bus_split3__out);
-    // Generated from the component: SCADA.v_q
-    HIL_OutAO(0x4020, (float)_scada_bus_split3__out1);
-    // Generated from the component: SCADA.Bus Split4
-    _scada_bus_split4__out = _controller_bus_join5__out[0];
-    _scada_bus_split4__out1 = _controller_bus_join5__out[1];
-    // Generated from the component: Controller.Bus Join11
-    _controller_bus_join11__out[0] = _controller_c_function_current_refer__is_d_ref;
-    _controller_bus_join11__out[1] = _controller_c_function_current_refer__is_q_ref;
     // Generated from the component: SCADA.is_d
     HIL_OutAO(0x4010, (float)_scada_bus_split4__out);
     // Generated from the component: SCADA.is_q
     HIL_OutAO(0x4012, (float)_scada_bus_split4__out1);
+    // Generated from the component: Controller.Bus Join11
+    _controller_bus_join11__out[0] = _controller_c_function_current_refer__is_d_ref;
+    _controller_bus_join11__out[1] = _controller_c_function_current_refer__is_q_ref;
     // Generated from the component: Controller.C function PI current controller
     _controller_c_function_pi_current_controller__is_dq[0] = _controller_bus_join5__out[0];
     _controller_c_function_pi_current_controller__is_dq[1] = _controller_bus_join5__out[1];
@@ -1004,7 +1027,7 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _scada_bus_split1__out2 = _controller_bus_join9__out[2];
     // Generated from the component: Plant.Three Phase Inverter.Phase A.PWM_Modulator
     _plant_three_phase_inverter_phase_a_pwm_modulator__limited_in[0] = MIN(MAX(_plant_bus_split1__out, -1.0), 1.0);
-    HIL_OutInt32(0x2000040 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], ((X_UnInt32)((_plant_three_phase_inverter_phase_a_pwm_modulator__limited_in[0] - (-1.0)) * 10000.0)));
+    HIL_OutInt32(0x2000040 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], ((X_UnInt32)((_plant_three_phase_inverter_phase_a_pwm_modulator__limited_in[0] - (-1.0)) * 7000.0)));
     if (_plant_c__out == 0x0) {
         // pwm_modulator_en
         HIL_OutInt32(0x2000000 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 0x0);
@@ -1017,7 +1040,7 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     HIL_OutInt32(0x2000140, 0x1);
     // Generated from the component: Plant.Three Phase Inverter.Phase B.PWM_Modulator
     _plant_three_phase_inverter_phase_b_pwm_modulator__limited_in[0] = MIN(MAX(_plant_bus_split1__out1, -1.0), 1.0);
-    HIL_OutInt32(0x2000040 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], ((X_UnInt32)((_plant_three_phase_inverter_phase_b_pwm_modulator__limited_in[0] - (-1.0)) * 10000.0)));
+    HIL_OutInt32(0x2000040 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], ((X_UnInt32)((_plant_three_phase_inverter_phase_b_pwm_modulator__limited_in[0] - (-1.0)) * 7000.0)));
     if (_plant_c__out == 0x0) {
         // pwm_modulator_en
         HIL_OutInt32(0x2000000 + _plant_three_phase_inverter_phase_b_pwm_modulator__channels[0], 0x0);
@@ -1030,7 +1053,7 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     HIL_OutInt32(0x2000140, 0x2);
     // Generated from the component: Plant.Three Phase Inverter.Phase C.PWM_Modulator
     _plant_three_phase_inverter_phase_c_pwm_modulator__limited_in[0] = MIN(MAX(_plant_bus_split1__out2, -1.0), 1.0);
-    HIL_OutInt32(0x2000040 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], ((X_UnInt32)((_plant_three_phase_inverter_phase_c_pwm_modulator__limited_in[0] - (-1.0)) * 10000.0)));
+    HIL_OutInt32(0x2000040 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], ((X_UnInt32)((_plant_three_phase_inverter_phase_c_pwm_modulator__limited_in[0] - (-1.0)) * 7000.0)));
     if (_plant_c__out == 0x0) {
         // pwm_modulator_en
         HIL_OutInt32(0x2000000 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 0x0);
@@ -1185,6 +1208,16 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _scada_rms_value6__previous_value = _plant_vs_c_va1__out;
     _scada_rms_value6__square_sum += _plant_vs_c_va1__out * _plant_vs_c_va1__out;
     _scada_rms_value6__sample_cnt ++;
+    // Generated from the component: SCADA.Rate Limiter1
+    _scada_rate_limiter1__rising_rate_lim[0] = 20.0 * 5e-05;
+    _scada_rate_limiter1__falling_rate_lim[0] = -20.0 * 5e-05;
+    if (_scada_rate_transition10_output__out - _scada_rate_limiter1__state > _scada_rate_limiter1__rising_rate_lim[0])
+        _scada_rate_limiter1__state += _scada_rate_limiter1__rising_rate_lim[0];
+    else  if (_scada_rate_transition10_output__out - _scada_rate_limiter1__state < _scada_rate_limiter1__falling_rate_lim[0])
+        _scada_rate_limiter1__state += (_scada_rate_limiter1__falling_rate_lim[0]);
+    else
+        _scada_rate_limiter1__state = _scada_rate_transition10_output__out;
+    _scada_rate_limiter1__first_step = 0;
     // Generated from the component: Controller.C function PLL
     {
         _controller_c_function_pll__y_q = _controller_c_function_pll__y_q + 717.1314741035857 * 5e-05 * _controller_c_function_pll__e_q ;
@@ -1196,6 +1229,9 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
             _controller_c_function_pll__theta = _controller_c_function_pll__theta + abs ( _controller_c_function_pll__theta ) ;
         }
     }
+    // Generated from the component: Controller.C function abc to dq
+    {
+    }
     // Generated from the component: Controller.C function PI voltage controller
     {
         _controller_c_function_pi_voltage_controller__e_dc = pow ( _controller_c_function_pi_voltage_controller__v_dc_ref , 2 ) - pow ( _controller_c_function_pi_voltage_controller__v_dc , 2 ) ;
@@ -1203,9 +1239,6 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
         if ( _controller_c_function_pi_voltage_controller__time < 0.1 )     {
             _controller_c_function_pi_voltage_controller__y_dc = 0 ;
         }
-    }
-    // Generated from the component: Controller.C function abc to dq
-    {
     }
     // Generated from the component: Controller.C function current refer
     {

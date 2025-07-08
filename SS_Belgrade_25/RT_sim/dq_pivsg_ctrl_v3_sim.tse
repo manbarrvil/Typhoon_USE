@@ -1366,7 +1366,7 @@ if (time<T_on_contactor){
             component "core/Ground" gnd3 {
             }
             [
-                position = 9416, 8552
+                position = 9416, 8584
                 hide_name = True
             ]
 
@@ -1677,14 +1677,6 @@ if (theta<0.0){
                 size = 224, 288
             ]
 
-            component "core/Scope" omega_f_grid {
-                selected_signals = "[\"Plant.omega_grid\", \"Plant.f_grid\"]"
-                signals_data = "{\"signals\": {\"Plant.omega_grid\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Plant.f_grid\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
-            }
-            [
-                position = 9720, 7672
-            ]
-
             component "core/Probe" omega_grid {
                 execution_rate = "Ts_Control"
                 signal_access = "Inherit"
@@ -1710,7 +1702,7 @@ if (theta<0.0){
             component "core/Ground" gnd6 {
             }
             [
-                position = 9912, 8196
+                position = 9988, 7728
                 hide_name = True
             ]
 
@@ -1718,7 +1710,7 @@ if (theta<0.0){
                 execution_rate = "Ts_Control"
             }
             [
-                position = 9752, 8064
+                position = 9828, 7596
                 size = 64, 32
             ]
 
@@ -1726,7 +1718,7 @@ if (theta<0.0){
                 execution_rate = "Ts_Control"
             }
             [
-                position = 9748, 8160
+                position = 9824, 7692
                 size = 64, 32
             ]
 
@@ -1734,8 +1726,17 @@ if (theta<0.0){
                 execution_rate = "Ts_Control"
             }
             [
-                position = 9744, 8256
+                position = 9820, 7788
                 size = 64, 32
+            ]
+
+            component "core/Three Phase Voltage Source" Vs1 {
+                init_rms_value = "230.0"
+            }
+            [
+                position = 9616, 8156
+                scale = -1, 1
+                size = 62, 256
             ]
 
             port eta_abc {
@@ -2171,7 +2172,7 @@ if (theta<0.0){
                 direction = out
             }
             [
-                position = 9660, 8024
+                position = 9736, 7556
                 hide_name = True
                 size = 60, 20
             ]
@@ -2183,7 +2184,7 @@ if (theta<0.0){
                 direction = out
             }
             [
-                position = 9648, 8104
+                position = 9724, 7636
                 hide_name = True
                 size = 60, 20
             ]
@@ -2195,7 +2196,7 @@ if (theta<0.0){
                 direction = out
             }
             [
-                position = 9660, 8212
+                position = 9736, 7744
                 hide_name = True
                 size = 60, 20
             ]
@@ -2277,27 +2278,32 @@ if (theta<0.0){
 
             junction Junction229 pe
             [
-                position = 9796, 8160
+                position = 9872, 7692
             ]
 
             junction Junction224 pe
             [
-                position = 9796, 8156
+                position = 9872, 7688
             ]
 
             junction Junction230 pe
             [
-                position = 9416, 8160
+                position = 9504, 8252
             ]
 
             junction Junction231 pe
             [
-                position = 9500, 8252
+                position = 9416, 8156
             ]
 
             junction Junction232 pe
             [
                 position = 9344, 8060
+            ]
+
+            junction Junction233 pe
+            [
+                position = 9496, 8512
             ]
 
             comment Comment2 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Three Phase Inverter</p></body></html> ENDCOMMENT 
@@ -2312,7 +2318,7 @@ if (theta<0.0){
 
             comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-size:16pt;">Grid</span>   </p></body></html> ENDCOMMENT 
             [
-                position = 9648, 7948
+                position = 9724, 7480
             ]
 
             connect "Bus Split1.out2" "Three Phase Inverter.InC" as Connection5
@@ -2334,7 +2340,6 @@ if (theta<0.0){
             connect "Three Phase Inverter.InB" "Bus Split1.out1" as Connection66
             connect VDC.p_node Junction150 as Connection162
             connect vs_b.n_node Junction163 as Connection252
-            connect vs_c.n_node Junction164 as Connection257
             connect Vdc_link.p_node Rdc.p_node as Connection389
             connect Goto27 is_a.out as Connection703
             connect Goto26 is_b.out as Connection704
@@ -2419,37 +2424,43 @@ if (theta<0.0){
             connect Termination1.in "C function1.delta_t" as Connection818
             connect Vsp1.n_node Junction229 as Connection768
             [
-                breakpoints = 9796, 8064; 9796, 8160
+                breakpoints = 9872, 7596; 9872, 7692
             ]
             connect Junction229 Vsp2.n_node as Connection822
             connect Vsp3.n_node Junction224 as Connection770
             connect Junction224 Junction229 as Connection823
             connect gnd6.node Junction224 as Connection772
             [
-                breakpoints = 9912, 8160; 9796, 8160
+                breakpoints = 9988, 7692; 9872, 7692
             ]
             connect From83 Vsp1.in as Connection824
             connect From84 Vsp2.in as Connection825
             connect From85 Vsp3.in as Connection826
-            connect vs_b.p_node Junction230 as Connection827
-            connect Junction230 S1.b_out as Connection828
+            connect time "C function1.t" as Connection836
+            connect S1.c_out Junction230 as Connection840
+            connect Junction230 vs_c.p_node as Connection841
+            [
+                breakpoints = 9500, 8252; 9500, 8252
+            ]
+            connect Vs1.c_node Junction230 as Connection842
+            connect vs_b.p_node Junction231 as Connection843
+            connect Junction231 S1.b_out as Connection844
             [
                 breakpoints = 9416, 8156
             ]
-            connect Vsp2.p_node Junction230 as Connection829
-            connect S1.c_out Junction231 as Connection830
-            connect Junction231 vs_c.p_node as Connection831
-            [
-                breakpoints = 9500, 8252
-            ]
-            connect Vsp3.p_node Junction231 as Connection832
-            connect vs_a.p_node Junction232 as Connection833
-            connect Junction232 S1.a_out as Connection834
+            connect Vs1.b_node Junction231 as Connection845
+            connect vs_a.p_node Junction232 as Connection846
+            connect Junction232 S1.a_out as Connection847
             [
                 breakpoints = 9344, 8060
             ]
-            connect Vsp1.p_node Junction232 as Connection835
-            connect time "C function1.t" as Connection836
+            connect Vs1.a_node Junction232 as Connection848
+            connect vs_c.n_node Junction233 as Connection849
+            connect Junction233 Junction164 as Connection850
+            connect Vs1.n_node Junction233 as Connection851
+            [
+                breakpoints = 9736, 8160
+            ]
         }
         [
             position = 8044, 8388
@@ -4222,11 +4233,46 @@ if (theta<0.0){
         connect Goto52 SCADA.time as Connection778
         connect SCADA.contactor Goto54 as Connection779
         connect From96 Plant.contactor as Connection780
-        connect From97 Plant.time as Connection781
         connect Goto55 Controller.p_s as Connection782
         connect Goto56 Controller.q_s as Connection783
         connect From98 SCADA.p_s as Connection784
         connect From99 SCADA.q_s as Connection785
+    }
+
+    logically_deleted {
+        "Plant.C function1"
+        "Plant.omega_grid"
+        "Plant.f_grid"
+        "Plant.Termination1"
+        "Plant.gnd6"
+        "Plant.Vsp1"
+        "Plant.Vsp2"
+        "Plant.Vsp3"
+        "Plant.time"
+        "Plant.Goto49"
+        "Plant.Goto50"
+        "Plant.Goto51"
+        "Plant.From83"
+        "Plant.From84"
+        "Plant.From85"
+        "Plant.Junction229"
+        "Plant.Junction224"
+        "Plant.Comment5"
+        "Plant.Connection816"
+        "Plant.Connection780"
+        "Plant.Connection781"
+        "Plant.Connection782"
+        "Plant.Connection817"
+        "Plant.Connection818"
+        "Plant.Connection768"
+        "Plant.Connection822"
+        "Plant.Connection770"
+        "Plant.Connection823"
+        "Plant.Connection772"
+        "Plant.Connection824"
+        "Plant.Connection825"
+        "Plant.Connection826"
+        "Plant.Connection836"
     }
 
     default {
@@ -4338,11 +4384,6 @@ if (theta<0.0){
             def_value = "0"
             unit = " "
             execution_rate = "100e-6"
-        }
-
-        "core/Scope" {
-            signals_data = "{}"
-            selected_signals = "[]"
         }
 
         "core/Termination" {
@@ -4486,6 +4527,12 @@ if (theta<0.0){
             pwm_enable_di = "13"
             pwm_enable_inv = "active high"
             dtv_flag_en = "True"
+        }
+
+        "core/Three Phase Voltage Source" {
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
         }
 
         "core/Triple Pole Single Throw Contactor" {

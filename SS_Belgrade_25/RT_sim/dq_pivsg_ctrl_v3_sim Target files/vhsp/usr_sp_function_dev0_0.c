@@ -35,7 +35,6 @@ extern "C" {
 
 
 
-
 // ----------------------------------------------------------------------------------------                // generated using template:generic_macros.template-----------------------------------------
 /*********************** Macros (Inline Functions) Definitions ***************************/
 
@@ -71,14 +70,6 @@ typedef double real;
 
 //@cmp.def.start
 //component defines
-
-
-
-
-
-
-
-
 
 
 
@@ -234,15 +225,6 @@ X_UnInt32 _scada_rms_value8__zc;
 double _controller_bus_join13__out[3];
 double _scada_rms_value6__out;
 X_UnInt32 _scada_rms_value6__zc;
-double _plant_c_function1__t;
-
-double _plant_c_function1__delta_t;
-double _plant_c_function1__f;
-double _plant_c_function1__omega;
-double _plant_c_function1__vga;
-double _plant_c_function1__vgb;
-double _plant_c_function1__vgc;
-
 double _scada_gain6__out;
 double _scada_gain5__out;
 double _scada_bus_join7__out[2];
@@ -381,11 +363,6 @@ double _scada_rms_value6__previous_value;
 double _scada_rms_value6__correction;
 double _scada_rms_value6__filtered_value;
 double _scada_rms_value6__out_state;
-double _plant_c_function1__theta;
-
-
-
-
 double _controller_c_function_vsg__x_p;
 
 double _controller_c_function_vsg__x_q;
@@ -461,7 +438,7 @@ void ReInit_user_sp_cpu0_dev0() {
     _scada_rms_value1__out_state = 0x0;
     _scada_rms_value1__filtered_value = 0x0;
     _scada_rms_value1__db_timer = 0x0;
-    HIL_OutAO(0x400f, 0.0f);
+    HIL_OutAO(0x400d, 0.0f);
     _scada_rms_value7__square_sum = 0x0;
     _scada_rms_value7__sample_cnt = 0x0;
     _scada_rms_value7__period_cnt = 0x0;
@@ -473,7 +450,7 @@ void ReInit_user_sp_cpu0_dev0() {
     _scada_rms_value7__out_state = 0x0;
     _scada_rms_value7__filtered_value = 0x0;
     _scada_rms_value7__db_timer = 0x0;
-    HIL_OutAO(0x4010, 0.0f);
+    HIL_OutAO(0x400e, 0.0f);
     _scada_rms_value3__square_sum = 0x0;
     _scada_rms_value3__sample_cnt = 0x0;
     _scada_rms_value3__period_cnt = 0x0;
@@ -485,7 +462,7 @@ void ReInit_user_sp_cpu0_dev0() {
     _scada_rms_value3__out_state = 0x0;
     _scada_rms_value3__filtered_value = 0x0;
     _scada_rms_value3__db_timer = 0x0;
-    HIL_OutAO(0x4011, 0.0f);
+    HIL_OutAO(0x400f, 0.0f);
     _scada_rms_value4__square_sum = 0x0;
     _scada_rms_value4__sample_cnt = 0x0;
     _scada_rms_value4__period_cnt = 0x0;
@@ -519,27 +496,19 @@ void ReInit_user_sp_cpu0_dev0() {
     _scada_rms_value6__out_state = 0x0;
     _scada_rms_value6__filtered_value = 0x0;
     _scada_rms_value6__db_timer = 0x0;
+    HIL_OutAO(0x4001, 0.0f);
+    HIL_OutAO(0x4000, 0.0f);
     HIL_OutAO(0x4003, 0.0f);
     HIL_OutAO(0x4002, 0.0f);
-    HIL_OutAO(0x4005, 0.0f);
-    HIL_OutAO(0x4004, 0.0f);
-    {
-        _plant_c_function1__theta = 0.0 ;
-    }
-    HIL_OutAO(0x401b, 0.0f);
+    HIL_OutAO(0x4019, 0.0f);
+    HIL_OutAO(0x400a, 0.0f);
+    HIL_OutAO(0x400b, 0.0f);
     HIL_OutAO(0x400c, 0.0f);
-    HIL_OutAO(0x400d, 0.0f);
-    HIL_OutAO(0x400e, 0.0f);
+    HIL_OutAO(0x401d, 0.0f);
+    HIL_OutAO(0x401e, 0.0f);
     HIL_OutAO(0x401f, 0.0f);
-    HIL_OutAO(0x4020, 0.0f);
-    HIL_OutAO(0x4021, 0.0f);
-    HIL_OutFloat(137101312, 0.0);
-    HIL_OutFloat(137101313, 0.0);
-    HIL_OutFloat(137101314, 0.0);
-    HIL_OutAO(0x4000, 0.0f);
-    HIL_OutAO(0x4001, 0.0f);
-    HIL_OutAO(0x401a, 0.0f);
     HIL_OutAO(0x4018, 0.0f);
+    HIL_OutAO(0x4016, 0.0f);
     {
         _controller_c_function_vsg__x_p = 0.0 ;
         _controller_c_function_vsg__x_q = 0.0 ;
@@ -549,27 +518,27 @@ void ReInit_user_sp_cpu0_dev0() {
         _controller_c_function_vsg__e_p = 0.0 ;
         _controller_c_function_vsg__e_q = 0.0 ;
     }
-    HIL_OutAO(0x4016, 0.0f);
-    HIL_OutAO(0x401c, 0.0f);
+    HIL_OutAO(0x4014, 0.0f);
+    HIL_OutAO(0x401a, 0.0f);
     {
         _controller_c_function_pi_current_controller__e_d = 0.0 ;
         _controller_c_function_pi_current_controller__e_q = 0.0 ;
         _controller_c_function_pi_current_controller__y_d = 0.0 ;
         _controller_c_function_pi_current_controller__y_q = 0.0 ;
     }
+    HIL_OutAO(0x4011, 0.0f);
     HIL_OutAO(0x4013, 0.0f);
+    HIL_OutAO(0x4009, 0.0f);
     HIL_OutAO(0x4015, 0.0f);
-    HIL_OutAO(0x400b, 0.0f);
     HIL_OutAO(0x4017, 0.0f);
-    HIL_OutAO(0x4019, 0.0f);
-    HIL_OutAO(0x401d, 0.0f);
-    HIL_OutAO(0x401e, 0.0f);
+    HIL_OutAO(0x401b, 0.0f);
+    HIL_OutAO(0x401c, 0.0f);
+    HIL_OutAO(0x4010, 0.0f);
     HIL_OutAO(0x4012, 0.0f);
-    HIL_OutAO(0x4014, 0.0f);
     {
     }
-    HIL_OutAO(0x4009, 0.0f);
-    HIL_OutAO(0x400a, 0.0f);
+    HIL_OutAO(0x4007, 0.0f);
+    HIL_OutAO(0x4008, 0.0f);
     HIL_OutInt32(0x2000080 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 14000);
     HIL_OutInt32(0x20000c0 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 28);
     HIL_OutInt32(0x20001c0 + _plant_three_phase_inverter_phase_a_pwm_modulator__channels[0], 0);
@@ -594,9 +563,9 @@ void ReInit_user_sp_cpu0_dev0() {
     HIL_OutInt32(0x2000300 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 1);
     HIL_OutInt32(0x2000340 + _plant_three_phase_inverter_phase_c_pwm_modulator__channels[0], 0);
     HIL_OutInt32(0x2000140, 0x4);
+    HIL_OutAO(0x4004, 0.0f);
+    HIL_OutAO(0x4005, 0.0f);
     HIL_OutAO(0x4006, 0.0f);
-    HIL_OutAO(0x4007, 0.0f);
-    HIL_OutAO(0x4008, 0.0f);
     //@cmp.init.block.end
 }
 
@@ -713,7 +682,7 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
         _scada_rms_value1__zc = 0;
     _scada_rms_value1__out = _scada_rms_value1__out_state;
     // Generated from the component: SCADA.is_a_SCADA
-    HIL_OutAO(0x400f, (float)_plant_is_a_ia1__out);
+    HIL_OutAO(0x400d, (float)_plant_is_a_ia1__out);
     // Generated from the component: SCADA.RMS value7
     _scada_rms_value7__previous_filtered_value = _scada_rms_value7__filtered_value;
     if (1)
@@ -728,7 +697,7 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
         _scada_rms_value7__zc = 0;
     _scada_rms_value7__out = _scada_rms_value7__out_state;
     // Generated from the component: SCADA.is_b_SCADA
-    HIL_OutAO(0x4010, (float)_plant_is_b_ia1__out);
+    HIL_OutAO(0x400e, (float)_plant_is_b_ia1__out);
     // Generated from the component: Controller.Bus Join12
     _controller_bus_join12__out[0] = _plant_is_a_ia1__out;
     _controller_bus_join12__out[1] = _plant_is_b_ia1__out;
@@ -747,7 +716,7 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
         _scada_rms_value3__zc = 0;
     _scada_rms_value3__out = _scada_rms_value3__out_state;
     // Generated from the component: SCADA.is_c_SCADA
-    HIL_OutAO(0x4011, (float)_plant_is_c_ia1__out);
+    HIL_OutAO(0x400f, (float)_plant_is_c_ia1__out);
     // Generated from the component: SCADA.RMS value4
     _scada_rms_value4__previous_filtered_value = _scada_rms_value4__filtered_value;
     if (1)
@@ -792,7 +761,7 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
         _scada_rms_value6__zc = 0;
     _scada_rms_value6__out = _scada_rms_value6__out_state;
     // Generated from the component: SCADA.Fault_type
-    HIL_OutAO(0x4003, (float)_scada_constant1__out);
+    HIL_OutAO(0x4001, (float)_scada_constant1__out);
     // Generated from the component: Plant.S1.Triple S1 ideal.CTC_Wrapper
     if (_scada_rate_transition25_output__out == 0x0) {
         HIL_OutInt32(0x8240480, 0x0);
@@ -801,66 +770,32 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
         HIL_OutInt32(0x8240480, 0x1);
     }
     // Generated from the component: SCADA.breaker
-    HIL_OutAO(0x4004, (float)_scada_rate_transition25_output__out);
-    // Generated from the component: Plant.C function1
-    _plant_c_function1__t = _scada_rate_transition26_output__out;
-    {
-        _plant_c_function1__omega = 2.0 * M_PI * 50.0 ;
-        _plant_c_function1__f = _plant_c_function1__omega / ( 2.0 * M_PI ) ;
-        _plant_c_function1__delta_t = 0.0 ;
-        _plant_c_function1__vga = 326.5 * sin ( _plant_c_function1__omega * _plant_c_function1__t ) ;
-        _plant_c_function1__vgb = 326.5 * sin ( _plant_c_function1__omega * _plant_c_function1__t - 2.0 * M_PI / 3.0 ) ;
-        _plant_c_function1__vgc = 326.5 * sin ( _plant_c_function1__omega * _plant_c_function1__t + 2.0 * M_PI / 3.0 ) ;
-        if ( _plant_c_function1__t < 1.5 )     {
-            _plant_c_function1__omega = 2.0 * M_PI * 50.0 ;
-        }
-        if ( _plant_c_function1__t >= 1.5 )     {
-            _plant_c_function1__delta_t = _plant_c_function1__t - 1.5 ;
-            _plant_c_function1__omega = 2.0 * M_PI * 50.0 - 2.0 * M_PI * 0.5 * _plant_c_function1__delta_t ;
-        }
-        if ( _plant_c_function1__t >= 2.5 )     {
-            _plant_c_function1__omega = 2.0 * M_PI * 49.5 ;
-        }
-        _plant_c_function1__vga = 326.5 * sin ( _plant_c_function1__theta ) ;
-        _plant_c_function1__vgb = 326.5 * sin ( _plant_c_function1__theta - 2.0 * M_PI / 3.0 ) ;
-        _plant_c_function1__vgc = 326.5 * sin ( _plant_c_function1__theta + 2.0 * M_PI / 3.0 ) ;
-    }
+    HIL_OutAO(0x4002, (float)_scada_rate_transition25_output__out);
     // Generated from the component: SCADA.sAC
-    HIL_OutAO(0x401b, (float)_scada_rate_transition26_output__out);
+    HIL_OutAO(0x4019, (float)_scada_rate_transition26_output__out);
     // Generated from the component: SCADA.Gain6
     _scada_gain6__out = 5e-05 * _scada_rate_transition27_output__out;
     // Generated from the component: SCADA.Gain5
     _scada_gain5__out = 5e-05 * _scada_rate_transition28_output__out;
     // Generated from the component: SCADA.iarms
-    HIL_OutAO(0x400c, (float)_scada_rms_value1__out);
+    HIL_OutAO(0x400a, (float)_scada_rms_value1__out);
     // Generated from the component: SCADA.ibrms
-    HIL_OutAO(0x400d, (float)_scada_rms_value7__out);
+    HIL_OutAO(0x400b, (float)_scada_rms_value7__out);
     // Generated from the component: SCADA.icrms
-    HIL_OutAO(0x400e, (float)_scada_rms_value3__out);
+    HIL_OutAO(0x400c, (float)_scada_rms_value3__out);
     // Generated from the component: SCADA.varms
-    HIL_OutAO(0x401f, (float)_scada_rms_value4__out);
+    HIL_OutAO(0x401d, (float)_scada_rms_value4__out);
     // Generated from the component: SCADA.vbrms
-    HIL_OutAO(0x4020, (float)_scada_rms_value8__out);
+    HIL_OutAO(0x401e, (float)_scada_rms_value8__out);
     // Generated from the component: SCADA.vcrms
-    HIL_OutAO(0x4021, (float)_scada_rms_value6__out);
-    // Generated from the component: Plant.Termination1
-    // Generated from the component: Plant.Vsp1.Vs1
-    HIL_OutFloat(137101312, (float) _plant_c_function1__vga);
-    // Generated from the component: Plant.Vsp2.Vs1
-    HIL_OutFloat(137101313, (float) _plant_c_function1__vgb);
-    // Generated from the component: Plant.Vsp3.Vs1
-    HIL_OutFloat(137101314, (float) _plant_c_function1__vgc);
-    // Generated from the component: Plant.f_grid
-    HIL_OutAO(0x4000, (float)_plant_c_function1__f);
-    // Generated from the component: Plant.omega_grid
-    HIL_OutAO(0x4001, (float)_plant_c_function1__omega);
+    HIL_OutAO(0x401f, (float)_scada_rms_value6__out);
     // Generated from the component: SCADA.q_ref
-    HIL_OutAO(0x401a, (float)_scada_gain6__out);
+    HIL_OutAO(0x4018, (float)_scada_gain6__out);
     // Generated from the component: SCADA.Bus Join7
     _scada_bus_join7__out[0] = _scada_gain5__out;
     _scada_bus_join7__out[1] = _scada_gain6__out;
     // Generated from the component: SCADA.p_ref
-    HIL_OutAO(0x4018, (float)_scada_gain5__out);
+    HIL_OutAO(0x4016, (float)_scada_gain5__out);
     // Generated from the component: Controller.Bus Split1
     _controller_bus_split1__out = _scada_bus_join7__out[0];
     _controller_bus_split1__out1 = _scada_bus_join7__out[1];
@@ -905,9 +840,9 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     // Generated from the component: SCADA.Gain4
     _scada_gain4__out = 20000.0 * _controller_c_function_vsg__q_s;
     // Generated from the component: SCADA.omega_SCADA
-    HIL_OutAO(0x4016, (float)_controller_c_function_vsg__omega_vsg);
+    HIL_OutAO(0x4014, (float)_controller_c_function_vsg__omega_vsg);
     // Generated from the component: SCADA.theta_SCADA
-    HIL_OutAO(0x401c, (float)_controller_c_function_vsg__theta_vsg);
+    HIL_OutAO(0x401a, (float)_controller_c_function_vsg__theta_vsg);
     // Generated from the component: SCADA.Bus Split3
     _scada_bus_split3__out = _controller_bus_join11__out[0];
     _scada_bus_split3__out1 = _controller_bus_join11__out[1];
@@ -929,26 +864,26 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _scada_bus_split4__out = _controller_bus_join14__out[0];
     _scada_bus_split4__out1 = _controller_bus_join14__out[1];
     // Generated from the component: SCADA.is_d_ref
-    HIL_OutAO(0x4013, (float)_scada_bus_split2__out);
+    HIL_OutAO(0x4011, (float)_scada_bus_split2__out);
     // Generated from the component: SCADA.is_q_ref
-    HIL_OutAO(0x4015, (float)_scada_bus_split2__out1);
+    HIL_OutAO(0x4013, (float)_scada_bus_split2__out1);
     // Generated from the component: SCADA.f_PLL
-    HIL_OutAO(0x400b, (float)_scada_gain1__out);
+    HIL_OutAO(0x4009, (float)_scada_gain1__out);
     // Generated from the component: SCADA.p
-    HIL_OutAO(0x4017, (float)_scada_gain3__out);
+    HIL_OutAO(0x4015, (float)_scada_gain3__out);
     // Generated from the component: SCADA.q
-    HIL_OutAO(0x4019, (float)_scada_gain4__out);
+    HIL_OutAO(0x4017, (float)_scada_gain4__out);
     // Generated from the component: SCADA.v_d
-    HIL_OutAO(0x401d, (float)_scada_bus_split3__out);
+    HIL_OutAO(0x401b, (float)_scada_bus_split3__out);
     // Generated from the component: SCADA.v_q
-    HIL_OutAO(0x401e, (float)_scada_bus_split3__out1);
+    HIL_OutAO(0x401c, (float)_scada_bus_split3__out1);
     // Generated from the component: Controller.Bus Join8
     _controller_bus_join8__out[0] = _controller_c_function_pi_current_controller__eta_d;
     _controller_bus_join8__out[1] = _controller_c_function_pi_current_controller__eta_q;
     // Generated from the component: SCADA.is_d
-    HIL_OutAO(0x4012, (float)_scada_bus_split4__out);
+    HIL_OutAO(0x4010, (float)_scada_bus_split4__out);
     // Generated from the component: SCADA.is_q
-    HIL_OutAO(0x4014, (float)_scada_bus_split4__out1);
+    HIL_OutAO(0x4012, (float)_scada_bus_split4__out1);
     // Generated from the component: Controller.C function dq to abc
     _controller_c_function_dq_to_abc__dq[0] = _controller_bus_join8__out[0];
     _controller_c_function_dq_to_abc__dq[1] = _controller_bus_join8__out[1];
@@ -966,9 +901,9 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _controller_bus_join9__out[1] = _controller_c_function_dq_to_abc__b;
     _controller_bus_join9__out[2] = _controller_c_function_dq_to_abc__c;
     // Generated from the component: SCADA.eta_d
-    HIL_OutAO(0x4009, (float)_scada_bus_split5__out);
+    HIL_OutAO(0x4007, (float)_scada_bus_split5__out);
     // Generated from the component: SCADA.eta_q
-    HIL_OutAO(0x400a, (float)_scada_bus_split5__out1);
+    HIL_OutAO(0x4008, (float)_scada_bus_split5__out1);
     // Generated from the component: Plant.Bus Split1
     _plant_bus_split1__out = _controller_bus_join9__out[0];
     _plant_bus_split1__out1 = _controller_bus_join9__out[1];
@@ -1017,11 +952,11 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     // 1
     HIL_OutInt32(0x2000140, 0x4);
     // Generated from the component: SCADA.eta_a
-    HIL_OutAO(0x4006, (float)_scada_bus_split1__out);
+    HIL_OutAO(0x4004, (float)_scada_bus_split1__out);
     // Generated from the component: SCADA.eta_b
-    HIL_OutAO(0x4007, (float)_scada_bus_split1__out1);
+    HIL_OutAO(0x4005, (float)_scada_bus_split1__out1);
     // Generated from the component: SCADA.eta_c
-    HIL_OutAO(0x4008, (float)_scada_bus_split1__out2);
+    HIL_OutAO(0x4006, (float)_scada_bus_split1__out2);
 //@cmp.out.block.end
     //////////////////////////////////////////////////////////////////////////
     // Update block
@@ -1153,16 +1088,6 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _scada_rms_value6__previous_value = _plant_vs_c_va1__out;
     _scada_rms_value6__square_sum += _plant_vs_c_va1__out * _plant_vs_c_va1__out;
     _scada_rms_value6__sample_cnt ++;
-    // Generated from the component: Plant.C function1
-    {
-        _plant_c_function1__theta = _plant_c_function1__theta + 5e-05 * _plant_c_function1__omega ;
-        if ( _plant_c_function1__theta >= 2 * M_PI )     {
-            _plant_c_function1__theta = _plant_c_function1__theta - 2 * M_PI ;
-        }
-        if ( _plant_c_function1__theta < 0.0 )     {
-            _plant_c_function1__theta = _plant_c_function1__theta + abs ( _plant_c_function1__theta ) ;
-        }
-    }
     // Generated from the component: Controller.C function VSG
     {
         _controller_c_function_vsg__e_p = _controller_c_function_vsg__p_m_ref - _controller_c_function_vsg__p_s ;
@@ -1221,9 +1146,9 @@ void TimerCounterHandler_1_user_sp_cpu0_dev0() {
     // Generated from the component: SCADA.wires
     _scada_wires__out = XIo_InInt32(0x2f800018);
     // Generated from the component: SCADA.CTRL
-    HIL_OutAO(0x4002, (float)_scada_control__out);
+    HIL_OutAO(0x4000, (float)_scada_control__out);
     // Generated from the component: SCADA.ctrl
-    HIL_OutAO(0x4005, (float)_scada_control__out);
+    HIL_OutAO(0x4003, (float)_scada_control__out);
     // Generated from the component: SCADA.Rate Transition28.Input
     _scada_rate_transition28_output__state = _scada_pref__out;
     // Generated from the component: SCADA.Rate Transition27.Input

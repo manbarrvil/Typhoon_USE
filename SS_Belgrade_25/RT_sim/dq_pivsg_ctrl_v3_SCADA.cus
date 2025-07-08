@@ -52,6 +52,14 @@ hil.set_scada_input_value('SCADA.qref', 0)
 hil.set_scada_input_value('SCADA.i_d_ref', 0)
 hil.set_scada_input_value('SCADA.i_q_ref', 0)
 
+
+global f
+global d_f
+global RoCoF
+
+f = 50.0
+d_f = 0.0
+RoCoF = 0.0
 ]]></initialization_code>
     <components>
         <component_data>
@@ -518,7 +526,7 @@ p, li { white-space: pre-wrap; }
                 <name><![CDATA[SCADA SUMMER SCHOOL BELGRADE 2025]]></name>
                 <type>Group</type>
                 <description><![CDATA[]]></description>
-                <components_ids><![CDATA[['fb907110097111f09f4c4ccc6a8f7014', 'f8113fd6097111f0ab6e4ccc6a8f7014', '0097f8f9057711f09bad4ccc6a8f7014', '8368c832057811f092b84ccc6a8f7014', '510b7d7f03e811f09c9e4ccc6a8f7014', '89e3741303e811f092284ccc6a8f7014', '8e1ca0cf03df11f093c34ccc6a8f7014', 'a5f65501056c11f08d474ccc6a8f7014', 'a5f65500056c11f0ae244ccc6a8f7014', '88ef87e403de11f0a6c04ccc6a8f7014', '5e503666032a11f09cce4ccc6a8f7014', '61bb729b032a11f091944ccc6a8f7014', '64f99d89032a11f0ba5f4ccc6a8f7014', '64f99d88032a11f085d44ccc6a8f7014', 'a0825706032811f0ade64ccc6a8f7014', 'f43dc9bd031711f0940f4ccc6a8f7014', '4cdb4b41031a11f0bc584ccc6a8f7014', '7a05b9b2031a11f0ac214ccc6a8f7014', 'd44e425c031b11f0adba4ccc6a8f7014', 'b51cf833031e11f090684ccc6a8f7014', 'a889b206031f11f0a1ed4ccc6a8f7014', 'ebeb873a032411f0a7f24ccc6a8f7014', '5e503663032a11f0b52d4ccc6a8f7014', '5e503664032a11f0b3ae4ccc6a8f7014', '61bb7299032a11f098fd4ccc6a8f7014', 'cf07bc2403e811f09f984ccc6a8f7014', 'cd3b4b3c03f011f081634ccc6a8f7014', '09ddc12803f111f0b2ff4ccc6a8f7014', '0d700ec203f111f085744ccc6a8f7014', '1553e41f03f111f0a80f4ccc6a8f7014', '18a3987903f111f095244ccc6a8f7014', '5e501190032a11f080324ccc6a8f7014', '6725777a056c11f088794ccc6a8f7014', '5e503667032a11f08eba4ccc6a8f7014', '5e503661032a11f0bebb4ccc6a8f7014', 'a5f65502056c11f08afd4ccc6a8f7014', 'a5f65503056c11f0bb6b4ccc6a8f7014', '61bb4b8e032a11f0a9f14ccc6a8f7014', '61bb729a032a11f0b99b4ccc6a8f7014']]]></components_ids>
+                <components_ids><![CDATA[['fb907110097111f09f4c4ccc6a8f7014', 'f8113fd6097111f0ab6e4ccc6a8f7014', '0097f8f9057711f09bad4ccc6a8f7014', '8368c832057811f092b84ccc6a8f7014', '510b7d7f03e811f09c9e4ccc6a8f7014', '89e3741303e811f092284ccc6a8f7014', '8e1ca0cf03df11f093c34ccc6a8f7014', 'a5f65501056c11f08d474ccc6a8f7014', 'a5f65500056c11f0ae244ccc6a8f7014', '88ef87e403de11f0a6c04ccc6a8f7014', '5e503666032a11f09cce4ccc6a8f7014', '61bb729b032a11f091944ccc6a8f7014', '64f99d89032a11f0ba5f4ccc6a8f7014', '64f99d88032a11f085d44ccc6a8f7014', 'a0825706032811f0ade64ccc6a8f7014', 'f43dc9bd031711f0940f4ccc6a8f7014', '4cdb4b41031a11f0bc584ccc6a8f7014', '7a05b9b2031a11f0ac214ccc6a8f7014', 'd44e425c031b11f0adba4ccc6a8f7014', 'b51cf833031e11f090684ccc6a8f7014', 'a889b206031f11f0a1ed4ccc6a8f7014', 'ebeb873a032411f0a7f24ccc6a8f7014', '5e503663032a11f0b52d4ccc6a8f7014', '5e503664032a11f0b3ae4ccc6a8f7014', '61bb7299032a11f098fd4ccc6a8f7014', 'cf07bc2403e811f09f984ccc6a8f7014', 'cd3b4b3c03f011f081634ccc6a8f7014', '09ddc12803f111f0b2ff4ccc6a8f7014', '0d700ec203f111f085744ccc6a8f7014', '1553e41f03f111f0a80f4ccc6a8f7014', '18a3987903f111f095244ccc6a8f7014', '5e501190032a11f080324ccc6a8f7014', '6725777a056c11f088794ccc6a8f7014', '5e503667032a11f08eba4ccc6a8f7014', '5e503661032a11f0bebb4ccc6a8f7014', 'a5f65502056c11f08afd4ccc6a8f7014', 'a5f65503056c11f0bb6b4ccc6a8f7014', '61bb4b8e032a11f0a9f14ccc6a8f7014', '61bb729a032a11f0b99b4ccc6a8f7014', 'b6ddd77e5bea11f09f7694b86d6fac6f']]]></components_ids>
                 <canvas_bg_color>#ffffff</canvas_bg_color>
                 <initialization_code><![CDATA[# NOTE: Variables and functions defined here will be available for use in
 # all Macro, Expression and handlers codes of components owned by this widget.
@@ -2198,7 +2206,7 @@ widgetValue = None
                         <active_capture_preset><![CDATA[Default]]></active_capture_preset>
                         <active_scope_preset><![CDATA[Default]]></active_scope_preset>
                         <capture name="Default">
-                            <time_interval>1.0</time_interval>
+                            <time_interval>3.0</time_interval>
                             <sample_rate>20000.0</sample_rate>
                             <background_color>white</background_color>
                             <layout>Vertical</layout>
@@ -2208,8 +2216,8 @@ widgetValue = None
                                     <channel>0</channel>
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2220,8 +2228,8 @@ widgetValue = None
                                     <channel>1</channel>
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2232,8 +2240,8 @@ widgetValue = None
                                     <channel>2</channel>
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2244,8 +2252,8 @@ widgetValue = None
                                     <channel>3</channel>
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2256,12 +2264,24 @@ widgetValue = None
                                     <channel>4</channel>
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
                                         <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.vs_b]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>5</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
                                    </viewports>
                                </analog>
                             </analog_signals>
@@ -2273,10 +2293,10 @@ widgetValue = None
                                 <device>0</device>
                                 <is_force>False</is_force>
                                 <type>Analog</type>
-                                <source><![CDATA[Plant.vs_a]]></source>
+                                <source><![CDATA[SCADA.is_a_SCADA]]></source>
                                 <edge>Rising edge</edge>
-                                <treshold>0.0</treshold>
-                                <offset>0.0</offset>
+                                <treshold>1.0</treshold>
+                                <offset>20.0</offset>
                                 <useFirstTrigger>False</useFirstTrigger>
                             </trigger>
                             <plotting_options in_use="False">
@@ -2297,7 +2317,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2309,7 +2329,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2321,7 +2341,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2333,7 +2353,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2345,7 +2365,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
@@ -2357,7 +2377,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_b]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
                                     <viewports>
@@ -2402,17 +2422,17 @@ widgetValue = None
                         </scope>
                         </presets>
                     <capture>
-                        <time_interval>1.0</time_interval>
+                        <time_interval>3.0</time_interval>
                         <sample_rate>20000.0</sample_rate>
                         <background_color>white</background_color>
                         <layout>Vertical</layout>
                         <legend>True</legend>
                         <trigger>
                             <type>Analog</type>
-                            <source>Plant.vs_a</source>
+                            <source>SCADA.is_a_SCADA</source>
                             <edge>Rising edge</edge>
-                            <treshold>0.0</treshold>
-                            <offset>0.0</offset>
+                            <treshold>1.0</treshold>
+                            <offset>20.0</offset>
                             <useFirstTrigger>False</useFirstTrigger>
                         </trigger>
                         <analog_signals>
@@ -2420,8 +2440,8 @@ widgetValue = None
                                     <channel>0</channel>
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2432,8 +2452,8 @@ widgetValue = None
                                     <channel>1</channel>
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2444,8 +2464,8 @@ widgetValue = None
                                     <channel>2</channel>
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2456,8 +2476,8 @@ widgetValue = None
                                     <channel>3</channel>
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2468,12 +2488,24 @@ widgetValue = None
                                     <channel>4</channel>
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
                                         <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.vs_b]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>5</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
                                    </viewports>
                                </analog>
                         </analog_signals>
@@ -2499,7 +2531,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_a]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>0</row>
                                     <viewports>
@@ -2511,7 +2543,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_c]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>1</row>
                                     <viewports>
@@ -2523,7 +2555,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_a_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
@@ -2535,7 +2567,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_b_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
@@ -2547,7 +2579,7 @@ widgetValue = None
                                     <name><![CDATA[SCADA.is_c_SCADA]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>5</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
@@ -2559,7 +2591,7 @@ widgetValue = None
                                     <name><![CDATA[Plant.vs_b]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>100</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
                                     <viewports>
@@ -3588,6 +3620,232 @@ displayValue = 0.0
                     <orange_range>(0, 0, 0, 0)</orange_range>
                     <red_range>(0, 0, 0, 0)</red_range>
                 </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>b6ddd77e5bea11f09f7694b86d6fac6f</id>
+                <name><![CDATA[RoCoF]]></name>
+                <type>MacroButton</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+]]></on_stop_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <widget_settings>
+                    <x>248</x>
+                    <y>624</y>
+                    <width>80</width>
+                    <height>32</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[2]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>22efe2ed5bfd11f0844a94b86d6fac6f</id>
+                <name><![CDATA[Freq event]]></name>
+                <type>MacroButton</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+global f
+global d_f
+global RoCoF
+
+f = f + d_f
+
+hil.set_source_sine_waveform('Plant.Vs1', rms=230.0, frequency=f, phase=0.0, ramp_time = np.abs(d_f/RoCoF), ramp_type = 'lin',harmonics_pu=())
+]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+]]></on_stop_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <widget_settings>
+                    <x>1696</x>
+                    <y>1504</y>
+                    <width>120</width>
+                    <height>40</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>22efe2ee5bfd11f0911894b86d6fac6f</id>
+                <name><![CDATA[RoCoF]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+global RoCoF
+RoCoF = inputValue]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it,
+# the widget value will not be changed.
+widgetValue = None
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <inputValue><![CDATA[0.5]]></inputValue>
+                <inputValueType>float</inputValueType>
+                <unit><![CDATA[Hz/s]]></unit>
+                <widget_settings>
+                    <x>1424</x>
+                    <y>1552</y>
+                    <width>208</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>22efe2ef5bfd11f09f9294b86d6fac6f</id>
+                <name><![CDATA[d_F]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+global d_f
+
+d_f = inputValue]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it,
+# the widget value will not be changed.
+widgetValue = None
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <inputValue><![CDATA[-1.0]]></inputValue>
+                <inputValueType>float</inputValueType>
+                <unit><![CDATA[Hz]]></unit>
+                <widget_settings>
+                    <x>1480</x>
+                    <y>1512</y>
+                    <width>144</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
             </component_data>
         </components>
 </ui_settings>
