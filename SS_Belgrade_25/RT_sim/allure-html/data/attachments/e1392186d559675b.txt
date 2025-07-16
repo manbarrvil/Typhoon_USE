@@ -1,0 +1,145 @@
+2025-06-05 12:30:23,758         [Fixture] K_i_i
+2025-06-05 12:30:23,759         [Fixture] K_i_p
+2025-06-05 12:30:23,759         [Fixture] load_model
+2025-06-05 12:30:23,760             > Load Model
+2025-06-05 12:30:23,760                 ├- file = 'C:\Users\jtrujillo\Desktop\matiydani\ejemplo Target files\ejemplo.cpd'
+2025-06-05 12:30:23,760                 ├- offlineMode = False
+2025-06-05 12:30:23,760                 └- vhil_device = False
+2025-06-05 12:30:25,803             > Start Simulation
+2025-06-05 12:30:25,871             > Wait
+2025-06-05 12:30:25,871                 └- secs = 0.01
+2025-06-05 12:30:25,886             > Start Capture
+2025-06-05 12:30:25,886                 ├- duration = 3
+2025-06-05 12:30:25,886                 ├- offset_absolute = None
+2025-06-05 12:30:25,886                 ├- offset_relative = 'Max'
+2025-06-05 12:30:25,886                 ├- rate = 10000.0
+2025-06-05 12:30:25,887                 ├- signals = ['ctrl', 'start_fsm', 'start_ac', 'wires', 'Fault_type', 'V_h']
+2025-06-05 12:30:25,887                 ├- trigger_source = None
+2025-06-05 12:30:25,887                 ├- trigger_threshold = None
+2025-06-05 12:30:25,887                 ├- trigger_edge = True
+2025-06-05 12:30:25,887                 ├- trigger_use_first_occurence = ''
+2025-06-05 12:30:25,887                 ├- fileName = None
+2025-06-05 12:30:25,887                 ├- executeAt = None
+2025-06-05 12:30:25,887                 └- timeout = False
+2025-06-05 12:30:25,903                 > Num. of Samples: 30000.0 Decimation: 200.0 Rate: 10000.0 Duration: 3 (INFO, typhoon.test.capture.impl)
+2025-06-05 12:30:25,906             > Wait
+2025-06-05 12:30:25,906                 └- secs = 0.1
+2025-06-05 12:30:26,017             > Set Scada Input Value
+2025-06-05 12:30:26,017                 ├- scadaInputName = 'K_i_i'
+2025-06-05 12:30:26,017                 └- value = 50
+2025-06-05 12:30:26,019             > Set Scada Input Value
+2025-06-05 12:30:26,019                 ├- scadaInputName = 'K_i_p'
+2025-06-05 12:30:26,019                 └- value = 2
+2025-06-05 12:30:26,021             > Wait
+2025-06-05 12:30:26,021                 └- secs = 0.3
+2025-06-05 12:30:26,331             > Set Scada Input Value
+2025-06-05 12:30:26,331                 ├- scadaInputName = 'Control'
+2025-06-05 12:30:26,331                 └- value = 3
+2025-06-05 12:30:26,333             > Wait
+2025-06-05 12:30:26,333                 └- secs = 0.3
+2025-06-05 12:30:26,641             > Set Scada Input Value
+2025-06-05 12:30:26,641                 ├- scadaInputName = 'hilos'
+2025-06-05 12:30:26,641                 └- value = 3
+2025-06-05 12:30:26,644             > Wait
+2025-06-05 12:30:26,644                 └- secs = 0.3
+2025-06-05 12:30:26,957             > Set Scada Input Value
+2025-06-05 12:30:26,957                 ├- scadaInputName = 'startFSM'
+2025-06-05 12:30:26,957                 └- value = 1
+2025-06-05 12:30:26,959             > Wait
+2025-06-05 12:30:26,959                 └- secs = 0.3
+2025-06-05 12:30:27,272             > Set Scada Input Value
+2025-06-05 12:30:27,272                 ├- scadaInputName = 'startAC'
+2025-06-05 12:30:27,272                 └- value = 1
+2025-06-05 12:30:27,276             > Set Scada Input Value
+2025-06-05 12:30:27,276                 ├- scadaInputName = 'P_pu_ref'
+2025-06-05 12:30:27,276                 └- value = 0
+2025-06-05 12:30:27,279             > Get Capture Results
+2025-06-05 12:30:27,279                 ├- wait_capture = True
+2025-06-05 12:30:27,279                 └- time_format = 'relative'
+2025-06-05 12:30:29,358                 > Capture not in progress anymore. (INFO, typhoon.test.capture.impl)
+2025-06-05 12:30:30,651                 [Attachment] ctrl
+2025-06-05 12:30:30,653                 [Attachment] Fault_type
+2025-06-05 12:30:30,655                 [Attachment] start_ac
+2025-06-05 12:30:30,656                 [Attachment] start_fsm
+2025-06-05 12:30:30,657                 [Attachment] V_h
+2025-06-05 12:30:30,665                 [Attachment] wires
+2025-06-05 12:30:30,907             [Attachment] Configuracion
+2025-06-05 12:30:30,909         > Wait
+2025-06-05 12:30:30,910             └- secs = 0.01
+2025-06-05 12:30:30,924         > Start Capture
+2025-06-05 12:30:30,924             ├- duration = 3
+2025-06-05 12:30:30,924             ├- offset_absolute = None
+2025-06-05 12:30:30,924             ├- offset_relative = 'Max'
+2025-06-05 12:30:30,925             ├- rate = 10000.0
+2025-06-05 12:30:30,925             ├- signals = ['p', 'P_ref_20k']
+2025-06-05 12:30:30,925             ├- trigger_source = None
+2025-06-05 12:30:30,925             ├- trigger_threshold = None
+2025-06-05 12:30:30,925             ├- trigger_edge = True
+2025-06-05 12:30:30,925             ├- trigger_use_first_occurence = ''
+2025-06-05 12:30:30,925             ├- fileName = None
+2025-06-05 12:30:30,925             ├- executeAt = None
+2025-06-05 12:30:30,925             └- timeout = False
+2025-06-05 12:30:30,937             > Num. of Samples: 30000.0 Decimation: 200.0 Rate: 10000.0 Duration: 3 (INFO, typhoon.test.capture.impl)
+2025-06-05 12:30:30,942         > Wait
+2025-06-05 12:30:30,942             └- secs = 0.2
+2025-06-05 12:30:31,151         > Set Scada Input Value
+2025-06-05 12:30:31,151             ├- scadaInputName = 'K_i_i'
+2025-06-05 12:30:31,151             └- value = 320
+2025-06-05 12:30:31,153         > Set Scada Input Value
+2025-06-05 12:30:31,153             ├- scadaInputName = 'K_i_p'
+2025-06-05 12:30:31,153             └- value = 4
+2025-06-05 12:30:31,157         > Set Scada Input Value
+2025-06-05 12:30:31,158             ├- scadaInputName = 'P_pu_ref'
+2025-06-05 12:30:31,158             └- value = 50
+2025-06-05 12:30:31,160         > Get Capture Results
+2025-06-05 12:30:31,160             ├- wait_capture = True
+2025-06-05 12:30:31,160             └- time_format = 'relative'
+2025-06-05 12:30:34,769             > Capture not in progress anymore. (INFO, typhoon.test.capture.impl)
+2025-06-05 12:30:35,182             [Attachment] p
+2025-06-05 12:30:35,184             [Attachment] P_ref_20k
+2025-06-05 12:30:35,187         > Stepinfo
+2025-06-05 12:30:35,187             ├- signal = p
+2025-06-05 12:30:35,188             ├- settling_time_threshold = 1
+2025-06-05 12:30:35,188             ├- settling_time_threshold_abs = (0.1, 0.9)
+2025-06-05 12:30:35,188             ├- rise_time_thresholds = (0, 0.6)
+2025-06-05 12:30:35,188             ├- ss_during = (2.5, 3)
+2025-06-05 12:30:35,189             ├- initial_value_override = 0
+2025-06-05 12:30:35,189             ├- final_value_override = None
+2025-06-05 12:30:35,189             └- evaluate_from_time = 0.2
+2025-06-05 12:30:35,194             > Desired time [3s] is later to latest signal time. Using latest signal time [2s 999ms 900us] (WARNING, typhoon.utils)
+2025-06-05 12:30:35,550             [Attachment] Step Info Plot
+2025-06-05 12:30:35,553             > Results
+2025-06-05 12:30:35,554                 ├- signal = p
+2025-06-05 12:30:35,554                 ├- evaluate_from_time = 200ms
+2025-06-05 12:30:35,554                 ├- initial_value = 0
+2025-06-05 12:30:35,554                 ├- final_value = 10055.383
+2025-06-05 12:30:35,554                 ├- rise_start = 200ms
+2025-06-05 12:30:35,554                 ├- rise_end = 623ms 600us
+2025-06-05 12:30:35,554                 ├- rise_time = 423ms 600us
+2025-06-05 12:30:35,555                 ├- rise_time_thresholds = (0, 0.6)
+2025-06-05 12:30:35,555                 ├- rise_time_thresholds_abs = (0.0, 6033.2296875)
+2025-06-05 12:30:35,555                 ├- settling_time = 805ms 100us
+2025-06-05 12:30:35,555                 ├- settling_time_threshold = 1
+2025-06-05 12:30:35,555                 ├- settling_time_thresholds_abs = (9954.828984375, 10155.936640625)
+2025-06-05 12:30:35,555                 ├- overshoot = 0.022308092136596614
+2025-06-05 12:30:35,555                 ├- overshoot_abs = 2.243164
+2025-06-05 12:30:35,555                 ├- undershoot = 0.06956315543677924
+2025-06-05 12:30:35,555                 ├- undershoot_abs = 6.994841575622559
+2025-06-05 12:30:35,555                 ├- peak = 10057.626
+2025-06-05 12:30:35,556                 ├- peak_time = 2s 38ms 600us
+2025-06-05 12:30:35,556                 ├- low_peak = -6.9948416
+2025-06-05 12:30:35,556                 ├- low_peak_time = 257ms 300us
+2025-06-05 12:30:35,556                 ├- ss_duration = (2s 500ms, 2s 999ms 900us)
+2025-06-05 12:30:35,556                 ├- ss_average = 10040.488
+2025-06-05 12:30:35,556                 ├- ss_ripple_abs = 34.069336
+2025-06-05 12:30:35,556                 ├- ss_ripple_high = 10057.377
+2025-06-05 12:30:35,556                 ├- ss_ripple_high_time = 2s 678ms 500us
+2025-06-05 12:30:35,557                 ├- ss_ripple_low = 10023.308
+2025-06-05 12:30:35,557                 └- ss_ripple_low_time = 2s 547ms 800us
+2025-06-05 12:30:35,749         [Attachment] Potencias
+2025-06-05 12:30:35,750         > Wait
+2025-06-05 12:30:35,750             └- secs = 1
+2025-06-05 12:30:36,758         > Set Scada Input Value
+2025-06-05 12:30:36,758             ├- scadaInputName = 'P_pu_ref'
+2025-06-05 12:30:36,759             └- value = 0
+2025-06-05 12:30:36,764         > Stop Simulation
