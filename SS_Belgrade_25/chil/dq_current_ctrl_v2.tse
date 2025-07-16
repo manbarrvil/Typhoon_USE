@@ -499,15 +499,6 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 size = 127, 63
             ]
 
-            component "core/Probe" q_ref {
-                execution_rate = "Ts_Control"
-                signal_access = "Inherit"
-                signal_name = "q"
-            }
-            [
-                position = 7928, 7628
-            ]
-
             tag From57 {
                 value = "is_a"
                 scope = local
@@ -1760,17 +1751,6 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             gain = "1"
             multiplication = "Element-wise(K.*u)"
             _tunable = "False"
-            execution_rate = "inherit"
-        }
-
-        "core/Probe" {
-            signal_access = "inherit"
-            addr = "0"
-            override_signal_name = "False"
-            signal_name = ""
-            signal_type = "generic"
-            streaming_en = "False"
-            streaming_er_idx = "0"
             execution_rate = "inherit"
         }
 
