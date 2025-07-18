@@ -992,7 +992,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                     value = "0"
                 }
                 [
-                    position = 9020, 8144
+                    position = 9028, 8156
                 ]
 
                 component "core/Bus Join" "Bus Join16" {
