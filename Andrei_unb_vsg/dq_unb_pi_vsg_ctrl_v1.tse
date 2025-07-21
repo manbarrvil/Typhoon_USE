@@ -1,13 +1,13 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.1 SP1
+// Saved by sw version: 2025.1
 //
 
 model "dq_unb_pi_vsg_ctrl_v1" {
     configuration {
-        hil_device = "HIL404"
-        hil_configuration_id = 5
+        hil_device = "HIL101"
+        hil_configuration_id = 1
         simulation_method = exact
         simulation_time_step = auto
         simulation_discret_scaling = 1.0
@@ -6779,7 +6779,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 direction = in
             }
             [
-                position = 7156, 7852
+                position = 7372, 7944
                 hide_name = True
                 size = 68, 20
             ]
@@ -7437,7 +7437,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             connect Constant5.out "C function dq to abc1.theta" as Connection958
             connect Goto71 current_ctrl.theta as Connection1000
             connect current_ctrl.omega Goto72 as Connection1027
-            connect "Bus Join12.out" current_ctrl.is_abc as Connection7598
             connect "Bus Join14.in2" "C function dq to abc1.c" as Connection7600
             connect Goto41 "Bus Join14.out" as Connection7603
             connect Goto73 current_ctrl.eta_n as Connection7604
@@ -7569,6 +7568,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             [
                 breakpoints = 7808, 7236
             ]
+            connect "Bus Join12.out" current_ctrl.is_abc as Connection7758
         }
         [
             position = 9376, 8268
@@ -7994,10 +7994,10 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
 
         component "TI C2000 Toolbox/TI C2000 Setup" "TI RCP Setup1" {
             build_and_deploy_action = "False"
-            c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
+            c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_05_00_00"
             ccs_project_name = "dq_unb_pi_vsg_acg"
-            ccs_project_path = "c:\workspace\typhoon_use\auto_code_gen\vsc_use\updated"
-            ccs_root_path = "C:\ti\ccs1230"
+            ccs_project_path = "C:/GITHUB/manbarvil/Typhoon_USE/Andrei_unb_vsg"
+            ccs_root_path = "C:\ti\ccs1260"
             exp_subsys_name = "dq_unb_pi_vsg"
         }
         [
