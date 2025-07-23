@@ -1,6 +1,6 @@
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS
+CG_TOOL_ROOT := C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS
 
 GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG :=
@@ -152,7 +152,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 dq_unb_pi_vsg_acg.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-	"${CG_TOOL_ROOT}/bin/cl2000" -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --fp_mode=relaxed --opt_for_speed=5 --opt_level=3 --define=DEBUG --define=_FLASH --define=CPU1 --define=_LAUNCHXL_F28379D --define=SCHEDULER --define=F28379D --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"dq_unb_pi_vsg_acg.map" --advice:performance=all --warn_sections --heap_size=0x200 --stack_size=0x3F8 -i"C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib" -i"C:/ti/ccs1260/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include" -i"C:/ti/c2000/C2000Ware_5_05_00_00/device_support/f2837xd/headers/cmd" -i"C:/GITHUB/manbarvil/Typhoon_USE/Andrei_unb_vsg/dq_unb_pi_vsg_acg" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="dq_unb_pi_vsg_acg_linkInfo.xml" --entry_point=code_start --rom_model -o "dq_unb_pi_vsg_acg.out" $(ORDERED_OBJS)
+	"${CG_TOOL_ROOT}/bin/cl2000" -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --fp_mode=relaxed --opt_for_speed=5 --opt_level=3 --define=DEBUG --define=_FLASH --define=CPU1 --define=_LAUNCHXL_F28379D --define=SCHEDULER --define=F28379D --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"dq_unb_pi_vsg_acg.map" --advice:performance=all --warn_sections --heap_size=0x200 --stack_size=0x3F8 -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/lib" -i"C:/ti/ccs1281/ccs/tools/compiler/ti-cgt-c2000_22.6.2.LTS/include" -i"C:/ti/c2000/C2000Ware_5_04_00_00/device_support/f2837xd/headers/cmd" -i"C:/Github/manbarrvil/Typhoon_USE/Andrei_unb_vsg/dq_unb_pi_vsg_acg" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="dq_unb_pi_vsg_acg_linkInfo.xml" --entry_point=code_start --rom_model -o "dq_unb_pi_vsg_acg.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
