@@ -75,7 +75,62 @@ typedef double real;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -99,9 +154,53 @@ typedef double real;
     double _plant_iag_ia1__out;
     double _plant_ibg_ia1__out;
     double _plant_icg_ia1__out;
+    double _plant_ing_ia1__out;
+         double _plant_single_phase_power_meter1_radian__out = 0.0174533;
+
+    double _plant_single_phase_power_meter1_phi__correction_ref;
+    X_UnInt32 _plant_single_phase_power_meter1_phi__zc_flag_ref;
+
+        double _plant_single_phase_power_meter1_phi__phase_diff;
+        double _plant_single_phase_power_meter1_phi__correction_in;
+        X_UnInt32 _plant_single_phase_power_meter1_phi__zc_flag_in;
+         double _plant_single_phase_power_meter2_radian__out = 0.0174533;
+
+    double _plant_single_phase_power_meter2_phi__correction_ref;
+    X_UnInt32 _plant_single_phase_power_meter2_phi__zc_flag_ref;
+
+        double _plant_single_phase_power_meter2_phi__phase_diff;
+        double _plant_single_phase_power_meter2_phi__correction_in;
+        X_UnInt32 _plant_single_phase_power_meter2_phi__zc_flag_in;
+         double _plant_single_phase_power_meter3_radian__out = 0.0174533;
+
+    double _plant_single_phase_power_meter3_phi__correction_ref;
+    X_UnInt32 _plant_single_phase_power_meter3_phi__zc_flag_ref;
+
+        double _plant_single_phase_power_meter3_phi__phase_diff;
+        double _plant_single_phase_power_meter3_phi__correction_in;
+        X_UnInt32 _plant_single_phase_power_meter3_phi__zc_flag_in;
     double _plant_va_va1__out;
     double _plant_vb_va1__out;
     double _plant_vc_va1__out;
+        double _plant_rms_value4__out;
+        double _plant_single_phase_power_meter1_ia_rms__out;
+            X_UnInt32 _plant_single_phase_power_meter1_ia_rms__zc;
+        double _plant_rms_value5__out;
+        double _plant_single_phase_power_meter2_ia_rms__out;
+            X_UnInt32 _plant_single_phase_power_meter2_ia_rms__zc;
+        double _plant_rms_value6__out;
+        double _plant_single_phase_power_meter3_ia_rms__out;
+            X_UnInt32 _plant_single_phase_power_meter3_ia_rms__zc;
+        double _plant_rms_value7__out;
+double _plant_single_phase_power_meter1_degree_to_radians__out;
+double _plant_single_phase_power_meter2_degree_to_radians__out;
+double _plant_single_phase_power_meter3_degree_to_radians__out;
+        double _plant_rms_value1__out;
+        double _plant_single_phase_power_meter1_va_rms__out;
+            X_UnInt32 _plant_single_phase_power_meter1_va_rms__zc;
+        double _plant_rms_value2__out;
+        double _plant_single_phase_power_meter2_va_rms__out;
+            X_UnInt32 _plant_single_phase_power_meter2_va_rms__zc;
                 double _plant_c_function_powers__i_a;
                 double _plant_c_function_powers__i_b;
                 double _plant_c_function_powers__i_c;
@@ -114,18 +213,182 @@ typedef double real;
                     double _plant_c_function_powers__q;
                     double _plant_c_function_powers__q_f;
 
+        double _plant_rms_value3__out;
+        double _plant_single_phase_power_meter3_va_rms__out;
+            X_UnInt32 _plant_single_phase_power_meter3_va_rms__zc;
+    double _plant_single_phase_power_meter1_cos__out;
+    double _plant_single_phase_power_meter1_sin__out;
+    double _plant_single_phase_power_meter2_cos__out;
+    double _plant_single_phase_power_meter2_sin__out;
+    double _plant_single_phase_power_meter3_cos__out;
+    double _plant_single_phase_power_meter3_sin__out;
+double _plant_single_phase_power_meter1_calc_s__out;
+double _plant_single_phase_power_meter2_calc_s__out;
+double _plant_single_phase_power_meter3_calc_s__out;
+double _plant_single_phase_power_meter1_pmult__out;
+double _plant_single_phase_power_meter1_conjugate__out;double _plant_single_phase_power_meter2_pmult__out;
+double _plant_single_phase_power_meter2_conjugate__out;double _plant_single_phase_power_meter3_pmult__out;
+double _plant_single_phase_power_meter3_conjugate__out;double _plant_single_phase_power_meter1_qmult__out;
+double _plant_single_phase_power_meter2_qmult__out;
+double _plant_single_phase_power_meter3_qmult__out;
 //@cmp.var.end
 
 //@cmp.svar.start
 // state variables
-            double _plant_c_function_powers__p_fil;
+
+    double _plant_single_phase_power_meter1_phi__previous_correction_ref;
+    double _plant_single_phase_power_meter1_phi__sample_cnt_ref;
+    double _plant_single_phase_power_meter1_phi__previous_filtered_ref;
+    double _plant_single_phase_power_meter1_phi__filtered_ref;
+
+        double _plant_single_phase_power_meter1_phi__phase_state;
+        double _plant_single_phase_power_meter1_phi__previous_correction_in;
+        double _plant_single_phase_power_meter1_phi__sample_cnt_in;
+        double _plant_single_phase_power_meter1_phi__previous_filtered_in;
+        double _plant_single_phase_power_meter1_phi__filtered_in;
+        X_UnInt32 _plant_single_phase_power_meter1_phi__no_zc_flag_in;
+
+    double _plant_single_phase_power_meter2_phi__previous_correction_ref;
+    double _plant_single_phase_power_meter2_phi__sample_cnt_ref;
+    double _plant_single_phase_power_meter2_phi__previous_filtered_ref;
+    double _plant_single_phase_power_meter2_phi__filtered_ref;
+
+        double _plant_single_phase_power_meter2_phi__phase_state;
+        double _plant_single_phase_power_meter2_phi__previous_correction_in;
+        double _plant_single_phase_power_meter2_phi__sample_cnt_in;
+        double _plant_single_phase_power_meter2_phi__previous_filtered_in;
+        double _plant_single_phase_power_meter2_phi__filtered_in;
+        X_UnInt32 _plant_single_phase_power_meter2_phi__no_zc_flag_in;
+
+    double _plant_single_phase_power_meter3_phi__previous_correction_ref;
+    double _plant_single_phase_power_meter3_phi__sample_cnt_ref;
+    double _plant_single_phase_power_meter3_phi__previous_filtered_ref;
+    double _plant_single_phase_power_meter3_phi__filtered_ref;
+
+        double _plant_single_phase_power_meter3_phi__phase_state;
+        double _plant_single_phase_power_meter3_phi__previous_correction_in;
+        double _plant_single_phase_power_meter3_phi__sample_cnt_in;
+        double _plant_single_phase_power_meter3_phi__previous_filtered_in;
+        double _plant_single_phase_power_meter3_phi__filtered_in;
+        X_UnInt32 _plant_single_phase_power_meter3_phi__no_zc_flag_in;
+        double _plant_rms_value4__square_sum;
+        double _plant_rms_value4__sample_cnt;
+        double _plant_rms_value4__period_cnt;
+        double _plant_rms_value4__db_timer;
+        double _plant_rms_value4__previous_filtered_value;
+        double _plant_rms_value4__previous_correction;
+        double _plant_rms_value4__previous_value;
+        double _plant_rms_value4__correction;
+        double _plant_rms_value4__out_state;        double _plant_single_phase_power_meter1_ia_rms__square_sum;
+        double _plant_single_phase_power_meter1_ia_rms__sample_cnt;
+        double _plant_single_phase_power_meter1_ia_rms__period_cnt;
+        double _plant_single_phase_power_meter1_ia_rms__db_timer;
+        double _plant_single_phase_power_meter1_ia_rms__previous_filtered_value;
+        double _plant_single_phase_power_meter1_ia_rms__previous_correction;
+        double _plant_single_phase_power_meter1_ia_rms__previous_value;
+        double _plant_single_phase_power_meter1_ia_rms__correction;
+            double _plant_single_phase_power_meter1_ia_rms__filtered_value;
+        double _plant_single_phase_power_meter1_ia_rms__out_state;        double _plant_rms_value5__square_sum;
+        double _plant_rms_value5__sample_cnt;
+        double _plant_rms_value5__period_cnt;
+        double _plant_rms_value5__db_timer;
+        double _plant_rms_value5__previous_filtered_value;
+        double _plant_rms_value5__previous_correction;
+        double _plant_rms_value5__previous_value;
+        double _plant_rms_value5__correction;
+        double _plant_rms_value5__out_state;        double _plant_single_phase_power_meter2_ia_rms__square_sum;
+        double _plant_single_phase_power_meter2_ia_rms__sample_cnt;
+        double _plant_single_phase_power_meter2_ia_rms__period_cnt;
+        double _plant_single_phase_power_meter2_ia_rms__db_timer;
+        double _plant_single_phase_power_meter2_ia_rms__previous_filtered_value;
+        double _plant_single_phase_power_meter2_ia_rms__previous_correction;
+        double _plant_single_phase_power_meter2_ia_rms__previous_value;
+        double _plant_single_phase_power_meter2_ia_rms__correction;
+            double _plant_single_phase_power_meter2_ia_rms__filtered_value;
+        double _plant_single_phase_power_meter2_ia_rms__out_state;        double _plant_rms_value6__square_sum;
+        double _plant_rms_value6__sample_cnt;
+        double _plant_rms_value6__period_cnt;
+        double _plant_rms_value6__db_timer;
+        double _plant_rms_value6__previous_filtered_value;
+        double _plant_rms_value6__previous_correction;
+        double _plant_rms_value6__previous_value;
+        double _plant_rms_value6__correction;
+        double _plant_rms_value6__out_state;        double _plant_single_phase_power_meter3_ia_rms__square_sum;
+        double _plant_single_phase_power_meter3_ia_rms__sample_cnt;
+        double _plant_single_phase_power_meter3_ia_rms__period_cnt;
+        double _plant_single_phase_power_meter3_ia_rms__db_timer;
+        double _plant_single_phase_power_meter3_ia_rms__previous_filtered_value;
+        double _plant_single_phase_power_meter3_ia_rms__previous_correction;
+        double _plant_single_phase_power_meter3_ia_rms__previous_value;
+        double _plant_single_phase_power_meter3_ia_rms__correction;
+            double _plant_single_phase_power_meter3_ia_rms__filtered_value;
+        double _plant_single_phase_power_meter3_ia_rms__out_state;        double _plant_rms_value7__square_sum;
+        double _plant_rms_value7__sample_cnt;
+        double _plant_rms_value7__period_cnt;
+        double _plant_rms_value7__db_timer;
+        double _plant_rms_value7__previous_filtered_value;
+        double _plant_rms_value7__previous_correction;
+        double _plant_rms_value7__previous_value;
+        double _plant_rms_value7__correction;
+        double _plant_rms_value7__out_state;        double _plant_rms_value1__square_sum;
+        double _plant_rms_value1__sample_cnt;
+        double _plant_rms_value1__period_cnt;
+        double _plant_rms_value1__db_timer;
+        double _plant_rms_value1__previous_filtered_value;
+        double _plant_rms_value1__previous_correction;
+        double _plant_rms_value1__previous_value;
+        double _plant_rms_value1__correction;
+        double _plant_rms_value1__out_state;        double _plant_single_phase_power_meter1_va_rms__square_sum;
+        double _plant_single_phase_power_meter1_va_rms__sample_cnt;
+        double _plant_single_phase_power_meter1_va_rms__period_cnt;
+        double _plant_single_phase_power_meter1_va_rms__db_timer;
+        double _plant_single_phase_power_meter1_va_rms__previous_filtered_value;
+        double _plant_single_phase_power_meter1_va_rms__previous_correction;
+        double _plant_single_phase_power_meter1_va_rms__previous_value;
+        double _plant_single_phase_power_meter1_va_rms__correction;
+            double _plant_single_phase_power_meter1_va_rms__filtered_value;
+        double _plant_single_phase_power_meter1_va_rms__out_state;        double _plant_rms_value2__square_sum;
+        double _plant_rms_value2__sample_cnt;
+        double _plant_rms_value2__period_cnt;
+        double _plant_rms_value2__db_timer;
+        double _plant_rms_value2__previous_filtered_value;
+        double _plant_rms_value2__previous_correction;
+        double _plant_rms_value2__previous_value;
+        double _plant_rms_value2__correction;
+        double _plant_rms_value2__out_state;        double _plant_single_phase_power_meter2_va_rms__square_sum;
+        double _plant_single_phase_power_meter2_va_rms__sample_cnt;
+        double _plant_single_phase_power_meter2_va_rms__period_cnt;
+        double _plant_single_phase_power_meter2_va_rms__db_timer;
+        double _plant_single_phase_power_meter2_va_rms__previous_filtered_value;
+        double _plant_single_phase_power_meter2_va_rms__previous_correction;
+        double _plant_single_phase_power_meter2_va_rms__previous_value;
+        double _plant_single_phase_power_meter2_va_rms__correction;
+            double _plant_single_phase_power_meter2_va_rms__filtered_value;
+        double _plant_single_phase_power_meter2_va_rms__out_state;            double _plant_c_function_powers__p_fil;
 
             double _plant_c_function_powers__q_fil;
 
 
     
 
-//@cmp.svar.end
+        double _plant_rms_value3__square_sum;
+        double _plant_rms_value3__sample_cnt;
+        double _plant_rms_value3__period_cnt;
+        double _plant_rms_value3__db_timer;
+        double _plant_rms_value3__previous_filtered_value;
+        double _plant_rms_value3__previous_correction;
+        double _plant_rms_value3__previous_value;
+        double _plant_rms_value3__correction;
+        double _plant_rms_value3__out_state;        double _plant_single_phase_power_meter3_va_rms__square_sum;
+        double _plant_single_phase_power_meter3_va_rms__sample_cnt;
+        double _plant_single_phase_power_meter3_va_rms__period_cnt;
+        double _plant_single_phase_power_meter3_va_rms__db_timer;
+        double _plant_single_phase_power_meter3_va_rms__previous_filtered_value;
+        double _plant_single_phase_power_meter3_va_rms__previous_correction;
+        double _plant_single_phase_power_meter3_va_rms__previous_value;
+        double _plant_single_phase_power_meter3_va_rms__correction;
+            double _plant_single_phase_power_meter3_va_rms__filtered_value;
+        double _plant_single_phase_power_meter3_va_rms__out_state;//@cmp.svar.end
 
 //
 // Tunable parameters
@@ -163,9 +426,236 @@ void ReInit_user_sp_cpu0_dev0(){
     
     
     
+             
+
+        _plant_single_phase_power_meter1_phi__phase_state = 0x0;
+        _plant_single_phase_power_meter1_phi__previous_correction_in = 0x0;
+        _plant_single_phase_power_meter1_phi__sample_cnt_in = 0x0;
+        _plant_single_phase_power_meter1_phi__filtered_in = 0x0;
+        _plant_single_phase_power_meter1_phi__previous_filtered_in = 0x0;
+        _plant_single_phase_power_meter1_phi__no_zc_flag_in = 0x0;
+
+    _plant_single_phase_power_meter1_phi__previous_correction_ref = 0x0;
+    _plant_single_phase_power_meter1_phi__sample_cnt_ref = 0x0;
+    _plant_single_phase_power_meter1_phi__previous_filtered_ref = 0x0;
+    _plant_single_phase_power_meter1_phi__filtered_ref = 0x0;
+
+
+    
+    
+             
+
+        _plant_single_phase_power_meter2_phi__phase_state = 0x0;
+        _plant_single_phase_power_meter2_phi__previous_correction_in = 0x0;
+        _plant_single_phase_power_meter2_phi__sample_cnt_in = 0x0;
+        _plant_single_phase_power_meter2_phi__filtered_in = 0x0;
+        _plant_single_phase_power_meter2_phi__previous_filtered_in = 0x0;
+        _plant_single_phase_power_meter2_phi__no_zc_flag_in = 0x0;
+
+    _plant_single_phase_power_meter2_phi__previous_correction_ref = 0x0;
+    _plant_single_phase_power_meter2_phi__sample_cnt_ref = 0x0;
+    _plant_single_phase_power_meter2_phi__previous_filtered_ref = 0x0;
+    _plant_single_phase_power_meter2_phi__filtered_ref = 0x0;
+
+
+    
+    
+             
+
+        _plant_single_phase_power_meter3_phi__phase_state = 0x0;
+        _plant_single_phase_power_meter3_phi__previous_correction_in = 0x0;
+        _plant_single_phase_power_meter3_phi__sample_cnt_in = 0x0;
+        _plant_single_phase_power_meter3_phi__filtered_in = 0x0;
+        _plant_single_phase_power_meter3_phi__previous_filtered_in = 0x0;
+        _plant_single_phase_power_meter3_phi__no_zc_flag_in = 0x0;
+
+    _plant_single_phase_power_meter3_phi__previous_correction_ref = 0x0;
+    _plant_single_phase_power_meter3_phi__sample_cnt_ref = 0x0;
+    _plant_single_phase_power_meter3_phi__previous_filtered_ref = 0x0;
+    _plant_single_phase_power_meter3_phi__filtered_ref = 0x0;
+
+
+    
+    
+    
+                    
+
+        _plant_rms_value4__square_sum = 0x0;
+        _plant_rms_value4__sample_cnt = 0x0;
+        _plant_rms_value4__period_cnt = 0x0;
+        _plant_rms_value4__db_timer = 0x0;
+        _plant_rms_value4__previous_filtered_value = 0x0;
+        _plant_rms_value4__previous_correction = 0x0;
+        _plant_rms_value4__correction = 0x0;
+        _plant_rms_value4__previous_value = 0x0;
+        _plant_rms_value4__out_state = 0x0;
+
+                    
+
+        _plant_single_phase_power_meter1_ia_rms__square_sum = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__sample_cnt = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__period_cnt = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__db_timer = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__previous_filtered_value = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__previous_correction = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__correction = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__previous_value = 0x0;
+        _plant_single_phase_power_meter1_ia_rms__out_state = 0x0;
+            _plant_single_phase_power_meter1_ia_rms__filtered_value = 0x0;
+            _plant_single_phase_power_meter1_ia_rms__db_timer = 0x0;
+
+                    
+
+        _plant_rms_value5__square_sum = 0x0;
+        _plant_rms_value5__sample_cnt = 0x0;
+        _plant_rms_value5__period_cnt = 0x0;
+        _plant_rms_value5__db_timer = 0x0;
+        _plant_rms_value5__previous_filtered_value = 0x0;
+        _plant_rms_value5__previous_correction = 0x0;
+        _plant_rms_value5__correction = 0x0;
+        _plant_rms_value5__previous_value = 0x0;
+        _plant_rms_value5__out_state = 0x0;
+
+                    
+
+        _plant_single_phase_power_meter2_ia_rms__square_sum = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__sample_cnt = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__period_cnt = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__db_timer = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__previous_filtered_value = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__previous_correction = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__correction = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__previous_value = 0x0;
+        _plant_single_phase_power_meter2_ia_rms__out_state = 0x0;
+            _plant_single_phase_power_meter2_ia_rms__filtered_value = 0x0;
+            _plant_single_phase_power_meter2_ia_rms__db_timer = 0x0;
+
+                    
+
+        _plant_rms_value6__square_sum = 0x0;
+        _plant_rms_value6__sample_cnt = 0x0;
+        _plant_rms_value6__period_cnt = 0x0;
+        _plant_rms_value6__db_timer = 0x0;
+        _plant_rms_value6__previous_filtered_value = 0x0;
+        _plant_rms_value6__previous_correction = 0x0;
+        _plant_rms_value6__correction = 0x0;
+        _plant_rms_value6__previous_value = 0x0;
+        _plant_rms_value6__out_state = 0x0;
+
+                    
+
+        _plant_single_phase_power_meter3_ia_rms__square_sum = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__sample_cnt = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__period_cnt = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__db_timer = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__previous_filtered_value = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__previous_correction = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__correction = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__previous_value = 0x0;
+        _plant_single_phase_power_meter3_ia_rms__out_state = 0x0;
+            _plant_single_phase_power_meter3_ia_rms__filtered_value = 0x0;
+            _plant_single_phase_power_meter3_ia_rms__db_timer = 0x0;
+
+                    
+
+        _plant_rms_value7__square_sum = 0x0;
+        _plant_rms_value7__sample_cnt = 0x0;
+        _plant_rms_value7__period_cnt = 0x0;
+        _plant_rms_value7__db_timer = 0x0;
+        _plant_rms_value7__previous_filtered_value = 0x0;
+        _plant_rms_value7__previous_correction = 0x0;
+        _plant_rms_value7__correction = 0x0;
+        _plant_rms_value7__previous_value = 0x0;
+        _plant_rms_value7__out_state = 0x0;
+
+    
+
+      HIL_OutAO(0x4003, 0.0f);
+
+    
+    
+    
+                    
+
+        _plant_rms_value1__square_sum = 0x0;
+        _plant_rms_value1__sample_cnt = 0x0;
+        _plant_rms_value1__period_cnt = 0x0;
+        _plant_rms_value1__db_timer = 0x0;
+        _plant_rms_value1__previous_filtered_value = 0x0;
+        _plant_rms_value1__previous_correction = 0x0;
+        _plant_rms_value1__correction = 0x0;
+        _plant_rms_value1__previous_value = 0x0;
+        _plant_rms_value1__out_state = 0x0;
+
+                    
+
+        _plant_single_phase_power_meter1_va_rms__square_sum = 0x0;
+        _plant_single_phase_power_meter1_va_rms__sample_cnt = 0x0;
+        _plant_single_phase_power_meter1_va_rms__period_cnt = 0x0;
+        _plant_single_phase_power_meter1_va_rms__db_timer = 0x0;
+        _plant_single_phase_power_meter1_va_rms__previous_filtered_value = 0x0;
+        _plant_single_phase_power_meter1_va_rms__previous_correction = 0x0;
+        _plant_single_phase_power_meter1_va_rms__correction = 0x0;
+        _plant_single_phase_power_meter1_va_rms__previous_value = 0x0;
+        _plant_single_phase_power_meter1_va_rms__out_state = 0x0;
+            _plant_single_phase_power_meter1_va_rms__filtered_value = 0x0;
+            _plant_single_phase_power_meter1_va_rms__db_timer = 0x0;
+
+                    
+
+        _plant_rms_value2__square_sum = 0x0;
+        _plant_rms_value2__sample_cnt = 0x0;
+        _plant_rms_value2__period_cnt = 0x0;
+        _plant_rms_value2__db_timer = 0x0;
+        _plant_rms_value2__previous_filtered_value = 0x0;
+        _plant_rms_value2__previous_correction = 0x0;
+        _plant_rms_value2__correction = 0x0;
+        _plant_rms_value2__previous_value = 0x0;
+        _plant_rms_value2__out_state = 0x0;
+
+                    
+
+        _plant_single_phase_power_meter2_va_rms__square_sum = 0x0;
+        _plant_single_phase_power_meter2_va_rms__sample_cnt = 0x0;
+        _plant_single_phase_power_meter2_va_rms__period_cnt = 0x0;
+        _plant_single_phase_power_meter2_va_rms__db_timer = 0x0;
+        _plant_single_phase_power_meter2_va_rms__previous_filtered_value = 0x0;
+        _plant_single_phase_power_meter2_va_rms__previous_correction = 0x0;
+        _plant_single_phase_power_meter2_va_rms__correction = 0x0;
+        _plant_single_phase_power_meter2_va_rms__previous_value = 0x0;
+        _plant_single_phase_power_meter2_va_rms__out_state = 0x0;
+            _plant_single_phase_power_meter2_va_rms__filtered_value = 0x0;
+            _plant_single_phase_power_meter2_va_rms__db_timer = 0x0;
+
         {
     _plant_c_function_powers__p_fil = 0 ; _plant_c_function_powers__q_fil = 0 ;
 }
+
+                    
+
+        _plant_rms_value3__square_sum = 0x0;
+        _plant_rms_value3__sample_cnt = 0x0;
+        _plant_rms_value3__period_cnt = 0x0;
+        _plant_rms_value3__db_timer = 0x0;
+        _plant_rms_value3__previous_filtered_value = 0x0;
+        _plant_rms_value3__previous_correction = 0x0;
+        _plant_rms_value3__correction = 0x0;
+        _plant_rms_value3__previous_value = 0x0;
+        _plant_rms_value3__out_state = 0x0;
+
+                    
+
+        _plant_single_phase_power_meter3_va_rms__square_sum = 0x0;
+        _plant_single_phase_power_meter3_va_rms__sample_cnt = 0x0;
+        _plant_single_phase_power_meter3_va_rms__period_cnt = 0x0;
+        _plant_single_phase_power_meter3_va_rms__db_timer = 0x0;
+        _plant_single_phase_power_meter3_va_rms__previous_filtered_value = 0x0;
+        _plant_single_phase_power_meter3_va_rms__previous_correction = 0x0;
+        _plant_single_phase_power_meter3_va_rms__correction = 0x0;
+        _plant_single_phase_power_meter3_va_rms__previous_value = 0x0;
+        _plant_single_phase_power_meter3_va_rms__out_state = 0x0;
+            _plant_single_phase_power_meter3_va_rms__filtered_value = 0x0;
+            _plant_single_phase_power_meter3_va_rms__db_timer = 0x0;
 
     
 
@@ -181,7 +671,77 @@ void ReInit_user_sp_cpu0_dev0(){
 
     
 
-      HIL_OutAO(0x4003, 0.0f);
+      HIL_OutAO(0x4004, 0.0f);
+
+    
+    
+    
+    
+    
+    
+    
+
+      HIL_OutAO(0x400f, 0.0f);
+
+    
+    
+
+      HIL_OutAO(0x4010, 0.0f);
+
+    
+    
+
+      HIL_OutAO(0x4005, 0.0f);
+
+    
+
+      HIL_OutAO(0x4009, 0.0f);
+
+    
+
+      HIL_OutAO(0x400a, 0.0f);
+
+    
+
+      HIL_OutAO(0x400e, 0.0f);
+
+    
+
+      HIL_OutAO(0x4011, 0.0f);
+
+    
+    
+    
+    
+    
+    
+    
+    
+
+      HIL_OutAO(0x4006, 0.0f);
+
+    
+    
+
+      HIL_OutAO(0x4007, 0.0f);
+
+    
+    
+
+      HIL_OutAO(0x4008, 0.0f);
+
+    
+    
+
+      HIL_OutAO(0x400b, 0.0f);
+
+    
+
+      HIL_OutAO(0x400c, 0.0f);
+
+    
+
+      HIL_OutAO(0x400d, 0.0f);
 
     //@cmp.init.block.end
 }
@@ -246,6 +806,18 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     //////////////////////////////////////////////////////////////////////////
     // Set tunable parameters
     //////////////////////////////////////////////////////////////////////////
+             // Generated from the component: Plant.Single Phase Power Meter1.Radian
+            
+
+
+             // Generated from the component: Plant.Single Phase Power Meter2.Radian
+            
+
+
+             // Generated from the component: Plant.Single Phase Power Meter3.Radian
+            
+
+
 //////////////////////////////////////////////////////////////////////////
     // Output block
     //////////////////////////////////////////////////////////////////////////
@@ -259,6 +831,30 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
          // Generated from the component: Plant.Icg.Ia1
             _plant_icg_ia1__out = (HIL_InFloat(0xc80000+0x10));
 
+         // Generated from the component: Plant.Ing.Ia1
+            _plant_ing_ia1__out = (HIL_InFloat(0xc80000+0x11));
+
+         // Generated from the component: Plant.Single Phase Power Meter1.phi
+        
+             
+
+            _plant_single_phase_power_meter1_phi__phase_diff = _plant_single_phase_power_meter1_phi__phase_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter2.phi
+        
+             
+
+            _plant_single_phase_power_meter2_phi__phase_diff = _plant_single_phase_power_meter2_phi__phase_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter3.phi
+        
+             
+
+            _plant_single_phase_power_meter3_phi__phase_diff = _plant_single_phase_power_meter3_phi__phase_state;
+
+
          // Generated from the component: Plant.Va.Va1
             _plant_va_va1__out = (HIL_InFloat(0xc80000+0xa));
 
@@ -267,6 +863,181 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
 
          // Generated from the component: Plant.Vc.Va1
             _plant_vc_va1__out = (HIL_InFloat(0xc80000+0xc));
+
+         // Generated from the component: Plant.RMS value4
+                        
+
+            if (_plant_rms_value4__period_cnt >= 2*M_PI){
+                _plant_rms_value4__out_state = sqrt(_plant_rms_value4__square_sum / (2 * M_PI));
+                _plant_rms_value4__square_sum = 0.0f;
+                _plant_rms_value4__period_cnt = fmod(_plant_rms_value4__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value4__out = _plant_rms_value4__out_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter1.Ia RMS
+                        
+
+            _plant_single_phase_power_meter1_ia_rms__previous_filtered_value = _plant_single_phase_power_meter1_ia_rms__filtered_value;
+            if (0)
+                _plant_single_phase_power_meter1_ia_rms__filtered_value = _plant_single_phase_power_meter1_ia_rms__previous_filtered_value * 1 + _plant_iag_ia1__out * 1;
+            else
+                _plant_single_phase_power_meter1_ia_rms__filtered_value = _plant_single_phase_power_meter1_ia_rms__previous_filtered_value * 0.1 + _plant_iag_ia1__out * 0.9;
+
+            _plant_single_phase_power_meter1_ia_rms__db_timer += 0.0001;
+            if( (_plant_single_phase_power_meter1_ia_rms__filtered_value >= 0.0) && (_plant_single_phase_power_meter1_ia_rms__previous_filtered_value < 0.0) && (_plant_single_phase_power_meter1_ia_rms__db_timer >= 0.0) ) {
+                _plant_single_phase_power_meter1_ia_rms__zc = 1;
+                _plant_single_phase_power_meter1_ia_rms__db_timer = 0;
+            } else
+                _plant_single_phase_power_meter1_ia_rms__zc = 0;
+
+            _plant_single_phase_power_meter1_ia_rms__out = _plant_single_phase_power_meter1_ia_rms__out_state;
+
+
+         // Generated from the component: Plant.RMS value5
+                        
+
+            if (_plant_rms_value5__period_cnt >= 2*M_PI){
+                _plant_rms_value5__out_state = sqrt(_plant_rms_value5__square_sum / (2 * M_PI));
+                _plant_rms_value5__square_sum = 0.0f;
+                _plant_rms_value5__period_cnt = fmod(_plant_rms_value5__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value5__out = _plant_rms_value5__out_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter2.Ia RMS
+                        
+
+            _plant_single_phase_power_meter2_ia_rms__previous_filtered_value = _plant_single_phase_power_meter2_ia_rms__filtered_value;
+            if (0)
+                _plant_single_phase_power_meter2_ia_rms__filtered_value = _plant_single_phase_power_meter2_ia_rms__previous_filtered_value * 1 + _plant_ibg_ia1__out * 1;
+            else
+                _plant_single_phase_power_meter2_ia_rms__filtered_value = _plant_single_phase_power_meter2_ia_rms__previous_filtered_value * 0.1 + _plant_ibg_ia1__out * 0.9;
+
+            _plant_single_phase_power_meter2_ia_rms__db_timer += 0.0001;
+            if( (_plant_single_phase_power_meter2_ia_rms__filtered_value >= 0.0) && (_plant_single_phase_power_meter2_ia_rms__previous_filtered_value < 0.0) && (_plant_single_phase_power_meter2_ia_rms__db_timer >= 0.0) ) {
+                _plant_single_phase_power_meter2_ia_rms__zc = 1;
+                _plant_single_phase_power_meter2_ia_rms__db_timer = 0;
+            } else
+                _plant_single_phase_power_meter2_ia_rms__zc = 0;
+
+            _plant_single_phase_power_meter2_ia_rms__out = _plant_single_phase_power_meter2_ia_rms__out_state;
+
+
+         // Generated from the component: Plant.RMS value6
+                        
+
+            if (_plant_rms_value6__period_cnt >= 2*M_PI){
+                _plant_rms_value6__out_state = sqrt(_plant_rms_value6__square_sum / (2 * M_PI));
+                _plant_rms_value6__square_sum = 0.0f;
+                _plant_rms_value6__period_cnt = fmod(_plant_rms_value6__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value6__out = _plant_rms_value6__out_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter3.Ia RMS
+                        
+
+            _plant_single_phase_power_meter3_ia_rms__previous_filtered_value = _plant_single_phase_power_meter3_ia_rms__filtered_value;
+            if (0)
+                _plant_single_phase_power_meter3_ia_rms__filtered_value = _plant_single_phase_power_meter3_ia_rms__previous_filtered_value * 1 + _plant_icg_ia1__out * 1;
+            else
+                _plant_single_phase_power_meter3_ia_rms__filtered_value = _plant_single_phase_power_meter3_ia_rms__previous_filtered_value * 0.1 + _plant_icg_ia1__out * 0.9;
+
+            _plant_single_phase_power_meter3_ia_rms__db_timer += 0.0001;
+            if( (_plant_single_phase_power_meter3_ia_rms__filtered_value >= 0.0) && (_plant_single_phase_power_meter3_ia_rms__previous_filtered_value < 0.0) && (_plant_single_phase_power_meter3_ia_rms__db_timer >= 0.0) ) {
+                _plant_single_phase_power_meter3_ia_rms__zc = 1;
+                _plant_single_phase_power_meter3_ia_rms__db_timer = 0;
+            } else
+                _plant_single_phase_power_meter3_ia_rms__zc = 0;
+
+            _plant_single_phase_power_meter3_ia_rms__out = _plant_single_phase_power_meter3_ia_rms__out_state;
+
+
+         // Generated from the component: Plant.RMS value7
+                        
+
+            if (_plant_rms_value7__period_cnt >= 2*M_PI){
+                _plant_rms_value7__out_state = sqrt(_plant_rms_value7__square_sum / (2 * M_PI));
+                _plant_rms_value7__square_sum = 0.0f;
+                _plant_rms_value7__period_cnt = fmod(_plant_rms_value7__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value7__out = _plant_rms_value7__out_state;
+
+
+         // Generated from the component: Plant.in
+        
+
+    HIL_OutAO(0x4003, (float)_plant_ing_ia1__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter1.Degree to radians
+        _plant_single_phase_power_meter1_degree_to_radians__out = (_plant_single_phase_power_meter1_phi__phase_diff * _plant_single_phase_power_meter1_radian__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter2.Degree to radians
+        _plant_single_phase_power_meter2_degree_to_radians__out = (_plant_single_phase_power_meter2_phi__phase_diff * _plant_single_phase_power_meter2_radian__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter3.Degree to radians
+        _plant_single_phase_power_meter3_degree_to_radians__out = (_plant_single_phase_power_meter3_phi__phase_diff * _plant_single_phase_power_meter3_radian__out);
+
+         // Generated from the component: Plant.RMS value1
+                        
+
+            if (_plant_rms_value1__period_cnt >= 2*M_PI){
+                _plant_rms_value1__out_state = sqrt(_plant_rms_value1__square_sum / (2 * M_PI));
+                _plant_rms_value1__square_sum = 0.0f;
+                _plant_rms_value1__period_cnt = fmod(_plant_rms_value1__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value1__out = _plant_rms_value1__out_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter1.Va RMS
+                        
+
+            _plant_single_phase_power_meter1_va_rms__previous_filtered_value = _plant_single_phase_power_meter1_va_rms__filtered_value;
+            if (0)
+                _plant_single_phase_power_meter1_va_rms__filtered_value = _plant_single_phase_power_meter1_va_rms__previous_filtered_value * 1 + _plant_va_va1__out * 1;
+            else
+                _plant_single_phase_power_meter1_va_rms__filtered_value = _plant_single_phase_power_meter1_va_rms__previous_filtered_value * 0.1 + _plant_va_va1__out * 0.9;
+
+            _plant_single_phase_power_meter1_va_rms__db_timer += 0.0001;
+            if( (_plant_single_phase_power_meter1_va_rms__filtered_value >= 0.0) && (_plant_single_phase_power_meter1_va_rms__previous_filtered_value < 0.0) && (_plant_single_phase_power_meter1_va_rms__db_timer >= 0.0) ) {
+                _plant_single_phase_power_meter1_va_rms__zc = 1;
+                _plant_single_phase_power_meter1_va_rms__db_timer = 0;
+            } else
+                _plant_single_phase_power_meter1_va_rms__zc = 0;
+
+            _plant_single_phase_power_meter1_va_rms__out = _plant_single_phase_power_meter1_va_rms__out_state;
+
+
+         // Generated from the component: Plant.RMS value2
+                        
+
+            if (_plant_rms_value2__period_cnt >= 2*M_PI){
+                _plant_rms_value2__out_state = sqrt(_plant_rms_value2__square_sum / (2 * M_PI));
+                _plant_rms_value2__square_sum = 0.0f;
+                _plant_rms_value2__period_cnt = fmod(_plant_rms_value2__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value2__out = _plant_rms_value2__out_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter2.Va RMS
+                        
+
+            _plant_single_phase_power_meter2_va_rms__previous_filtered_value = _plant_single_phase_power_meter2_va_rms__filtered_value;
+            if (0)
+                _plant_single_phase_power_meter2_va_rms__filtered_value = _plant_single_phase_power_meter2_va_rms__previous_filtered_value * 1 + _plant_vb_va1__out * 1;
+            else
+                _plant_single_phase_power_meter2_va_rms__filtered_value = _plant_single_phase_power_meter2_va_rms__previous_filtered_value * 0.1 + _plant_vb_va1__out * 0.9;
+
+            _plant_single_phase_power_meter2_va_rms__db_timer += 0.0001;
+            if( (_plant_single_phase_power_meter2_va_rms__filtered_value >= 0.0) && (_plant_single_phase_power_meter2_va_rms__previous_filtered_value < 0.0) && (_plant_single_phase_power_meter2_va_rms__db_timer >= 0.0) ) {
+                _plant_single_phase_power_meter2_va_rms__zc = 1;
+                _plant_single_phase_power_meter2_va_rms__db_timer = 0;
+            } else
+                _plant_single_phase_power_meter2_va_rms__zc = 0;
+
+            _plant_single_phase_power_meter2_va_rms__out = _plant_single_phase_power_meter2_va_rms__out_state;
+
 
          // Generated from the component: Plant.C function powers
                     _plant_c_function_powers__i_a = _plant_iag_ia1__out;
@@ -280,25 +1051,186 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _plant_c_function_powers__p = _plant_c_function_powers__v_a * _plant_c_function_powers__i_a + _plant_c_function_powers__v_b * _plant_c_function_powers__i_b + _plant_c_function_powers__v_c * _plant_c_function_powers__i_c ; _plant_c_function_powers__q = 1 / sqrt ( 3 ) * ( _plant_c_function_powers__i_c * ( _plant_c_function_powers__v_a - _plant_c_function_powers__v_b ) + _plant_c_function_powers__i_a * ( _plant_c_function_powers__v_b - _plant_c_function_powers__v_c ) + _plant_c_function_powers__i_b * ( _plant_c_function_powers__v_c - _plant_c_function_powers__v_a ) ) ; _plant_c_function_powers__p_f = _plant_c_function_powers__p_fil ; _plant_c_function_powers__q_f = _plant_c_function_powers__q_fil ;
 }
 
+         // Generated from the component: Plant.RMS value3
+                        
+
+            if (_plant_rms_value3__period_cnt >= 2*M_PI){
+                _plant_rms_value3__out_state = sqrt(_plant_rms_value3__square_sum / (2 * M_PI));
+                _plant_rms_value3__square_sum = 0.0f;
+                _plant_rms_value3__period_cnt = fmod(_plant_rms_value3__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value3__out = _plant_rms_value3__out_state;
+
+
+         // Generated from the component: Plant.Single Phase Power Meter3.Va RMS
+                        
+
+            _plant_single_phase_power_meter3_va_rms__previous_filtered_value = _plant_single_phase_power_meter3_va_rms__filtered_value;
+            if (0)
+                _plant_single_phase_power_meter3_va_rms__filtered_value = _plant_single_phase_power_meter3_va_rms__previous_filtered_value * 1 + _plant_vc_va1__out * 1;
+            else
+                _plant_single_phase_power_meter3_va_rms__filtered_value = _plant_single_phase_power_meter3_va_rms__previous_filtered_value * 0.1 + _plant_vc_va1__out * 0.9;
+
+            _plant_single_phase_power_meter3_va_rms__db_timer += 0.0001;
+            if( (_plant_single_phase_power_meter3_va_rms__filtered_value >= 0.0) && (_plant_single_phase_power_meter3_va_rms__previous_filtered_value < 0.0) && (_plant_single_phase_power_meter3_va_rms__db_timer >= 0.0) ) {
+                _plant_single_phase_power_meter3_va_rms__zc = 1;
+                _plant_single_phase_power_meter3_va_rms__db_timer = 0;
+            } else
+                _plant_single_phase_power_meter3_va_rms__zc = 0;
+
+            _plant_single_phase_power_meter3_va_rms__out = _plant_single_phase_power_meter3_va_rms__out_state;
+
+
+         // Generated from the component: Plant.ia_rms
+        
+
+    HIL_OutAO(0x4000, (float)_plant_rms_value4__out);
+
+         // Generated from the component: Plant.ib_rms
+        
+
+    HIL_OutAO(0x4001, (float)_plant_rms_value5__out);
+
+         // Generated from the component: Plant.ic_rms
+        
+
+    HIL_OutAO(0x4002, (float)_plant_rms_value6__out);
+
+         // Generated from the component: Plant.in_rms
+        
+
+    HIL_OutAO(0x4004, (float)_plant_rms_value7__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter1.cos
+        
+            _plant_single_phase_power_meter1_cos__out = cos(_plant_single_phase_power_meter1_degree_to_radians__out);
+
+
+         // Generated from the component: Plant.Single Phase Power Meter1.sin
+        
+            _plant_single_phase_power_meter1_sin__out = sin(_plant_single_phase_power_meter1_degree_to_radians__out);
+
+
+         // Generated from the component: Plant.Single Phase Power Meter2.cos
+        
+            _plant_single_phase_power_meter2_cos__out = cos(_plant_single_phase_power_meter2_degree_to_radians__out);
+
+
+         // Generated from the component: Plant.Single Phase Power Meter2.sin
+        
+            _plant_single_phase_power_meter2_sin__out = sin(_plant_single_phase_power_meter2_degree_to_radians__out);
+
+
+         // Generated from the component: Plant.Single Phase Power Meter3.cos
+        
+            _plant_single_phase_power_meter3_cos__out = cos(_plant_single_phase_power_meter3_degree_to_radians__out);
+
+
+         // Generated from the component: Plant.Single Phase Power Meter3.sin
+        
+            _plant_single_phase_power_meter3_sin__out = sin(_plant_single_phase_power_meter3_degree_to_radians__out);
+
+
+         // Generated from the component: Plant.va_rms
+        
+
+    HIL_OutAO(0x400f, (float)_plant_rms_value1__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter1.calc S
+        _plant_single_phase_power_meter1_calc_s__out = (_plant_single_phase_power_meter1_va_rms__out * _plant_single_phase_power_meter1_ia_rms__out);
+
+         // Generated from the component: Plant.vb_rms
+        
+
+    HIL_OutAO(0x4010, (float)_plant_rms_value2__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter2.calc S
+        _plant_single_phase_power_meter2_calc_s__out = (_plant_single_phase_power_meter2_va_rms__out * _plant_single_phase_power_meter2_ia_rms__out);
+
          // Generated from the component: Plant.p
         
 
-    HIL_OutAO(0x4000, (float)_plant_c_function_powers__p);
+    HIL_OutAO(0x4005, (float)_plant_c_function_powers__p);
 
          // Generated from the component: Plant.pf
         
 
-    HIL_OutAO(0x4001, (float)_plant_c_function_powers__p_f);
+    HIL_OutAO(0x4009, (float)_plant_c_function_powers__p_f);
 
          // Generated from the component: Plant.q
         
 
-    HIL_OutAO(0x4002, (float)_plant_c_function_powers__q);
+    HIL_OutAO(0x400a, (float)_plant_c_function_powers__q);
 
          // Generated from the component: Plant.qf
         
 
-    HIL_OutAO(0x4003, (float)_plant_c_function_powers__q_f);
+    HIL_OutAO(0x400e, (float)_plant_c_function_powers__q_f);
+
+         // Generated from the component: Plant.vc_rms
+        
+
+    HIL_OutAO(0x4011, (float)_plant_rms_value3__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter3.calc S
+        _plant_single_phase_power_meter3_calc_s__out = (_plant_single_phase_power_meter3_va_rms__out * _plant_single_phase_power_meter3_ia_rms__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter1.Pmult
+        _plant_single_phase_power_meter1_pmult__out = (_plant_single_phase_power_meter1_va_rms__out * _plant_single_phase_power_meter1_ia_rms__out * _plant_single_phase_power_meter1_cos__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter1.conjugate
+                    _plant_single_phase_power_meter1_conjugate__out = -1.0 * _plant_single_phase_power_meter1_sin__out;
+
+         // Generated from the component: Plant.Single Phase Power Meter2.Pmult
+        _plant_single_phase_power_meter2_pmult__out = (_plant_single_phase_power_meter2_va_rms__out * _plant_single_phase_power_meter2_ia_rms__out * _plant_single_phase_power_meter2_cos__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter2.conjugate
+                    _plant_single_phase_power_meter2_conjugate__out = -1.0 * _plant_single_phase_power_meter2_sin__out;
+
+         // Generated from the component: Plant.Single Phase Power Meter3.Pmult
+        _plant_single_phase_power_meter3_pmult__out = (_plant_single_phase_power_meter3_va_rms__out * _plant_single_phase_power_meter3_ia_rms__out * _plant_single_phase_power_meter3_cos__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter3.conjugate
+                    _plant_single_phase_power_meter3_conjugate__out = -1.0 * _plant_single_phase_power_meter3_sin__out;
+
+         // Generated from the component: Plant.p1
+        
+
+    HIL_OutAO(0x4006, (float)_plant_single_phase_power_meter1_pmult__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter1.Qmult
+        _plant_single_phase_power_meter1_qmult__out = (_plant_single_phase_power_meter1_va_rms__out * _plant_single_phase_power_meter1_ia_rms__out * _plant_single_phase_power_meter1_conjugate__out);
+
+         // Generated from the component: Plant.p2
+        
+
+    HIL_OutAO(0x4007, (float)_plant_single_phase_power_meter2_pmult__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter2.Qmult
+        _plant_single_phase_power_meter2_qmult__out = (_plant_single_phase_power_meter2_va_rms__out * _plant_single_phase_power_meter2_ia_rms__out * _plant_single_phase_power_meter2_conjugate__out);
+
+         // Generated from the component: Plant.p3
+        
+
+    HIL_OutAO(0x4008, (float)_plant_single_phase_power_meter3_pmult__out);
+
+         // Generated from the component: Plant.Single Phase Power Meter3.Qmult
+        _plant_single_phase_power_meter3_qmult__out = (_plant_single_phase_power_meter3_va_rms__out * _plant_single_phase_power_meter3_ia_rms__out * _plant_single_phase_power_meter3_conjugate__out);
+
+         // Generated from the component: Plant.q1
+        
+
+    HIL_OutAO(0x400b, (float)_plant_single_phase_power_meter1_qmult__out);
+
+         // Generated from the component: Plant.q2
+        
+
+    HIL_OutAO(0x400c, (float)_plant_single_phase_power_meter2_qmult__out);
+
+         // Generated from the component: Plant.q3
+        
+
+    HIL_OutAO(0x400d, (float)_plant_single_phase_power_meter3_qmult__out);
 
 //@cmp.out.block.end
 
@@ -307,11 +1239,497 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     // Update block
     //////////////////////////////////////////////////////////////////////////
     //@cmp.update.block.start
+         // Generated from the component: Plant.Single Phase Power Meter1.phi
+        
+             
+
+    _plant_single_phase_power_meter1_phi__sample_cnt_ref += 1;
+
+    _plant_single_phase_power_meter1_phi__previous_filtered_ref = _plant_single_phase_power_meter1_phi__filtered_ref;
+    _plant_single_phase_power_meter1_phi__filtered_ref = _plant_single_phase_power_meter1_phi__previous_filtered_ref * 0.7322694683406874 + _plant_va_va1__out * 0.26773053165931254;
+
+    if( _plant_single_phase_power_meter1_phi__sample_cnt_ref >= 5000 ){
+        _plant_single_phase_power_meter1_phi__zc_flag_ref = 0;
+        _plant_single_phase_power_meter1_phi__sample_cnt_ref = 0;
+        _plant_single_phase_power_meter1_phi__previous_correction_ref = 0;
+
+            _plant_single_phase_power_meter1_phi__phase_state = 0;
+    }
+    else if( (_plant_single_phase_power_meter1_phi__filtered_ref >= 0) && (_plant_single_phase_power_meter1_phi__previous_filtered_ref < 0) ){
+        _plant_single_phase_power_meter1_phi__zc_flag_ref = 1;
+    }
+    else{
+        _plant_single_phase_power_meter1_phi__zc_flag_ref = 0;
+    }
+
+
+        _plant_single_phase_power_meter1_phi__sample_cnt_in += 1;
+
+        _plant_single_phase_power_meter1_phi__previous_filtered_in = _plant_single_phase_power_meter1_phi__filtered_in;
+        _plant_single_phase_power_meter1_phi__filtered_in = _plant_single_phase_power_meter1_phi__previous_filtered_in * 0.7322694683406874 + _plant_iag_ia1__out * 0.26773053165931254;
+
+        if( _plant_single_phase_power_meter1_phi__sample_cnt_in >= 5000 ){
+            _plant_single_phase_power_meter1_phi__zc_flag_in = 0;
+            _plant_single_phase_power_meter1_phi__no_zc_flag_in = 1;
+            _plant_single_phase_power_meter1_phi__sample_cnt_in = 0;
+            _plant_single_phase_power_meter1_phi__previous_correction_in = 0;
+
+            _plant_single_phase_power_meter1_phi__phase_state = 0;
+        }
+        else if( (_plant_single_phase_power_meter1_phi__filtered_in >= 0) && (_plant_single_phase_power_meter1_phi__previous_filtered_in < 0) ){
+            _plant_single_phase_power_meter1_phi__zc_flag_in = 1;
+            _plant_single_phase_power_meter1_phi__no_zc_flag_in = 0;
+        }
+        else{
+            _plant_single_phase_power_meter1_phi__zc_flag_in = 0;
+        }
+
+
+    if( _plant_single_phase_power_meter1_phi__zc_flag_ref ) {
+        _plant_single_phase_power_meter1_phi__correction_ref = - _plant_single_phase_power_meter1_phi__previous_filtered_ref/( _plant_single_phase_power_meter1_phi__filtered_ref - _plant_single_phase_power_meter1_phi__previous_filtered_ref );
+
+        _plant_single_phase_power_meter1_phi__sample_cnt_ref += _plant_single_phase_power_meter1_phi__correction_ref - _plant_single_phase_power_meter1_phi__previous_correction_ref;
+
+
+            if( (_plant_single_phase_power_meter1_phi__sample_cnt_ref > 1e-6) || (_plant_single_phase_power_meter1_phi__sample_cnt_ref < -1e-6) ){
+                if( !_plant_single_phase_power_meter1_phi__no_zc_flag_in ){
+                    _plant_single_phase_power_meter1_phi__phase_state = 360.0 * ( _plant_single_phase_power_meter1_phi__sample_cnt_in + _plant_single_phase_power_meter1_phi__correction_ref - _plant_single_phase_power_meter1_phi__previous_correction_in ) / _plant_single_phase_power_meter1_phi__sample_cnt_ref;
+                }
+            }
+
+            if( (_plant_single_phase_power_meter1_phi__phase_state > 360.0) || (_plant_single_phase_power_meter1_phi__phase_state < -360.0) ){
+                _plant_single_phase_power_meter1_phi__phase_state = fmod(_plant_single_phase_power_meter1_phi__phase_state, 360.0);
+            }
+
+            if (_plant_single_phase_power_meter1_phi__phase_state < -180.0){
+                _plant_single_phase_power_meter1_phi__phase_state += 360.0;
+            }
+            else if (_plant_single_phase_power_meter1_phi__phase_state > 180.0){
+                _plant_single_phase_power_meter1_phi__phase_state -= 360.0;
+            }
+
+
+        _plant_single_phase_power_meter1_phi__sample_cnt_ref = 0;
+        _plant_single_phase_power_meter1_phi__previous_correction_ref = _plant_single_phase_power_meter1_phi__correction_ref;
+    }
+
+
+
+        if( _plant_single_phase_power_meter1_phi__zc_flag_in ) {
+            _plant_single_phase_power_meter1_phi__correction_in = - _plant_single_phase_power_meter1_phi__previous_filtered_in/( _plant_single_phase_power_meter1_phi__filtered_in - _plant_single_phase_power_meter1_phi__previous_filtered_in );
+
+            _plant_single_phase_power_meter1_phi__sample_cnt_in = 0;
+            _plant_single_phase_power_meter1_phi__previous_correction_in = _plant_single_phase_power_meter1_phi__correction_in;
+        }
+
+
+
+         // Generated from the component: Plant.Single Phase Power Meter2.phi
+        
+             
+
+    _plant_single_phase_power_meter2_phi__sample_cnt_ref += 1;
+
+    _plant_single_phase_power_meter2_phi__previous_filtered_ref = _plant_single_phase_power_meter2_phi__filtered_ref;
+    _plant_single_phase_power_meter2_phi__filtered_ref = _plant_single_phase_power_meter2_phi__previous_filtered_ref * 0.7322694683406874 + _plant_vb_va1__out * 0.26773053165931254;
+
+    if( _plant_single_phase_power_meter2_phi__sample_cnt_ref >= 5000 ){
+        _plant_single_phase_power_meter2_phi__zc_flag_ref = 0;
+        _plant_single_phase_power_meter2_phi__sample_cnt_ref = 0;
+        _plant_single_phase_power_meter2_phi__previous_correction_ref = 0;
+
+            _plant_single_phase_power_meter2_phi__phase_state = 0;
+    }
+    else if( (_plant_single_phase_power_meter2_phi__filtered_ref >= 0) && (_plant_single_phase_power_meter2_phi__previous_filtered_ref < 0) ){
+        _plant_single_phase_power_meter2_phi__zc_flag_ref = 1;
+    }
+    else{
+        _plant_single_phase_power_meter2_phi__zc_flag_ref = 0;
+    }
+
+
+        _plant_single_phase_power_meter2_phi__sample_cnt_in += 1;
+
+        _plant_single_phase_power_meter2_phi__previous_filtered_in = _plant_single_phase_power_meter2_phi__filtered_in;
+        _plant_single_phase_power_meter2_phi__filtered_in = _plant_single_phase_power_meter2_phi__previous_filtered_in * 0.7322694683406874 + _plant_ibg_ia1__out * 0.26773053165931254;
+
+        if( _plant_single_phase_power_meter2_phi__sample_cnt_in >= 5000 ){
+            _plant_single_phase_power_meter2_phi__zc_flag_in = 0;
+            _plant_single_phase_power_meter2_phi__no_zc_flag_in = 1;
+            _plant_single_phase_power_meter2_phi__sample_cnt_in = 0;
+            _plant_single_phase_power_meter2_phi__previous_correction_in = 0;
+
+            _plant_single_phase_power_meter2_phi__phase_state = 0;
+        }
+        else if( (_plant_single_phase_power_meter2_phi__filtered_in >= 0) && (_plant_single_phase_power_meter2_phi__previous_filtered_in < 0) ){
+            _plant_single_phase_power_meter2_phi__zc_flag_in = 1;
+            _plant_single_phase_power_meter2_phi__no_zc_flag_in = 0;
+        }
+        else{
+            _plant_single_phase_power_meter2_phi__zc_flag_in = 0;
+        }
+
+
+    if( _plant_single_phase_power_meter2_phi__zc_flag_ref ) {
+        _plant_single_phase_power_meter2_phi__correction_ref = - _plant_single_phase_power_meter2_phi__previous_filtered_ref/( _plant_single_phase_power_meter2_phi__filtered_ref - _plant_single_phase_power_meter2_phi__previous_filtered_ref );
+
+        _plant_single_phase_power_meter2_phi__sample_cnt_ref += _plant_single_phase_power_meter2_phi__correction_ref - _plant_single_phase_power_meter2_phi__previous_correction_ref;
+
+
+            if( (_plant_single_phase_power_meter2_phi__sample_cnt_ref > 1e-6) || (_plant_single_phase_power_meter2_phi__sample_cnt_ref < -1e-6) ){
+                if( !_plant_single_phase_power_meter2_phi__no_zc_flag_in ){
+                    _plant_single_phase_power_meter2_phi__phase_state = 360.0 * ( _plant_single_phase_power_meter2_phi__sample_cnt_in + _plant_single_phase_power_meter2_phi__correction_ref - _plant_single_phase_power_meter2_phi__previous_correction_in ) / _plant_single_phase_power_meter2_phi__sample_cnt_ref;
+                }
+            }
+
+            if( (_plant_single_phase_power_meter2_phi__phase_state > 360.0) || (_plant_single_phase_power_meter2_phi__phase_state < -360.0) ){
+                _plant_single_phase_power_meter2_phi__phase_state = fmod(_plant_single_phase_power_meter2_phi__phase_state, 360.0);
+            }
+
+            if (_plant_single_phase_power_meter2_phi__phase_state < -180.0){
+                _plant_single_phase_power_meter2_phi__phase_state += 360.0;
+            }
+            else if (_plant_single_phase_power_meter2_phi__phase_state > 180.0){
+                _plant_single_phase_power_meter2_phi__phase_state -= 360.0;
+            }
+
+
+        _plant_single_phase_power_meter2_phi__sample_cnt_ref = 0;
+        _plant_single_phase_power_meter2_phi__previous_correction_ref = _plant_single_phase_power_meter2_phi__correction_ref;
+    }
+
+
+
+        if( _plant_single_phase_power_meter2_phi__zc_flag_in ) {
+            _plant_single_phase_power_meter2_phi__correction_in = - _plant_single_phase_power_meter2_phi__previous_filtered_in/( _plant_single_phase_power_meter2_phi__filtered_in - _plant_single_phase_power_meter2_phi__previous_filtered_in );
+
+            _plant_single_phase_power_meter2_phi__sample_cnt_in = 0;
+            _plant_single_phase_power_meter2_phi__previous_correction_in = _plant_single_phase_power_meter2_phi__correction_in;
+        }
+
+
+
+         // Generated from the component: Plant.Single Phase Power Meter3.phi
+        
+             
+
+    _plant_single_phase_power_meter3_phi__sample_cnt_ref += 1;
+
+    _plant_single_phase_power_meter3_phi__previous_filtered_ref = _plant_single_phase_power_meter3_phi__filtered_ref;
+    _plant_single_phase_power_meter3_phi__filtered_ref = _plant_single_phase_power_meter3_phi__previous_filtered_ref * 0.7322694683406874 + _plant_vc_va1__out * 0.26773053165931254;
+
+    if( _plant_single_phase_power_meter3_phi__sample_cnt_ref >= 5000 ){
+        _plant_single_phase_power_meter3_phi__zc_flag_ref = 0;
+        _plant_single_phase_power_meter3_phi__sample_cnt_ref = 0;
+        _plant_single_phase_power_meter3_phi__previous_correction_ref = 0;
+
+            _plant_single_phase_power_meter3_phi__phase_state = 0;
+    }
+    else if( (_plant_single_phase_power_meter3_phi__filtered_ref >= 0) && (_plant_single_phase_power_meter3_phi__previous_filtered_ref < 0) ){
+        _plant_single_phase_power_meter3_phi__zc_flag_ref = 1;
+    }
+    else{
+        _plant_single_phase_power_meter3_phi__zc_flag_ref = 0;
+    }
+
+
+        _plant_single_phase_power_meter3_phi__sample_cnt_in += 1;
+
+        _plant_single_phase_power_meter3_phi__previous_filtered_in = _plant_single_phase_power_meter3_phi__filtered_in;
+        _plant_single_phase_power_meter3_phi__filtered_in = _plant_single_phase_power_meter3_phi__previous_filtered_in * 0.7322694683406874 + _plant_icg_ia1__out * 0.26773053165931254;
+
+        if( _plant_single_phase_power_meter3_phi__sample_cnt_in >= 5000 ){
+            _plant_single_phase_power_meter3_phi__zc_flag_in = 0;
+            _plant_single_phase_power_meter3_phi__no_zc_flag_in = 1;
+            _plant_single_phase_power_meter3_phi__sample_cnt_in = 0;
+            _plant_single_phase_power_meter3_phi__previous_correction_in = 0;
+
+            _plant_single_phase_power_meter3_phi__phase_state = 0;
+        }
+        else if( (_plant_single_phase_power_meter3_phi__filtered_in >= 0) && (_plant_single_phase_power_meter3_phi__previous_filtered_in < 0) ){
+            _plant_single_phase_power_meter3_phi__zc_flag_in = 1;
+            _plant_single_phase_power_meter3_phi__no_zc_flag_in = 0;
+        }
+        else{
+            _plant_single_phase_power_meter3_phi__zc_flag_in = 0;
+        }
+
+
+    if( _plant_single_phase_power_meter3_phi__zc_flag_ref ) {
+        _plant_single_phase_power_meter3_phi__correction_ref = - _plant_single_phase_power_meter3_phi__previous_filtered_ref/( _plant_single_phase_power_meter3_phi__filtered_ref - _plant_single_phase_power_meter3_phi__previous_filtered_ref );
+
+        _plant_single_phase_power_meter3_phi__sample_cnt_ref += _plant_single_phase_power_meter3_phi__correction_ref - _plant_single_phase_power_meter3_phi__previous_correction_ref;
+
+
+            if( (_plant_single_phase_power_meter3_phi__sample_cnt_ref > 1e-6) || (_plant_single_phase_power_meter3_phi__sample_cnt_ref < -1e-6) ){
+                if( !_plant_single_phase_power_meter3_phi__no_zc_flag_in ){
+                    _plant_single_phase_power_meter3_phi__phase_state = 360.0 * ( _plant_single_phase_power_meter3_phi__sample_cnt_in + _plant_single_phase_power_meter3_phi__correction_ref - _plant_single_phase_power_meter3_phi__previous_correction_in ) / _plant_single_phase_power_meter3_phi__sample_cnt_ref;
+                }
+            }
+
+            if( (_plant_single_phase_power_meter3_phi__phase_state > 360.0) || (_plant_single_phase_power_meter3_phi__phase_state < -360.0) ){
+                _plant_single_phase_power_meter3_phi__phase_state = fmod(_plant_single_phase_power_meter3_phi__phase_state, 360.0);
+            }
+
+            if (_plant_single_phase_power_meter3_phi__phase_state < -180.0){
+                _plant_single_phase_power_meter3_phi__phase_state += 360.0;
+            }
+            else if (_plant_single_phase_power_meter3_phi__phase_state > 180.0){
+                _plant_single_phase_power_meter3_phi__phase_state -= 360.0;
+            }
+
+
+        _plant_single_phase_power_meter3_phi__sample_cnt_ref = 0;
+        _plant_single_phase_power_meter3_phi__previous_correction_ref = _plant_single_phase_power_meter3_phi__correction_ref;
+    }
+
+
+
+        if( _plant_single_phase_power_meter3_phi__zc_flag_in ) {
+            _plant_single_phase_power_meter3_phi__correction_in = - _plant_single_phase_power_meter3_phi__previous_filtered_in/( _plant_single_phase_power_meter3_phi__filtered_in - _plant_single_phase_power_meter3_phi__previous_filtered_in );
+
+            _plant_single_phase_power_meter3_phi__sample_cnt_in = 0;
+            _plant_single_phase_power_meter3_phi__previous_correction_in = _plant_single_phase_power_meter3_phi__correction_in;
+        }
+
+
+
+         // Generated from the component: Plant.RMS value4
+                        
+
+            if (_plant_rms_value4__period_cnt >= 2*M_PI){
+                _plant_rms_value4__period_cnt = fmod(_plant_rms_value4__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value4__period_cnt += 0.031415926535897934;
+            _plant_rms_value4__square_sum += _plant_iag_ia1__out * _plant_iag_ia1__out * 0.031415926535897934;
+
+         // Generated from the component: Plant.Single Phase Power Meter1.Ia RMS
+                        
+
+                if( _plant_single_phase_power_meter1_ia_rms__zc ) {
+                    if (_plant_iag_ia1__out != _plant_single_phase_power_meter1_ia_rms__previous_value)
+                        _plant_single_phase_power_meter1_ia_rms__correction = - _plant_single_phase_power_meter1_ia_rms__previous_value/(_plant_iag_ia1__out - _plant_single_phase_power_meter1_ia_rms__previous_value);
+                        if (_plant_single_phase_power_meter1_ia_rms__correction < 0)
+                            _plant_single_phase_power_meter1_ia_rms__correction = 0;
+                    else
+                        _plant_single_phase_power_meter1_ia_rms__correction = 0;
+                    _plant_single_phase_power_meter1_ia_rms__sample_cnt += _plant_single_phase_power_meter1_ia_rms__correction - _plant_single_phase_power_meter1_ia_rms__previous_correction;
+
+                    _plant_single_phase_power_meter1_ia_rms__out_state = sqrt(_plant_single_phase_power_meter1_ia_rms__square_sum / _plant_single_phase_power_meter1_ia_rms__sample_cnt);
+
+                    _plant_single_phase_power_meter1_ia_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter1_ia_rms__previous_correction = _plant_single_phase_power_meter1_ia_rms__correction;
+                    _plant_single_phase_power_meter1_ia_rms__square_sum = 0;
+
+                } else if ( _plant_single_phase_power_meter1_ia_rms__sample_cnt >= 5000 ) {
+                    _plant_single_phase_power_meter1_ia_rms__out_state = sqrt(_plant_single_phase_power_meter1_ia_rms__square_sum / _plant_single_phase_power_meter1_ia_rms__sample_cnt);
+                    _plant_single_phase_power_meter1_ia_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter1_ia_rms__square_sum = 0;
+                }
+
+                _plant_single_phase_power_meter1_ia_rms__previous_value = _plant_iag_ia1__out;
+                _plant_single_phase_power_meter1_ia_rms__square_sum += _plant_iag_ia1__out * _plant_iag_ia1__out;
+                _plant_single_phase_power_meter1_ia_rms__sample_cnt ++;
+
+         // Generated from the component: Plant.RMS value5
+                        
+
+            if (_plant_rms_value5__period_cnt >= 2*M_PI){
+                _plant_rms_value5__period_cnt = fmod(_plant_rms_value5__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value5__period_cnt += 0.031415926535897934;
+            _plant_rms_value5__square_sum += _plant_ibg_ia1__out * _plant_ibg_ia1__out * 0.031415926535897934;
+
+         // Generated from the component: Plant.Single Phase Power Meter2.Ia RMS
+                        
+
+                if( _plant_single_phase_power_meter2_ia_rms__zc ) {
+                    if (_plant_ibg_ia1__out != _plant_single_phase_power_meter2_ia_rms__previous_value)
+                        _plant_single_phase_power_meter2_ia_rms__correction = - _plant_single_phase_power_meter2_ia_rms__previous_value/(_plant_ibg_ia1__out - _plant_single_phase_power_meter2_ia_rms__previous_value);
+                        if (_plant_single_phase_power_meter2_ia_rms__correction < 0)
+                            _plant_single_phase_power_meter2_ia_rms__correction = 0;
+                    else
+                        _plant_single_phase_power_meter2_ia_rms__correction = 0;
+                    _plant_single_phase_power_meter2_ia_rms__sample_cnt += _plant_single_phase_power_meter2_ia_rms__correction - _plant_single_phase_power_meter2_ia_rms__previous_correction;
+
+                    _plant_single_phase_power_meter2_ia_rms__out_state = sqrt(_plant_single_phase_power_meter2_ia_rms__square_sum / _plant_single_phase_power_meter2_ia_rms__sample_cnt);
+
+                    _plant_single_phase_power_meter2_ia_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter2_ia_rms__previous_correction = _plant_single_phase_power_meter2_ia_rms__correction;
+                    _plant_single_phase_power_meter2_ia_rms__square_sum = 0;
+
+                } else if ( _plant_single_phase_power_meter2_ia_rms__sample_cnt >= 5000 ) {
+                    _plant_single_phase_power_meter2_ia_rms__out_state = sqrt(_plant_single_phase_power_meter2_ia_rms__square_sum / _plant_single_phase_power_meter2_ia_rms__sample_cnt);
+                    _plant_single_phase_power_meter2_ia_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter2_ia_rms__square_sum = 0;
+                }
+
+                _plant_single_phase_power_meter2_ia_rms__previous_value = _plant_ibg_ia1__out;
+                _plant_single_phase_power_meter2_ia_rms__square_sum += _plant_ibg_ia1__out * _plant_ibg_ia1__out;
+                _plant_single_phase_power_meter2_ia_rms__sample_cnt ++;
+
+         // Generated from the component: Plant.RMS value6
+                        
+
+            if (_plant_rms_value6__period_cnt >= 2*M_PI){
+                _plant_rms_value6__period_cnt = fmod(_plant_rms_value6__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value6__period_cnt += 0.031415926535897934;
+            _plant_rms_value6__square_sum += _plant_icg_ia1__out * _plant_icg_ia1__out * 0.031415926535897934;
+
+         // Generated from the component: Plant.Single Phase Power Meter3.Ia RMS
+                        
+
+                if( _plant_single_phase_power_meter3_ia_rms__zc ) {
+                    if (_plant_icg_ia1__out != _plant_single_phase_power_meter3_ia_rms__previous_value)
+                        _plant_single_phase_power_meter3_ia_rms__correction = - _plant_single_phase_power_meter3_ia_rms__previous_value/(_plant_icg_ia1__out - _plant_single_phase_power_meter3_ia_rms__previous_value);
+                        if (_plant_single_phase_power_meter3_ia_rms__correction < 0)
+                            _plant_single_phase_power_meter3_ia_rms__correction = 0;
+                    else
+                        _plant_single_phase_power_meter3_ia_rms__correction = 0;
+                    _plant_single_phase_power_meter3_ia_rms__sample_cnt += _plant_single_phase_power_meter3_ia_rms__correction - _plant_single_phase_power_meter3_ia_rms__previous_correction;
+
+                    _plant_single_phase_power_meter3_ia_rms__out_state = sqrt(_plant_single_phase_power_meter3_ia_rms__square_sum / _plant_single_phase_power_meter3_ia_rms__sample_cnt);
+
+                    _plant_single_phase_power_meter3_ia_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter3_ia_rms__previous_correction = _plant_single_phase_power_meter3_ia_rms__correction;
+                    _plant_single_phase_power_meter3_ia_rms__square_sum = 0;
+
+                } else if ( _plant_single_phase_power_meter3_ia_rms__sample_cnt >= 5000 ) {
+                    _plant_single_phase_power_meter3_ia_rms__out_state = sqrt(_plant_single_phase_power_meter3_ia_rms__square_sum / _plant_single_phase_power_meter3_ia_rms__sample_cnt);
+                    _plant_single_phase_power_meter3_ia_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter3_ia_rms__square_sum = 0;
+                }
+
+                _plant_single_phase_power_meter3_ia_rms__previous_value = _plant_icg_ia1__out;
+                _plant_single_phase_power_meter3_ia_rms__square_sum += _plant_icg_ia1__out * _plant_icg_ia1__out;
+                _plant_single_phase_power_meter3_ia_rms__sample_cnt ++;
+
+         // Generated from the component: Plant.RMS value7
+                        
+
+            if (_plant_rms_value7__period_cnt >= 2*M_PI){
+                _plant_rms_value7__period_cnt = fmod(_plant_rms_value7__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value7__period_cnt += 0.031415926535897934;
+            _plant_rms_value7__square_sum += _plant_ing_ia1__out * _plant_ing_ia1__out * 0.031415926535897934;
+
+         // Generated from the component: Plant.RMS value1
+                        
+
+            if (_plant_rms_value1__period_cnt >= 2*M_PI){
+                _plant_rms_value1__period_cnt = fmod(_plant_rms_value1__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value1__period_cnt += 0.031415926535897934;
+            _plant_rms_value1__square_sum += _plant_va_va1__out * _plant_va_va1__out * 0.031415926535897934;
+
+         // Generated from the component: Plant.Single Phase Power Meter1.Va RMS
+                        
+
+                if( _plant_single_phase_power_meter1_va_rms__zc ) {
+                    if (_plant_va_va1__out != _plant_single_phase_power_meter1_va_rms__previous_value)
+                        _plant_single_phase_power_meter1_va_rms__correction = - _plant_single_phase_power_meter1_va_rms__previous_value/(_plant_va_va1__out - _plant_single_phase_power_meter1_va_rms__previous_value);
+                        if (_plant_single_phase_power_meter1_va_rms__correction < 0)
+                            _plant_single_phase_power_meter1_va_rms__correction = 0;
+                    else
+                        _plant_single_phase_power_meter1_va_rms__correction = 0;
+                    _plant_single_phase_power_meter1_va_rms__sample_cnt += _plant_single_phase_power_meter1_va_rms__correction - _plant_single_phase_power_meter1_va_rms__previous_correction;
+
+                    _plant_single_phase_power_meter1_va_rms__out_state = sqrt(_plant_single_phase_power_meter1_va_rms__square_sum / _plant_single_phase_power_meter1_va_rms__sample_cnt);
+
+                    _plant_single_phase_power_meter1_va_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter1_va_rms__previous_correction = _plant_single_phase_power_meter1_va_rms__correction;
+                    _plant_single_phase_power_meter1_va_rms__square_sum = 0;
+
+                } else if ( _plant_single_phase_power_meter1_va_rms__sample_cnt >= 5000 ) {
+                    _plant_single_phase_power_meter1_va_rms__out_state = sqrt(_plant_single_phase_power_meter1_va_rms__square_sum / _plant_single_phase_power_meter1_va_rms__sample_cnt);
+                    _plant_single_phase_power_meter1_va_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter1_va_rms__square_sum = 0;
+                }
+
+                _plant_single_phase_power_meter1_va_rms__previous_value = _plant_va_va1__out;
+                _plant_single_phase_power_meter1_va_rms__square_sum += _plant_va_va1__out * _plant_va_va1__out;
+                _plant_single_phase_power_meter1_va_rms__sample_cnt ++;
+
+         // Generated from the component: Plant.RMS value2
+                        
+
+            if (_plant_rms_value2__period_cnt >= 2*M_PI){
+                _plant_rms_value2__period_cnt = fmod(_plant_rms_value2__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value2__period_cnt += 0.031415926535897934;
+            _plant_rms_value2__square_sum += _plant_vb_va1__out * _plant_vb_va1__out * 0.031415926535897934;
+
+         // Generated from the component: Plant.Single Phase Power Meter2.Va RMS
+                        
+
+                if( _plant_single_phase_power_meter2_va_rms__zc ) {
+                    if (_plant_vb_va1__out != _plant_single_phase_power_meter2_va_rms__previous_value)
+                        _plant_single_phase_power_meter2_va_rms__correction = - _plant_single_phase_power_meter2_va_rms__previous_value/(_plant_vb_va1__out - _plant_single_phase_power_meter2_va_rms__previous_value);
+                        if (_plant_single_phase_power_meter2_va_rms__correction < 0)
+                            _plant_single_phase_power_meter2_va_rms__correction = 0;
+                    else
+                        _plant_single_phase_power_meter2_va_rms__correction = 0;
+                    _plant_single_phase_power_meter2_va_rms__sample_cnt += _plant_single_phase_power_meter2_va_rms__correction - _plant_single_phase_power_meter2_va_rms__previous_correction;
+
+                    _plant_single_phase_power_meter2_va_rms__out_state = sqrt(_plant_single_phase_power_meter2_va_rms__square_sum / _plant_single_phase_power_meter2_va_rms__sample_cnt);
+
+                    _plant_single_phase_power_meter2_va_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter2_va_rms__previous_correction = _plant_single_phase_power_meter2_va_rms__correction;
+                    _plant_single_phase_power_meter2_va_rms__square_sum = 0;
+
+                } else if ( _plant_single_phase_power_meter2_va_rms__sample_cnt >= 5000 ) {
+                    _plant_single_phase_power_meter2_va_rms__out_state = sqrt(_plant_single_phase_power_meter2_va_rms__square_sum / _plant_single_phase_power_meter2_va_rms__sample_cnt);
+                    _plant_single_phase_power_meter2_va_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter2_va_rms__square_sum = 0;
+                }
+
+                _plant_single_phase_power_meter2_va_rms__previous_value = _plant_vb_va1__out;
+                _plant_single_phase_power_meter2_va_rms__square_sum += _plant_vb_va1__out * _plant_vb_va1__out;
+                _plant_single_phase_power_meter2_va_rms__sample_cnt ++;
+
          // Generated from the component: Plant.C function powers
         
     {
     _plant_c_function_powers__p_fil = _plant_c_function_powers__p_fil + 5e-05 * 2 * M_PI * 50.0 * ( _plant_c_function_powers__p - _plant_c_function_powers__p_fil ) ; _plant_c_function_powers__q_fil = _plant_c_function_powers__q_fil + 5e-05 * 2 * M_PI * 50.0 * ( _plant_c_function_powers__q - _plant_c_function_powers__q_fil ) ;
 }
+
+         // Generated from the component: Plant.RMS value3
+                        
+
+            if (_plant_rms_value3__period_cnt >= 2*M_PI){
+                _plant_rms_value3__period_cnt = fmod(_plant_rms_value3__period_cnt, 2*M_PI);
+            }
+            _plant_rms_value3__period_cnt += 0.031415926535897934;
+            _plant_rms_value3__square_sum += _plant_vc_va1__out * _plant_vc_va1__out * 0.031415926535897934;
+
+         // Generated from the component: Plant.Single Phase Power Meter3.Va RMS
+                        
+
+                if( _plant_single_phase_power_meter3_va_rms__zc ) {
+                    if (_plant_vc_va1__out != _plant_single_phase_power_meter3_va_rms__previous_value)
+                        _plant_single_phase_power_meter3_va_rms__correction = - _plant_single_phase_power_meter3_va_rms__previous_value/(_plant_vc_va1__out - _plant_single_phase_power_meter3_va_rms__previous_value);
+                        if (_plant_single_phase_power_meter3_va_rms__correction < 0)
+                            _plant_single_phase_power_meter3_va_rms__correction = 0;
+                    else
+                        _plant_single_phase_power_meter3_va_rms__correction = 0;
+                    _plant_single_phase_power_meter3_va_rms__sample_cnt += _plant_single_phase_power_meter3_va_rms__correction - _plant_single_phase_power_meter3_va_rms__previous_correction;
+
+                    _plant_single_phase_power_meter3_va_rms__out_state = sqrt(_plant_single_phase_power_meter3_va_rms__square_sum / _plant_single_phase_power_meter3_va_rms__sample_cnt);
+
+                    _plant_single_phase_power_meter3_va_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter3_va_rms__previous_correction = _plant_single_phase_power_meter3_va_rms__correction;
+                    _plant_single_phase_power_meter3_va_rms__square_sum = 0;
+
+                } else if ( _plant_single_phase_power_meter3_va_rms__sample_cnt >= 5000 ) {
+                    _plant_single_phase_power_meter3_va_rms__out_state = sqrt(_plant_single_phase_power_meter3_va_rms__square_sum / _plant_single_phase_power_meter3_va_rms__sample_cnt);
+                    _plant_single_phase_power_meter3_va_rms__sample_cnt = 0;
+                    _plant_single_phase_power_meter3_va_rms__square_sum = 0;
+                }
+
+                _plant_single_phase_power_meter3_va_rms__previous_value = _plant_vc_va1__out;
+                _plant_single_phase_power_meter3_va_rms__square_sum += _plant_vc_va1__out * _plant_vc_va1__out;
+                _plant_single_phase_power_meter3_va_rms__sample_cnt ++;
 
     //@cmp.update.block.end
 }

@@ -82,38 +82,15 @@
     </pesb>
     <analog_variables>
         <cell>
-            <name>Plant.Series RLC Branch3.C2</name>
-            <address>2</address>
-            <type>voltage</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.Series RLC Branch3.C3</name>
-            <address>3</address>
-            <type>voltage</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.Icg</name>
-            <address>16</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Series RLC Branch2.L3</name>
-            <address>8</address>
+            <name>Plant.Series RLC Branch1.L3</name>
+            <address>5</address>
             <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Vc</name>
-            <address>12</address>
+            <name>Plant.Vb</name>
+            <address>11</address>
             <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
@@ -128,18 +105,36 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.C2</name>
-            <address>0</address>
+            <name>Plant.Series RLC Branch3.C1</name>
+            <address>1</address>
             <type>voltage</type>
-            <initial_condition>730.0</initial_condition>
+            <initial_condition>0.0</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Series RLC Branch1.L2</name>
-            <address>4</address>
+            <name>Plant.Series RLC Branch2.L1</name>
+            <address>6</address>
             <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.Icg</name>
+            <address>16</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Ing</name>
+            <address>17</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
         </cell>
         <cell>
             <name>Plant.v_h</name>
@@ -151,8 +146,24 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.Vb</name>
-            <address>11</address>
+            <name>Plant.Series RLC Branch1.L2</name>
+            <address>4</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.Iag</name>
+            <address>14</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Va</name>
+            <address>10</address>
             <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
@@ -160,8 +171,38 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.Series RLC Branch3.C1</name>
-            <address>1</address>
+            <name>Plant.Vc</name>
+            <address>12</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Series RLC Branch3.C3</name>
+            <address>3</address>
+            <type>voltage</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.C2</name>
+            <address>0</address>
+            <type>voltage</type>
+            <initial_condition>730.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.Series RLC Branch2.L3</name>
+            <address>8</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.Series RLC Branch3.C2</name>
+            <address>2</address>
             <type>voltage</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
@@ -181,47 +222,6 @@
             <visible>True</visible>
             <previous_names>
             </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Va</name>
-            <address>10</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Iag</name>
-            <address>14</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Series RLC Branch2.L1</name>
-            <address>6</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.Ing</name>
-            <address>17</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Series RLC Branch1.L3</name>
-            <address>5</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
         </cell>
         <cell>
             <name>Plant.Vs1_a</name>
@@ -572,12 +572,12 @@
             <address>159</address>
             </cell>
         <cell>
-            <name>Plant.IGBT Leg1.S_top</name>
-            <address>128</address>
-            </cell>
-        <cell>
             <name>Plant.IGBT Leg1.S_bot</name>
             <address>129</address>
+            </cell>
+        <cell>
+            <name>Plant.IGBT Leg1.S_top</name>
+            <address>128</address>
             </cell>
         <cell>
             <name>Plant.IGBT Leg2.S_top</name>
@@ -596,25 +596,25 @@
             <address>133</address>
             </cell>
         <cell>
-            <name>Plant.IGBT Leg4.S_top</name>
-            <address>136</address>
-            </cell>
-        <cell>
             <name>Plant.IGBT Leg4.S_bot</name>
             <address>137</address>
             </cell>
         <cell>
-            <name>Plant.IGBT Leg1.S1</name>
-            <address>128</address>
-                <previous_names>
-                        <previous_name>Plant.IGBT Leg1.S_top</previous_name>
-                    </previous_names>
+            <name>Plant.IGBT Leg4.S_top</name>
+            <address>136</address>
             </cell>
         <cell>
             <name>Plant.IGBT Leg1.S2</name>
             <address>129</address>
                 <previous_names>
                         <previous_name>Plant.IGBT Leg1.S_bot</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Plant.IGBT Leg1.S1</name>
+            <address>128</address>
+                <previous_names>
+                        <previous_name>Plant.IGBT Leg1.S_top</previous_name>
                     </previous_names>
             </cell>
         <cell>
@@ -646,17 +646,17 @@
                     </previous_names>
             </cell>
         <cell>
-            <name>Plant.IGBT Leg4.S1</name>
-            <address>136</address>
-                <previous_names>
-                        <previous_name>Plant.IGBT Leg4.S_top</previous_name>
-                    </previous_names>
-            </cell>
-        <cell>
             <name>Plant.IGBT Leg4.S2</name>
             <address>137</address>
                 <previous_names>
                         <previous_name>Plant.IGBT Leg4.S_bot</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Plant.IGBT Leg4.S1</name>
+            <address>136</address>
+                <previous_names>
+                        <previous_name>Plant.IGBT Leg4.S_top</previous_name>
                     </previous_names>
             </cell>
         <cell>
@@ -813,30 +813,128 @@
 
     <analog_variables>
         <cell>
-            <name>Plant.p</name>
+            <name>Plant.p1</name>
+            <type>generic</type>
+            <address>16390</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.vb_rms</name>
+            <type>generic</type>
+            <address>16400</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.ia_rms</name>
             <type>generic</type>
             <address>16384</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.qf</name>
+            <name>Plant.q</name>
             <type>generic</type>
-            <address>16387</address>
+            <address>16394</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.q</name>
+            <name>Plant.va_rms</name>
+            <type>generic</type>
+            <address>16399</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.p3</name>
+            <type>generic</type>
+            <address>16392</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.p2</name>
+            <type>generic</type>
+            <address>16391</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.ic_rms</name>
             <type>generic</type>
             <address>16386</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
+            <name>Plant.q1</name>
+            <type>generic</type>
+            <address>16395</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.q2</name>
+            <type>generic</type>
+            <address>16396</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
             <name>Plant.pf</name>
             <type>generic</type>
+            <address>16393</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.q3</name>
+            <type>generic</type>
+            <address>16397</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.qf</name>
+            <type>generic</type>
+            <address>16398</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.vc_rms</name>
+            <type>generic</type>
+            <address>16401</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.in_rms</name>
+            <type>generic</type>
+            <address>16388</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.ib_rms</name>
+            <type>generic</type>
             <address>16385</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.in</name>
+            <type>generic</type>
+            <address>16387</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.p</name>
+            <type>generic</type>
+            <address>16389</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>

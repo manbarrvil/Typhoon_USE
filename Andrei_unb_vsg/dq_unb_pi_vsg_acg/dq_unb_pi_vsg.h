@@ -9,7 +9,7 @@
 * Subsystem selected for code generation: 'dq_unb_pi_vsg'.
 *
 * Schematic Editor version              : 2025.2
-* C source code generated on            : 25-Jul-2025 @ 01:19:23 PM
+* C source code generated on            : 25-Jul-2025 @ 08:39:34 PM
 *
 */
 
@@ -91,20 +91,32 @@ typedef struct {
 
 
 
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF
+    // Generated from the component: dq_unb_pi_vsg.RMS value1
+    real_t _dq_unb_pi_vsg_rms_value1__square_sum;
+    real_t _dq_unb_pi_vsg_rms_value1__sample_cnt;
+    real_t _dq_unb_pi_vsg_rms_value1__period_cnt;
+    real_t _dq_unb_pi_vsg_rms_value1__db_timer;
+    real_t _dq_unb_pi_vsg_rms_value1__previous_filtered_value;
+    real_t _dq_unb_pi_vsg_rms_value1__previous_correction;
+    real_t _dq_unb_pi_vsg_rms_value1__previous_value;
+    real_t _dq_unb_pi_vsg_rms_value1__correction;
+    real_t _dq_unb_pi_vsg_rms_value1__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out;
 
 
 
 
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem8.LPF
+    // Generated from the component: dq_unb_pi_vsg.RMS value2
+    real_t _dq_unb_pi_vsg_rms_value2__square_sum;
+    real_t _dq_unb_pi_vsg_rms_value2__sample_cnt;
+    real_t _dq_unb_pi_vsg_rms_value2__period_cnt;
+    real_t _dq_unb_pi_vsg_rms_value2__db_timer;
+    real_t _dq_unb_pi_vsg_rms_value2__previous_filtered_value;
+    real_t _dq_unb_pi_vsg_rms_value2__previous_correction;
+    real_t _dq_unb_pi_vsg_rms_value2__previous_value;
+    real_t _dq_unb_pi_vsg_rms_value2__correction;
+    real_t _dq_unb_pi_vsg_rms_value2__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem8.LPF
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__x_out;
-
-
-
-
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
-    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out;
 
 
 
@@ -118,7 +130,13 @@ typedef struct {
     real_t _dq_unb_pi_vsg_rms_value3__previous_correction;
     real_t _dq_unb_pi_vsg_rms_value3__previous_value;
     real_t _dq_unb_pi_vsg_rms_value3__correction;
-    real_t _dq_unb_pi_vsg_rms_value3__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem7.LPF
+    real_t _dq_unb_pi_vsg_rms_value3__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
+    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem7.LPF
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__x_out;
 
 
@@ -132,6 +150,21 @@ typedef struct {
 
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem10.LPF
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.RMS value4
+    real_t _dq_unb_pi_vsg_rms_value4__square_sum;
+    real_t _dq_unb_pi_vsg_rms_value4__sample_cnt;
+    real_t _dq_unb_pi_vsg_rms_value4__period_cnt;
+    real_t _dq_unb_pi_vsg_rms_value4__db_timer;
+    real_t _dq_unb_pi_vsg_rms_value4__previous_filtered_value;
+    real_t _dq_unb_pi_vsg_rms_value4__previous_correction;
+    real_t _dq_unb_pi_vsg_rms_value4__previous_value;
+    real_t _dq_unb_pi_vsg_rms_value4__correction;
+    real_t _dq_unb_pi_vsg_rms_value4__out_state;    // Generated from the component: dq_unb_pi_vsg.current_ctrl.LPF
+    real_t _dq_unb_pi_vsg_current_ctrl_lpf__x_out;
 
 
 
@@ -187,6 +220,10 @@ typedef struct {
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem10.LPF1
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf1__x_out;
 
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.SCI Send1.advanced c function
 
 
 
@@ -308,16 +345,7 @@ typedef struct {
 
 
 
-    // Generated from the component: dq_unb_pi_vsg.RMS value5
-    real_t _dq_unb_pi_vsg_rms_value5__square_sum;
-    real_t _dq_unb_pi_vsg_rms_value5__sample_cnt;
-    real_t _dq_unb_pi_vsg_rms_value5__period_cnt;
-    real_t _dq_unb_pi_vsg_rms_value5__db_timer;
-    real_t _dq_unb_pi_vsg_rms_value5__previous_filtered_value;
-    real_t _dq_unb_pi_vsg_rms_value5__previous_correction;
-    real_t _dq_unb_pi_vsg_rms_value5__previous_value;
-    real_t _dq_unb_pi_vsg_rms_value5__correction;
-    real_t _dq_unb_pi_vsg_rms_value5__out_state;    // Generated from the component: dq_unb_pi_vsg.current_ctrl.C function abc to dq
+    // Generated from the component: dq_unb_pi_vsg.current_ctrl.C function abc to dq
 
 
 
@@ -351,20 +379,7 @@ typedef struct {
 
 
 
-    // Generated from the component: dq_unb_pi_vsg.RMS value1
-    real_t _dq_unb_pi_vsg_rms_value1__square_sum;
-    real_t _dq_unb_pi_vsg_rms_value1__sample_cnt;
-    real_t _dq_unb_pi_vsg_rms_value1__period_cnt;
-    real_t _dq_unb_pi_vsg_rms_value1__db_timer;
-    real_t _dq_unb_pi_vsg_rms_value1__previous_filtered_value;
-    real_t _dq_unb_pi_vsg_rms_value1__previous_correction;
-    real_t _dq_unb_pi_vsg_rms_value1__previous_value;
-    real_t _dq_unb_pi_vsg_rms_value1__correction;
-    real_t _dq_unb_pi_vsg_rms_value1__out_state;    // Generated from the component: dq_unb_pi_vsg.C function dq to abc1
-
-
-
-    // Generated from the component: dq_unb_pi_vsg.SCI Send1.advanced c function
+    // Generated from the component: dq_unb_pi_vsg.C function dq to abc1
 
 
 
@@ -376,16 +391,7 @@ typedef struct {
 
 
 
-    // Generated from the component: dq_unb_pi_vsg.RMS value2
-    real_t _dq_unb_pi_vsg_rms_value2__square_sum;
-    real_t _dq_unb_pi_vsg_rms_value2__sample_cnt;
-    real_t _dq_unb_pi_vsg_rms_value2__period_cnt;
-    real_t _dq_unb_pi_vsg_rms_value2__db_timer;
-    real_t _dq_unb_pi_vsg_rms_value2__previous_filtered_value;
-    real_t _dq_unb_pi_vsg_rms_value2__previous_correction;
-    real_t _dq_unb_pi_vsg_rms_value2__previous_value;
-    real_t _dq_unb_pi_vsg_rms_value2__correction;
-    real_t _dq_unb_pi_vsg_rms_value2__out_state;    // Generated from the component: dq_unb_pi_vsg.ePWM (Generic)1.D_to_CMPA 1.D_to_CMPA
+    // Generated from the component: dq_unb_pi_vsg.ePWM (Generic)1.D_to_CMPA 1.D_to_CMPA
 
 
 

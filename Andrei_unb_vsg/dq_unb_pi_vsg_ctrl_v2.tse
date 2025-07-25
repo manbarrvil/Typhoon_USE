@@ -2185,15 +2185,44 @@ if (rst > 0.5){
                     operator = "NOT"
                 }
                 [
-                    position = 7576, 8472
+                    position = 7572, 8524
                 ]
 
                 component "core/Gain" Gain10 {
                     execution_rate = "Ts_Control"
-                    gain = "-10"
+                    gain = "-50"
                 }
                 [
                     position = 7804, 8464
+                ]
+
+                component "core/C function" LPF {
+                    arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                    execution_rate = "Ts_Control"
+                    global_variables = "real x_out;"
+                    init_fnc = "/*Begin code section*/
+x_out = 0.0;
+/*End code section*/"
+                    input_terminals_dimensions = "1"
+                    input_terminals_feedthrough = "True"
+                    input_terminals_show_labels = "True"
+                    output_fnc = "/*Begin code section*/
+out_fil = x_out;
+/*End code section*/"
+                    output_terminals = "real out_fil;"
+                    output_terminals_dimensions = "1"
+                    output_terminals_feedthrough = "True"
+                    output_terminals_show_labels = "True"
+                    parameters = "real period;real Ts_Control;"
+                    update_fnc = "/*Begin code section*/
+x_out = x_out + Ts_Control*2*M_PI*1/(10e-3)*(in - x_out);
+/*End code section*/"
+                }
+                [
+                    position = 7588, 8456
+                    size = 72, 64
                 ]
 
                 port is_abc_ref {
@@ -2944,7 +2973,7 @@ if (rst > 0.5){
                     direction = out
                 }
                 [
-                    position = 7488, 8472
+                    position = 7484, 8524
                     rotation = down
                     hide_name = True
                     scale = -1, 1
@@ -2958,7 +2987,7 @@ if (rst > 0.5){
                     direction = out
                 }
                 [
-                    position = 7604, 8424
+                    position = 7492, 8456
                     rotation = down
                     hide_name = True
                     scale = -1, 1
@@ -3126,7 +3155,8 @@ if (rst > 0.5){
                 [
                     breakpoints = 7612, 8348
                 ]
-                connect From164 Integrator1.in as Connection990
+                connect From164 LPF.in as Connection990
+                connect LPF.out_fil Integrator1.in as Connection991
             }
             [
                 position = 9152, 7408
@@ -4152,36 +4182,42 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             ]
 
             component "core/Gain" Gain4 {
+                gain = "3000/S_b"
             }
             [
                 position = 6844, 7796
             ]
 
             component "core/Gain" Gain5 {
+                gain = "3000/S_b"
             }
             [
                 position = 6844, 7844
             ]
 
             component "core/Gain" Gain6 {
+                gain = "3000/S_b"
             }
             [
                 position = 7448, 7796
             ]
 
             component "core/Gain" Gain7 {
+                gain = "3000/S_b"
             }
             [
                 position = 7468, 7844
             ]
 
             component "core/Gain" Gain8 {
+                gain = "3000/S_b"
             }
             [
                 position = 8032, 7824
             ]
 
             component "core/Gain" Gain9 {
+                gain = "3000/S_b"
             }
             [
                 position = 8012, 7880
@@ -5012,30 +5048,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             [
                 position = 7612, 7808
                 size = 136, 248
-            ]
-
-            component "core/Constant" Constant8 {
-                execution_rate = "Ts_Control"
-                value = "0"
-            }
-            [
-                position = 6744, 7844
-            ]
-
-            component "core/Constant" Constant9 {
-                execution_rate = "Ts_Control"
-                value = "0"
-            }
-            [
-                position = 7388, 7844
-            ]
-
-            component "core/Constant" Constant10 {
-                execution_rate = "Ts_Control"
-                value = "0"
-            }
-            [
-                position = 7920, 7880
             ]
 
             component "core/C function" "C function1" {
@@ -7606,13 +7618,6 @@ y = u*Ts_Control - u1*B + y1*C - D*y2;
                 position = 8688, 7212
             ]
 
-            component "core/Bus Split" "Bus Split2" {
-                outputs = "3"
-            }
-            [
-                position = 8180, 7456
-            ]
-
             component "core/RMS value" "RMS value4" {
                 execution_rate = "Ts_Control"
                 op_mode = "Fixed frequency"
@@ -8425,19 +8430,20 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 6596, 8380
             ]
 
-            component "core/Bus Split" "Bus Split4" {
-                outputs = "3"
+            component "core/Constant" Constant14 {
+                execution_rate = "Ts_Control"
+                value = "0"
             }
             [
-                position = 8204, 7640
+                position = 6680, 7784
             ]
 
-            component "core/RMS value" "RMS value5" {
+            component "core/Constant" Constant15 {
                 execution_rate = "Ts_Control"
-                op_mode = "Fixed frequency"
+                value = "0"
             }
             [
-                position = 8676, 7668
+                position = 7900, 7824
             ]
 
             tag From74 {
@@ -8962,36 +8968,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 size = 60, 20
             ]
 
-            tag From157 {
-                value = "et_n"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8312, 7380
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag From158 {
-                value = "eta_abc"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8100, 7456
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
             tag Goto75 {
-                value = "en_r"
+                value = "var"
                 scope = local
                 kind = sp
                 direction = in
@@ -9003,7 +8981,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             ]
 
             tag Goto76 {
-                value = "eb_r"
+                value = "vbr"
                 scope = local
                 kind = sp
                 direction = in
@@ -9015,7 +8993,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             ]
 
             tag Goto77 {
-                value = "v_r"
+                value = "vcr"
                 scope = local
                 kind = sp
                 direction = in
@@ -9278,20 +9256,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 size = 68, 20
             ]
 
-            tag From128 {
-                value = "p_m_a_ref"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 6696, 7788
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
             tag From151 {
                 value = "omega"
                 scope = local
@@ -9417,7 +9381,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             ]
 
             tag From170 {
-                value = "p_m_b_ref"
+                value = "p_m_a_ref"
                 scope = local
                 kind = sp
                 direction = out
@@ -9430,22 +9394,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 size = 60, 20
             ]
 
-            tag From171 {
-                value = "p_m_c_ref"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 7948, 7824
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
             tag From175 {
-                value = "en_r"
+                value = "var"
                 scope = local
                 kind = sp
                 direction = out
@@ -9548,20 +9498,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             }
             [
                 position = 8584, 7136
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag From185 {
-                value = "vs_a"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8296, 7552
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -9844,48 +9780,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 size = 60, 20
             ]
 
-            tag From204 {
-                value = "is_abc_ref"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8116, 7644
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag Goto112 {
-                value = "is_n_r"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 8780, 7668
-                hide_name = True
-                size = 84, 20
-            ]
-
-            tag From205 {
-                value = "is_b_ref"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8592, 7668
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
             tag From206 {
-                value = "omega_vsg_a"
+                value = "vbr"
                 scope = local
                 kind = sp
                 direction = out
@@ -9897,7 +9793,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             ]
 
             tag From207 {
-                value = "omega_vsg_b"
+                value = "vcr"
                 scope = local
                 kind = sp
                 direction = out
@@ -9918,6 +9814,76 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 7696, 7320
                 hide_name = True
                 size = 122, 20
+            ]
+
+            tag From210 {
+                value = "p_m_b_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7336, 7844
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From218 {
+                value = "is_a"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8276, 7384
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From219 {
+                value = "is_b"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8276, 7460
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From220 {
+                value = "is_c"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8276, 7552
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From221 {
+                value = "is_n"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8288, 7632
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
             ]
 
             junction Junction9 sp
@@ -9963,6 +9929,16 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             junction Junction230 sp
             [
                 position = 9256, 7280
+            ]
+
+            junction Junction231 sp
+            [
+                position = 6780, 7796
+            ]
+
+            junction Junction232 sp
+            [
+                position = 7960, 7824
             ]
 
             comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Three-phase virtual system</p></body></html> ENDCOMMENT 
@@ -10078,7 +10054,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect From118 "Virtual 3ph3w.vs_c" as Connection7624
             connect From116 "Virtual 3ph3w.vs_b" as Connection7625
             connect From114 "Virtual 3ph3w.vs_a" as Connection7626
-            connect From157 "RMS value1.in" as Connection7629
             connect Goto76 "RMS value2.out" as Connection7632
             connect Goto77 "RMS value3.out" as Connection7633
             connect Goto75 "RMS value1.out" as Connection7634
@@ -10108,9 +10083,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect "SCI Receive1.var1" Goto74 as Connection7654
             connect "SCI Receive1.var2" Goto95 as Connection7655
             connect Goto96 "SCI Receive1.var3" as Connection7656
-            connect Constant8.out Gain5.in as Connection7657
-            connect Constant9.out Gain7.in as Connection7658
-            connect Constant10.out Gain9.in as Connection7659
             connect Goto88 VSG_b.omega_vsg as Connection7661
             [
                 breakpoints = 7720, 7768
@@ -10125,9 +10097,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect From166 VSG_a.theta_pll as Connection7710
             connect Goto101 VSG_a.is_dq as Connection7718
             connect Goto102 VSG_a.is_dq_ref as Connection7719
-            connect From128 Gain4.in as Connection7720
             connect From170 Gain6.in as Connection7721
-            connect From171 Gain8.in as Connection7722
             connect Goto98 VSG_b.is_al_ref as Connection7746
             connect Goto97 VSG_a.is_al_ref as Connection7748
             connect From147 Junction224 as Connection7750
@@ -10178,9 +10148,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect From183 "Bus Join15.in2" as Connection7785
             connect Product1.in1 "Bus Join15.out" as Connection7786
             connect From184 Product1.in as Connection7787
-            connect From158 "Bus Split2.in" as Connection7789
-            connect "Bus Split2.out1" "RMS value2.in" as Connection7790
-            connect From185 "RMS value3.in" as Connection7791
             connect Goto104 "RMS value4.out" as Connection7798
             connect Goto106 VSG_a1.p_s as Connection7802
             connect Goto107 VSG_a1.q_s as Connection7803
@@ -10222,12 +10189,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 breakpoints = 6668, 8212; 6668, 8380
             ]
             connect Goto108 VSG_a1.is_al_ref as Connection7835
-            connect "Bus Split4.out" "RMS value4.in" as Connection7841
-            connect From204 "Bus Split4.in" as Connection7842
             connect Goto109 VSG_a1.vs_dq as Connection7843
             connect "Bus Join10.out" current_ctrl.is_abc_ref as Connection7844
-            connect Goto112 "RMS value5.out" as Connection7845
-            connect From205 "RMS value5.in" as Connection7846
             connect "SCI Send1.var2" From206 as Connection7847
             connect "SCI Send1.var3" From207 as Connection7848
             connect "SCI Send1.var4" From208 as Connection7849
@@ -10237,6 +10200,17 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 breakpoints = 9256, 7280
             ]
             connect Goto73 Junction230 as Connection7853
+            connect From210 Gain7.in as Connection7855
+            connect From218 "RMS value1.in" as Connection7868
+            connect "RMS value2.in" From219 as Connection7869
+            connect "RMS value3.in" From220 as Connection7870
+            connect From221 "RMS value4.in" as Connection7871
+            connect Gain4.in Junction231 as Connection7873
+            connect Junction231 Constant14.out as Connection7874
+            connect Gain5.in Junction231 as Connection7875
+            connect Constant15.out Junction232 as Connection7877
+            connect Junction232 Gain8.in as Connection7878
+            connect Gain9.in Junction232 as Connection7879
         }
         [
             position = 9376, 8268
@@ -10439,6 +10413,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             ]
 
             component "core/Current Measurement" Ing {
+                sig_output = "True"
             }
             [
                 position = 8772, 8512
@@ -10476,32 +10451,475 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
 /*End code section*/"
             }
             [
-                position = 9740, 8360
+                position = 10136, 8284
                 size = 184, 312
             ]
 
             component "core/Probe" p {
             }
             [
-                position = 9896, 8228
+                position = 10292, 8152
             ]
 
             component "core/Probe" q {
             }
             [
-                position = 9896, 8304
+                position = 10292, 8228
             ]
 
             component "core/Probe" pf {
             }
             [
-                position = 9884, 8404
+                position = 10280, 8328
             ]
 
             component "core/Probe" qf {
             }
             [
-                position = 9888, 8480
+                position = 10284, 8404
+            ]
+
+            component "core/Single Phase Power Meter" "Single Phase Power Meter1" {
+                op_mode = "PLL based"
+            }
+            [
+                position = 9772, 7788
+                size = 48, 48
+            ]
+
+            component "core/Single Phase Power Meter" "Single Phase Power Meter2" {
+                op_mode = "PLL based"
+            }
+            [
+                position = 9772, 7860
+                size = 48, 48
+            ]
+
+            component "core/Single Phase Power Meter" "Single Phase Power Meter3" {
+                op_mode = "PLL based"
+            }
+            [
+                position = 9772, 7936
+                size = 48, 48
+            ]
+
+            component "core/Probe" p1 {
+            }
+            [
+                position = 9876, 7740
+            ]
+
+            component "core/Probe" q1 {
+            }
+            [
+                position = 9876, 7776
+            ]
+
+            component "core/Probe" p2 {
+            }
+            [
+                position = 9892, 7836
+            ]
+
+            component "core/Probe" q2 {
+            }
+            [
+                position = 9892, 7876
+            ]
+
+            component "core/Probe" p3 {
+            }
+            [
+                position = 9892, 7928
+            ]
+
+            component "core/Probe" q3 {
+            }
+            [
+                position = 9892, 7976
+            ]
+
+            component "core/RMS value" "RMS value1" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8876, 7384
+            ]
+
+            component "core/RMS value" "RMS value2" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8872, 7468
+            ]
+
+            component "core/RMS value" "RMS value3" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8876, 7548
+            ]
+
+            component "core/RMS value" "RMS value4" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8876, 7632
+            ]
+
+            component "core/RMS value" "RMS value5" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8872, 7704
+            ]
+
+            component "core/RMS value" "RMS value6" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8876, 7776
+            ]
+
+            component "core/Probe" va_rms {
+            }
+            [
+                position = 8980, 7384
+            ]
+
+            component "core/Probe" vb_rms {
+            }
+            [
+                position = 8976, 7468
+            ]
+
+            component "core/Probe" vc_rms {
+            }
+            [
+                position = 8972, 7548
+            ]
+
+            component "core/Probe" ia_rms {
+            }
+            [
+                position = 8972, 7632
+            ]
+
+            component "core/Probe" ib_rms {
+            }
+            [
+                position = 8976, 7704
+            ]
+
+            component "core/Probe" ic_rms {
+            }
+            [
+                position = 8968, 7776
+            ]
+
+            component "core/RMS value" "RMS value7" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8864, 7864
+            ]
+
+            component "core/Probe" in_rms {
+            }
+            [
+                position = 8956, 7864
+            ]
+
+            component "core/Probe" in {
+            }
+            [
+                position = 8960, 7916
+            ]
+
+            tag From1 {
+                value = "ia"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9588, 7796
+                size = 60, 20
+            ]
+
+            tag Goto1 {
+                value = "ia"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9264, 7892
+                size = 60, 20
+            ]
+
+            tag Goto2 {
+                value = "ib"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9292, 8000
+                size = 60, 20
+            ]
+
+            tag Goto3 {
+                value = "ic"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9276, 8096
+                size = 60, 20
+            ]
+
+            tag From2 {
+                value = "ib"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9592, 7868
+                size = 60, 20
+            ]
+
+            tag From3 {
+                value = "ic"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9592, 7944
+                size = 60, 20
+            ]
+
+            tag Goto4 {
+                value = "va"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9304, 8204
+                size = 60, 20
+            ]
+
+            tag Goto5 {
+                value = "vb"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9376, 8316
+                size = 60, 20
+            ]
+
+            tag Goto6 {
+                value = "vc"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 9452, 8212
+                size = 60, 20
+            ]
+
+            tag From4 {
+                value = "va"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9668, 7780
+                size = 60, 20
+            ]
+
+            tag From5 {
+                value = "vb"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9672, 7852
+                size = 60, 20
+            ]
+
+            tag From6 {
+                value = "vc"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9672, 7928
+                size = 60, 20
+            ]
+
+            tag From7 {
+                value = "ia"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9940, 8304
+                size = 60, 20
+            ]
+
+            tag From8 {
+                value = "ib"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9928, 8360
+                size = 60, 20
+            ]
+
+            tag From9 {
+                value = "ic"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9924, 8408
+                size = 60, 20
+            ]
+
+            tag From10 {
+                value = "va"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9936, 8164
+                size = 60, 20
+            ]
+
+            tag From11 {
+                value = "vb"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9936, 8208
+                size = 60, 20
+            ]
+
+            tag From12 {
+                value = "vc"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9940, 8256
+                size = 60, 20
+            ]
+
+            tag From13 {
+                value = "ia"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8756, 7632
+                size = 60, 20
+            ]
+
+            tag From14 {
+                value = "ib"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8756, 7704
+                size = 60, 20
+            ]
+
+            tag From15 {
+                value = "ic"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8748, 7776
+                size = 60, 20
+            ]
+
+            tag From16 {
+                value = "va"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8732, 7376
+                size = 60, 20
+            ]
+
+            tag From17 {
+                value = "vb"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8744, 7468
+                size = 60, 20
+            ]
+
+            tag From18 {
+                value = "vc"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8736, 7552
+                size = 60, 20
+            ]
+
+            tag From19 {
+                value = "in"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8736, 7864
+                size = 60, 20
+            ]
+
+            tag Goto7 {
+                value = "in"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 8832, 8464
+                size = 60, 20
             ]
 
             junction Junction1 pe
@@ -10619,6 +11037,11 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 8412, 8516
             ]
 
+            junction Junction68 sp
+            [
+                position = 8812, 7864
+            ]
+
             connect "Series RLC Branch1.P1_neg" Junction1 as Connection9
             connect Junction1 "Series RLC Branch2.P1_pos" as Connection10
             connect "Series RLC Branch3.P3_pos" Junction1 as Connection11
@@ -10719,19 +11142,51 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             connect "Series RLC Branch3.P1_neg" Junction67 as Connection294
             connect Junction67 Junction54 as Connection295
             connect Ing.p_node Junction67 as Connection296
-            connect "C function powers.i_a" Iag.out as Connection297
-            connect Ibg.out "C function powers.i_b" as Connection298
-            connect Icg.out "C function powers.i_c" as Connection299
-            connect Vc.out "C function powers.v_c" as Connection300
-            [
-                breakpoints = 9492, 8260; 9492, 8196; 9508, 8336
-            ]
-            connect Vb.out "C function powers.v_b" as Connection301
-            connect Va.out "C function powers.v_a" as Connection302
             connect p.in "C function powers.p" as Connection303
             connect "C function powers.q" q.in as Connection304
             connect "C function powers.p_f" pf.in as Connection305
             connect "C function powers.q_f" qf.in as Connection306
+            connect Goto3 Icg.out as Connection307
+            connect Goto2 Ibg.out as Connection308
+            connect Goto1 Iag.out as Connection309
+            connect From1 "Single Phase Power Meter1.Ia" as Connection310
+            connect From3 "Single Phase Power Meter3.Ia" as Connection311
+            connect From2 "Single Phase Power Meter2.Ia" as Connection312
+            connect Va.out Goto4 as Connection313
+            connect Vc.out Goto6 as Connection314
+            connect Vb.out Goto5 as Connection315
+            connect From4 "Single Phase Power Meter1.Va" as Connection316
+            connect From5 "Single Phase Power Meter2.Va" as Connection317
+            connect From6 "Single Phase Power Meter3.Va" as Connection318
+            connect "C function powers.v_a" From10 as Connection319
+            connect "C function powers.v_b" From11 as Connection320
+            connect "C function powers.v_c" From12 as Connection321
+            connect "C function powers.i_a" From7 as Connection322
+            connect "C function powers.i_b" From8 as Connection323
+            connect "C function powers.i_c" From9 as Connection324
+            connect "Single Phase Power Meter1.P" p1.in as Connection325
+            connect "Single Phase Power Meter1.Q" q1.in as Connection326
+            connect "Single Phase Power Meter2.P" p2.in as Connection327
+            connect "Single Phase Power Meter2.Q" q2.in as Connection328
+            connect "Single Phase Power Meter3.P" p3.in as Connection329
+            connect "Single Phase Power Meter3.Q" q3.in as Connection330
+            connect From16 "RMS value1.in" as Connection334
+            connect From17 "RMS value2.in" as Connection335
+            connect From13 "RMS value4.in" as Connection336
+            connect From18 "RMS value3.in" as Connection337
+            connect From14 "RMS value5.in" as Connection338
+            connect From15 "RMS value6.in" as Connection339
+            connect "RMS value1.out" va_rms.in as Connection340
+            connect "RMS value2.out" vb_rms.in as Connection341
+            connect "RMS value3.out" vc_rms.in as Connection342
+            connect "RMS value4.out" ia_rms.in as Connection343
+            connect "RMS value5.out" ib_rms.in as Connection344
+            connect "RMS value6.out" ic_rms.in as Connection345
+            connect "RMS value7.out" in_rms.in as Connection347
+            connect Goto7 Ing.out as Connection348
+            connect From19 Junction68 as Connection349
+            connect Junction68 "RMS value7.in" as Connection350
+            connect in.in Junction68 as Connection351
         }
         [
             position = 8704, 8264
@@ -11109,6 +11564,14 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             initial_voltage = "0"
         }
 
+        "core/Single Phase Power Meter" {
+            op_mode = "Fixed frequency"
+            frequency = "50.0"
+            period_timeout = "0.5"
+            zero_crossing_calc_filter = "500.0"
+            execution_rate = "inherit"
+        }
+
         "TI C2000 Toolbox/TI C2000 Setup" {
             build_and_deploy = "Build and deploy"
             build_and_deploy_action = "0"
@@ -11255,7 +11718,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
         
         period = 20e-3;
         #dead time
-        dt = 1.0e-6
+        dt = 0.1e-6
         
         # Resonant Impulse Invariant
         #d = 0.0

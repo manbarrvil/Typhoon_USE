@@ -9,7 +9,7 @@
 * Subsystem selected for code generation: 'dq_unb_pi_vsg'.
 *
 * Schematic Editor version              : 2025.2
-* C source code generated on            : 25-Jul-2025 @ 01:19:23 PM
+* C source code generated on            : 25-Jul-2025 @ 08:39:34 PM
 *
 * Generated using TI C2000 Toolbox. Platform: LAUNCHXL-F28379D
 *
@@ -48,14 +48,13 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     real_t _dq_unb_pi_vsg_adc__generic_7_offset__out = 1.5f;
     real_t _dq_unb_pi_vsg_adc__generic_7_raw_offset__out = 0.0f;
     real_t _dq_unb_pi_vsg_constant1__out = 1.0f;
-    real_t _dq_unb_pi_vsg_constant10__out = 0.0f;
+    real_t _dq_unb_pi_vsg_constant14__out = 0.0f;
+    real_t _dq_unb_pi_vsg_constant15__out = 0.0f;
     real_t _dq_unb_pi_vsg_constant2__out = 0.5f;
     real_t _dq_unb_pi_vsg_constant4__out = 1.0f;
     real_t _dq_unb_pi_vsg_constant5__out = 0.0f;
     real_t _dq_unb_pi_vsg_constant6__out = 1.0f;
     real_t _dq_unb_pi_vsg_constant7__out = 800.0f;
-    real_t _dq_unb_pi_vsg_constant8__out = 0.0f;
-    real_t _dq_unb_pi_vsg_constant9__out = 0.0f;
     real_t _dq_unb_pi_vsg_delay1__out;
     real_t _dq_unb_pi_vsg_sci_receive1_advanced_c_function__var1;
     real_t _dq_unb_pi_vsg_sci_receive1_advanced_c_function__var2;
@@ -85,16 +84,16 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     real_t _dq_unb_pi_vsg_adc__generic_5_sum2__out;
     real_t _dq_unb_pi_vsg_adc__generic_6_sum2__out;
     real_t _dq_unb_pi_vsg_adc__generic_7_sum2__out;
+    real_t _dq_unb_pi_vsg_gain4__out;
+    real_t _dq_unb_pi_vsg_gain5__out;
+    real_t _dq_unb_pi_vsg_gain8__out;
     real_t _dq_unb_pi_vsg_gain9__out;
     real_t _dq_unb_pi_vsg_epwm__generic_2_d_to_cmpa_1_d_to_cmpa__in;
     real_t _dq_unb_pi_vsg_epwm__generic_2_d_to_cmpa_1_d_to_cmpa__out;
-    real_t _dq_unb_pi_vsg_gain5__out;
-    real_t _dq_unb_pi_vsg_gain7__out;
     real_t _dq_unb_pi_vsg_sum2__out;
     real_t _dq_unb_pi_vsg_gpio_do__generic_1_gpio_do_advanced_c_function__in;
-    real_t _dq_unb_pi_vsg_gain4__out;
     real_t _dq_unb_pi_vsg_gain6__out;
-    real_t _dq_unb_pi_vsg_gain8__out;
+    real_t _dq_unb_pi_vsg_gain7__out;
     real_t _dq_unb_pi_vsg_current_ctrl_logical_operator4__out;
     real_t _dq_unb_pi_vsg_vsg_b_gain1__out;
     real_t _dq_unb_pi_vsg_vsg_c_gain1__out;
@@ -126,14 +125,16 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     real_t _dq_unb_pi_vsg_adc__generic_5_scaling__out;
     real_t _dq_unb_pi_vsg_adc__generic_6_scaling__out;
     real_t _dq_unb_pi_vsg_adc__generic_7_scaling__out;
+    real_t _dq_unb_pi_vsg_rms_value1__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__out_fil;
+    real_t _dq_unb_pi_vsg_rms_value2__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__out_fil;
     real_t _dq_unb_pi_vsg_bus_join12__out[3];
+    real_t _dq_unb_pi_vsg_rms_value3__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__out_fil;
-    real_t _dq_unb_pi_vsg_rms_value3__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__out_fil;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem9_lpf__in;
@@ -141,13 +142,13 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     real_t _dq_unb_pi_vsg_bus_join13__out[3];
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__out_fil;
+    real_t _dq_unb_pi_vsg_rms_value4__out;
+    real_t _dq_unb_pi_vsg_current_ctrl_lpf__in;
+    real_t _dq_unb_pi_vsg_current_ctrl_lpf__out_fil;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf1__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf1__out_fil;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf1__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf1__out_fil;
-    real_t _dq_unb_pi_vsg_current_ctrl_bus_split2__out;
-    real_t _dq_unb_pi_vsg_current_ctrl_bus_split2__out1;
-    real_t _dq_unb_pi_vsg_current_ctrl_bus_split2__out2;
     real_t _dq_unb_pi_vsg_current_ctrl_c_function_abc_to_dq1__abc[3];
     real_t _dq_unb_pi_vsg_current_ctrl_c_function_abc_to_dq1__theta;
     real_t _dq_unb_pi_vsg_current_ctrl_c_function_abc_to_dq1__d;
@@ -171,9 +172,12 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     real_t _dq_unb_pi_vsg_current_ctrl_c_function_abc_to_dq2__q;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf1__in;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf1__out_fil;
+    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var1;
+    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var2;
+    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var3;
+    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var4;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_gain16__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_gain17__out;
-    real_t _dq_unb_pi_vsg_current_ctrl_sum10__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_gain18__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_gain5__out;
     real_t _dq_unb_pi_vsg_virtual_3ph3w_gain14__out;
@@ -311,7 +315,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     real_t _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__theta;
     real_t _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__d;
     real_t _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__q;
-    real_t _dq_unb_pi_vsg_rms_value5__out;
     real_t _dq_unb_pi_vsg_bus_join10__out[3];
     real_t _dq_unb_pi_vsg_current_ctrl_bus_split1__out;
     real_t _dq_unb_pi_vsg_current_ctrl_bus_split1__out1;
@@ -352,29 +355,20 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     real_t _dq_unb_pi_vsg_current_ctrl_product3__out;
     real_t _dq_unb_pi_vsg_current_ctrl_product5__out;
     real_t _dq_unb_pi_vsg_current_ctrl_bus_join1__out[2];
-    real_t _dq_unb_pi_vsg_rms_value1__out;
     real_t _dq_unb_pi_vsg_sum3__out;
     real_t _dq_unb_pi_vsg_c_function_dq_to_abc1__dq[2];
     real_t _dq_unb_pi_vsg_c_function_dq_to_abc1__theta;
     real_t _dq_unb_pi_vsg_c_function_dq_to_abc1__a;
     real_t _dq_unb_pi_vsg_c_function_dq_to_abc1__b;
     real_t _dq_unb_pi_vsg_c_function_dq_to_abc1__c;
-    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var1;
-    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var2;
-    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var3;
-    real_t _dq_unb_pi_vsg_sci_send1_advanced_c_function__var4;
     real_t _dq_unb_pi_vsg_gain3__out;
     real_t _dq_unb_pi_vsg_bus_join14__out[3];
     real_t _dq_unb_pi_vsg_epwm__generic_1_d_to_cmpa_4_d_to_cmpa__in;
     real_t _dq_unb_pi_vsg_epwm__generic_1_d_to_cmpa_4_d_to_cmpa__out;
-    real_t _dq_unb_pi_vsg_bus_split2__out;
-    real_t _dq_unb_pi_vsg_bus_split2__out1;
-    real_t _dq_unb_pi_vsg_bus_split2__out2;
     real_t _dq_unb_pi_vsg_sum1__out[3];
     uint_t _dq_unb_pi_vsg_epwm__generic_1_epwm_4_advanced_c_function__CMPA;
     int_t _dq_unb_pi_vsg_epwm__generic_1_epwm_4_advanced_c_function__A;
     int_t _dq_unb_pi_vsg_epwm__generic_1_epwm_4_advanced_c_function__B;
-    real_t _dq_unb_pi_vsg_rms_value2__out;
     real_t _dq_unb_pi_vsg_gain1__out[3];
     real_t _dq_unb_pi_vsg_bus_split1__out;
     real_t _dq_unb_pi_vsg_bus_split1__out1;
@@ -396,9 +390,9 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     int_t _dq_unb_pi_vsg_epwm__generic_1_epwm_3_advanced_c_function__B;
     // Set tunable parameters
     // Output block
-    while(AdccRegs.ADCCTL1.bit.ADCBSY);
+    while(AdcaRegs.ADCCTL1.bit.ADCBSY);
+	while(AdccRegs.ADCCTL1.bit.ADCBSY);
 	while(AdcbRegs.ADCCTL1.bit.ADCBSY);
-	while(AdcaRegs.ADCCTL1.bit.ADCBSY);
     // Generated from the component: dq_unb_pi_vsg.ADC (Generic)1.ADC.advanced c function
     {
         _dq_unb_pi_vsg_adc__generic_1_adc_advanced_c_function__out = AdcaResultRegs.ADCRESULT3;
@@ -461,17 +455,19 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     _dq_unb_pi_vsg_adc__generic_6_sum2__out = _dq_unb_pi_vsg_adc__generic_6_adc_advanced_c_function__out - _dq_unb_pi_vsg_adc__generic_6_raw_offset__out;
     // Generated from the component: dq_unb_pi_vsg.ADC (Generic)7.Sum2
     _dq_unb_pi_vsg_adc__generic_7_sum2__out = _dq_unb_pi_vsg_adc__generic_7_adc_advanced_c_function__out - _dq_unb_pi_vsg_adc__generic_7_raw_offset__out;
+    // Generated from the component: dq_unb_pi_vsg.Gain4
+    _dq_unb_pi_vsg_gain4__out = 0.15f * _dq_unb_pi_vsg_constant14__out;
+    // Generated from the component: dq_unb_pi_vsg.Gain5
+    _dq_unb_pi_vsg_gain5__out = 0.15f * _dq_unb_pi_vsg_constant14__out;
+    // Generated from the component: dq_unb_pi_vsg.Gain8
+    _dq_unb_pi_vsg_gain8__out = 0.15f * _dq_unb_pi_vsg_constant15__out;
     // Generated from the component: dq_unb_pi_vsg.Gain9
-    _dq_unb_pi_vsg_gain9__out = 1.0f * _dq_unb_pi_vsg_constant10__out;
+    _dq_unb_pi_vsg_gain9__out = 0.15f * _dq_unb_pi_vsg_constant15__out;
     // Generated from the component: dq_unb_pi_vsg.ePWM (Generic)2.D_to_CMPA 1.D_to_CMPA
     _dq_unb_pi_vsg_epwm__generic_2_d_to_cmpa_1_d_to_cmpa__in = _dq_unb_pi_vsg_constant2__out;
     {
         _dq_unb_pi_vsg_epwm__generic_2_d_to_cmpa_1_d_to_cmpa__out = _dq_unb_pi_vsg_epwm__generic_2_d_to_cmpa_1_d_to_cmpa__in * 10000 ;
     }
-    // Generated from the component: dq_unb_pi_vsg.Gain5
-    _dq_unb_pi_vsg_gain5__out = 1.0f * _dq_unb_pi_vsg_constant8__out;
-    // Generated from the component: dq_unb_pi_vsg.Gain7
-    _dq_unb_pi_vsg_gain7__out = 1.0f * _dq_unb_pi_vsg_constant9__out;
     // Generated from the component: dq_unb_pi_vsg.Sum2
     _dq_unb_pi_vsg_sum2__out = _dq_unb_pi_vsg_constant4__out - _dq_unb_pi_vsg_delay1__out;
     // Generated from the component: dq_unb_pi_vsg.GPIO DO (Generic)1.GPIO DO.advanced c function
@@ -484,12 +480,10 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
             GpioDataRegs.GPACLEAR.bit.GPIO9 = 1 ;
         }
     }
-    // Generated from the component: dq_unb_pi_vsg.Gain4
-    _dq_unb_pi_vsg_gain4__out = 1.0f * _dq_unb_pi_vsg_sci_receive1_advanced_c_function__var1;
     // Generated from the component: dq_unb_pi_vsg.Gain6
-    _dq_unb_pi_vsg_gain6__out = 1.0f * _dq_unb_pi_vsg_sci_receive1_advanced_c_function__var2;
-    // Generated from the component: dq_unb_pi_vsg.Gain8
-    _dq_unb_pi_vsg_gain8__out = 1.0f * _dq_unb_pi_vsg_sci_receive1_advanced_c_function__var3;
+    _dq_unb_pi_vsg_gain6__out = 0.15f * _dq_unb_pi_vsg_sci_receive1_advanced_c_function__var1;
+    // Generated from the component: dq_unb_pi_vsg.Gain7
+    _dq_unb_pi_vsg_gain7__out = 0.15f * _dq_unb_pi_vsg_sci_receive1_advanced_c_function__var2;
     // Generated from the component: dq_unb_pi_vsg.current_ctrl.Logical operator4
     _dq_unb_pi_vsg_current_ctrl_logical_operator4__out = !_dq_unb_pi_vsg_sci_receive1_advanced_c_function__var4;
     // Generated from the component: dq_unb_pi_vsg.VSG_b.Gain1
@@ -497,7 +491,7 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     // Generated from the component: dq_unb_pi_vsg.VSG_c.Gain1
     _dq_unb_pi_vsg_vsg_c_gain1__out = 0.0031830988618379067f * _dq_unb_pi_vsg_vsg_c_low_pass_filter1__out;
     // Generated from the component: dq_unb_pi_vsg.current_ctrl.Gain10
-    _dq_unb_pi_vsg_current_ctrl_gain10__out = -10.0f * _dq_unb_pi_vsg_current_ctrl_integrator1__out;
+    _dq_unb_pi_vsg_current_ctrl_gain10__out = -50.0f * _dq_unb_pi_vsg_current_ctrl_integrator1__out;
     // Generated from the component: dq_unb_pi_vsg.ADC (Generic)1.12_bit_to_refV
     _dq_unb_pi_vsg_adc__generic_1_12_bit_to_refv__out = 0.0007326007326007326f * _dq_unb_pi_vsg_adc__generic_1_sum2__out;
     // Generated from the component: dq_unb_pi_vsg.ADC (Generic)2.12_bit_to_refV
@@ -558,11 +552,25 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     _dq_unb_pi_vsg_adc__generic_6_scaling__out = 240.0f * _dq_unb_pi_vsg_adc__generic_6_sum1__out;
     // Generated from the component: dq_unb_pi_vsg.ADC (Generic)7.scaling
     _dq_unb_pi_vsg_adc__generic_7_scaling__out = 30.0f * _dq_unb_pi_vsg_adc__generic_7_sum1__out;
+    // Generated from the component: dq_unb_pi_vsg.RMS value1
+    if (m_States->_dq_unb_pi_vsg_rms_value1__period_cnt >= 2 * M_PI) {
+        m_States->_dq_unb_pi_vsg_rms_value1__out_state = sqrt(m_States->_dq_unb_pi_vsg_rms_value1__square_sum / (2 * M_PI));
+        m_States->_dq_unb_pi_vsg_rms_value1__square_sum = 0.0f;
+        m_States->_dq_unb_pi_vsg_rms_value1__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value1__period_cnt, 2 * M_PI);
+    }
+    _dq_unb_pi_vsg_rms_value1__out = m_States->_dq_unb_pi_vsg_rms_value1__out_state;
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF
     _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__in = _dq_unb_pi_vsg_adc__generic_1_scaling__out;
     {
         _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__out_fil = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out ;
     }
+    // Generated from the component: dq_unb_pi_vsg.RMS value2
+    if (m_States->_dq_unb_pi_vsg_rms_value2__period_cnt >= 2 * M_PI) {
+        m_States->_dq_unb_pi_vsg_rms_value2__out_state = sqrt(m_States->_dq_unb_pi_vsg_rms_value2__square_sum / (2 * M_PI));
+        m_States->_dq_unb_pi_vsg_rms_value2__square_sum = 0.0f;
+        m_States->_dq_unb_pi_vsg_rms_value2__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value2__period_cnt, 2 * M_PI);
+    }
+    _dq_unb_pi_vsg_rms_value2__out = m_States->_dq_unb_pi_vsg_rms_value2__out_state;
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem8.LPF
     _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__in = _dq_unb_pi_vsg_adc__generic_2_scaling__out;
     {
@@ -572,11 +580,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     _dq_unb_pi_vsg_bus_join12__out[0] = _dq_unb_pi_vsg_adc__generic_1_scaling__out;
     _dq_unb_pi_vsg_bus_join12__out[1] = _dq_unb_pi_vsg_adc__generic_2_scaling__out;
     _dq_unb_pi_vsg_bus_join12__out[2] = _dq_unb_pi_vsg_adc__generic_3_scaling__out;
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
-    _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__in = _dq_unb_pi_vsg_adc__generic_3_scaling__out;
-    {
-        _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__out_fil = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out ;
-    }
     // Generated from the component: dq_unb_pi_vsg.RMS value3
     if (m_States->_dq_unb_pi_vsg_rms_value3__period_cnt >= 2 * M_PI) {
         m_States->_dq_unb_pi_vsg_rms_value3__out_state = sqrt(m_States->_dq_unb_pi_vsg_rms_value3__square_sum / (2 * M_PI));
@@ -584,6 +587,11 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
         m_States->_dq_unb_pi_vsg_rms_value3__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value3__period_cnt, 2 * M_PI);
     }
     _dq_unb_pi_vsg_rms_value3__out = m_States->_dq_unb_pi_vsg_rms_value3__out_state;
+    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
+    _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__in = _dq_unb_pi_vsg_adc__generic_3_scaling__out;
+    {
+        _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__out_fil = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out ;
+    }
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem7.LPF
     _dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__in = _dq_unb_pi_vsg_adc__generic_4_scaling__out;
     {
@@ -603,6 +611,18 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     {
         _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__out_fil = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__x_out ;
     }
+    // Generated from the component: dq_unb_pi_vsg.RMS value4
+    if (m_States->_dq_unb_pi_vsg_rms_value4__period_cnt >= 2 * M_PI) {
+        m_States->_dq_unb_pi_vsg_rms_value4__out_state = sqrt(m_States->_dq_unb_pi_vsg_rms_value4__square_sum / (2 * M_PI));
+        m_States->_dq_unb_pi_vsg_rms_value4__square_sum = 0.0f;
+        m_States->_dq_unb_pi_vsg_rms_value4__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value4__period_cnt, 2 * M_PI);
+    }
+    _dq_unb_pi_vsg_rms_value4__out = m_States->_dq_unb_pi_vsg_rms_value4__out_state;
+    // Generated from the component: dq_unb_pi_vsg.current_ctrl.LPF
+    _dq_unb_pi_vsg_current_ctrl_lpf__in = _dq_unb_pi_vsg_adc__generic_7_scaling__out;
+    {
+        _dq_unb_pi_vsg_current_ctrl_lpf__out_fil = m_States->_dq_unb_pi_vsg_current_ctrl_lpf__x_out ;
+    }
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF1
     _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf1__in = _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__out_fil;
     {
@@ -613,10 +633,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     {
         _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf1__out_fil = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf1__x_out ;
     }
-    // Generated from the component: dq_unb_pi_vsg.current_ctrl.Bus Split2
-    _dq_unb_pi_vsg_current_ctrl_bus_split2__out = _dq_unb_pi_vsg_bus_join12__out[0];
-    _dq_unb_pi_vsg_current_ctrl_bus_split2__out1 = _dq_unb_pi_vsg_bus_join12__out[1];
-    _dq_unb_pi_vsg_current_ctrl_bus_split2__out2 = _dq_unb_pi_vsg_bus_join12__out[2];
     // Generated from the component: dq_unb_pi_vsg.current_ctrl.C function abc to dq1
     _dq_unb_pi_vsg_current_ctrl_c_function_abc_to_dq1__abc[0] = _dq_unb_pi_vsg_bus_join12__out[0];
     _dq_unb_pi_vsg_current_ctrl_c_function_abc_to_dq1__abc[1] = _dq_unb_pi_vsg_bus_join12__out[1];
@@ -666,12 +682,24 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     {
         _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf1__out_fil = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf1__x_out ;
     }
+    // Generated from the component: dq_unb_pi_vsg.SCI Send1.advanced c function
+    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var1 = _dq_unb_pi_vsg_rms_value1__out;
+    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var2 = _dq_unb_pi_vsg_rms_value2__out;
+    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var3 = _dq_unb_pi_vsg_rms_value3__out;
+    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var4 = _dq_unb_pi_vsg_rms_value4__out;
+    {
+        real_t tx_array[4] = {
+            _dq_unb_pi_vsg_sci_send1_advanced_c_function__var1
+            , _dq_unb_pi_vsg_sci_send1_advanced_c_function__var2
+            , _dq_unb_pi_vsg_sci_send1_advanced_c_function__var3
+            , _dq_unb_pi_vsg_sci_send1_advanced_c_function__var4
+        };
+        Transmit_data(&SerialComm, tx_array, 4, 0, 0);
+    }
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Gain16
     _dq_unb_pi_vsg_virtual_3ph3w_gain16__out = 2.0f * _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf1__out_fil;
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Gain17
     _dq_unb_pi_vsg_virtual_3ph3w_gain17__out = 2.0f * _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf1__out_fil;
-    // Generated from the component: dq_unb_pi_vsg.current_ctrl.Sum10
-    _dq_unb_pi_vsg_current_ctrl_sum10__out =  - _dq_unb_pi_vsg_current_ctrl_bus_split2__out - _dq_unb_pi_vsg_current_ctrl_bus_split2__out1 - _dq_unb_pi_vsg_current_ctrl_bus_split2__out2;
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Gain18
     _dq_unb_pi_vsg_virtual_3ph3w_gain18__out = 2.0f * _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf1__out_fil;
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Gain5
@@ -936,13 +964,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
         _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__d = 2.0f / 3.0f * ( cos ( _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__theta ) * _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__abc [ 0 ] + cos ( _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__theta - 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__abc [ 1 ] + cos ( _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__theta + 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__abc [ 2 ] ) ;
         _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__q = 2.0f / 3.0f * ( - sin ( _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__theta ) * _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__abc [ 0 ] - sin ( _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__theta - 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__abc [ 1 ] - sin ( _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__theta + 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__abc [ 2 ] ) ;
     }
-    // Generated from the component: dq_unb_pi_vsg.RMS value5
-    if (m_States->_dq_unb_pi_vsg_rms_value5__period_cnt >= 2 * M_PI) {
-        m_States->_dq_unb_pi_vsg_rms_value5__out_state = sqrt(m_States->_dq_unb_pi_vsg_rms_value5__square_sum / (2 * M_PI));
-        m_States->_dq_unb_pi_vsg_rms_value5__square_sum = 0.0f;
-        m_States->_dq_unb_pi_vsg_rms_value5__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value5__period_cnt, 2 * M_PI);
-    }
-    _dq_unb_pi_vsg_rms_value5__out = m_States->_dq_unb_pi_vsg_rms_value5__out_state;
     _dq_unb_pi_vsg_bus_join10__out[0] = _dq_unb_pi_vsg_vsg_a_c_function_abc_to_dq__d;
     _dq_unb_pi_vsg_bus_join10__out[1] = _dq_unb_pi_vsg_vsg_b_c_function_abc_to_dq__d;
     _dq_unb_pi_vsg_bus_join10__out[2] = _dq_unb_pi_vsg_vsg_c_c_function_abc_to_dq__d;
@@ -1023,13 +1044,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     // Generated from the component: dq_unb_pi_vsg.current_ctrl.Bus Join1
     _dq_unb_pi_vsg_current_ctrl_bus_join1__out[0] = _dq_unb_pi_vsg_current_ctrl_product2__out;
     _dq_unb_pi_vsg_current_ctrl_bus_join1__out[1] = _dq_unb_pi_vsg_current_ctrl_product3__out;
-    // Generated from the component: dq_unb_pi_vsg.RMS value1
-    if (m_States->_dq_unb_pi_vsg_rms_value1__period_cnt >= 2 * M_PI) {
-        m_States->_dq_unb_pi_vsg_rms_value1__out_state = sqrt(m_States->_dq_unb_pi_vsg_rms_value1__square_sum / (2 * M_PI));
-        m_States->_dq_unb_pi_vsg_rms_value1__square_sum = 0.0f;
-        m_States->_dq_unb_pi_vsg_rms_value1__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value1__period_cnt, 2 * M_PI);
-    }
-    _dq_unb_pi_vsg_rms_value1__out = m_States->_dq_unb_pi_vsg_rms_value1__out_state;
     // Generated from the component: dq_unb_pi_vsg.Sum3
     _dq_unb_pi_vsg_sum3__out = _dq_unb_pi_vsg_current_ctrl_product5__out + _dq_unb_pi_vsg_constant6__out;
     // Generated from the component: dq_unb_pi_vsg.C function dq to abc1
@@ -1040,20 +1054,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
         _dq_unb_pi_vsg_c_function_dq_to_abc1__a = cos ( _dq_unb_pi_vsg_c_function_dq_to_abc1__theta ) * _dq_unb_pi_vsg_c_function_dq_to_abc1__dq [ 0 ] - sin ( _dq_unb_pi_vsg_c_function_dq_to_abc1__theta ) * _dq_unb_pi_vsg_c_function_dq_to_abc1__dq [ 1 ] ;
         _dq_unb_pi_vsg_c_function_dq_to_abc1__b = cos ( _dq_unb_pi_vsg_c_function_dq_to_abc1__theta - 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_c_function_dq_to_abc1__dq [ 0 ] - sin ( _dq_unb_pi_vsg_c_function_dq_to_abc1__theta - 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_c_function_dq_to_abc1__dq [ 1 ] ;
         _dq_unb_pi_vsg_c_function_dq_to_abc1__c = cos ( _dq_unb_pi_vsg_c_function_dq_to_abc1__theta + 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_c_function_dq_to_abc1__dq [ 0 ] - sin ( _dq_unb_pi_vsg_c_function_dq_to_abc1__theta + 2.0f / 3.0f * M_PI ) * _dq_unb_pi_vsg_c_function_dq_to_abc1__dq [ 1 ] ;
-    }
-    // Generated from the component: dq_unb_pi_vsg.SCI Send1.advanced c function
-    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var1 = _dq_unb_pi_vsg_rms_value1__out;
-    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var2 = _dq_unb_pi_vsg_vsg_a_c_function_vsg1__omega_vsg;
-    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var3 = _dq_unb_pi_vsg_vsg_b_c_function_vsg2__omega_vsg;
-    _dq_unb_pi_vsg_sci_send1_advanced_c_function__var4 = _dq_unb_pi_vsg_rms_value5__out;
-    {
-        real_t tx_array[4] = {
-            _dq_unb_pi_vsg_sci_send1_advanced_c_function__var1
-            , _dq_unb_pi_vsg_sci_send1_advanced_c_function__var2
-            , _dq_unb_pi_vsg_sci_send1_advanced_c_function__var3
-            , _dq_unb_pi_vsg_sci_send1_advanced_c_function__var4
-        };
-        Transmit_data(&SerialComm, tx_array, 4, 0, 0);
     }
     // Generated from the component: dq_unb_pi_vsg.Gain3
     _dq_unb_pi_vsg_gain3__out = 0.5f * _dq_unb_pi_vsg_sum3__out;
@@ -1066,10 +1066,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     {
         _dq_unb_pi_vsg_epwm__generic_1_d_to_cmpa_4_d_to_cmpa__out = _dq_unb_pi_vsg_epwm__generic_1_d_to_cmpa_4_d_to_cmpa__in * 10000 ;
     }
-    // Generated from the component: dq_unb_pi_vsg.Bus Split2
-    _dq_unb_pi_vsg_bus_split2__out = _dq_unb_pi_vsg_bus_join14__out[0];
-    _dq_unb_pi_vsg_bus_split2__out1 = _dq_unb_pi_vsg_bus_join14__out[1];
-    _dq_unb_pi_vsg_bus_split2__out2 = _dq_unb_pi_vsg_bus_join14__out[2];
     // Generated from the component: dq_unb_pi_vsg.Sum1
     _dq_unb_pi_vsg_sum1__out[0] = _dq_unb_pi_vsg_bus_join14__out[0] + _dq_unb_pi_vsg_constant1__out;
     _dq_unb_pi_vsg_sum1__out[1] = _dq_unb_pi_vsg_bus_join14__out[1] + _dq_unb_pi_vsg_constant1__out;
@@ -1079,13 +1075,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     {
         EPwm4Regs.CMPA.bit.CMPA = _dq_unb_pi_vsg_epwm__generic_1_epwm_4_advanced_c_function__CMPA;
     }
-    // Generated from the component: dq_unb_pi_vsg.RMS value2
-    if (m_States->_dq_unb_pi_vsg_rms_value2__period_cnt >= 2 * M_PI) {
-        m_States->_dq_unb_pi_vsg_rms_value2__out_state = sqrt(m_States->_dq_unb_pi_vsg_rms_value2__square_sum / (2 * M_PI));
-        m_States->_dq_unb_pi_vsg_rms_value2__square_sum = 0.0f;
-        m_States->_dq_unb_pi_vsg_rms_value2__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value2__period_cnt, 2 * M_PI);
-    }
-    _dq_unb_pi_vsg_rms_value2__out = m_States->_dq_unb_pi_vsg_rms_value2__out_state;
     // Generated from the component: dq_unb_pi_vsg.Gain1
     _dq_unb_pi_vsg_gain1__out[0] = 0.5f * _dq_unb_pi_vsg_sum1__out[0];
     _dq_unb_pi_vsg_gain1__out[1] = 0.5f * _dq_unb_pi_vsg_sum1__out[1];
@@ -1137,31 +1126,43 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     if ((_dq_unb_pi_vsg_current_ctrl_logical_operator4__out != 0.0f) || (m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__reset_state != 0)) {
         m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__state = 0.0f;
     } else
-        m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__state = (_dq_unb_pi_vsg_current_ctrl_logical_operator4__out == 0) ? m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__state + _dq_unb_pi_vsg_adc__generic_7_scaling__out * 5e-05 : 0.0f;
+        m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__state = (_dq_unb_pi_vsg_current_ctrl_logical_operator4__out == 0) ? m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__state + _dq_unb_pi_vsg_current_ctrl_lpf__out_fil * 5e-05 : 0.0f;
     if (_dq_unb_pi_vsg_current_ctrl_logical_operator4__out > 0)
         m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__reset_state = 1;
     else if (_dq_unb_pi_vsg_current_ctrl_logical_operator4__out < 0)
         m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__reset_state = -1;
     else
         m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__reset_state = 0;
+    // Generated from the component: dq_unb_pi_vsg.RMS value1
+    if (m_States->_dq_unb_pi_vsg_rms_value1__period_cnt >= 2 * M_PI) {
+        m_States->_dq_unb_pi_vsg_rms_value1__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value1__period_cnt, 2 * M_PI);
+    }
+    m_States->_dq_unb_pi_vsg_rms_value1__period_cnt += 0.015707963267948967f;
+    m_States->_dq_unb_pi_vsg_rms_value1__square_sum += _dq_unb_pi_vsg_adc__generic_1_scaling__out * _dq_unb_pi_vsg_adc__generic_1_scaling__out * 0.015707963267948967f;
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out + 5e-05 * 2 * M_PI * 1 / ( 0.02f ) * ( _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__in - m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out ) ;
     }
+    // Generated from the component: dq_unb_pi_vsg.RMS value2
+    if (m_States->_dq_unb_pi_vsg_rms_value2__period_cnt >= 2 * M_PI) {
+        m_States->_dq_unb_pi_vsg_rms_value2__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value2__period_cnt, 2 * M_PI);
+    }
+    m_States->_dq_unb_pi_vsg_rms_value2__period_cnt += 0.015707963267948967f;
+    m_States->_dq_unb_pi_vsg_rms_value2__square_sum += _dq_unb_pi_vsg_adc__generic_2_scaling__out * _dq_unb_pi_vsg_adc__generic_2_scaling__out * 0.015707963267948967f;
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem8.LPF
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__x_out = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__x_out + 5e-05 * 2 * M_PI * 1 / ( 0.02f ) * ( _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__in - m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__x_out ) ;
-    }
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
-    {
-        m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out + 5e-05 * 2 * M_PI * 1 / ( 0.02f ) * ( _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__in - m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out ) ;
     }
     // Generated from the component: dq_unb_pi_vsg.RMS value3
     if (m_States->_dq_unb_pi_vsg_rms_value3__period_cnt >= 2 * M_PI) {
         m_States->_dq_unb_pi_vsg_rms_value3__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value3__period_cnt, 2 * M_PI);
     }
     m_States->_dq_unb_pi_vsg_rms_value3__period_cnt += 0.015707963267948967f;
-    m_States->_dq_unb_pi_vsg_rms_value3__square_sum += _dq_unb_pi_vsg_adc__generic_4_scaling__out * _dq_unb_pi_vsg_adc__generic_4_scaling__out * 0.015707963267948967f;
+    m_States->_dq_unb_pi_vsg_rms_value3__square_sum += _dq_unb_pi_vsg_adc__generic_3_scaling__out * _dq_unb_pi_vsg_adc__generic_3_scaling__out * 0.015707963267948967f;
+    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
+    {
+        m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out + 5e-05 * 2 * M_PI * 1 / ( 0.02f ) * ( _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__in - m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out ) ;
+    }
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem7.LPF
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__x_out = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__x_out + 5e-05 * 2 * M_PI * 1 / ( 0.02f ) * ( _dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__in - m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__x_out ) ;
@@ -1173,6 +1174,16 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem10.LPF
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__x_out = m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__x_out + 5e-05 * 2 * M_PI * 1 / ( 0.02f ) * ( _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__in - m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__x_out ) ;
+    }
+    // Generated from the component: dq_unb_pi_vsg.RMS value4
+    if (m_States->_dq_unb_pi_vsg_rms_value4__period_cnt >= 2 * M_PI) {
+        m_States->_dq_unb_pi_vsg_rms_value4__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value4__period_cnt, 2 * M_PI);
+    }
+    m_States->_dq_unb_pi_vsg_rms_value4__period_cnt += 0.015707963267948967f;
+    m_States->_dq_unb_pi_vsg_rms_value4__square_sum += _dq_unb_pi_vsg_adc__generic_7_scaling__out * _dq_unb_pi_vsg_adc__generic_7_scaling__out * 0.015707963267948967f;
+    // Generated from the component: dq_unb_pi_vsg.current_ctrl.LPF
+    {
+        m_States->_dq_unb_pi_vsg_current_ctrl_lpf__x_out = m_States->_dq_unb_pi_vsg_current_ctrl_lpf__x_out + 5e-05 * 2 * M_PI * 1 / ( 10e-3 ) * ( _dq_unb_pi_vsg_current_ctrl_lpf__in - m_States->_dq_unb_pi_vsg_current_ctrl_lpf__x_out ) ;
     }
     // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF1
     {
@@ -1291,12 +1302,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
         m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_ps = m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_ps + 5e-05 * 2 * M_PI * 1 / ( 0.0024f ) * ( _dq_unb_pi_vsg_vsg_c_c_function_vsg2__p_s - m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_ps ) ;
         m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_qs = m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_qs + 5e-05 * 2 * M_PI * 1 / ( 0.0024f ) * ( _dq_unb_pi_vsg_vsg_c_c_function_vsg2__q_s - m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_qs ) ;
     }
-    // Generated from the component: dq_unb_pi_vsg.RMS value5
-    if (m_States->_dq_unb_pi_vsg_rms_value5__period_cnt >= 2 * M_PI) {
-        m_States->_dq_unb_pi_vsg_rms_value5__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value5__period_cnt, 2 * M_PI);
-    }
-    m_States->_dq_unb_pi_vsg_rms_value5__period_cnt += 0.015707963267948967f;
-    m_States->_dq_unb_pi_vsg_rms_value5__square_sum += _dq_unb_pi_vsg_vsg_b_c_function_abc_to_dq__d * _dq_unb_pi_vsg_vsg_b_c_function_abc_to_dq__d * 0.015707963267948967f;
     // Generated from the component: dq_unb_pi_vsg.current_ctrl.Res_Imp_Inv2
     {
         if ( _dq_unb_pi_vsg_current_ctrl_res_imp_inv2__rst > 0.5f )     {
@@ -1336,18 +1341,6 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
             m_States->_dq_unb_pi_vsg_current_ctrl_res_imp_inv__y2 = 0 ;
         }
     }
-    // Generated from the component: dq_unb_pi_vsg.RMS value1
-    if (m_States->_dq_unb_pi_vsg_rms_value1__period_cnt >= 2 * M_PI) {
-        m_States->_dq_unb_pi_vsg_rms_value1__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value1__period_cnt, 2 * M_PI);
-    }
-    m_States->_dq_unb_pi_vsg_rms_value1__period_cnt += 0.015707963267948967f;
-    m_States->_dq_unb_pi_vsg_rms_value1__square_sum += _dq_unb_pi_vsg_current_ctrl_product5__out * _dq_unb_pi_vsg_current_ctrl_product5__out * 0.015707963267948967f;
-    // Generated from the component: dq_unb_pi_vsg.RMS value2
-    if (m_States->_dq_unb_pi_vsg_rms_value2__period_cnt >= 2 * M_PI) {
-        m_States->_dq_unb_pi_vsg_rms_value2__period_cnt = fmod(m_States->_dq_unb_pi_vsg_rms_value2__period_cnt, 2 * M_PI);
-    }
-    m_States->_dq_unb_pi_vsg_rms_value2__period_cnt += 0.015707963267948967f;
-    m_States->_dq_unb_pi_vsg_rms_value2__square_sum += _dq_unb_pi_vsg_bus_split2__out1 * _dq_unb_pi_vsg_bus_split2__out1 * 0.015707963267948967f;
     AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
 	AdcbRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
 	AdccRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
@@ -1359,29 +1352,198 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     dq_unb_pi_vsg_ExtIn *ext_In = (dq_unb_pi_vsg_ExtIn *) p_m_Data->p_extIn;
     dq_unb_pi_vsg_ModelStates *m_States = (dq_unb_pi_vsg_ModelStates *) p_m_Data->p_States;
     // Init tunable properties if they exist
-    AdcSetMode(ADC_ADCA, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-	AdcSetMode(ADC_ADCB, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
+    AdcSetMode(ADC_ADCB, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
 	AdcSetMode(ADC_ADCC, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-	// dq_unb_pi_vsg.ADC (Generic)1.ADC
-	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
-	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;
-	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 28;
+	AdcSetMode(ADC_ADCA, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
+	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 4
+	GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO6 = 0;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;
+	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
+	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
+	EPwm4Regs.TBCTL.bit.HSPCLKDIV = 0;
+	EPwm4Regs.TBCTL.bit.CLKDIV = 0;
+	EPwm4Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
+	EPwm4Regs.TBPRD = 10000;
+	EPwm4Regs.TBCTL.bit.PHSEN = 1;
+	EPwm4Regs.TBCTL2.bit.PRDLDSYNC = 1;
+	EPwm4Regs.TBPHS.bit.TBPHS = 2;
+	EPwm4Regs.TBCTL.bit.PHSDIR = TB_UP;
+	EPwm4Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
+	EPwm4Regs.CMPA.bit.CMPA = 0;
+	EPwm4Regs.CMPB.bit.CMPB = 0;
+	EPwm4Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
+	EPwm4Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
+	EPwm4Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
+	EPwm4Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
+	EPwm4Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+	EPwm4Regs.AQCTLA.bit.CAD = AQ_SET;
+	EPwm4Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
+	EPwm4Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
+	EPwm4Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
+	EPwm4Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
+	EPwm4Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+	EPwm4Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+	EPwm4Regs.DBCTL.bit.IN_MODE = DBA_ALL;
+	EPwm4Regs.DBRED.bit.DBRED = 20;
+	EPwm4Regs.DBFED.bit.DBFED = 20;
+	EPwm4Regs.ETSEL.bit.SOCAEN = 0;
+	EPwm4Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
+	EPwm4Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
+	EPwm4Regs.ETSEL.bit.SOCBEN = 0;
+	EPwm4Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
+	EPwm4Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
+	EPwm4Regs.ETSEL.bit.INTEN = 0;
+	EPwm4Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
+	EPwm4Regs.ETPS.bit.INTPRD = ET_DISABLE;
+	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 1
+	GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO0 = 0;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO1 = 0;
+	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
+	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
+	EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0;
+	EPwm1Regs.TBCTL.bit.CLKDIV = 0;
+	EPwm1Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
+	EPwm1Regs.TBPRD = 10000;
+	EPwm1Regs.TBCTL.bit.PHSEN = 0;
+	EPwm1Regs.TBCTL2.bit.PRDLDSYNC = 0;
+	EPwm1Regs.TBPHS.bit.TBPHS = 0;
+	EPwm1Regs.TBCTL.bit.PHSDIR = TB_UP;
+	EPwm1Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
+	EPwm1Regs.CMPA.bit.CMPA = 0;
+	EPwm1Regs.CMPB.bit.CMPB = 0;
+	EPwm1Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
+	EPwm1Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
+	EPwm1Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
+	EPwm1Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
+	EPwm1Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+	EPwm1Regs.AQCTLA.bit.CAD = AQ_SET;
+	EPwm1Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
+	EPwm1Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
+	EPwm1Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
+	EPwm1Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
+	EPwm1Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+	EPwm1Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+	EPwm1Regs.DBCTL.bit.IN_MODE = DBA_ALL;
+	EPwm1Regs.DBRED.bit.DBRED = 20;
+	EPwm1Regs.DBFED.bit.DBFED = 20;
+	EPwm1Regs.ETSEL.bit.SOCAEN = 0;
+	EPwm1Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
+	EPwm1Regs.ETPS.bit.SOCAPRD = ET_1ST;
+	EPwm1Regs.ETSEL.bit.SOCBEN = 0;
+	EPwm1Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
+	EPwm1Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
+	EPwm1Regs.ETSEL.bit.INTEN = 0;
+	EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
+	EPwm1Regs.ETPS.bit.INTPRD = ET_1ST;
+	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 3
+	GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO4 = 0;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO5 = 0;
+	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
+	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
+	EPwm3Regs.TBCTL.bit.HSPCLKDIV = 0;
+	EPwm3Regs.TBCTL.bit.CLKDIV = 0;
+	EPwm3Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
+	EPwm3Regs.TBPRD = 10000;
+	EPwm3Regs.TBCTL.bit.PHSEN = 1;
+	EPwm3Regs.TBCTL2.bit.PRDLDSYNC = 1;
+	EPwm3Regs.TBPHS.bit.TBPHS = 2;
+	EPwm3Regs.TBCTL.bit.PHSDIR = TB_UP;
+	EPwm3Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
+	EPwm3Regs.CMPA.bit.CMPA = 0;
+	EPwm3Regs.CMPB.bit.CMPB = 0;
+	EPwm3Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
+	EPwm3Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
+	EPwm3Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
+	EPwm3Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
+	EPwm3Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+	EPwm3Regs.AQCTLA.bit.CAD = AQ_SET;
+	EPwm3Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
+	EPwm3Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
+	EPwm3Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
+	EPwm3Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
+	EPwm3Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+	EPwm3Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+	EPwm3Regs.DBCTL.bit.IN_MODE = DBA_ALL;
+	EPwm3Regs.DBRED.bit.DBRED = 20;
+	EPwm3Regs.DBFED.bit.DBFED = 20;
+	EPwm3Regs.ETSEL.bit.SOCAEN = 0;
+	EPwm3Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
+	EPwm3Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
+	EPwm3Regs.ETSEL.bit.SOCBEN = 0;
+	EPwm3Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
+	EPwm3Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
+	EPwm3Regs.ETSEL.bit.INTEN = 0;
+	EPwm3Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
+	EPwm3Regs.ETPS.bit.INTPRD = ET_DISABLE;
+	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 2
+	GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO2 = 0;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO3 = 0;
+	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
+	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
+	EPwm2Regs.TBCTL.bit.HSPCLKDIV = 0;
+	EPwm2Regs.TBCTL.bit.CLKDIV = 0;
+	EPwm2Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
+	EPwm2Regs.TBPRD = 10000;
+	EPwm2Regs.TBCTL.bit.PHSEN = 1;
+	EPwm2Regs.TBCTL2.bit.PRDLDSYNC = 1;
+	EPwm2Regs.TBPHS.bit.TBPHS = 2;
+	EPwm2Regs.TBCTL.bit.PHSDIR = TB_UP;
+	EPwm2Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
+	EPwm2Regs.CMPA.bit.CMPA = 0;
+	EPwm2Regs.CMPB.bit.CMPB = 0;
+	EPwm2Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
+	EPwm2Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
+	EPwm2Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
+	EPwm2Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
+	EPwm2Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+	EPwm2Regs.AQCTLA.bit.CAD = AQ_SET;
+	EPwm2Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
+	EPwm2Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
+	EPwm2Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
+	EPwm2Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
+	EPwm2Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+	EPwm2Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+	EPwm2Regs.DBCTL.bit.IN_MODE = DBA_ALL;
+	EPwm2Regs.DBRED.bit.DBRED = 20;
+	EPwm2Regs.DBFED.bit.DBFED = 20;
+	EPwm2Regs.ETSEL.bit.SOCAEN = 0;
+	EPwm2Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
+	EPwm2Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
+	EPwm2Regs.ETSEL.bit.SOCBEN = 0;
+	EPwm2Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
+	EPwm2Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
+	EPwm2Regs.ETSEL.bit.INTEN = 0;
+	EPwm2Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
+	EPwm2Regs.ETPS.bit.INTPRD = ET_DISABLE;
+	// dq_unb_pi_vsg.ADC (Generic)7.ADC
+	AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
+	AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;
+	AdcaRegs.ADCSOC2CTL.bit.ACQPS = 28;
 	AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;
-	AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 2;
+	AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 3;
 	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
 	AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
 	AdcaRegs.ADCCTL2.bit.PRESCALE = 6;
 	AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
-	// dq_unb_pi_vsg.ADC (Generic)6.ADC
-	AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
-	AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;
-	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 28;
-	AdcbRegs.ADCINTSEL1N2.bit.INT1E = 1;
-	AdcbRegs.ADCINTSEL1N2.bit.INT1SEL = 2;
-	AdcbRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-	AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-	AdcbRegs.ADCCTL2.bit.PRESCALE = 6;
-	AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;
+	// dq_unb_pi_vsg.GPIO DO (Generic)2.GPIO DO
+	GpioCtrlRegs.GPADIR.bit.GPIO24 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO24 = 1;
 	// dq_unb_pi_vsg.ePWM (Generic)2.ePWM 1
 	GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 1;
 	GpioCtrlRegs.GPAPUD.bit.GPIO10 = 0;
@@ -1426,189 +1588,20 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
 	EPwm6Regs.ETSEL.bit.INTEN = 0;
 	EPwm6Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
 	EPwm6Regs.ETPS.bit.INTPRD = ET_1ST;
-	// dq_unb_pi_vsg.GPIO DO (Generic)2.GPIO DO
-	GpioCtrlRegs.GPADIR.bit.GPIO24 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO24 = 1;
 	// dq_unb_pi_vsg.ADC (Generic)4.ADC
 	AdcaRegs.ADCSOC14CTL.bit.TRIGSEL = 15;
 	AdcaRegs.ADCSOC14CTL.bit.CHSEL = 14;
 	AdcaRegs.ADCSOC14CTL.bit.ACQPS = 28;
-	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 4
-	GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO6 = 0;
-	GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;
-	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
-	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
-	EPwm4Regs.TBCTL.bit.HSPCLKDIV = 0;
-	EPwm4Regs.TBCTL.bit.CLKDIV = 0;
-	EPwm4Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
-	EPwm4Regs.TBPRD = 10000;
-	EPwm4Regs.TBCTL.bit.PHSEN = 1;
-	EPwm4Regs.TBCTL2.bit.PRDLDSYNC = 1;
-	EPwm4Regs.TBPHS.bit.TBPHS = 2;
-	EPwm4Regs.TBCTL.bit.PHSDIR = TB_UP;
-	EPwm4Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
-	EPwm4Regs.CMPA.bit.CMPA = 0;
-	EPwm4Regs.CMPB.bit.CMPB = 0;
-	EPwm4Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
-	EPwm4Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-	EPwm4Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-	EPwm4Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
-	EPwm4Regs.AQCTLA.bit.CAU = AQ_CLEAR;
-	EPwm4Regs.AQCTLA.bit.CAD = AQ_SET;
-	EPwm4Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
-	EPwm4Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
-	EPwm4Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
-	EPwm4Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
-	EPwm4Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
-	EPwm4Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
-	EPwm4Regs.DBCTL.bit.IN_MODE = DBA_ALL;
-	EPwm4Regs.DBRED.bit.DBRED = 200;
-	EPwm4Regs.DBFED.bit.DBFED = 200;
-	EPwm4Regs.ETSEL.bit.SOCAEN = 0;
-	EPwm4Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
-	EPwm4Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
-	EPwm4Regs.ETSEL.bit.SOCBEN = 0;
-	EPwm4Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
-	EPwm4Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
-	EPwm4Regs.ETSEL.bit.INTEN = 0;
-	EPwm4Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
-	EPwm4Regs.ETPS.bit.INTPRD = ET_DISABLE;
-	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 2
-	GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO2 = 0;
-	GpioCtrlRegs.GPAMUX1.bit.GPIO3 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO3 = 0;
-	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
-	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
-	EPwm2Regs.TBCTL.bit.HSPCLKDIV = 0;
-	EPwm2Regs.TBCTL.bit.CLKDIV = 0;
-	EPwm2Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
-	EPwm2Regs.TBPRD = 10000;
-	EPwm2Regs.TBCTL.bit.PHSEN = 1;
-	EPwm2Regs.TBCTL2.bit.PRDLDSYNC = 1;
-	EPwm2Regs.TBPHS.bit.TBPHS = 2;
-	EPwm2Regs.TBCTL.bit.PHSDIR = TB_UP;
-	EPwm2Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
-	EPwm2Regs.CMPA.bit.CMPA = 0;
-	EPwm2Regs.CMPB.bit.CMPB = 0;
-	EPwm2Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
-	EPwm2Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-	EPwm2Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-	EPwm2Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
-	EPwm2Regs.AQCTLA.bit.CAU = AQ_CLEAR;
-	EPwm2Regs.AQCTLA.bit.CAD = AQ_SET;
-	EPwm2Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
-	EPwm2Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
-	EPwm2Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
-	EPwm2Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
-	EPwm2Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
-	EPwm2Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
-	EPwm2Regs.DBCTL.bit.IN_MODE = DBA_ALL;
-	EPwm2Regs.DBRED.bit.DBRED = 200;
-	EPwm2Regs.DBFED.bit.DBFED = 200;
-	EPwm2Regs.ETSEL.bit.SOCAEN = 0;
-	EPwm2Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
-	EPwm2Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
-	EPwm2Regs.ETSEL.bit.SOCBEN = 0;
-	EPwm2Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
-	EPwm2Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
-	EPwm2Regs.ETSEL.bit.INTEN = 0;
-	EPwm2Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
-	EPwm2Regs.ETPS.bit.INTPRD = ET_DISABLE;
-	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 3
-	GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO4 = 0;
-	GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO5 = 0;
-	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
-	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
-	EPwm3Regs.TBCTL.bit.HSPCLKDIV = 0;
-	EPwm3Regs.TBCTL.bit.CLKDIV = 0;
-	EPwm3Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
-	EPwm3Regs.TBPRD = 10000;
-	EPwm3Regs.TBCTL.bit.PHSEN = 1;
-	EPwm3Regs.TBCTL2.bit.PRDLDSYNC = 1;
-	EPwm3Regs.TBPHS.bit.TBPHS = 2;
-	EPwm3Regs.TBCTL.bit.PHSDIR = TB_UP;
-	EPwm3Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
-	EPwm3Regs.CMPA.bit.CMPA = 0;
-	EPwm3Regs.CMPB.bit.CMPB = 0;
-	EPwm3Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
-	EPwm3Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-	EPwm3Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-	EPwm3Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
-	EPwm3Regs.AQCTLA.bit.CAU = AQ_CLEAR;
-	EPwm3Regs.AQCTLA.bit.CAD = AQ_SET;
-	EPwm3Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
-	EPwm3Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
-	EPwm3Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
-	EPwm3Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
-	EPwm3Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
-	EPwm3Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
-	EPwm3Regs.DBCTL.bit.IN_MODE = DBA_ALL;
-	EPwm3Regs.DBRED.bit.DBRED = 200;
-	EPwm3Regs.DBFED.bit.DBFED = 200;
-	EPwm3Regs.ETSEL.bit.SOCAEN = 0;
-	EPwm3Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
-	EPwm3Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
-	EPwm3Regs.ETSEL.bit.SOCBEN = 0;
-	EPwm3Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
-	EPwm3Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
-	EPwm3Regs.ETSEL.bit.INTEN = 0;
-	EPwm3Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
-	EPwm3Regs.ETPS.bit.INTPRD = ET_DISABLE;
-	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 1
-	GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO0 = 0;
-	GpioCtrlRegs.GPAMUX1.bit.GPIO1 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO1 = 0;
-	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
-	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
-	EPwm1Regs.TBCTL.bit.HSPCLKDIV = 0;
-	EPwm1Regs.TBCTL.bit.CLKDIV = 0;
-	EPwm1Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
-	EPwm1Regs.TBPRD = 10000;
-	EPwm1Regs.TBCTL.bit.PHSEN = 0;
-	EPwm1Regs.TBCTL2.bit.PRDLDSYNC = 0;
-	EPwm1Regs.TBPHS.bit.TBPHS = 0;
-	EPwm1Regs.TBCTL.bit.PHSDIR = TB_UP;
-	EPwm1Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
-	EPwm1Regs.CMPA.bit.CMPA = 0;
-	EPwm1Regs.CMPB.bit.CMPB = 0;
-	EPwm1Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
-	EPwm1Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-	EPwm1Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-	EPwm1Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
-	EPwm1Regs.AQCTLA.bit.CAU = AQ_CLEAR;
-	EPwm1Regs.AQCTLA.bit.CAD = AQ_SET;
-	EPwm1Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
-	EPwm1Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
-	EPwm1Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
-	EPwm1Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
-	EPwm1Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
-	EPwm1Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
-	EPwm1Regs.DBCTL.bit.IN_MODE = DBA_ALL;
-	EPwm1Regs.DBRED.bit.DBRED = 200;
-	EPwm1Regs.DBFED.bit.DBFED = 200;
-	EPwm1Regs.ETSEL.bit.SOCAEN = 0;
-	EPwm1Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
-	EPwm1Regs.ETPS.bit.SOCAPRD = ET_1ST;
-	EPwm1Regs.ETSEL.bit.SOCBEN = 0;
-	EPwm1Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
-	EPwm1Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
-	EPwm1Regs.ETSEL.bit.INTEN = 0;
-	EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
-	EPwm1Regs.ETPS.bit.INTPRD = ET_1ST;
+	// dq_unb_pi_vsg.ADC (Generic)6.ADC
+	AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
+	AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;
+	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 28;
+	AdcbRegs.ADCINTSEL1N2.bit.INT1E = 1;
+	AdcbRegs.ADCINTSEL1N2.bit.INT1SEL = 2;
+	AdcbRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
+	AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;
+	AdcbRegs.ADCCTL2.bit.PRESCALE = 6;
+	AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;
 	// dq_unb_pi_vsg.ADC (Generic)2.ADC
 	AdccRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
 	AdccRegs.ADCSOC2CTL.bit.CHSEL = 2;
@@ -1619,6 +1612,13 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
 	AdccRegs.ADCCTL1.bit.INTPULSEPOS = 1;
 	AdccRegs.ADCCTL2.bit.PRESCALE = 6;
 	AdccRegs.ADCCTL1.bit.ADCPWDNZ = 1;
+	// dq_unb_pi_vsg.ADC (Generic)1.ADC
+	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
+	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;
+	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 28;
+	// dq_unb_pi_vsg.GPIO DO (Generic)1.GPIO DO
+	GpioCtrlRegs.GPADIR.bit.GPIO9 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO9 = 1;
 	// dq_unb_pi_vsg.SCI Setup1
 	GpioCtrlRegs.GPBGMUX1.bit.GPIO42 = 3;
 	GpioCtrlRegs.GPBMUX1.bit.GPIO42 = 3;
@@ -1644,9 +1644,6 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
 	SciaRegs.SCIFFRX.bit.RXFIFORESET = 1;
 	SciaRegs.SCIFFTX.bit.TXFIFORESET = 1;
 	SerialComm.SciRegs = &SciaRegs;
-	// dq_unb_pi_vsg.GPIO DO (Generic)1.GPIO DO
-	GpioCtrlRegs.GPADIR.bit.GPIO9 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO9 = 1;
 	// dq_unb_pi_vsg.ADC (Generic)5.ADC
 	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
 	AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;
@@ -1655,10 +1652,6 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
 	AdcbRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
 	AdcbRegs.ADCSOC2CTL.bit.CHSEL = 2;
 	AdcbRegs.ADCSOC2CTL.bit.ACQPS = 28;
-	// dq_unb_pi_vsg.ADC (Generic)7.ADC
-	AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
-	AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;
-	AdcaRegs.ADCSOC2CTL.bit.ACQPS = 28;
     uint_t _dq_unb_pi_vsg_delay1__i;
     for (_dq_unb_pi_vsg_delay1__i = 0; _dq_unb_pi_vsg_delay1__i < 1; _dq_unb_pi_vsg_delay1__i++) {
         m_States->_dq_unb_pi_vsg_delay1__state[_dq_unb_pi_vsg_delay1__i] =  0.0f;
@@ -1673,14 +1666,29 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     m_States->_dq_unb_pi_vsg_vsg_c_low_pass_filter1__previous_in = 0x0;
     m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__state = 0.0f;
     m_States->_dq_unb_pi_vsg_current_ctrl_integrator1__reset_state = 2;
+    m_States->_dq_unb_pi_vsg_rms_value1__square_sum = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__sample_cnt = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__period_cnt = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__db_timer = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__previous_filtered_value = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__previous_correction = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__correction = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__previous_value = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value1__out_state = 0x0;
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out = 0.0f ;
     }
+    m_States->_dq_unb_pi_vsg_rms_value2__square_sum = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__sample_cnt = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__period_cnt = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__db_timer = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__previous_filtered_value = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__previous_correction = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__correction = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__previous_value = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value2__out_state = 0x0;
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__x_out = 0.0f ;
-    }
-    {
-        m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out = 0.0f ;
     }
     m_States->_dq_unb_pi_vsg_rms_value3__square_sum = 0x0;
     m_States->_dq_unb_pi_vsg_rms_value3__sample_cnt = 0x0;
@@ -1692,6 +1700,9 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     m_States->_dq_unb_pi_vsg_rms_value3__previous_value = 0x0;
     m_States->_dq_unb_pi_vsg_rms_value3__out_state = 0x0;
     {
+        m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out = 0.0f ;
+    }
+    {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__x_out = 0.0f ;
     }
     {
@@ -1699,6 +1710,18 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     }
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__x_out = 0.0f ;
+    }
+    m_States->_dq_unb_pi_vsg_rms_value4__square_sum = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__sample_cnt = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__period_cnt = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__db_timer = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__previous_filtered_value = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__previous_correction = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__correction = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__previous_value = 0x0;
+    m_States->_dq_unb_pi_vsg_rms_value4__out_state = 0x0;
+    {
+        m_States->_dq_unb_pi_vsg_current_ctrl_lpf__x_out = 0.0f ;
     }
     {
         m_States->_dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf1__x_out = 0.0f ;
@@ -1766,15 +1789,6 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
         m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_ps = 0.0f ;
         m_States->_dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_qs = 0.0f ;
     }
-    m_States->_dq_unb_pi_vsg_rms_value5__square_sum = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__sample_cnt = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__period_cnt = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__db_timer = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__previous_filtered_value = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__previous_correction = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__correction = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__previous_value = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value5__out_state = 0x0;
     {
         m_States->_dq_unb_pi_vsg_current_ctrl_res_imp_inv2__u1 = 0 ;
         m_States->_dq_unb_pi_vsg_current_ctrl_res_imp_inv2__y1 = 0 ;
@@ -1790,24 +1804,6 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
         m_States->_dq_unb_pi_vsg_current_ctrl_res_imp_inv__y1 = 0 ;
         m_States->_dq_unb_pi_vsg_current_ctrl_res_imp_inv__y2 = 0 ;
     }
-    m_States->_dq_unb_pi_vsg_rms_value1__square_sum = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__sample_cnt = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__period_cnt = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__db_timer = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__previous_filtered_value = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__previous_correction = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__correction = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__previous_value = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value1__out_state = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__square_sum = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__sample_cnt = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__period_cnt = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__db_timer = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__previous_filtered_value = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__previous_correction = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__correction = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__previous_value = 0x0;
-    m_States->_dq_unb_pi_vsg_rms_value2__out_state = 0x0;
     CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 1;
 }
 
