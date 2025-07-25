@@ -6,10 +6,24 @@
         <product_id>101</product_id>
         <hardware_id>3</hardware_id>
         <configuration_id>3</configuration_id>
-        <fw_release_date>132710918</fw_release_date>
+        <fw_release_date>132711434</fw_release_date>
     </hw_properties>
     <components>
         <inputs>
+            <input>
+                <name>Plant.v_dc</name>
+                <device>0</device>
+            	<input_type>OnePhaseInput</input_type>
+                <waveform_type>Constant</waveform_type>
+                <waveform></waveform>
+                <constant_value>800.0</constant_value>
+                <rms>0.0</rms>
+                <frequency>50.0</frequency>
+                <phase>0.0</phase>
+                <use_harmonics>False</use_harmonics>
+                <harmonics>[]</harmonics>
+                <harmonics_type>per_rms_unit_harmonics</harmonics_type>
+            </input>
             <input>
                 <name>Plant.Vs1</name>
                 <device>0</device>
@@ -51,7 +65,7 @@
                 <number>2</number>
                 <device>0</device>
                 <scale>240.0</scale>
-                <offset>1.5</offset>
+                <offset>1.495</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
@@ -66,7 +80,7 @@
                 <number>3</number>
                 <device>0</device>
                 <scale>240.0</scale>
-                <offset>1.5</offset>
+                <offset>1.505</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
@@ -125,14 +139,14 @@
             <analog_channel>
                 <number>7</number>
                 <device>0</device>
-                <scale>300.0</scale>
-                <offset>0.0</offset>
+                <scale>30.0</scale>
+                <offset>1.5</offset>
                 <locked>False</locked>
                 <ao_limiting_enabled>False</ao_limiting_enabled>
                 <ao_lower_limit>-10.0</ao_lower_limit>
                 <ao_upper_limit>10.0</ao_upper_limit>
                 <analog_signal>
-                	<name>Plant.v_dc</name>
+                	<name>Plant.Ing</name>
                 	<show>True</show>
                 	<device>0</device>
                 </analog_signal>
@@ -724,6 +738,29 @@
                         <name>S_top</name>
                         <device>0</device>
                         <weight>[13]</weight>
+                        <software_control>False</software_control>
+                        <software_value>0</software_value>
+                    </switch>
+                </switches>
+            </switching_block>
+            <switching_block>
+                <name>Plant.IGBT Leg4</name>
+                <type>regular_conv</type>
+                <scm_comp_type>igbt_leg</scm_comp_type>
+                <device>0</device>
+                <site>0</site>
+                <switches>
+                    <switch>
+                        <name>S_bot</name>
+                        <device>0</device>
+                        <weight>[18]</weight>
+                        <software_control>False</software_control>
+                        <software_value>0</software_value>
+                    </switch>
+                    <switch>
+                        <name>S_top</name>
+                        <device>0</device>
+                        <weight>[19]</weight>
                         <software_control>False</software_control>
                         <software_value>0</software_value>
                     </switch>

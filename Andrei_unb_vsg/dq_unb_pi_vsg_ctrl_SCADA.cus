@@ -25,19 +25,26 @@ SETTINGS_DIR = get_settings_dir_path()
 # Schematic Editor model namespace is imported as 'scm'
 # Function for printing to the HIL SCADA Message log is imported as 'printf'.
 
-]]></initialization_code>
+
+global f
+global d_f
+global RoCoF
+
+f = 50.0
+d_f = 0.0
+RoCoF = 0.0]]></initialization_code>
     <components>
         <component_data>
                 <id>b501d5c6668b11eeb3a6c0b883027eba</id>
                 <name><![CDATA[Capture/Scope]]></name>
                 <type>Capture/Scope</type>
                 <description><![CDATA[]]></description>
-                <working_mode>windowed</working_mode>
+                <working_mode>embedded</working_mode>
                 <widget_settings>
-                    <x>808</x>
+                    <x>496</x>
                     <y>64</y>
-                    <width>120</width>
-                    <height>120</height>
+                    <width>1048</width>
+                    <height>600</height>
                     <hierarchy_position>1</hierarchy_position>
                     <label><![CDATA[]]></label>
                     <use_label>False</use_label>
@@ -50,25 +57,121 @@ SETTINGS_DIR = get_settings_dir_path()
                         <active_capture_preset><![CDATA[Default]]></active_capture_preset>
                         <active_scope_preset><![CDATA[Default]]></active_scope_preset>
                         <capture name="Default">
-                            <time_interval>0.01</time_interval>
+                            <time_interval>5.0</time_interval>
                             <sample_rate>1000000.0</sample_rate>
                             <background_color>white</background_color>
                             <layout>Vertical</layout>
                             <legend>True</legend>
                             <analog_signals>
+                                <analog>
+                                    <channel>0</channel>
+                                    <name><![CDATA[Plant.Iag]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>0</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>1</channel>
+                                    <name><![CDATA[Plant.Ibg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>1</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>2</channel>
+                                    <name><![CDATA[Plant.Icg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>2</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>3</channel>
+                                    <name><![CDATA[Plant.Va]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>3</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>4</channel>
+                                    <name><![CDATA[Plant.Vb]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>4</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.Vc]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>5</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>6</channel>
+                                    <name><![CDATA[Plant.Ing]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>7</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
                             </analog_signals>
                             <digital_signals>
+                                <digital>
+                                    <channel>0</channel>
+                                    <name><![CDATA[HIL0 digital input 7]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <row>6</row>
+                                    <viewports>
+                                        
+                                        <num_viewport>3</num_viewport>
+                                        
+                                   </viewports>
+                                </digital>
                             </digital_signals>
                             <virtual_signals>
                             </virtual_signals>
                             <trigger>
-                                <device>-1</device>
-                                <is_force>False</is_force>
+                                <device>0</device>
+                                <is_force>True</is_force>
                                 <type>Analog</type>
-                                <source><![CDATA[None]]></source>
+                                <source><![CDATA[Plant.Iag]]></source>
                                 <edge>Rising edge</edge>
                                 <treshold>0.0</treshold>
-                                <offset>0.0</offset>
+                                <offset>50.0</offset>
                                 <useFirstTrigger>False</useFirstTrigger>
                             </trigger>
                             <plotting_options in_use="False">
@@ -80,8 +183,8 @@ SETTINGS_DIR = get_settings_dir_path()
                             <background_color>white</background_color>
                             <layout>Vertical</layout>
                             <legend>True</legend>
-                            <show_viewports>1</show_viewports>
-                            <decimation>11</decimation>
+                            <show_viewports>3</show_viewports>
+                            <decimation>6</decimation>
                             <time_base>0.01</time_base>
                             <analog_signals>
                                 <analog>
@@ -89,11 +192,11 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <name><![CDATA[Plant.Iag]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
-                                        <num_viewport>1</num_viewport>
+                                        <num_viewport>2</num_viewport>
                                    </viewports>
                                </analog>
                                 <analog>
@@ -101,11 +204,11 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <name><![CDATA[Plant.Ibg]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
-                                        <num_viewport>1</num_viewport>
+                                        <num_viewport>2</num_viewport>
                                    </viewports>
                                </analog>
                                 <analog>
@@ -113,43 +216,103 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <name><![CDATA[Plant.Icg]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
-                                        <num_viewport>1</num_viewport>
+                                        <num_viewport>2</num_viewport>
                                    </viewports>
                                </analog>
                                 <analog>
                                     <channel>3</channel>
-                                    <name><![CDATA[Plant.Ing]]></name>
+                                    <name><![CDATA[Plant.Va]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
                                     <viewports>
                                         <num_viewport>1</num_viewport>
                                    </viewports>
                                </analog>
+                                <analog>
+                                    <channel>4</channel>
+                                    <name><![CDATA[Plant.Vb]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>6</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.Vc]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>7</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>6</channel>
+                                    <name><![CDATA[Plant.Ing]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>8</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>7</channel>
+                                    <name><![CDATA[Plant.pf]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10k</vertical_scale>
+                                    <vertical_offset>0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>9</row>
+                                    <viewports>
+                                        <num_viewport>3</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>8</channel>
+                                    <name><![CDATA[Plant.qf]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>2k</vertical_scale>
+                                    <vertical_offset>0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>10</row>
+                                    <viewports>
+                                        <num_viewport>3</num_viewport>
+                                   </viewports>
+                               </analog>
                             </analog_signals>
                             <digital_signals>
                                 <digital>
                                     <channel>0</channel>
-                                    <name><![CDATA[HIL0 digital input 2]]></name>
+                                    <name><![CDATA[HIL0 digital input 7]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_offset>0.0</vertical_offset>
-                                    <row>1</row>
+                                    <row>0</row>
                                     <viewports>
                                         
                                    </viewports>
                                 </digital>
                                 <digital>
                                     <channel>1</channel>
-                                    <name><![CDATA[HIL0 digital input 7]]></name>
+                                    <name><![CDATA[HIL0 digital input 12]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_offset>0.0</vertical_offset>
-                                    <row>0</row>
+                                    <row>1</row>
                                     <viewports>
                                         
                                    </viewports>
@@ -159,7 +322,7 @@ SETTINGS_DIR = get_settings_dir_path()
                                 <device>0</device>
                                 <is_force>False</is_force>
                                 <type>Digital</type>
-                                <source>HIL0 digital input 2</source>
+                                <source>HIL0 digital input 7</source>
                                 <edge>Rising edge</edge>
                                 <treshold>0.0</treshold>
                                 <offset>50.0</offset>
@@ -168,22 +331,118 @@ SETTINGS_DIR = get_settings_dir_path()
                         </scope>
                         </presets>
                     <capture>
-                        <time_interval>0.01</time_interval>
+                        <time_interval>5.0</time_interval>
                         <sample_rate>1000000.0</sample_rate>
                         <background_color>white</background_color>
                         <layout>Vertical</layout>
                         <legend>True</legend>
                         <trigger>
                             <type>Analog</type>
-                            <source>None</source>
+                            <source>Plant.Iag</source>
                             <edge>Rising edge</edge>
                             <treshold>0.0</treshold>
-                            <offset>0.0</offset>
+                            <offset>50.0</offset>
                             <useFirstTrigger>False</useFirstTrigger>
                         </trigger>
                         <analog_signals>
+                            <analog>
+                                    <channel>0</channel>
+                                    <name><![CDATA[Plant.Iag]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>0</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>1</channel>
+                                    <name><![CDATA[Plant.Ibg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>1</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>2</channel>
+                                    <name><![CDATA[Plant.Icg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>2</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>3</channel>
+                                    <name><![CDATA[Plant.Va]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>3</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>4</channel>
+                                    <name><![CDATA[Plant.Vb]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>4</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.Vc]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>5</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>6</channel>
+                                    <name><![CDATA[Plant.Ing]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>7</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
                         </analog_signals>
                          <digital_signals>
+                            <digital>
+                                    <channel>0</channel>
+                                    <name><![CDATA[HIL0 digital input 7]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <row>6</row>
+                                    <viewports>
+                                        
+                                        <num_viewport>3</num_viewport>
+                                        
+                                   </viewports>
+                                </digital>
                          </digital_signals>
                     </capture>
                     <scope>
@@ -194,7 +453,7 @@ SETTINGS_DIR = get_settings_dir_path()
                         <trigger>
                             <mode>Auto</mode>
                             <type>Digital</type>
-                            <source>HIL0 digital input 2</source>
+                            <source>HIL0 digital input 7</source>
                             <edge>Rising edge</edge>
                             <treshold>0.0</treshold>
                             <offset>50.0</offset>
@@ -205,11 +464,11 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <name><![CDATA[Plant.Iag]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>2</row>
                                     <viewports>
-                                        <num_viewport>1</num_viewport>
+                                        <num_viewport>2</num_viewport>
                                    </viewports>
                                </analog>
                             <analog>
@@ -217,11 +476,11 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <name><![CDATA[Plant.Ibg]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
                                     <viewports>
-                                        <num_viewport>1</num_viewport>
+                                        <num_viewport>2</num_viewport>
                                    </viewports>
                                </analog>
                             <analog>
@@ -229,43 +488,103 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <name><![CDATA[Plant.Icg]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
                                     <viewports>
-                                        <num_viewport>1</num_viewport>
+                                        <num_viewport>2</num_viewport>
                                    </viewports>
                                </analog>
                             <analog>
                                     <channel>3</channel>
-                                    <name><![CDATA[Plant.Ing]]></name>
+                                    <name><![CDATA[Plant.Va]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>10</vertical_scale>
-                                    <vertical_offset>0</vertical_offset>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
                                     <viewports>
                                         <num_viewport>1</num_viewport>
                                    </viewports>
                                </analog>
+                            <analog>
+                                    <channel>4</channel>
+                                    <name><![CDATA[Plant.Vb]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>6</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.Vc]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>100</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>7</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>6</channel>
+                                    <name><![CDATA[Plant.Ing]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10</vertical_scale>
+                                    <vertical_offset>0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>8</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>7</channel>
+                                    <name><![CDATA[Plant.pf]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>10k</vertical_scale>
+                                    <vertical_offset>0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>9</row>
+                                    <viewports>
+                                        <num_viewport>3</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>8</channel>
+                                    <name><![CDATA[Plant.qf]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>2k</vertical_scale>
+                                    <vertical_offset>0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>10</row>
+                                    <viewports>
+                                        <num_viewport>3</num_viewport>
+                                   </viewports>
+                               </analog>
                         </analog_signals>
                         <digital_signals>
                             <digital>
                                     <channel>0</channel>
-                                    <name><![CDATA[HIL0 digital input 2]]></name>
+                                    <name><![CDATA[HIL0 digital input 7]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_offset>0.0</vertical_offset>
-                                    <row>1</row>
+                                    <row>0</row>
                                     <viewports>
                                         
                                    </viewports>
                                 </digital>
                             <digital>
                                     <channel>1</channel>
-                                    <name><![CDATA[HIL0 digital input 7]]></name>
+                                    <name><![CDATA[HIL0 digital input 12]]></name>
                                     <is_locked>False</is_locked>
                                     <vertical_offset>0.0</vertical_offset>
-                                    <row>0</row>
+                                    <row>1</row>
                                     <viewports>
                                         
                                    </viewports>
@@ -305,8 +624,8 @@ displayValue = 0.0
                 <updateRate>500</updateRate>
                 <scaling_factor>1.0</scaling_factor>
                 <widget_settings>
-                    <x>784</x>
-                    <y>232</y>
+                    <x>824</x>
+                    <y>672</y>
                     <width>144</width>
                     <height>56</height>
                     <appearance><![CDATA[Flat]]></appearance>
@@ -458,7 +777,7 @@ displayValue = 0.0
                 <child_components_data>
                     <child_data>
                         <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
-                        <value><![CDATA[1.0]]></value>
+                        <value><![CDATA[0.0]]></value>
                     </child_data>
                     <child_data>
                         <relative_fqn><![CDATA[Index]]></relative_fqn>
@@ -619,6 +938,192 @@ displayValue = 0.0
                         <value><![CDATA[1]]></value>
                     </child_data>
                 </child_components_data>
+            </component_data>
+        <component_data>
+                <id>9f048707694a11f0ba2e18c04db9a8bd</id>
+                <name><![CDATA[d_F]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+global d_f
+
+d_f = inputValue]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it,
+# the widget value will not be changed.
+widgetValue = None
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <inputValue><![CDATA[1.0]]></inputValue>
+                <inputValueType>float</inputValueType>
+                <unit><![CDATA[Hz]]></unit>
+                <widget_settings>
+                    <x>272</x>
+                    <y>760</y>
+                    <width>144</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>9f048708694a11f09fcd18c04db9a8bd</id>
+                <name><![CDATA[Freq event]]></name>
+                <type>MacroButton</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+global f
+global d_f
+global RoCoF
+
+f = f + d_f
+
+hil.set_source_sine_waveform('Plant.Vs1', rms=230.0, frequency=f, phase=0.0, ramp_time = np.abs(d_f/RoCoF), ramp_type = 'lin',harmonics_pu=())
+]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+]]></on_stop_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <widget_settings>
+                    <x>488</x>
+                    <y>744</y>
+                    <width>120</width>
+                    <height>40</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>9f048709694a11f09e4018c04db9a8bd</id>
+                <name><![CDATA[RoCoF]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+
+global RoCoF
+RoCoF = inputValue]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it,
+# the widget value will not be changed.
+widgetValue = None
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <inputValue><![CDATA[0.5]]></inputValue>
+                <inputValueType>float</inputValueType>
+                <unit><![CDATA[Hz/s]]></unit>
+                <widget_settings>
+                    <x>216</x>
+                    <y>792</y>
+                    <width>208</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
             </component_data>
         </components>
 </ui_settings>

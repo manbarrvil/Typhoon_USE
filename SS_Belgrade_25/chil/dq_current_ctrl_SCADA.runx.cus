@@ -50,8 +50,8 @@ SETTINGS_DIR = get_settings_dir_path()
                         <active_capture_preset><![CDATA[Default]]></active_capture_preset>
                         <active_scope_preset><![CDATA[Default]]></active_scope_preset>
                         <capture name="Default">
-                            <time_interval>0.2</time_interval>
-                            <sample_rate>1000000.0</sample_rate>
+                            <time_interval>0.01</time_interval>
+                            <sample_rate>1000000</sample_rate>
                             <background_color>white</background_color>
                             <layout>Vertical</layout>
                             <legend>True</legend>
@@ -80,8 +80,8 @@ SETTINGS_DIR = get_settings_dir_path()
                             <background_color>white</background_color>
                             <layout>Vertical</layout>
                             <legend>True</legend>
-                            <show_viewports>2</show_viewports>
-                            <decimation>11.0</decimation>
+                            <show_viewports>3</show_viewports>
+                            <decimation>11</decimation>
                             <time_base>0.01</time_base>
                             <analog_signals>
                                 <analog>
@@ -176,14 +176,16 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <row>6</row>
                                     <viewports>
                                         
+                                        <num_viewport>3</num_viewport>
+                                        
                                    </viewports>
                                 </digital>
                             </digital_signals>
                             <trigger>
                                 <device>0</device>
                                 <is_force>False</is_force>
-                                <type>Digital</type>
-                                <source>HIL0 digital input 7</source>
+                                <type>Analog</type>
+                                <source>Plant.Iag</source>
                                 <edge>Rising edge</edge>
                                 <treshold>0.0</treshold>
                                 <offset>50.0</offset>
@@ -192,8 +194,8 @@ SETTINGS_DIR = get_settings_dir_path()
                         </scope>
                         </presets>
                     <capture>
-                        <time_interval>0.2</time_interval>
-                        <sample_rate>1000000.0</sample_rate>
+                        <time_interval>0.01</time_interval>
+                        <sample_rate>1000000</sample_rate>
                         <background_color>white</background_color>
                         <layout>Vertical</layout>
                         <legend>True</legend>
@@ -217,8 +219,8 @@ SETTINGS_DIR = get_settings_dir_path()
                         <legend>True</legend>
                         <trigger>
                             <mode>Auto</mode>
-                            <type>Digital</type>
-                            <source>HIL0 digital input 7</source>
+                            <type>Analog</type>
+                            <source>Plant.Iag</source>
                             <edge>Rising edge</edge>
                             <treshold>0.0</treshold>
                             <offset>50.0</offset>
@@ -315,6 +317,8 @@ SETTINGS_DIR = get_settings_dir_path()
                                     <vertical_offset>0.0</vertical_offset>
                                     <row>6</row>
                                     <viewports>
+                                        
+                                        <num_viewport>3</num_viewport>
                                         
                                    </viewports>
                                 </digital>
@@ -438,7 +442,7 @@ displayValue = 0.0
                 <child_components_data>
                     <child_data>
                         <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
-                        <value><![CDATA[0.0]]></value>
+                        <value><![CDATA[5.0]]></value>
                     </child_data>
                     <child_data>
                         <relative_fqn><![CDATA[Index]]></relative_fqn>
@@ -472,7 +476,7 @@ displayValue = 0.0
                 <child_components_data>
                     <child_data>
                         <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
-                        <value><![CDATA[0.0]]></value>
+                        <value><![CDATA[10.0]]></value>
                     </child_data>
                     <child_data>
                         <relative_fqn><![CDATA[Index]]></relative_fqn>
@@ -506,7 +510,7 @@ displayValue = 0.0
                 <child_components_data>
                     <child_data>
                         <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
-                        <value><![CDATA[0.0]]></value>
+                        <value><![CDATA[1.0]]></value>
                     </child_data>
                     <child_data>
                         <relative_fqn><![CDATA[Index]]></relative_fqn>
@@ -540,7 +544,7 @@ displayValue = 0.0
                 <child_components_data>
                     <child_data>
                         <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
-                        <value><![CDATA[0.0]]></value>
+                        <value><![CDATA[1.0]]></value>
                     </child_data>
                     <child_data>
                         <relative_fqn><![CDATA[Index]]></relative_fqn>

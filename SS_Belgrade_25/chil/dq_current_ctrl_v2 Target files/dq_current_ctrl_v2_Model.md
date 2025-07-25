@@ -15,7 +15,7 @@ rtds_write 0x00000000 0x0000006E
 
 
 REM External SFP Link
-rtds_write 0x00000007 0x00000000
+rtds_write 0x00000030 0x00000000
 
 
 REM Fast SFP Send
@@ -119,6 +119,27 @@ rtds_write 0x08100078 0x00000000
 rtds_write 0x08100079 0x00000000
 rtds_file_write 0x08150000 igbt_leg_imem.txt
 rtds_file_write 0x08152000 igbt_leg_lut.txt
+rtds_write 0x08100080 0x00000001
+rtds_write 0x08100081 0x00000000
+rtds_write 0x08100083 0x00000000
+rtds_write 0x08100084 0x00000000
+rtds_write 0x08100085 0x00000000
+rtds_write 0x08100086 0x00000000
+rtds_write 0x08100087 0x00000000
+rtds_write 0x0810008E 0x00000000
+rtds_write 0x0810008F 0x00000000
+rtds_write 0x08100090 0x00000000
+rtds_write 0x08100091 0x00000000
+rtds_write 0x08100092 0x00000000
+rtds_write 0x08100093 0x00000000
+rtds_write 0x08100094 0x00000000
+rtds_write 0x08100095 0x00000000
+rtds_write 0x08100096 0x00000000
+rtds_write 0x08100097 0x00000000
+rtds_write 0x08100098 0x00000000
+rtds_write 0x08100099 0x00000000
+rtds_file_write 0x08158000 trivial_imem.txt
+rtds_file_write 0x0815A000 trivial_lut.txt
 
 
 REM SPC0 Variable Delay initialization...
@@ -259,6 +280,27 @@ rtds_write 0x08500078 0x00000000
 rtds_write 0x08500079 0x00000000
 rtds_file_write 0x08550000 trivial_imem.txt
 rtds_file_write 0x08552000 trivial_lut.txt
+rtds_write 0x08500080 0x00000000
+rtds_write 0x08500081 0x00000000
+rtds_write 0x08500083 0x00000000
+rtds_write 0x08500084 0x00000000
+rtds_write 0x08500085 0x00000000
+rtds_write 0x08500086 0x00000000
+rtds_write 0x08500087 0x00000000
+rtds_write 0x0850008E 0x00000000
+rtds_write 0x0850008F 0x00000000
+rtds_write 0x08500090 0x00000000
+rtds_write 0x08500091 0x00000000
+rtds_write 0x08500092 0x00000000
+rtds_write 0x08500093 0x00000000
+rtds_write 0x08500094 0x00000000
+rtds_write 0x08500095 0x00000000
+rtds_write 0x08500096 0x00000000
+rtds_write 0x08500097 0x00000000
+rtds_write 0x08500098 0x00000000
+rtds_write 0x08500099 0x00000000
+rtds_file_write 0x08558000 trivial_imem.txt
+rtds_file_write 0x0855A000 trivial_lut.txt
 
 
 REM SPC1 Variable Delay initialization...
