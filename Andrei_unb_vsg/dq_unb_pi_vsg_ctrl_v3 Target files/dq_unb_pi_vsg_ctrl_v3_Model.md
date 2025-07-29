@@ -1,4 +1,4 @@
-Model dq_unb_pi_vsg_ctrl_v2
+Model dq_unb_pi_vsg_ctrl_v3
 
 
 REM *****************************************:
@@ -366,7 +366,7 @@ rtds_write
 rtds_write 0x00000041 0x000011C1
 rtds_write 0x00000005 0x00000002
 rtds_write 0x00000043 0x00002710
-rtds_write 0x00000042 0x000003E7
+rtds_write 0x00000042 0x000001F3
 rtds_write 0x0000000A 0x00000001
 glbl_write 0xFD1A0104 0x0000380E
 
