@@ -9767,7 +9767,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         ]
 
         component "TI C2000 Toolbox/TI C2000 Setup" "TI C2000 Setup1" {
-            build_and_deploy_action = "False"
+            build_and_deploy_action = "True"
             c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "dq_unb_pi_vsg_acg"
             ccs_project_path = "C:\Users\iberi\Desktop\Typhoon_USE\Andrei_unb_vsg"
