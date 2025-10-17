@@ -82,29 +82,8 @@
     </pesb>
     <analog_variables>
         <cell>
-            <name>Plant.Capacitor and dampin resistor.C2</name>
-            <address>1</address>
-            <type>voltage</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.Cdc</name>
-            <address>3</address>
-            <type>voltage</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.VSC side inductor_Rt_Lt.L3</name>
-            <address>9</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.VSC side inductor_Rt_Lt.L2</name>
-            <address>8</address>
+            <name>Plant.Grid side inductor_Rs_Ls.L3</name>
+            <address>6</address>
             <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
@@ -117,22 +96,29 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Grid side inductor_Rs_Ls.L1</name>
-            <address>4</address>
+            <name>Plant.VSC side inductor_Rt_Lt.L3</name>
+            <address>9</address>
             <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Grid side inductor_Rs_Ls.L3</name>
-            <address>6</address>
+            <name>Plant.Cdc</name>
+            <address>3</address>
+            <type>voltage</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.VSC side inductor_Rt_Lt.L2</name>
+            <address>8</address>
             <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Capacitor and dampin resistor.C1</name>
-            <address>0</address>
+            <name>Plant.Capacitor and dampin resistor.C2</name>
+            <address>1</address>
             <type>voltage</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
@@ -145,6 +131,13 @@
             <visible>True</visible>
         </cell>
         <cell>
+            <name>Plant.Grid side inductor_Rs_Ls.L1</name>
+            <address>4</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
             <name>Plant.Capacitor and dampin resistor.C3</name>
             <address>2</address>
             <type>voltage</type>
@@ -152,40 +145,11 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Half Bridge1.IGBT Leg global gds ovs.il</name>
-            <address>384</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>False</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.v_sb</name>
-            <address>11</address>
+            <name>Plant.Capacitor and dampin resistor.C1</name>
+            <address>0</address>
             <type>voltage</type>
-            <initial_condition>None</initial_condition>
+            <initial_condition>0.0</initial_condition>
             <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.is_a</name>
-            <address>15</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Half Bridge3.IGBT Leg global gds ovs.il</name>
-            <address>400</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>False</visible>
-            <previous_names>
-            </previous_names>
         </cell>
         <cell>
             <name>Plant.Half Bridge4.IGBT Leg global gds ovs.v1</name>
@@ -197,53 +161,8 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.VDC</name>
-            <address>10</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
             <name>Plant.is_a1</name>
             <address>16</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Half Bridge4.IGBT Leg global gds ovs.v2</name>
-            <address>410</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>False</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.vs_a</name>
-            <address>12</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.is_b</name>
-            <address>17</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.Idc_link</name>
-            <address>14</address>
             <type>current</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
@@ -260,11 +179,29 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.Half Bridge4.IGBT Leg global gds ovs.il</name>
-            <address>408</address>
+            <name>Plant.Half Bridge3.IGBT Leg global gds ovs.il</name>
+            <address>400</address>
             <type>current</type>
             <initial_condition>None</initial_condition>
             <visible>False</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Idc_link</name>
+            <address>14</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.is_a</name>
+            <address>15</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
             <previous_names>
             </previous_names>
         </cell>
@@ -274,6 +211,24 @@
             <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>False</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Half Bridge3.IGBT Leg global gds ovs.v1</name>
+            <address>401</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.vs_a</name>
+            <address>12</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
             <previous_names>
             </previous_names>
         </cell>
@@ -296,15 +251,6 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.Half Bridge2.IGBT Leg global gds ovs.il</name>
-            <address>392</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>False</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
             <name>Plant.vs_c</name>
             <address>13</address>
             <type>voltage</type>
@@ -314,8 +260,62 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.Half Bridge3.IGBT Leg global gds ovs.v1</name>
-            <address>401</address>
+            <name>Plant.VDC</name>
+            <address>10</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Half Bridge4.IGBT Leg global gds ovs.il</name>
+            <address>408</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Half Bridge2.IGBT Leg global gds ovs.il</name>
+            <address>392</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Half Bridge1.IGBT Leg global gds ovs.il</name>
+            <address>384</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>False</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.v_sb</name>
+            <address>11</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.is_c</name>
+            <address>18</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Half Bridge4.IGBT Leg global gds ovs.v2</name>
+            <address>410</address>
             <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>False</visible>
@@ -332,8 +332,8 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.is_c</name>
-            <address>18</address>
+            <name>Plant.is_b</name>
+            <address>17</address>
             <type>current</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
@@ -868,12 +868,12 @@
             <address>513</address>
             </cell>
         <cell>
-            <name>Plant.Half Bridge2.S_top</name>
-            <address>514</address>
-            </cell>
-        <cell>
             <name>Plant.Half Bridge2.S_bot</name>
             <address>515</address>
+            </cell>
+        <cell>
+            <name>Plant.Half Bridge2.S_top</name>
+            <address>514</address>
             </cell>
         <cell>
             <name>Plant.Half Bridge3.S_bot</name>
@@ -884,12 +884,12 @@
             <address>516</address>
             </cell>
         <cell>
-            <name>Plant.Half Bridge4.S_bot</name>
-            <address>519</address>
-            </cell>
-        <cell>
             <name>Plant.Half Bridge4.S_top</name>
             <address>518</address>
+            </cell>
+        <cell>
+            <name>Plant.Half Bridge4.S_bot</name>
+            <address>519</address>
             </cell>
         <cell>
             <name>Plant.Half Bridge1.S1</name>
@@ -906,17 +906,17 @@
                     </previous_names>
             </cell>
         <cell>
-            <name>Plant.Half Bridge2.S1</name>
-            <address>514</address>
-                <previous_names>
-                        <previous_name>Plant.Half Bridge2.S_top</previous_name>
-                    </previous_names>
-            </cell>
-        <cell>
             <name>Plant.Half Bridge2.S2</name>
             <address>515</address>
                 <previous_names>
                         <previous_name>Plant.Half Bridge2.S_bot</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Plant.Half Bridge2.S1</name>
+            <address>514</address>
+                <previous_names>
+                        <previous_name>Plant.Half Bridge2.S_top</previous_name>
                     </previous_names>
             </cell>
         <cell>
@@ -934,13 +934,6 @@
                     </previous_names>
             </cell>
         <cell>
-            <name>Plant.Half Bridge4.S2</name>
-            <address>519</address>
-                <previous_names>
-                        <previous_name>Plant.Half Bridge4.S_bot</previous_name>
-                    </previous_names>
-            </cell>
-        <cell>
             <name>Plant.Half Bridge4.S1</name>
             <address>518</address>
                 <previous_names>
@@ -948,21 +941,17 @@
                     </previous_names>
             </cell>
         <cell>
+            <name>Plant.Half Bridge4.S2</name>
+            <address>519</address>
+                <previous_names>
+                        <previous_name>Plant.Half Bridge4.S_bot</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
             <name>Plant.S1.Sa</name>
             <address>128</address>
                 <previous_names>
                     </previous_names>
-            </cell>
-        <cell>
-            <name>Plant.Half Bridge2.PWM_Modulator.BOT_1</name>
-            <address>515</address>
-                <previous_names>
-                        <previous_name>Plant.Half Bridge2.PWM_Modulator_BOT_1</previous_name>
-                    </previous_names>
-            </cell>
-        <cell>
-            <name>Plant.Half Bridge2.PWM_Modulator_BOT_1</name>
-            <address>515</address>
             </cell>
         <cell>
             <name>Plant.Half Bridge2.PWM_Modulator.TOP_1</name>
@@ -976,26 +965,15 @@
             <address>514</address>
             </cell>
         <cell>
-            <name>Plant.Half Bridge4.PWM_Modulator.TOP_1</name>
-            <address>518</address>
+            <name>Plant.Half Bridge2.PWM_Modulator.BOT_1</name>
+            <address>515</address>
                 <previous_names>
-                        <previous_name>Plant.Half Bridge4.PWM_Modulator_TOP_1</previous_name>
+                        <previous_name>Plant.Half Bridge2.PWM_Modulator_BOT_1</previous_name>
                     </previous_names>
             </cell>
         <cell>
-            <name>Plant.Half Bridge4.PWM_Modulator_TOP_1</name>
-            <address>518</address>
-            </cell>
-        <cell>
-            <name>Plant.Half Bridge4.PWM_Modulator.BOT_1</name>
-            <address>519</address>
-                <previous_names>
-                        <previous_name>Plant.Half Bridge4.PWM_Modulator_BOT_1</previous_name>
-                    </previous_names>
-            </cell>
-        <cell>
-            <name>Plant.Half Bridge4.PWM_Modulator_BOT_1</name>
-            <address>519</address>
+            <name>Plant.Half Bridge2.PWM_Modulator_BOT_1</name>
+            <address>515</address>
             </cell>
         <cell>
             <name>Plant.Half Bridge3.PWM_Modulator.BOT_1</name>
@@ -1040,6 +1018,28 @@
         <cell>
             <name>Plant.Half Bridge1.PWM_Modulator_TOP_1</name>
             <address>512</address>
+            </cell>
+        <cell>
+            <name>Plant.Half Bridge4.PWM_Modulator.BOT_1</name>
+            <address>519</address>
+                <previous_names>
+                        <previous_name>Plant.Half Bridge4.PWM_Modulator_BOT_1</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Plant.Half Bridge4.PWM_Modulator_BOT_1</name>
+            <address>519</address>
+            </cell>
+        <cell>
+            <name>Plant.Half Bridge4.PWM_Modulator.TOP_1</name>
+            <address>518</address>
+                <previous_names>
+                        <previous_name>Plant.Half Bridge4.PWM_Modulator_TOP_1</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Plant.Half Bridge4.PWM_Modulator_TOP_1</name>
+            <address>518</address>
             </cell>
         <cell>
             <name>Plant.Half Bridge1.vout_cmp</name>
@@ -1197,7 +1197,7 @@
 <!-- ******* SP DATA ******** -->
 
     <model_properties>
-        <execution_rates>[[[5e-05, 0.0001], [], []]]</execution_rates>
+        <execution_rates>[[[5e-05], [], []]]</execution_rates>
         <sys_real_type_precision>double</sys_real_type_precision>
         <user_real_type_precision>double</user_real_type_precision>
         <sig_stim>off</sig_stim>
@@ -1206,240 +1206,9 @@
 
     <analog_variables>
         <cell>
-            <name>Controller.is_c_ref</name>
-            <type>generic</type>
-            <address>16398</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.omega_pll</name>
-            <type>generic</type>
-            <address>16399</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.eta_c</name>
-            <type>generic</type>
-            <address>16394</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Qb</name>
-            <type>generic</type>
-            <address>16411</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>vs_a</name>
-            <type>generic</type>
-            <address>16419</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.eta_b</name>
-            <type>generic</type>
-            <address>16393</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>vs_b</name>
-            <type>generic</type>
-            <address>16420</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.VSG_a.is_be_ref</name>
-            <type>generic</type>
-            <address>16384</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.current_ctrl.is_n_ref</name>
-            <type>generic</type>
-            <address>16391</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.current_ctrl.is_be_ref</name>
-            <type>generic</type>
-            <address>16390</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>is_b</name>
-            <type>generic</type>
-            <address>16414</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>vs_c</name>
-            <type>generic</type>
-            <address>16421</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.eta_a</name>
-            <type>generic</type>
-            <address>16392</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>is_c</name>
-            <type>generic</type>
-            <address>16415</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Qc</name>
-            <type>generic</type>
-            <address>16412</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
             <name>Controller.is_a_ref</name>
             <type>generic</type>
             <address>16396</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.is_b_ref</name>
-            <type>generic</type>
-            <address>16397</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.omega_vsg_c</name>
-            <type>generic</type>
-            <address>16402</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.current_ctrl.is_al</name>
-            <type>generic</type>
-            <address>16387</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Q_3ph</name>
-            <type>generic</type>
-            <address>16409</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Qa</name>
-            <type>generic</type>
-            <address>16410</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.current_ctrl.is_be</name>
-            <type>generic</type>
-            <address>16389</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>P_3ph</name>
-            <type>generic</type>
-            <address>16403</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Pb</name>
-            <type>generic</type>
-            <address>16405</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>p_3ph</name>
-            <type>generic</type>
-            <address>16417</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Pa</name>
-            <type>generic</type>
-            <address>16404</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.current_ctrl.is_al_ref</name>
-            <type>generic</type>
-            <address>16388</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>is_n</name>
-            <type>generic</type>
-            <address>16416</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.Virtual 3ph3w.vs_a_al</name>
-            <type>generic</type>
-            <address>16385</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>q_3ph</name>
-            <type>generic</type>
-            <address>16418</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.omega_grid</name>
-            <type>generic</type>
-            <address>16408</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Controller.Virtual 3ph3w.vs_a_be</name>
-            <type>generic</type>
-            <address>16386</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.f_grid</name>
-            <type>generic</type>
-            <address>16407</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>is_a</name>
-            <type>generic</type>
-            <address>16413</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
@@ -1451,16 +1220,191 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Controller.omega_vsg_a</name>
+            <name>Q_3ph</name>
             <type>generic</type>
-            <address>16400</address>
+            <address>16412</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>is_n</name>
+            <type>generic</type>
+            <address>16419</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Qa</name>
+            <type>generic</type>
+            <address>16413</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Qc</name>
+            <type>generic</type>
+            <address>16415</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.omega_vsg_c</name>
+            <type>generic</type>
+            <address>16402</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>q_3ph</name>
+            <type>generic</type>
+            <address>16421</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.Virtual 3ph3w.vs_a_be</name>
+            <type>generic</type>
+            <address>16386</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.q_prim_b</name>
+            <type>generic</type>
+            <address>16404</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Qb</name>
+            <type>generic</type>
+            <address>16414</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>vs_a</name>
+            <type>generic</type>
+            <address>16422</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.omega_pll</name>
+            <type>generic</type>
+            <address>16399</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Pa</name>
+            <type>generic</type>
+            <address>16407</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.is_c_ref</name>
+            <type>generic</type>
+            <address>16398</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.current_ctrl.is_al_ref</name>
+            <type>generic</type>
+            <address>16388</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.Virtual 3ph3w.vs_a_al</name>
+            <type>generic</type>
+            <address>16385</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>is_c</name>
+            <type>generic</type>
+            <address>16418</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>is_b</name>
+            <type>generic</type>
+            <address>16417</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.current_ctrl.is_be_ref</name>
+            <type>generic</type>
+            <address>16390</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>is_a</name>
+            <type>generic</type>
+            <address>16416</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Pb</name>
+            <type>generic</type>
+            <address>16408</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.q_prim_c</name>
+            <type>generic</type>
+            <address>16405</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.current_ctrl.is_be</name>
+            <type>generic</type>
+            <address>16389</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.current_ctrl.is_n_ref</name>
+            <type>generic</type>
+            <address>16391</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>P_3ph</name>
+            <type>generic</type>
+            <address>16406</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.eta_b</name>
+            <type>generic</type>
+            <address>16393</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.eta_c</name>
+            <type>generic</type>
+            <address>16394</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
             <name>Pc</name>
             <type>generic</type>
-            <address>16406</address>
+            <address>16409</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
@@ -1471,6 +1415,83 @@
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
+        <cell>
+            <name>vs_b</name>
+            <type>generic</type>
+            <address>16423</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.current_ctrl.is_al</name>
+            <type>generic</type>
+            <address>16387</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>vs_c</name>
+            <type>generic</type>
+            <address>16424</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.omega_grid</name>
+            <type>generic</type>
+            <address>16411</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.VSG_a.is_be_ref</name>
+            <type>generic</type>
+            <address>16384</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.q_prim_a</name>
+            <type>generic</type>
+            <address>16403</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.eta_a</name>
+            <type>generic</type>
+            <address>16392</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>p_3ph</name>
+            <type>generic</type>
+            <address>16420</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.f_grid</name>
+            <type>generic</type>
+            <address>16410</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.omega_vsg_a</name>
+            <type>generic</type>
+            <address>16400</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Controller.is_b_ref</name>
+            <type>generic</type>
+            <address>16397</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
     </analog_variables>
 
 <digital_variables>
@@ -1478,7 +1499,7 @@
 
     <tunable_params>
         <tunable_param>
-            <name>Controller.SCADA Input1</name>
+            <name>cont</name>
             <addr>[796917760]</addr>
             <min>-1000000.0</min>
             <max>1000000.0</max>
@@ -1490,7 +1511,7 @@
             <param_type>scada input</param_type>
             <cpu_type>user_sp_cpu</cpu_type>
             <cpu_idx>0</cpu_idx>
-            <execution_rate>0.0001</execution_rate>
+            <execution_rate>5e-05</execution_rate>
             <visible>True</visible>
         </tunable_param>
         <tunable_param>
@@ -1612,9 +1633,9 @@
         <monitor>
             <type>user</type>
             <cpu_idx>0</cpu_idx>
-            <execution_rates>[5e-05, 0.0001]</execution_rates>
-            <execution_rate_labels>['ER0 (5e-05)', 'ER1 (0.0001)']</execution_rate_labels>
-            <timer_counters>[19999, 39999]</timer_counters>
+            <execution_rates>[5e-05]</execution_rates>
+            <execution_rate_labels>['ER0 (5e-05)']</execution_rate_labels>
+            <timer_counters>[19999]</timer_counters>
 
             
         </monitor>
@@ -1632,9 +1653,1259 @@
     <adv_c_ext_src>
         <component>
             <is_fmi>False</is_fmi>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter2_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter2_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter2.Internal filter</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
             <identifier_name>_controller_vsg_c_c_function_pll</identifier_name>
             <fqn>_controller_vsg_c_c_function_pll</fqn>
             <fqn_original>Controller.VSG_c.C function PLL</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_current_ctrl_c_function_abc_to_dq2</identifier_name>
+            <fqn>_controller_current_ctrl_c_function_abc_to_dq2</fqn>
+            <fqn_original>Controller.current_ctrl.C function abc to dq2</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_current_ctrl_c_function_abc_to_dq</identifier_name>
+            <fqn>_controller_current_ctrl_c_function_abc_to_dq</fqn>
+            <fqn_original>Controller.current_ctrl.C function abc to dq</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_vsg_a_c_function_vsg</identifier_name>
+            <fqn>_controller_vsg_a_c_function_vsg</fqn>
+            <fqn_original>Controller.VSG_a.C function VSG</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_governor_b</identifier_name>
+            <fqn>_controller_governor_b</fqn>
+            <fqn_original>Controller.Governor_b</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter8_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter8_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter8.Internal filter</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_vsg_a_c_function_dq_to_abc</identifier_name>
+            <fqn>_controller_vsg_a_c_function_dq_to_abc</fqn>
+            <fqn_original>Controller.VSG_a.C function dq to abc</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_governor_a</identifier_name>
+            <fqn>_controller_governor_a</fqn>
+            <fqn_original>Controller.Governor_a</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_avr_c</identifier_name>
+            <fqn>_controller_avr_c</fqn>
+            <fqn_original>Controller.AVR_c</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter9_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter9_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter9.Internal filter</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_vsg_c_c_function_vsg</identifier_name>
+            <fqn>_controller_vsg_c_c_function_vsg</fqn>
+            <fqn_original>Controller.VSG_c.C function VSG</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_vsg_b_c_function_vsg</identifier_name>
+            <fqn>_controller_vsg_b_c_function_vsg</fqn>
+            <fqn_original>Controller.VSG_b.C function VSG</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_current_ctrl_c_function_abc_to_dq1</identifier_name>
+            <fqn>_controller_current_ctrl_c_function_abc_to_dq1</fqn>
+            <fqn_original>Controller.current_ctrl.C function abc to dq1</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_c_function3</identifier_name>
+            <fqn>_controller_c_function3</fqn>
+            <fqn_original>Controller.C function3</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter5_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter5_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter5.Internal filter</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_plant_c_function1</identifier_name>
+            <fqn>_plant_c_function1</fqn>
+            <fqn_original>Plant.C function1</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter4_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter4_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter4.Internal filter</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_c_function2</identifier_name>
+            <fqn>_controller_c_function2</fqn>
+            <fqn_original>Controller.C function2</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_vsg_a_c_function_abc_to_dq</identifier_name>
+            <fqn>_controller_vsg_a_c_function_abc_to_dq</fqn>
+            <fqn_original>Controller.VSG_a.C function abc to dq</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_vsg_b_c_function_pll</identifier_name>
+            <fqn>_controller_vsg_b_c_function_pll</fqn>
+            <fqn_original>Controller.VSG_b.C function PLL</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_avr_b</identifier_name>
+            <fqn>_controller_avr_b</fqn>
+            <fqn_original>Controller.AVR_b</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_vsg_b_c_function_abc_to_dq</identifier_name>
+            <fqn>_controller_vsg_b_c_function_abc_to_dq</fqn>
+            <fqn_original>Controller.VSG_b.C function abc to dq</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_c_function_dq_to_abc1</identifier_name>
+            <fqn>_controller_c_function_dq_to_abc1</fqn>
+            <fqn_original>Controller.C function dq to abc1</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_avr_a</identifier_name>
+            <fqn>_controller_avr_a</fqn>
+            <fqn_original>Controller.AVR_a</fqn_original>
+            <include_imports>True</include_imports>
+            <library_load_type>Compile-time load</library_load_type>
+            <macros></macros>
+            <library>
+                <win64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </win64>
+                <linux64>
+                    <library_name>False</library_name>
+                    <linking_name>False</linking_name>
+                    <library_path_relative>False</library_path_relative>
+                    <library_path_absolute>False</library_path_absolute>
+                    <include_folder_relative>False</include_folder_relative>
+                    <h_file>False</h_file>
+                    <h_include_folder_relative>False</h_include_folder_relative>
+                </linux64>
+            </library>
+            <additional_sources>
+                <h>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                </h>
+                <c>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </c>
+                <cpp>
+                    <files>set()</files>
+                    <files_relative_paths>set()</files_relative_paths>
+                    <folders_relative_paths>set()</folders_relative_paths>
+                    <o_files>set()</o_files>
+                    <d_files>set()</d_files>
+                </cpp>
+            </additional_sources>
+        </component>
+        <component>
+            <is_fmi>False</is_fmi>
+            <identifier_name>_controller_governor_c</identifier_name>
+            <fqn>_controller_governor_c</fqn>
+            <fqn_original>Controller.Governor_c</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -1782,509 +3053,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter9_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter9_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter9.Internal filter</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_plant_c_function1</identifier_name>
-            <fqn>_plant_c_function1</fqn>
-            <fqn_original>Plant.C function1</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_b_c_function_vsg</identifier_name>
-            <fqn>_controller_vsg_b_c_function_vsg</fqn>
-            <fqn_original>Controller.VSG_b.C function VSG</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter5_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter5_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter5.Internal filter</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_current_ctrl_c_function_abc_to_dq</identifier_name>
-            <fqn>_controller_current_ctrl_c_function_abc_to_dq</fqn>
-            <fqn_original>Controller.current_ctrl.C function abc to dq</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter4_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter4_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter4.Internal filter</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_c_c_function_dq_to_abc1</identifier_name>
-            <fqn>_controller_vsg_c_c_function_dq_to_abc1</fqn>
-            <fqn_original>Controller.VSG_c.C function dq to abc1</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_c_function1</identifier_name>
-            <fqn>_controller_c_function1</fqn>
-            <fqn_original>Controller.C function1</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_a_c_function_dq_to_abc</identifier_name>
-            <fqn>_controller_vsg_a_c_function_dq_to_abc</fqn>
-            <fqn_original>Controller.VSG_a.C function dq to abc</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_b_c_function_dq_to_abc1</identifier_name>
-            <fqn>_controller_vsg_b_c_function_dq_to_abc1</fqn>
-            <fqn_original>Controller.VSG_b.C function dq to abc1</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter10_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter10_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter10.Internal filter</fqn_original>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter12_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter12_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter12.Internal filter</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -2382,9 +3153,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter12_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter12_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter12.Internal filter</fqn_original>
+            <identifier_name>_controller_vsg_b_c_function_dq_to_abc</identifier_name>
+            <fqn>_controller_vsg_b_c_function_dq_to_abc</fqn>
+            <fqn_original>Controller.VSG_b.C function dq to abc</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -2432,59 +3203,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_b_c_function_abc_to_dq</identifier_name>
-            <fqn>_controller_vsg_b_c_function_abc_to_dq</fqn>
-            <fqn_original>Controller.VSG_b.C function abc to dq</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_c_c_function_vsg</identifier_name>
-            <fqn>_controller_vsg_c_c_function_vsg</fqn>
-            <fqn_original>Controller.VSG_c.C function VSG</fqn_original>
+            <identifier_name>_controller_vsg_b_c_function_dq_to_abc1</identifier_name>
+            <fqn>_controller_vsg_b_c_function_dq_to_abc1</fqn>
+            <fqn_original>Controller.VSG_b.C function dq to abc1</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -2582,9 +3303,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter7_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter7_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter7.Internal filter</fqn_original>
+            <identifier_name>_controller_vsg_c_c_function_abc_to_dq</identifier_name>
+            <fqn>_controller_vsg_c_c_function_abc_to_dq</fqn>
+            <fqn_original>Controller.VSG_c.C function abc to dq</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -2632,309 +3353,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_a_c_function_abc_to_dq</identifier_name>
-            <fqn>_controller_vsg_a_c_function_abc_to_dq</fqn>
-            <fqn_original>Controller.VSG_a.C function abc to dq</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_a_c_function_vsg</identifier_name>
-            <fqn>_controller_vsg_a_c_function_vsg</fqn>
-            <fqn_original>Controller.VSG_a.C function VSG</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter8_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter8_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter8.Internal filter</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter3_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter3_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter3.Internal filter</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_c_function2</identifier_name>
-            <fqn>_controller_c_function2</fqn>
-            <fqn_original>Controller.C function2</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_current_ctrl_c_function_abc_to_dq1</identifier_name>
-            <fqn>_controller_current_ctrl_c_function_abc_to_dq1</fqn>
-            <fqn_original>Controller.current_ctrl.C function abc to dq1</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_b_c_function_pll</identifier_name>
-            <fqn>_controller_vsg_b_c_function_pll</fqn>
-            <fqn_original>Controller.VSG_b.C function PLL</fqn_original>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter10_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter10_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter10.Internal filter</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -3032,9 +3453,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_c_c_function_abc_to_dq</identifier_name>
-            <fqn>_controller_vsg_c_c_function_abc_to_dq</fqn>
-            <fqn_original>Controller.VSG_c.C function abc to dq</fqn_original>
+            <identifier_name>_controller_c_function1</identifier_name>
+            <fqn>_controller_c_function1</fqn>
+            <fqn_original>Controller.C function1</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -3082,9 +3503,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter2_internal_filter</identifier_name>
-            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter2_internal_filter</fqn>
-            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter2.Internal filter</fqn_original>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter3_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter3_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter3.Internal filter</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -3132,9 +3553,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_vsg_b_c_function_dq_to_abc</identifier_name>
-            <fqn>_controller_vsg_b_c_function_dq_to_abc</fqn>
-            <fqn_original>Controller.VSG_b.C function dq to abc</fqn_original>
+            <identifier_name>_controller_virtual_3ph3w_advanced_low_pass_filter7_internal_filter</identifier_name>
+            <fqn>_controller_virtual_3ph3w_advanced_low_pass_filter7_internal_filter</fqn>
+            <fqn_original>Controller.Virtual 3ph3w.Advanced Low-Pass Filter7.Internal filter</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -3182,109 +3603,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_current_ctrl_c_function_abc_to_dq2</identifier_name>
-            <fqn>_controller_current_ctrl_c_function_abc_to_dq2</fqn>
-            <fqn_original>Controller.current_ctrl.C function abc to dq2</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_c_function3</identifier_name>
-            <fqn>_controller_c_function3</fqn>
-            <fqn_original>Controller.C function3</fqn_original>
-            <include_imports>True</include_imports>
-            <library_load_type>Compile-time load</library_load_type>
-            <macros></macros>
-            <library>
-                <win64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </win64>
-                <linux64>
-                    <library_name>False</library_name>
-                    <linking_name>False</linking_name>
-                    <library_path_relative>False</library_path_relative>
-                    <library_path_absolute>False</library_path_absolute>
-                    <include_folder_relative>False</include_folder_relative>
-                    <h_file>False</h_file>
-                    <h_include_folder_relative>False</h_include_folder_relative>
-                </linux64>
-            </library>
-            <additional_sources>
-                <h>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                </h>
-                <c>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </c>
-                <cpp>
-                    <files>set()</files>
-                    <files_relative_paths>set()</files_relative_paths>
-                    <folders_relative_paths>set()</folders_relative_paths>
-                    <o_files>set()</o_files>
-                    <d_files>set()</d_files>
-                </cpp>
-            </additional_sources>
-        </component>
-        <component>
-            <is_fmi>False</is_fmi>
-            <identifier_name>_controller_c_function_dq_to_abc1</identifier_name>
-            <fqn>_controller_c_function_dq_to_abc1</fqn>
-            <fqn_original>Controller.C function dq to abc1</fqn_original>
+            <identifier_name>_controller_vsg_c_c_function_dq_to_abc1</identifier_name>
+            <fqn>_controller_vsg_c_c_function_dq_to_abc1</fqn>
+            <fqn_original>Controller.VSG_c.C function dq to abc1</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>

@@ -3274,7 +3274,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = in
             }
             [
-                position = 8656, 7616
+                position = 8672, 7616
                 hide_name = True
                 size = 84, 20
             ]
@@ -3286,7 +3286,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = in
             }
             [
-                position = 8648, 7708
+                position = 8672, 7708
                 hide_name = True
                 size = 84, 20
             ]
@@ -3568,8 +3568,8 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             build_and_deploy_action = "False"
             c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "albe_current_ctrl_acg"
-            ccs_project_path = "C:/workspace/Typhoon_USE/Auto_code_gen/VSC_USE/updated"
-            ccs_root_path = "C:\ti\ccs1230"
+            ccs_project_path = "C:\workspace\Typhoon_USE\Andrei_unb_vsg"
+            ccs_root_path = "C:\ti\ccs1271"
             exp_subsys_name = "albe_current_ctrl"
         }
         [
