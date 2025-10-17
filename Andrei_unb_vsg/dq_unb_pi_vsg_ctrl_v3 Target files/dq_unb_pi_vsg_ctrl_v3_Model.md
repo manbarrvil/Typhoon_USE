@@ -11,7 +11,7 @@ REM *****************************************:
 
 
 REM Setting the simulation time step...
-rtds_write 0x00000000 0x000000DC
+rtds_write 0x00000000 0x0000008C
 
 
 REM External SFP Link
@@ -148,7 +148,7 @@ rtds_write 0x08100001 0x0
 
 REM SPC0 Output voltage compare mode...
 rtds_write 0x08100005 0x00000000
-rtds_write 0x08100006 0x00000005
+rtds_write 0x08100006 0x0000000A
 
 
 REM SPC0 Matrix multiplier initialization...
@@ -167,9 +167,9 @@ REM SPC0 Contactors initialization...
 REM SPC0 GDS compensation settings...
 rtds_write 0x080C0000 0x00000001
 rtds_write 0x080C0001 0x0000000A
-rtds_write 0x080C0004 0x3B94F209
-rtds_write 0x080C0005 0x4F210000
-rtds_write 0x08100000 0x000000DC
+rtds_write 0x080C0004 0x3BEA0EA0
+rtds_write 0x080C0005 0xEA0F0000
+rtds_write 0x08100000 0x0000008C
 rtds_write 0x08100007 0x00000000
 
 
@@ -380,6 +380,7 @@ REM configure system synchronization
 sys_command_custom "echo -e '[global]\n{ \n} \n' > ptp_settings.txt"
 hil_app_var_write 0 0
 hil_app_var_write 1 -1
+hil_app_var_write 2 -1
 
 
 REM Communication peripherals reset and load sequence
@@ -396,5 +397,5 @@ app_file_write 0x0 app_init
 
 REM Clear the /mnt/ext_files. directory
 file_write_custom clean_ext_files None
-rtds_write 0x00000027 0x000000DC
+rtds_write 0x00000027 0x0000008C
 rtds_write 0x00000040 0x00FFFFFF

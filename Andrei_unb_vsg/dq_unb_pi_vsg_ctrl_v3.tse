@@ -1,12 +1,12 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.2
+// Saved by sw version: 2025.3
 //
 
 model "dq_unb_pi_vsg_ctrl_v3" {
     configuration {
-        hil_device = "HIL101"
+        hil_device = "HIL404"
         hil_configuration_id = 3
         simulation_method = exact
         simulation_time_step = auto
@@ -7976,9 +7976,9 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
 
         component "TI C2000 Toolbox/TI C2000 Setup" "TI C2000 Setup1" {
             build_and_deploy_action = "False"
-            c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_05_00_00"
+            c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "dq_unb_pi_vsg_acg"
-            ccs_project_path = "C:\GITHUB\manbarvil\Typhoon_USE\Andrei_unb_vsg"
+            ccs_project_path = "C:\workspace\Typhoon_USE\Andrei_unb_vsg"
             ccs_root_path = "C:\ti\ccs1260"
             exp_subsys_name = "dq_unb_pi_vsg"
             scheduling = "ADCA Interrupt"
@@ -7990,9 +7990,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
     }
 
     logically_deleted {
-        "dq_unb_pi_vsg"
         "Plant.Vs1"
-        "TI C2000 Setup1"
     }
 
     default {
@@ -8233,6 +8231,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             S_top_I = "False"
             S_bot_I = "False"
             _control_property = "all high"
+            _overridable_switches = "[\'S_top\', \'S_bot\']"
             switches_names_at_mask = "[]"
             pwm_enabling = "False"
             pwm_enable_di = "13"

@@ -8,8 +8,8 @@
 * Code generated from model             : 'dq_unb_pi_vsg_ctrl_v3'.
 * Subsystem selected for code generation: 'dq_unb_pi_vsg'.
 *
-* Schematic Editor version              : 2025.2
-* C source code generated on            : 29-Jul-2025 @ 08:24:59 PM
+* Schematic Editor version              : 2025.3
+* C source code generated on            : 16-Oct-2025 @ 08:20:25 PM
 *
 * Generated using TI C2000 Toolbox. Platform: LAUNCHXL-F28379D
 *
@@ -389,8 +389,8 @@ void dq_unb_pi_vsg_step0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     // Set tunable parameters
     // Output block
     while(AdcaRegs.ADCCTL1.bit.ADCBSY);
-	while(AdccRegs.ADCCTL1.bit.ADCBSY);
 	while(AdcbRegs.ADCCTL1.bit.ADCBSY);
+	while(AdccRegs.ADCCTL1.bit.ADCBSY);
     // Generated from the component: dq_unb_pi_vsg.ADC (Generic)1.ADC.advanced c function
     {
         _dq_unb_pi_vsg_adc__generic_1_adc_advanced_c_function__out = AdcaResultRegs.ADCRESULT3;
@@ -1350,44 +1350,9 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
     dq_unb_pi_vsg_ExtIn *ext_In = (dq_unb_pi_vsg_ExtIn *) p_m_Data->p_extIn;
     dq_unb_pi_vsg_ModelStates *m_States = (dq_unb_pi_vsg_ModelStates *) p_m_Data->p_States;
     // Init tunable properties if they exist
-    AdcSetMode(ADC_ADCB, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-	AdcSetMode(ADC_ADCC, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
+    AdcSetMode(ADC_ADCC, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
+	AdcSetMode(ADC_ADCB, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
 	AdcSetMode(ADC_ADCA, ADC_RESOLUTION_12BIT, ADC_SIGNALMODE_SINGLE);
-	// dq_unb_pi_vsg.SCI Setup1
-	GpioCtrlRegs.GPBGMUX1.bit.GPIO42 = 3;
-	GpioCtrlRegs.GPBMUX1.bit.GPIO42 = 3;
-	GpioCtrlRegs.GPBDIR.bit.GPIO42 = 1;
-	GpioCtrlRegs.GPBPUD.bit.GPIO42 = 1;
-	GpioCtrlRegs.GPBQSEL1.bit.GPIO42 = 0;
-	GpioCtrlRegs.GPBGMUX1.bit.GPIO43 = 3;
-	GpioCtrlRegs.GPBMUX1.bit.GPIO43 = 3;
-	GpioCtrlRegs.GPBDIR.bit.GPIO43 = 0;
-	GpioCtrlRegs.GPBPUD.bit.GPIO43 = 0;
-	GpioCtrlRegs.GPBQSEL1.bit.GPIO43 = 3;
-	SciaRegs.SCIHBAUD.all = 0;
-	SciaRegs.SCILBAUD.all = 12;
-	SciaRegs.SCICCR.bit.PARITYENA = 0;
-	SciaRegs.SCICCR.bit.PARITY = 0;
-	SciaRegs.SCICCR.bit.STOPBITS = 0;
-	SciaRegs.SCICCR.bit.SCICHAR = 7;
-	SciaRegs.SCIFFTX.bit.SCIFFENA = 1;
-	SciaRegs.SCIFFTX.bit.SCIRST = 1;
-	SciaRegs.SCICTL1.bit.SWRESET = 1;
-	SciaRegs.SCICTL1.bit.RXENA = 1;
-	SciaRegs.SCICTL1.bit.TXENA = 1;
-	SciaRegs.SCIFFRX.bit.RXFIFORESET = 1;
-	SciaRegs.SCIFFTX.bit.TXFIFORESET = 1;
-	SerialComm.SciRegs = &SciaRegs;
-	// dq_unb_pi_vsg.ADC (Generic)7.ADC
-	AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
-	AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;
-	AdcaRegs.ADCSOC2CTL.bit.ACQPS = 28;
-	AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;
-	AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 3;
-	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-	AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-	AdcaRegs.ADCCTL2.bit.PRESCALE = 6;
-	AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
 	// dq_unb_pi_vsg.ePWM (Generic)2.ePWM 1
 	GpioCtrlRegs.GPAMUX1.bit.GPIO10 = 1;
 	GpioCtrlRegs.GPAPUD.bit.GPIO10 = 0;
@@ -1432,98 +1397,76 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
 	EPwm6Regs.ETSEL.bit.INTEN = 0;
 	EPwm6Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
 	EPwm6Regs.ETPS.bit.INTPRD = ET_1ST;
+	// dq_unb_pi_vsg.SCI Setup1
+	GpioCtrlRegs.GPBGMUX1.bit.GPIO42 = 3;
+	GpioCtrlRegs.GPBMUX1.bit.GPIO42 = 3;
+	GpioCtrlRegs.GPBDIR.bit.GPIO42 = 1;
+	GpioCtrlRegs.GPBPUD.bit.GPIO42 = 1;
+	GpioCtrlRegs.GPBQSEL1.bit.GPIO42 = 0;
+	GpioCtrlRegs.GPBGMUX1.bit.GPIO43 = 3;
+	GpioCtrlRegs.GPBMUX1.bit.GPIO43 = 3;
+	GpioCtrlRegs.GPBDIR.bit.GPIO43 = 0;
+	GpioCtrlRegs.GPBPUD.bit.GPIO43 = 0;
+	GpioCtrlRegs.GPBQSEL1.bit.GPIO43 = 3;
+	SciaRegs.SCIHBAUD.all = 0;
+	SciaRegs.SCILBAUD.all = 12;
+	SciaRegs.SCICCR.bit.PARITYENA = 0;
+	SciaRegs.SCICCR.bit.PARITY = 0;
+	SciaRegs.SCICCR.bit.STOPBITS = 0;
+	SciaRegs.SCICCR.bit.SCICHAR = 7;
+	SciaRegs.SCIFFTX.bit.SCIFFENA = 1;
+	SciaRegs.SCIFFTX.bit.SCIRST = 1;
+	SciaRegs.SCICTL1.bit.SWRESET = 1;
+	SciaRegs.SCICTL1.bit.RXENA = 1;
+	SciaRegs.SCICTL1.bit.TXENA = 1;
+	SciaRegs.SCIFFRX.bit.RXFIFORESET = 1;
+	SciaRegs.SCIFFTX.bit.TXFIFORESET = 1;
+	SerialComm.SciRegs = &SciaRegs;
+	// dq_unb_pi_vsg.ADC (Generic)1.ADC
+	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
+	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;
+	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 28;
+	AdcaRegs.ADCINTSEL1N2.bit.INT1E = 1;
+	AdcaRegs.ADCINTSEL1N2.bit.INT1SEL = 14;
+	AdcaRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
+	AdcaRegs.ADCCTL1.bit.INTPULSEPOS = 1;
+	AdcaRegs.ADCCTL2.bit.PRESCALE = 6;
+	AdcaRegs.ADCCTL1.bit.ADCPWDNZ = 1;
+	// dq_unb_pi_vsg.ADC (Generic)7.ADC
+	AdcaRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
+	AdcaRegs.ADCSOC2CTL.bit.CHSEL = 2;
+	AdcaRegs.ADCSOC2CTL.bit.ACQPS = 28;
+	// dq_unb_pi_vsg.GPIO DO (Generic)1.GPIO DO
+	GpioCtrlRegs.GPADIR.bit.GPIO9 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO9 = 1;
+	// dq_unb_pi_vsg.ADC (Generic)3.ADC
+	AdcbRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
+	AdcbRegs.ADCSOC2CTL.bit.CHSEL = 2;
+	AdcbRegs.ADCSOC2CTL.bit.ACQPS = 28;
+	AdcbRegs.ADCINTSEL1N2.bit.INT1E = 1;
+	AdcbRegs.ADCINTSEL1N2.bit.INT1SEL = 3;
+	AdcbRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
+	AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;
+	AdcbRegs.ADCCTL2.bit.PRESCALE = 6;
+	AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;
 	// dq_unb_pi_vsg.ADC (Generic)4.ADC
 	AdcaRegs.ADCSOC14CTL.bit.TRIGSEL = 15;
 	AdcaRegs.ADCSOC14CTL.bit.CHSEL = 14;
 	AdcaRegs.ADCSOC14CTL.bit.ACQPS = 28;
-	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 3
-	GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO4 = 0;
-	GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO5 = 0;
-	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
-	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
-	EPwm3Regs.TBCTL.bit.HSPCLKDIV = 0;
-	EPwm3Regs.TBCTL.bit.CLKDIV = 0;
-	EPwm3Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
-	EPwm3Regs.TBPRD = 10000;
-	EPwm3Regs.TBCTL.bit.PHSEN = 1;
-	EPwm3Regs.TBCTL2.bit.PRDLDSYNC = 1;
-	EPwm3Regs.TBPHS.bit.TBPHS = 2;
-	EPwm3Regs.TBCTL.bit.PHSDIR = TB_UP;
-	EPwm3Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
-	EPwm3Regs.CMPA.bit.CMPA = 0;
-	EPwm3Regs.CMPB.bit.CMPB = 0;
-	EPwm3Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
-	EPwm3Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-	EPwm3Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-	EPwm3Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
-	EPwm3Regs.AQCTLA.bit.CAU = AQ_CLEAR;
-	EPwm3Regs.AQCTLA.bit.CAD = AQ_SET;
-	EPwm3Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
-	EPwm3Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
-	EPwm3Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
-	EPwm3Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
-	EPwm3Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
-	EPwm3Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
-	EPwm3Regs.DBCTL.bit.IN_MODE = DBA_ALL;
-	EPwm3Regs.DBRED.bit.DBRED = 20;
-	EPwm3Regs.DBFED.bit.DBFED = 20;
-	EPwm3Regs.ETSEL.bit.SOCAEN = 0;
-	EPwm3Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
-	EPwm3Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
-	EPwm3Regs.ETSEL.bit.SOCBEN = 0;
-	EPwm3Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
-	EPwm3Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
-	EPwm3Regs.ETSEL.bit.INTEN = 0;
-	EPwm3Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
-	EPwm3Regs.ETPS.bit.INTPRD = ET_DISABLE;
-	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 4
-	GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO6 = 0;
-	GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;
-	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
-	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
-	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
-	EPwm4Regs.TBCTL.bit.HSPCLKDIV = 0;
-	EPwm4Regs.TBCTL.bit.CLKDIV = 0;
-	EPwm4Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
-	EPwm4Regs.TBPRD = 10000;
-	EPwm4Regs.TBCTL.bit.PHSEN = 1;
-	EPwm4Regs.TBCTL2.bit.PRDLDSYNC = 1;
-	EPwm4Regs.TBPHS.bit.TBPHS = 2;
-	EPwm4Regs.TBCTL.bit.PHSDIR = TB_UP;
-	EPwm4Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
-	EPwm4Regs.CMPA.bit.CMPA = 0;
-	EPwm4Regs.CMPB.bit.CMPB = 0;
-	EPwm4Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
-	EPwm4Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
-	EPwm4Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
-	EPwm4Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
-	EPwm4Regs.AQCTLA.bit.CAU = AQ_CLEAR;
-	EPwm4Regs.AQCTLA.bit.CAD = AQ_SET;
-	EPwm4Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
-	EPwm4Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
-	EPwm4Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
-	EPwm4Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
-	EPwm4Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
-	EPwm4Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
-	EPwm4Regs.DBCTL.bit.IN_MODE = DBA_ALL;
-	EPwm4Regs.DBRED.bit.DBRED = 20;
-	EPwm4Regs.DBFED.bit.DBFED = 20;
-	EPwm4Regs.ETSEL.bit.SOCAEN = 0;
-	EPwm4Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
-	EPwm4Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
-	EPwm4Regs.ETSEL.bit.SOCBEN = 0;
-	EPwm4Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
-	EPwm4Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
-	EPwm4Regs.ETSEL.bit.INTEN = 0;
-	EPwm4Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
-	EPwm4Regs.ETPS.bit.INTPRD = ET_DISABLE;
+	// dq_unb_pi_vsg.ADC (Generic)5.ADC
+	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
+	AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;
+	AdccRegs.ADCSOC3CTL.bit.ACQPS = 28;
+	AdccRegs.ADCINTSEL1N2.bit.INT1E = 1;
+	AdccRegs.ADCINTSEL1N2.bit.INT1SEL = 2;
+	AdccRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
+	AdccRegs.ADCCTL1.bit.INTPULSEPOS = 1;
+	AdccRegs.ADCCTL2.bit.PRESCALE = 6;
+	AdccRegs.ADCCTL1.bit.ADCPWDNZ = 1;
+	// dq_unb_pi_vsg.ADC (Generic)6.ADC
+	AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
+	AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;
+	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 28;
 	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 1
 	GpioCtrlRegs.GPAMUX1.bit.GPIO0 = 1;
 	GpioCtrlRegs.GPAPUD.bit.GPIO0 = 0;
@@ -1568,6 +1511,50 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
 	EPwm1Regs.ETSEL.bit.INTEN = 0;
 	EPwm1Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
 	EPwm1Regs.ETPS.bit.INTPRD = ET_1ST;
+	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 3
+	GpioCtrlRegs.GPAMUX1.bit.GPIO4 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO4 = 0;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO5 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO5 = 0;
+	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
+	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
+	EPwm3Regs.TBCTL.bit.HSPCLKDIV = 0;
+	EPwm3Regs.TBCTL.bit.CLKDIV = 0;
+	EPwm3Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
+	EPwm3Regs.TBPRD = 10000;
+	EPwm3Regs.TBCTL.bit.PHSEN = 1;
+	EPwm3Regs.TBCTL2.bit.PRDLDSYNC = 1;
+	EPwm3Regs.TBPHS.bit.TBPHS = 2;
+	EPwm3Regs.TBCTL.bit.PHSDIR = TB_UP;
+	EPwm3Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
+	EPwm3Regs.CMPA.bit.CMPA = 0;
+	EPwm3Regs.CMPB.bit.CMPB = 0;
+	EPwm3Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
+	EPwm3Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
+	EPwm3Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
+	EPwm3Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
+	EPwm3Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+	EPwm3Regs.AQCTLA.bit.CAD = AQ_SET;
+	EPwm3Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
+	EPwm3Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
+	EPwm3Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
+	EPwm3Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
+	EPwm3Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+	EPwm3Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+	EPwm3Regs.DBCTL.bit.IN_MODE = DBA_ALL;
+	EPwm3Regs.DBRED.bit.DBRED = 20;
+	EPwm3Regs.DBFED.bit.DBFED = 20;
+	EPwm3Regs.ETSEL.bit.SOCAEN = 0;
+	EPwm3Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
+	EPwm3Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
+	EPwm3Regs.ETSEL.bit.SOCBEN = 0;
+	EPwm3Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
+	EPwm3Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
+	EPwm3Regs.ETSEL.bit.INTEN = 0;
+	EPwm3Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
+	EPwm3Regs.ETPS.bit.INTPRD = ET_DISABLE;
 	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 2
 	GpioCtrlRegs.GPAMUX1.bit.GPIO2 = 1;
 	GpioCtrlRegs.GPAPUD.bit.GPIO2 = 0;
@@ -1612,44 +1599,57 @@ void dq_unb_pi_vsg_init0(dq_unb_pi_vsg_ModelData *p_m_Data) {
 	EPwm2Regs.ETSEL.bit.INTEN = 0;
 	EPwm2Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
 	EPwm2Regs.ETPS.bit.INTPRD = ET_DISABLE;
+	// dq_unb_pi_vsg.ePWM (Generic)1.ePWM 4
+	GpioCtrlRegs.GPAMUX1.bit.GPIO6 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO6 = 0;
+	GpioCtrlRegs.GPAMUX1.bit.GPIO7 = 1;
+	GpioCtrlRegs.GPAPUD.bit.GPIO7 = 0;
+	CpuSysRegs.PCLKCR0.bit.TBCLKSYNC = 0;
+	ClkCfgRegs.PERCLKDIVSEL.bit.EPWMCLKDIV = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM4SYNCIN = 0;
+	SyncSocRegs.SYNCSELECT.bit.EPWM7SYNCIN = 1;
+	EPwm4Regs.TBCTL.bit.HSPCLKDIV = 0;
+	EPwm4Regs.TBCTL.bit.CLKDIV = 0;
+	EPwm4Regs.TBCTL.bit.CTRMODE = TB_COUNT_UPDOWN;
+	EPwm4Regs.TBPRD = 10000;
+	EPwm4Regs.TBCTL.bit.PHSEN = 1;
+	EPwm4Regs.TBCTL2.bit.PRDLDSYNC = 1;
+	EPwm4Regs.TBPHS.bit.TBPHS = 2;
+	EPwm4Regs.TBCTL.bit.PHSDIR = TB_UP;
+	EPwm4Regs.TBCTL.bit.SYNCOSEL = TB_CTR_ZERO;
+	EPwm4Regs.CMPA.bit.CMPA = 0;
+	EPwm4Regs.CMPB.bit.CMPB = 0;
+	EPwm4Regs.CMPCTL.bit.SHDWAMODE = CC_SHADOW;
+	EPwm4Regs.CMPCTL.bit.SHDWBMODE = CC_SHADOW;
+	EPwm4Regs.CMPCTL.bit.LOADAMODE = CC_CTR_ZERO;
+	EPwm4Regs.CMPCTL.bit.LOADBMODE = CC_CTR_ZERO;
+	EPwm4Regs.AQCTLA.bit.CAU = AQ_CLEAR;
+	EPwm4Regs.AQCTLA.bit.CAD = AQ_SET;
+	EPwm4Regs.AQCTLA.bit.CBU = AQ_NO_ACTION;
+	EPwm4Regs.AQCTLA.bit.CBD = AQ_NO_ACTION;
+	EPwm4Regs.AQCTLA.bit.ZRO = AQ_NO_ACTION;
+	EPwm4Regs.AQCTLA.bit.PRD = AQ_NO_ACTION;
+	EPwm4Regs.DBCTL.bit.OUT_MODE = DB_FULL_ENABLE;
+	EPwm4Regs.DBCTL.bit.POLSEL = DB_ACTV_HIC;
+	EPwm4Regs.DBCTL.bit.IN_MODE = DBA_ALL;
+	EPwm4Regs.DBRED.bit.DBRED = 20;
+	EPwm4Regs.DBFED.bit.DBFED = 20;
+	EPwm4Regs.ETSEL.bit.SOCAEN = 0;
+	EPwm4Regs.ETSEL.bit.SOCASEL = ET_CTR_ZERO;
+	EPwm4Regs.ETPS.bit.SOCAPRD = ET_DISABLE;
+	EPwm4Regs.ETSEL.bit.SOCBEN = 0;
+	EPwm4Regs.ETSEL.bit.SOCBSEL = ET_CTR_ZERO;
+	EPwm4Regs.ETPS.bit.SOCBPRD = ET_DISABLE;
+	EPwm4Regs.ETSEL.bit.INTEN = 0;
+	EPwm4Regs.ETSEL.bit.INTSEL = ET_CTR_ZERO;
+	EPwm4Regs.ETPS.bit.INTPRD = ET_DISABLE;
 	// dq_unb_pi_vsg.GPIO DO (Generic)2.GPIO DO
 	GpioCtrlRegs.GPADIR.bit.GPIO24 = 1;
 	GpioCtrlRegs.GPAPUD.bit.GPIO24 = 1;
-	// dq_unb_pi_vsg.ADC (Generic)6.ADC
-	AdcbRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
-	AdcbRegs.ADCSOC3CTL.bit.CHSEL = 3;
-	AdcbRegs.ADCSOC3CTL.bit.ACQPS = 28;
-	AdcbRegs.ADCINTSEL1N2.bit.INT1E = 1;
-	AdcbRegs.ADCINTSEL1N2.bit.INT1SEL = 2;
-	AdcbRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-	AdcbRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-	AdcbRegs.ADCCTL2.bit.PRESCALE = 6;
-	AdcbRegs.ADCCTL1.bit.ADCPWDNZ = 1;
 	// dq_unb_pi_vsg.ADC (Generic)2.ADC
 	AdccRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
 	AdccRegs.ADCSOC2CTL.bit.CHSEL = 2;
 	AdccRegs.ADCSOC2CTL.bit.ACQPS = 28;
-	AdccRegs.ADCINTSEL1N2.bit.INT1E = 1;
-	AdccRegs.ADCINTSEL1N2.bit.INT1SEL = 3;
-	AdccRegs.ADCINTFLGCLR.bit.ADCINT1 = 1;
-	AdccRegs.ADCCTL1.bit.INTPULSEPOS = 1;
-	AdccRegs.ADCCTL2.bit.PRESCALE = 6;
-	AdccRegs.ADCCTL1.bit.ADCPWDNZ = 1;
-	// dq_unb_pi_vsg.GPIO DO (Generic)1.GPIO DO
-	GpioCtrlRegs.GPADIR.bit.GPIO9 = 1;
-	GpioCtrlRegs.GPAPUD.bit.GPIO9 = 1;
-	// dq_unb_pi_vsg.ADC (Generic)1.ADC
-	AdcaRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
-	AdcaRegs.ADCSOC3CTL.bit.CHSEL = 3;
-	AdcaRegs.ADCSOC3CTL.bit.ACQPS = 28;
-	// dq_unb_pi_vsg.ADC (Generic)5.ADC
-	AdccRegs.ADCSOC3CTL.bit.TRIGSEL = 15;
-	AdccRegs.ADCSOC3CTL.bit.CHSEL = 3;
-	AdccRegs.ADCSOC3CTL.bit.ACQPS = 28;
-	// dq_unb_pi_vsg.ADC (Generic)3.ADC
-	AdcbRegs.ADCSOC2CTL.bit.TRIGSEL = 15;
-	AdcbRegs.ADCSOC2CTL.bit.CHSEL = 2;
-	AdcbRegs.ADCSOC2CTL.bit.ACQPS = 28;
     uint_t _dq_unb_pi_vsg_delay1__i;
     for (_dq_unb_pi_vsg_delay1__i = 0; _dq_unb_pi_vsg_delay1__i < 1; _dq_unb_pi_vsg_delay1__i++) {
         m_States->_dq_unb_pi_vsg_delay1__state[_dq_unb_pi_vsg_delay1__i] =  0.0f;

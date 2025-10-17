@@ -37,7 +37,7 @@
 	<variableList>
 		<variable>
 			<name>C2000WARE_ROOT</name>
-			<value>file:/C:/ti/c2000/C2000Ware_5_05_00_00</value>
+			<value>file:/C:/ti/c2000/C2000Ware_5_04_00_00</value>
 		</variable>
 	</variableList>
 </projectDescription>

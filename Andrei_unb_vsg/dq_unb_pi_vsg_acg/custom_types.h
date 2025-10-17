@@ -8,8 +8,8 @@
 * Code generated from model             : 'dq_unb_pi_vsg_ctrl_v3'.
 * Subsystem selected for code generation: 'dq_unb_pi_vsg'.
 *
-* Schematic Editor version              : 2025.2
-* C source code generated on            : 29-Jul-2025 @ 08:24:59 PM
+* Schematic Editor version              : 2025.3
+* C source code generated on            : 16-Oct-2025 @ 08:20:25 PM
 *
 */
 

@@ -7,7 +7,7 @@ version = 4.2
 model "pi_ol_vs_upi_cc_LINK" {
     configuration {
         hil_device = "HIL404"
-        hil_configuration_id = 5
+        hil_configuration_id = 3
         simulation_method = exact
         simulation_time_step = auto
         simulation_discret_scaling = 1.0
@@ -121,6 +121,7 @@ model "pi_ol_vs_upi_cc_LINK" {
             component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)4" {
                 conv_trigger = "ePWM6"
                 execution_rate = "Ts_Control"
+                hil_ao_nr = "14"
                 inten = "True"
                 offset = "AO_offset"
                 scaling = "V_scale"
@@ -133,7 +134,7 @@ model "pi_ol_vs_upi_cc_LINK" {
             component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)5" {
                 conv_trigger = "ePWM6"
                 execution_rate = "Ts_Control"
-                hil_ao_nr = "2"
+                hil_ao_nr = "15"
                 inten = "True"
                 offset = "AO_offset"
                 scaling = "V_scale"
@@ -146,7 +147,7 @@ model "pi_ol_vs_upi_cc_LINK" {
             component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)6" {
                 conv_trigger = "ePWM6"
                 execution_rate = "Ts_Control"
-                hil_ao_nr = "3"
+                hil_ao_nr = "16"
                 inten = "True"
                 offset = "AO_offset"
                 scaling = "V_scale"
@@ -6751,17 +6752,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 size = 128, 256
             ]
 
-            component "core/Series RLC Branch" "Series RLC Branch2" {
-                branch_type = "RL"
-                inductance = "2.5e-3"
-                num_phases = "Three-Phase"
-                resistance = "0.1"
-            }
-            [
-                position = 8540, 8036
-                size = 128, 256
-            ]
-
             component "core/Series RLC Branch" "Series RLC Branch3" {
                 branch_type = "RC"
                 capacitance = "1e-6"
@@ -6778,7 +6768,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Voltage Source" v_dc {
             }
             [
-                position = 6440, 8308
+                position = 6500, 8308
                 rotation = right
             ]
 
@@ -6786,7 +6776,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 sig_output = "True"
             }
             [
-                position = 9172, 7940
+                position = 8984, 7940
                 size = 64, 32
             ]
 
@@ -6794,7 +6784,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 sig_output = "True"
             }
             [
-                position = 9228, 8260
+                position = 9128, 8272
                 rotation = right
                 size = 64, 32
             ]
@@ -6803,7 +6793,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 sig_output = "True"
             }
             [
-                position = 9172, 8036
+                position = 8980, 8036
                 size = 64, 32
             ]
 
@@ -6811,7 +6801,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 sig_output = "True"
             }
             [
-                position = 9180, 8132
+                position = 8980, 8132
                 size = 64, 32
             ]
 
@@ -6819,7 +6809,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 sig_output = "True"
             }
             [
-                position = 9300, 8260
+                position = 9200, 8272
                 rotation = right
                 size = 64, 32
             ]
@@ -6828,25 +6818,13 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 sig_output = "True"
             }
             [
-                position = 9372, 8260
+                position = 9272, 8272
                 rotation = right
                 size = 64, 32
             ]
 
-            component "core/Ground" gnd2 {
-            }
-            [
-                position = 10012, 8876
-            ]
-
-            component "core/Resistor" R1 {
-                resistance = "0.001"
-            }
-            [
-                position = 6532, 7828
-            ]
-
             component "core/Half Bridge" "IGBT Leg1" {
+                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -6860,6 +6838,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Half Bridge" "IGBT Leg2" {
                 S_bot = "4"
                 S_top = "3"
+                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -6873,6 +6852,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Half Bridge" "IGBT Leg3" {
                 S_bot = "6"
                 S_top = "5"
+                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -6886,19 +6866,9 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Voltage Measurement" v_h {
             }
             [
-                position = 6604, 8060
+                position = 6664, 8060
                 rotation = right
                 size = 64, 32
-            ]
-
-            component "core/Capacitor" C2 {
-                capacitance = "2200e-6"
-                initial_voltage = "730"
-                signal_access = "Inherit"
-            }
-            [
-                position = 6696, 8248
-                rotation = right
             ]
 
             component "core/Series RLC Branch" "Series RLC Branch4" {
@@ -6914,6 +6884,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Half Bridge" "IGBT Leg4" {
                 S_bot = "10"
                 S_top = "9"
+                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -7246,15 +7217,6 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             [
                 position = 9240, 7656
                 size = 48, 112
-            ]
-
-            component "core/Three Phase Voltage Source" Vs1 {
-            }
-            [
-                position = 9180, 7244
-                rotation = down
-                scale = 1, -1
-                size = 62, 256
             ]
 
             component Subsystem UPI_CC {
@@ -8130,19 +8092,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 connect Limit1.out "C function VSG1.e_0" as Connection1096
             }
             [
-                position = 13396, 7456
+                position = 12480, 7488
                 size = 144, 336
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch5" {
-                branch_type = "RL"
-                inductance = "L_12_13"
-                num_phases = "Three-Phase"
-                resistance = "R_12_13"
-            }
-            [
-                position = 9820, 8036
-                size = 128, 256
             ]
 
             component "core/Series RLC Branch" "Series RLC Branch6" {
@@ -8152,7 +8103,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "R_13_14"
             }
             [
-                position = 12012, 7952
+                position = 11096, 7984
                 size = 128, 256
             ]
 
@@ -8184,18 +8135,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 set_balanced = "False"
             }
             [
-                position = 11348, 8492
+                position = 10432, 8524
                 size = 184, 152
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch7" {
-                branch_type = "RL"
-                inductance = "L_12_13"
-                resistance = "R_12_13"
-            }
-            [
-                position = 9816, 8676
-                size = 128, 100
             ]
 
             component "core/Series RLC Branch" "Series RLC Branch8" {
@@ -8204,14 +8145,14 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "R_13_14"
             }
             [
-                position = 12020, 8580
+                position = 11104, 8612
                 size = 128, 100
             ]
 
             component "core/Signal Controlled Voltage Source" Vsp1 {
             }
             [
-                position = 13756, 7856
+                position = 12840, 7888
                 size = 64, 32
             ]
 
@@ -8222,7 +8163,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "0.1"
             }
             [
-                position = 12500, 7952
+                position = 11584, 7984
                 size = 128, 256
             ]
 
@@ -8233,7 +8174,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "0.1"
             }
             [
-                position = 13236, 7952
+                position = 12320, 7984
                 size = 128, 256
             ]
 
@@ -8245,7 +8186,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "27"
             }
             [
-                position = 13012, 8240
+                position = 12096, 8272
                 rotation = right
                 size = 128, 256
             ]
@@ -8256,7 +8197,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "Rn"
             }
             [
-                position = 13528, 8432
+                position = 12612, 8464
                 size = 128, 100
             ]
 
@@ -8264,7 +8205,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 sig_output = "True"
             }
             [
-                position = 12192, 7856
+                position = 11276, 7888
                 size = 64, 32
             ]
 
@@ -8272,7 +8213,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 sig_output = "True"
             }
             [
-                position = 12248, 8176
+                position = 11332, 8208
                 rotation = right
                 size = 64, 32
             ]
@@ -8281,7 +8222,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 sig_output = "True"
             }
             [
-                position = 12192, 7952
+                position = 11276, 7984
                 size = 64, 32
             ]
 
@@ -8289,7 +8230,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 sig_output = "True"
             }
             [
-                position = 12200, 8048
+                position = 11284, 8080
                 size = 64, 32
             ]
 
@@ -8297,7 +8238,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 sig_output = "True"
             }
             [
-                position = 12320, 8176
+                position = 11404, 8208
                 rotation = right
                 size = 64, 32
             ]
@@ -8306,7 +8247,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 sig_output = "True"
             }
             [
-                position = 12392, 8176
+                position = 11476, 8208
                 rotation = right
                 size = 64, 32
             ]
@@ -8314,21 +8255,21 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             component "core/Signal Controlled Voltage Source" Vsp2 {
             }
             [
-                position = 13824, 7952
+                position = 12908, 7984
                 size = 64, 32
             ]
 
             component "core/Signal Controlled Voltage Source" Vsp3 {
             }
             [
-                position = 13900, 8052
+                position = 12984, 8084
                 size = 64, 32
             ]
 
             component "core/Signal Controlled Voltage Source" Vsp4 {
             }
             [
-                position = 13888, 8432
+                position = 12972, 8464
                 size = 64, 32
             ]
 
@@ -8336,14 +8277,14 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 inputs = "3"
             }
             [
-                position = 13132, 7572
+                position = 12216, 7604
             ]
 
             component "core/Bus Join" "Bus Join2" {
                 inputs = "3"
             }
             [
-                position = 13140, 7308
+                position = 12224, 7340
             ]
 
             component "core/Constant" Constant1 {
@@ -8351,21 +8292,21 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 value = "0"
             }
             [
-                position = 13756, 8340
+                position = 12840, 8372
             ]
 
             component "core/Bus Split" "Bus Split1" {
                 outputs = "3"
             }
             [
-                position = 13668, 7712
+                position = 12752, 7744
             ]
 
             component "core/Rate Transition" "Rate Transition1" {
                 execution_rate = "Ts_Control"
             }
             [
-                position = 13244, 7308
+                position = 12328, 7340
                 size = 32, 32
             ]
 
@@ -8373,7 +8314,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 execution_rate = "Ts_Control"
             }
             [
-                position = 13244, 7572
+                position = 12328, 7604
                 size = 32, 32
             ]
 
@@ -8382,14 +8323,14 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 signals_data = "{\"signals\": {\"Plant.Va1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Plant.Vb1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"Plant.Vc1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"Plant.Iag1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"Plant.Ibg1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"Plant.Icg1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"Plant.UPI_CC.omega\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
             }
             [
-                position = 12184, 7672
+                position = 11268, 7704
             ]
 
             component "core/Resistor" R2 {
                 resistance = "12"
             }
             [
-                position = 11548, 8268
+                position = 10632, 8300
                 rotation = right
             ]
 
@@ -8397,7 +8338,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "12"
             }
             [
-                position = 11664, 8268
+                position = 10748, 8300
                 rotation = right
             ]
 
@@ -8405,7 +8346,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 resistance = "12"
             }
             [
-                position = 11608, 8268
+                position = 10692, 8300
                 rotation = right
             ]
 
@@ -8413,7 +8354,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 ctrl_src = "Model"
             }
             [
-                position = 11344, 8248
+                position = 10428, 8280
                 rotation = left
                 size = 64, 256
             ]
@@ -8422,7 +8363,171 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 step_time = "3"
             }
             [
-                position = 11080, 8248
+                position = 11604, 8248
+            ]
+
+            component "core/Output Settings" "Output Settings1" {
+                analog_outputs = "[\'AO1;..Iag.Mask@top.current;226.27;0.00;False;-10;10\', \'AO2;..Ibg.Mask@top.current;226.27;0.00;False;-10;10\', \'AO3;..Icg.Mask@top.current;226.27;0.00;False;-10;10\']"
+            }
+            [
+                position = 10052, 7744
+            ]
+
+            component "core/Analog Input" "Analog Input1" {
+                execution_rate = "10e-6"
+            }
+            [
+                position = 10328, 7304
+            ]
+
+            component "core/Probe" va_opal_fil {
+            }
+            [
+                position = 10656, 7316
+            ]
+
+            component "core/Analog Input" "Analog Input2" {
+                addr = "2"
+                execution_rate = "10e-6"
+            }
+            [
+                position = 10324, 7404
+            ]
+
+            component "core/Probe" vb_opal_fil {
+            }
+            [
+                position = 10612, 7460
+            ]
+
+            component "core/Analog Input" "Analog Input3" {
+                addr = "3"
+                execution_rate = "10e-6"
+            }
+            [
+                position = 10316, 7564
+            ]
+
+            component "core/Probe" vc_opal {
+            }
+            [
+                position = 10552, 7568
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter1" {
+                execution_rate = "10e-6"
+                frequency = "5e3"
+            }
+            [
+                position = 10548, 7628
+            ]
+
+            component "core/Probe" vc_opal_fil {
+            }
+            [
+                position = 10672, 7628
+            ]
+
+            component "core/Signal Controlled Voltage Source" Vsp5 {
+            }
+            [
+                position = 10000, 7940
+                size = 64, 32
+            ]
+
+            component "core/Signal Controlled Voltage Source" Vsp6 {
+            }
+            [
+                position = 10000, 8036
+                size = 64, 32
+            ]
+
+            component "core/Signal Controlled Voltage Source" Vsp7 {
+            }
+            [
+                position = 9996, 8132
+                size = 64, 32
+            ]
+
+            component "core/Gain" Gain4 {
+                gain = "K_ana_in"
+            }
+            [
+                position = 10396, 7304
+            ]
+
+            component "core/Gain" Gain5 {
+                gain = "K_ana_in"
+            }
+            [
+                position = 10404, 7404
+            ]
+
+            component "core/Gain" Gain6 {
+                gain = "K_ana_in"
+            }
+            [
+                position = 10396, 7564
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter2" {
+                execution_rate = "10e-6"
+                frequency = "5e3"
+            }
+            [
+                position = 10528, 7460
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter3" {
+                execution_rate = "10e-6"
+                frequency = "5e3"
+            }
+            [
+                position = 10548, 7312
+            ]
+
+            component "core/Probe" va_opal1 {
+            }
+            [
+                position = 10784, 7276
+            ]
+
+            component "core/Probe" vb_opal {
+            }
+            [
+                position = 10676, 7376
+            ]
+
+            component "core/Series RLC Branch" "Series RLC Branch13" {
+                branch_type = "RL"
+                inductance = "2.5e-3"
+                num_phases = "Three-Phase"
+                resistance = "0.1"
+            }
+            [
+                position = 8716, 8036
+                size = 128, 256
+            ]
+
+            component "core/Series RLC Branch" "Series RLC Branch14" {
+                branch_type = "RL"
+                inductance = "L_12_13"
+                num_phases = "Three-Phase"
+                resistance = "R_12_13"
+            }
+            [
+                position = 9492, 8036
+                size = 128, 256
+            ]
+
+            component "core/Series RLC Branch" "Series RLC Branch15" {
+                branch_type = "RL"
+                inductance = "L_12_13"
+                resistance = "R_12_13"
+            }
+            [
+                position = 9488, 8512
+                size = 128, 100
             ]
 
             tag From1 {
@@ -8443,7 +8548,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9264, 7892
+                position = 9076, 7892
                 size = 60, 20
             ]
 
@@ -8454,7 +8559,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9292, 8000
+                position = 9100, 8000
                 size = 60, 20
             ]
 
@@ -8465,7 +8570,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9276, 8096
+                position = 9076, 8096
                 size = 60, 20
             ]
 
@@ -8498,7 +8603,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9304, 8204
+                position = 9216, 8432
                 size = 60, 20
             ]
 
@@ -8509,7 +8614,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9376, 8316
+                position = 9280, 8408
                 size = 60, 20
             ]
 
@@ -8520,7 +8625,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9436, 8212
+                position = 9352, 8384
                 size = 60, 20
             ]
 
@@ -8817,7 +8922,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 12284, 7808
+                position = 11368, 7840
                 size = 60, 20
             ]
 
@@ -8828,7 +8933,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 12312, 7916
+                position = 11396, 7948
                 size = 60, 20
             ]
 
@@ -8839,7 +8944,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 12296, 8012
+                position = 11380, 8044
                 size = 60, 20
             ]
 
@@ -8850,7 +8955,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 12324, 8120
+                position = 11408, 8152
                 size = 60, 20
             ]
 
@@ -8861,7 +8966,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 12396, 8232
+                position = 11480, 8264
                 size = 60, 20
             ]
 
@@ -8872,7 +8977,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 12468, 8140
+                position = 11552, 8172
                 size = 60, 20
             ]
 
@@ -8883,7 +8988,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 13028, 7276
+                position = 12116, 7308
                 size = 60, 20
             ]
 
@@ -8894,7 +8999,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 13032, 7308
+                position = 12116, 7340
                 size = 60, 20
             ]
 
@@ -8905,7 +9010,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 13032, 7344
+                position = 12116, 7376
                 size = 60, 20
             ]
 
@@ -8916,7 +9021,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 12992, 7536
+                position = 12076, 7568
                 size = 60, 20
             ]
 
@@ -8927,7 +9032,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 12992, 7572
+                position = 12076, 7604
                 size = 60, 20
             ]
 
@@ -8938,23 +9043,74 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 12996, 7616
+                position = 12080, 7648
                 size = 60, 20
             ]
 
-            junction Junction1 pe
+            tag Goto17 {
+                value = "vc_opal"
+                scope = local
+                kind = sp
+                direction = in
+            }
             [
-                position = 8220, 7940
+                position = 10724, 7528
+                size = 60, 20
             ]
 
-            junction Junction2 pe
+            tag Goto18 {
+                value = "vb_opal"
+                scope = local
+                kind = sp
+                direction = in
+            }
             [
-                position = 8316, 8036
+                position = 10752, 7436
+                size = 60, 20
             ]
 
-            junction Junction3 pe
+            tag Goto19 {
+                value = "va_opal"
+                scope = local
+                kind = sp
+                direction = in
+            }
             [
-                position = 8412, 8132
+                position = 10692, 7204
+                size = 60, 20
+            ]
+
+            tag From35 {
+                value = "va_opal"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9896, 7852
+                size = 60, 20
+            ]
+
+            tag From36 {
+                value = "vb_opal"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9892, 7976
+                size = 60, 20
+            ]
+
+            tag From37 {
+                value = "vc_opal"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9900, 8076
+                size = 60, 20
             ]
 
             junction Junction23 pe
@@ -8967,19 +9123,9 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 6828, 7828
             ]
 
-            junction Junction25 pe
-            [
-                position = 6604, 7828
-            ]
-
             junction Junction37 pe
             [
                 position = 7060, 8684
-            ]
-
-            junction Junction38 pe
-            [
-                position = 6744, 8684
             ]
 
             junction Junction40 pe
@@ -8992,21 +9138,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 7064, 7828
             ]
 
-            junction Junction54 pe
-            [
-                position = 8316, 8520
-            ]
-
-            junction Junction55 pe
-            [
-                position = 8220, 8516
-            ]
-
-            junction Junction59 pe
-            [
-                position = 9308, 8512
-            ]
-
             junction Junction62 pe
             [
                 position = 6984, 8684
@@ -9017,157 +9148,196 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 6828, 8684
             ]
 
-            junction Junction64 pe
-            [
-                position = 6692, 7828
-            ]
-
-            junction Junction66 pe
-            [
-                position = 9252, 8516
-            ]
-
-            junction Junction67 pe
-            [
-                position = 8412, 8516
-            ]
-
             junction Junction68 sp
             [
                 position = 8400, 7700
             ]
 
-            junction Junction75 pe
-            [
-                position = 9252, 7940
-            ]
-
-            junction Junction76 pe
-            [
-                position = 9300, 8036
-            ]
-
-            junction Junction77 pe
-            [
-                position = 9376, 8132
-            ]
-
-            junction Junction84 pe
-            [
-                position = 9372, 8508
-            ]
-
             junction Junction87 pe
             [
-                position = 12916, 7856
+                position = 12000, 7888
             ]
 
             junction Junction88 pe
             [
-                position = 13012, 7952
+                position = 12096, 7984
             ]
 
             junction Junction89 pe
             [
-                position = 13108, 8048
+                position = 12192, 8080
             ]
 
             junction Junction93 pe
             [
-                position = 12928, 8580
+                position = 12012, 8612
             ]
 
             junction Junction94 pe
             [
-                position = 13008, 8432
+                position = 12092, 8464
             ]
 
             junction Junction95 pe
             [
-                position = 13104, 8432
+                position = 12188, 8464
             ]
 
             junction Junction96 pe
             [
-                position = 13948, 7952
+                position = 13032, 7984
             ]
 
             junction Junction97 pe
             [
-                position = 12272, 7856
+                position = 11356, 7888
             ]
 
             junction Junction98 pe
             [
-                position = 12324, 7952
+                position = 11408, 7984
             ]
 
             junction Junction99 pe
             [
-                position = 12392, 8048
+                position = 11476, 8080
             ]
 
             junction Junction100 pe
             [
-                position = 12736, 8136
+                position = 11820, 8168
             ]
 
             junction Junction102 pe
             [
-                position = 12316, 8300
+                position = 11400, 8332
             ]
 
             junction Junction103 pe
             [
-                position = 12320, 8292
+                position = 11404, 8324
             ]
 
             junction Junction104 pe
             [
-                position = 12324, 8580
+                position = 11408, 8612
             ]
 
             junction Junction108 pe
             [
-                position = 11604, 8372
+                position = 10688, 8404
             ]
 
             junction Junction109 pe
             [
-                position = 11604, 8580
+                position = 10688, 8612
             ]
 
             junction Junction110 pe
             [
-                position = 11556, 7856
+                position = 10640, 7888
             ]
 
             junction Junction111 pe
             [
-                position = 11608, 7948
+                position = 10692, 7980
             ]
 
             junction Junction112 pe
             [
-                position = 11660, 8048
+                position = 10744, 8080
             ]
 
-            connect "Series RLC Branch1.P1_neg" Junction1 as Connection9
-            connect Junction1 "Series RLC Branch2.P1_pos" as Connection10
-            connect "Series RLC Branch3.P3_pos" Junction1 as Connection11
-            connect "Series RLC Branch1.P2_neg" Junction2 as Connection12
+            junction Junction241 sp
             [
-                breakpoints = 7980, 8036; 8316, 8036
+                position = 10492, 7296
             ]
-            connect Junction2 "Series RLC Branch2.P2_pos" as Connection13
-            connect "Series RLC Branch3.P2_pos" Junction2 as Connection14
-            connect "Series RLC Branch1.P3_neg" Junction3 as Connection15
+
+            junction Junction242 sp
             [
-                breakpoints = 7908, 8132; 8100, 8132; 8100, 8140; 8412, 8140
+                position = 10592, 7312
             ]
-            connect Junction3 "Series RLC Branch2.P3_pos" as Connection16
-            connect "Series RLC Branch3.P1_pos" Junction3 as Connection17
-            connect R1.p_node v_dc.p_node as Connection53
+
+            junction Junction243 sp
+            [
+                position = 10448, 7404
+            ]
+
+            junction Junction244 sp
+            [
+                position = 10560, 7460
+            ]
+
+            junction Junction245 sp
+            [
+                position = 10464, 7568
+            ]
+
+            junction Junction246 sp
+            [
+                position = 10612, 7628
+            ]
+
+            junction Junction264 pe
+            [
+                position = 6664, 7832
+            ]
+
+            junction Junction268 pe
+            [
+                position = 9200, 8372
+            ]
+
+            junction Junction270 pe
+            [
+                position = 8316, 8444
+            ]
+
+            junction Junction275 pe
+            [
+                position = 10148, 8032
+            ]
+
+            junction Junction288 pe
+            [
+                position = 8212, 7940
+            ]
+
+            junction Junction289 pe
+            [
+                position = 8316, 8032
+            ]
+
+            junction Junction290 pe
+            [
+                position = 8412, 8132
+            ]
+
+            junction Junction292 pe
+            [
+                position = 9132, 7940
+            ]
+
+            junction Junction293 pe
+            [
+                position = 9200, 8036
+            ]
+
+            junction Junction294 pe
+            [
+                position = 9268, 8132
+            ]
+
+            junction Junction295 pe
+            [
+                position = 10148, 8144
+            ]
+
+            junction Junction296 pe
+            [
+                position = 9196, 8512
+            ]
+
             connect "IGBT Leg1.a_in" "Series RLC Branch1.P1_pos" as Connection88
             [
                 breakpoints = 7276, 7940; 7724, 7940
@@ -9177,17 +9347,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect "IGBT Leg2.pos_out" Junction23 as Connection113
             connect Junction24 Junction23 as Connection117
             connect "IGBT Leg1.pos_out" Junction24 as Connection118
-            connect R1.n_node Junction25 as Connection119
-            connect v_h.p_node Junction25 as Connection121
-            connect "Series RLC Branch2.P1_neg" Iag.p_node as Connection137
-            connect "Series RLC Branch2.P2_neg" Ibg.p_node as Connection138
-            connect "Series RLC Branch2.P3_neg" Icg.p_node as Connection139
-            [
-                breakpoints = 9140, 8132
-            ]
             connect Junction37 "IGBT Leg4.neg_out" as Connection164
             connect "IGBT Leg3.neg_out" Junction37 as Connection165
-            connect C2.n_node Junction38 as Connection168
             connect v_dc.n_node Junction40 as Connection172
             connect v_h.n_node Junction40 as Connection174
             connect Junction23 Junction41 as Connection175
@@ -9203,32 +9364,13 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             [
                 breakpoints = 7276, 8508; 7704, 8508
             ]
-            connect "Series RLC Branch3.P2_neg" Junction54 as Connection235
-            connect "Series RLC Branch3.P3_neg" Junction55 as Connection251
-            connect Junction55 Junction54 as Connection252
-            connect "Series RLC Branch4.P1_neg" Junction55 as Connection253
-            connect Vb.n_node Junction59 as Connection265
             connect Junction62 Junction37 as Connection275
             connect "IGBT Leg2.neg_out" Junction62 as Connection276
-            connect Junction38 Junction63 as Connection277
             connect Junction63 Junction62 as Connection278
             connect "IGBT Leg1.neg_out" Junction63 as Connection279
             [
                 breakpoints = 6828, 8676
             ]
-            connect Junction38 Junction40 as Connection281
-            connect Junction25 Junction64 as Connection282
-            connect Junction64 Junction24 as Connection283
-            connect C2.p_node Junction64 as Connection284
-            connect Va.n_node Junction66 as Connection291
-            connect Junction66 Junction59 as Connection292
-            [
-                breakpoints = 9252, 8516
-            ]
-            connect Ing.n_node Junction66 as Connection293
-            connect "Series RLC Branch3.P1_neg" Junction67 as Connection294
-            connect Junction67 Junction54 as Connection295
-            connect Ing.p_node Junction67 as Connection296
             connect p.in "C function powers.p" as Connection303
             connect "C function powers.q" q.in as Connection304
             connect "C function powers.p_f" pf.in as Connection305
@@ -9297,41 +9439,18 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             [
                 breakpoints = 9168, 7560; 9168, 7632
             ]
-            connect Iag.n_node Junction75 as Connection437
-            connect Junction75 Va.p_node as Connection438
-            [
-                breakpoints = 9252, 7940
-            ]
-            connect "Series RLC Branch5.P1_pos" Junction75 as Connection439
-            connect Vb.p_node Junction76 as Connection440
-            [
-                breakpoints = 9300, 8220
-            ]
-            connect Junction76 Ibg.n_node as Connection441
-            connect "Series RLC Branch5.P2_pos" Junction76 as Connection442
-            connect Icg.n_node Junction77 as Connection443
-            connect Junction77 Vc.p_node as Connection444
-            [
-                breakpoints = 9372, 8220
-            ]
-            connect "Series RLC Branch5.P3_pos" Junction77 as Connection445
-            connect Vc.n_node Junction84 as Connection465
-            connect "Series RLC Branch7.P1_pos" Junction84 as Connection467
-            [
-                breakpoints = 9736, 8520; 9372, 8520
-            ]
             connect "Series RLC Branch9.P1_neg" Junction87 as Connection474
             connect Junction87 "Series RLC Branch10.P1_pos" as Connection475
             connect "Series RLC Branch11.P3_pos" Junction87 as Connection476
             connect "Series RLC Branch9.P2_neg" Junction88 as Connection477
             [
-                breakpoints = 12676, 7952; 13012, 7952
+                breakpoints = 11760, 7984; 12096, 7984
             ]
             connect Junction88 "Series RLC Branch10.P2_pos" as Connection478
             connect "Series RLC Branch11.P2_pos" Junction88 as Connection479
             connect "Series RLC Branch9.P3_neg" Junction89 as Connection480
             [
-                breakpoints = 12604, 8048; 12796, 8048; 12796, 8056; 13108, 8056
+                breakpoints = 11688, 8080; 11880, 8080; 11880, 8088; 12192, 8088
             ]
             connect Junction89 "Series RLC Branch10.P3_pos" as Connection481
             connect "Series RLC Branch11.P1_pos" Junction89 as Connection482
@@ -9344,7 +9463,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect "Series RLC Branch11.P3_neg" Junction93 as Connection498
             connect Junction93 Junction94 as Connection506
             [
-                breakpoints = 13008, 8580
+                breakpoints = 12092, 8612
             ]
             connect "Series RLC Branch11.P2_neg" Junction94 as Connection508
             connect Junction94 Junction95 as Connection509
@@ -9356,28 +9475,28 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect Vsp3.p_node "Series RLC Branch10.P3_neg" as Connection515
             connect Vsp1.n_node Junction96 as Connection517
             [
-                breakpoints = 13996, 7856; 13996, 7952
+                breakpoints = 13080, 7888; 13080, 7984
             ]
             connect Vsp2.n_node Junction96 as Connection519
             connect Iag1.n_node Junction97 as Connection520
             connect Junction97 Va1.p_node as Connection521
             [
-                breakpoints = 12272, 7856
+                breakpoints = 11356, 7888
             ]
             connect "Series RLC Branch9.P1_pos" Junction97 as Connection522
             connect Ibg1.n_node Junction98 as Connection523
             connect Junction98 Vb1.p_node as Connection524
             [
-                breakpoints = 12320, 7952; 12320, 8136
+                breakpoints = 11404, 7984; 11404, 8168
             ]
             connect "Series RLC Branch9.P2_pos" Junction98 as Connection525
             connect Vc1.p_node Junction99 as Connection526
             [
-                breakpoints = 12392, 8136
+                breakpoints = 11476, 8168
             ]
             connect Junction99 Icg1.n_node as Connection527
             [
-                breakpoints = 12396, 8048
+                breakpoints = 11480, 8080
             ]
             connect "Series RLC Branch9.P3_pos" Junction99 as Connection528
             connect Icg1.p_node "Series RLC Branch6.P3_neg" as Connection529
@@ -9385,11 +9504,11 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect Iag1.p_node "Series RLC Branch6.P1_neg" as Connection531
             connect Junction96 Junction100 as Connection532
             [
-                breakpoints = 12736, 8036
+                breakpoints = 11820, 8068
             ]
             connect Junction100 Vsp3.n_node as Connection533
             [
-                breakpoints = 12736, 8136
+                breakpoints = 11820, 8168
             ]
             connect Vsp4.n_node Junction100 as Connection534
             connect From32 "Bus Join1.in" as Connection535
@@ -9400,7 +9519,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect From31 "Bus Join2.in2" as Connection541
             connect Constant1.out Vsp4.in as Connection543
             [
-                breakpoints = 13884, 8404
+                breakpoints = 12968, 8436
             ]
             connect "Bus Split1.in" UPI_CC.vt_abc_ref as Connection544
             connect "Bus Split1.out" Vsp1.in as Connection545
@@ -9410,16 +9529,12 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect "Rate Transition1.in" "Bus Join2.out" as Connection549
             connect "Bus Join1.out" "Rate Transition2.in" as Connection550
             [
-                breakpoints = 13212, 7572
+                breakpoints = 12296, 7604
             ]
             connect "Rate Transition2.out" UPI_CC.v_abc as Connection551
-            connect Junction59 Junction84 as Connection556
-            [
-                breakpoints = 9372, 8512
-            ]
             connect Va1.n_node Junction102 as Connection569
             [
-                breakpoints = 12256, 8300
+                breakpoints = 11340, 8332
             ]
             connect Junction102 Vc1.n_node as Connection570
             connect Vb1.n_node Junction103 as Connection572
@@ -9429,11 +9544,11 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect Junction103 Junction104 as Connection576
             connect R2.n_node Junction108 as Connection623
             [
-                breakpoints = 11548, 8372
+                breakpoints = 10632, 8404
             ]
             connect Junction108 R3.n_node as Connection624
             [
-                breakpoints = 11664, 8372
+                breakpoints = 10748, 8404
             ]
             connect R4.n_node Junction108 as Connection625
             connect "Series RLC Branch8.P1_pos" Junction109 as Connection626
@@ -9444,33 +9559,144 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect "Series RLC Branch6.P1_pos" Junction110 as Connection635
             connect Junction110 R2.p_node as Connection636
             [
-                breakpoints = 11548, 7856
+                breakpoints = 10632, 7888
             ]
             connect S4.a_out Junction110 as Connection637
             connect R4.p_node Junction111 as Connection638
             connect Junction111 "Series RLC Branch6.P2_pos" as Connection639
             [
-                breakpoints = 11612, 7952
+                breakpoints = 10696, 7984
             ]
             connect S4.b_out Junction111 as Connection640
             [
-                breakpoints = 11344, 7952; 11608, 7952
+                breakpoints = 10428, 7984; 10692, 7984
             ]
             connect "Series RLC Branch6.P3_pos" Junction112 as Connection641
             [
-                breakpoints = 11696, 8048
+                breakpoints = 10780, 8080
             ]
             connect Junction112 R3.p_node as Connection642
             [
-                breakpoints = 11672, 8048
+                breakpoints = 10756, 8080
             ]
             connect S4.c_out Junction112 as Connection643
             connect Step1.out S4.ctrl_in as Connection644
             connect "Constant Impedance Load1.N" Junction109 as Connection645
             [
-                breakpoints = 11344, 8592; 11600, 8592; 11592, 8580
+                breakpoints = 10428, 8624; 10684, 8624; 10676, 8612
             ]
-            connect gnd2.node "Series RLC Branch7.P1_neg" as Connection646
+            connect Gain4.in "Analog Input1.out" as Connection1462
+            connect Gain5.in "Analog Input2.out" as Connection1466
+            connect Gain6.in "Analog Input3.out" as Connection1470
+            connect From35 Vsp5.in as Connection1477
+            connect From36 Vsp6.in as Connection1478
+            connect From37 Vsp7.in as Connection1479
+            connect Gain4.out Junction241 as Connection1511
+            [
+                breakpoints = 10452, 7304; 10452, 7296
+            ]
+            connect Junction241 "Low-Pass Filter3.in" as Connection1512
+            [
+                breakpoints = 10492, 7312
+            ]
+            connect va_opal1.in Junction241 as Connection1513
+            connect "Low-Pass Filter3.out" Junction242 as Connection1514
+            connect Junction242 va_opal_fil.in as Connection1515
+            connect Goto19 Junction242 as Connection1516
+            connect Gain5.out Junction243 as Connection1519
+            connect Junction243 "Low-Pass Filter2.in" as Connection1520
+            [
+                breakpoints = 10448, 7404; 10448, 7408
+            ]
+            connect vb_opal.in Junction243 as Connection1521
+            connect "Low-Pass Filter2.out" Junction244 as Connection1522
+            connect Junction244 vb_opal_fil.in as Connection1523
+            connect Goto18 Junction244 as Connection1524
+            connect Gain6.out Junction245 as Connection1527
+            [
+                breakpoints = 10460, 7560; 10464, 7560
+            ]
+            connect Junction245 "Low-Pass Filter1.in" as Connection1528
+            connect vc_opal.in Junction245 as Connection1529
+            connect vc_opal_fil.in Junction246 as Connection1530
+            connect Junction246 "Low-Pass Filter1.out" as Connection1531
+            connect Goto17 Junction246 as Connection1532
+            connect v_h.p_node Junction264 as Connection1722
+            connect v_dc.p_node Junction264 as Connection1724
+            [
+                breakpoints = 6500, 7824; 6664, 7824
+            ]
+            connect Vc.n_node Junction268 as Connection1745
+            [
+                breakpoints = 9272, 8372
+            ]
+            connect Junction268 Va.n_node as Connection1746
+            [
+                breakpoints = 9128, 8372
+            ]
+            connect Vb.n_node Junction268 as Connection1747
+            connect "Series RLC Branch3.P3_neg" Junction270 as Connection1755
+            [
+                breakpoints = 8220, 8444
+            ]
+            connect Junction270 "Series RLC Branch3.P2_neg" as Connection1756
+            [
+                breakpoints = 8316, 8444
+            ]
+            connect "Series RLC Branch3.P1_neg" Junction270 as Connection1757
+            connect Junction40 Junction63 as Connection1777
+            connect Junction264 Junction24 as Connection1776
+            [
+                breakpoints = 6604, 7828
+            ]
+            connect Vsp5.n_node Junction275 as Connection1786
+            connect Vsp6.n_node Junction275 as Connection1788
+            connect "Series RLC Branch1.P1_neg" Junction288 as Connection1870
+            connect Junction288 "Series RLC Branch3.P3_pos" as Connection1871
+            [
+                breakpoints = 8224, 7940; 8220, 7940
+            ]
+            connect "Series RLC Branch13.P1_pos" Junction288 as Connection1872
+            connect "Series RLC Branch3.P2_pos" Junction289 as Connection1873
+            connect Junction289 "Series RLC Branch1.P2_neg" as Connection1874
+            [
+                breakpoints = 8316, 8036; 7980, 8036
+            ]
+            connect "Series RLC Branch13.P2_pos" Junction289 as Connection1875
+            connect "Series RLC Branch3.P1_pos" Junction290 as Connection1876
+            connect Junction290 "Series RLC Branch1.P3_neg" as Connection1877
+            [
+                breakpoints = 8412, 8132
+            ]
+            connect "Series RLC Branch13.P3_pos" Junction290 as Connection1878
+            connect "Series RLC Branch14.P1_neg" Vsp5.p_node as Connection1879
+            connect "Series RLC Branch14.P2_neg" Vsp6.p_node as Connection1880
+            connect Vsp7.p_node "Series RLC Branch14.P3_neg" as Connection1881
+            connect Iag.p_node "Series RLC Branch13.P1_neg" as Connection1887
+            connect "Series RLC Branch13.P2_neg" Ibg.p_node as Connection1888
+            connect "Series RLC Branch13.P3_neg" Icg.p_node as Connection1889
+            connect "Series RLC Branch14.P1_pos" Junction292 as Connection1893
+            connect Junction292 Iag.n_node as Connection1894
+            connect Va.p_node Junction292 as Connection1895
+            connect Ibg.n_node Junction293 as Connection1896
+            connect Junction293 "Series RLC Branch14.P2_pos" as Connection1897
+            connect Vb.p_node Junction293 as Connection1898
+            connect Icg.n_node Junction294 as Connection1899
+            connect Junction294 "Series RLC Branch14.P3_pos" as Connection1900
+            connect Vc.p_node Junction294 as Connection1901
+            connect Junction275 Junction295 as Connection1904
+            connect Junction295 Vsp7.n_node as Connection1905
+            [
+                breakpoints = 10148, 8136
+            ]
+            connect "Series RLC Branch15.P1_neg" Junction295 as Connection1906
+            connect Ing.p_node "Series RLC Branch4.P1_neg" as Connection1907
+            [
+                breakpoints = 8412, 8516; 8220, 8516
+            ]
+            connect "Series RLC Branch15.P1_pos" Junction296 as Connection1908
+            connect Junction296 Ing.n_node as Connection1909
+            connect Junction268 Junction296 as Connection1910
         }
         [
             position = 8704, 8264
@@ -9481,7 +9707,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             build_and_deploy_action = "False"
             c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "dq_unb_pi_vsg_acg"
-            ccs_project_path = "C:\Users\iberi\Desktop\Typhoon_USE\Andrei_unb_vsg"
+            ccs_project_path = "C:\workspace\Typhoon_USE\Andrei_unb_vsg"
             ccs_root_path = "C:\ti\ccs1260"
             exp_subsys_name = "dq_unb_pi_vsg"
             scheduling = "ADCA Interrupt"
@@ -9519,6 +9745,11 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         "Plant.Rate Transition1"
         "Plant.Rate Transition2"
         "Plant.Scoep"
+        "Plant.R2"
+        "Plant.R3"
+        "Plant.R4"
+        "Plant.S4"
+        "Plant.Step1"
         "Plant.Goto8"
         "Plant.Goto9"
         "Plant.Goto10"
@@ -9544,6 +9775,11 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         "Plant.Junction102"
         "Plant.Junction103"
         "Plant.Junction104"
+        "Plant.Junction108"
+        "Plant.Junction109"
+        "Plant.Junction110"
+        "Plant.Junction111"
+        "Plant.Junction112"
         "Plant.Connection474"
         "Plant.Connection475"
         "Plant.Connection476"
@@ -9608,39 +9844,36 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         "Plant.Connection574"
         "Plant.Connection575"
         "Plant.Connection576"
-        "Plant.R2"
-        "Plant.R3"
-        "Plant.R4"
-        "Plant.Junction108"
         "Plant.Connection623"
         "Plant.Connection624"
         "Plant.Connection625"
-        "Plant.Junction109"
         "Plant.Connection626"
         "Plant.Connection628"
-        "Plant.S4"
         "Plant.Connection632"
         "Plant.Connection633"
         "Plant.Connection634"
-        "Plant.Junction110"
         "Plant.Connection635"
         "Plant.Connection636"
         "Plant.Connection637"
-        "Plant.Junction111"
         "Plant.Connection638"
         "Plant.Connection639"
         "Plant.Connection640"
-        "Plant.Junction112"
         "Plant.Connection641"
         "Plant.Connection642"
         "Plant.Connection643"
-        "Plant.Step1"
         "Plant.Connection644"
         "Plant.Connection645"
         "TI C2000 Setup1"
     }
 
     default {
+        "core/Analog Input" {
+            addr = "1"
+            ai_offset = "0"
+            ai_gain = "1"
+            execution_rate = "100e-6"
+        }
+
         "core/Bus Join" {
             inputs = "2"
             execution_rate = "inherit"
@@ -9686,14 +9919,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             execution_rate = "inherit"
             _supported_platforms = "[\'generic\']"
             refresh = "refresh"
-        }
-
-        "core/Capacitor" {
-            signal_access = "inherit"
-            capacitance = "1e-6"
-            initial_voltage = "0"
-            pole_shift_ignore = "False"
-            visible = "True"
         }
 
         "core/Constant" {
@@ -9750,6 +9975,14 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             unit = "Hz"
             execution_rate = "inherit"
             _tunable = "False"
+        }
+
+        "core/Output Settings" {
+            analog_outputs = "[]"
+            digital_outputs = "[]"
+            hil_id = "0"
+            overridable_switches_dict = "{}"
+            signal = ""
         }
 
         "core/Probe" {
@@ -10101,12 +10334,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             scheduling = "CPU Timer Based Scheduler"
         }
 
-        "core/Three Phase Voltage Source" {
-            init_rms_value = "0.0"
-            init_frequency = "50.0"
-            init_phase = "0.0"
-        }
-
         "core/Triple Pole Single Throw Contactor" {
             signal_access = "inherit"
             switches_option = "False"
@@ -10263,5 +10490,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         #B = 4.99938317532706e-05
         #C = 1.99969044283538
         #D = 0.999937170120808
+        
+        #gain analog inputs
+        K_ana_in = 400/np.sqrt(3)*np.sqrt(2)/8
     ENDCODE
 }
