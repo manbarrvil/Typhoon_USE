@@ -79,83 +79,6 @@ model "dq_unb_pi_vsg_ctrl_sec" {
     component Subsystem Root {
         component Subsystem dq_unb_pi_vsg {
             layout = dynamic
-            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)1" {
-                conv_trigger = "ePWM6"
-                execution_rate = "Ts_Control"
-                hil_ao_nr = "4"
-                inten = "True"
-                offset = "AO_offset"
-                scaling = "I_scale"
-            }
-            [
-                position = 6020, 7504
-                size = 127, 63
-            ]
-
-            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)2" {
-                conv_trigger = "ePWM6"
-                execution_rate = "Ts_Control"
-                hil_ao_nr = "5"
-                inten = "True"
-                offset = "AO_offset"
-                scaling = "I_scale"
-            }
-            [
-                position = 6020, 7604
-                size = 127, 63
-            ]
-
-            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)3" {
-                conv_trigger = "ePWM6"
-                execution_rate = "Ts_Control"
-                hil_ao_nr = "6"
-                inten = "True"
-                offset = "AO_offset"
-                scaling = "I_scale"
-            }
-            [
-                position = 6028, 7712
-                size = 127, 63
-            ]
-
-            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)4" {
-                conv_trigger = "ePWM6"
-                execution_rate = "Ts_Control"
-                inten = "True"
-                offset = "AO_offset"
-                scaling = "V_scale"
-            }
-            [
-                position = 6024, 7080
-                size = 127, 63
-            ]
-
-            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)5" {
-                conv_trigger = "ePWM6"
-                execution_rate = "Ts_Control"
-                hil_ao_nr = "2"
-                inten = "True"
-                offset = "AO_offset"
-                scaling = "V_scale"
-            }
-            [
-                position = 6024, 7180
-                size = 127, 63
-            ]
-
-            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)6" {
-                conv_trigger = "ePWM6"
-                execution_rate = "Ts_Control"
-                hil_ao_nr = "3"
-                inten = "True"
-                offset = "AO_offset"
-                scaling = "V_scale"
-            }
-            [
-                position = 6032, 7288
-                size = 127, 63
-            ]
-
             component "TI C2000 Toolbox/ePWM (Generic)" "ePWM (Generic)1" {
                 dead_time = "dt"
                 hil_di_nr = "1-3-5-9"
@@ -215,19 +138,6 @@ model "dq_unb_pi_vsg_ctrl_sec" {
             }
             [
                 position = 10244, 7488
-            ]
-
-            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)7" {
-                conv_trigger = "ePWM6"
-                execution_rate = "Ts_Control"
-                hil_ao_nr = "7"
-                inten = "True"
-                offset = "AO_offset"
-                scaling = "I_scale"
-            }
-            [
-                position = 6028, 7824
-                size = 127, 63
             ]
 
             component Subsystem "Virtual 3ph3w" {
@@ -2782,39 +2692,6 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             }
             [
                 position = 10200, 7384
-            ]
-
-            component "core/Constant" Constant4 {
-                execution_rate = "Ts_Control"
-            }
-            [
-                position = 5932, 7968
-            ]
-
-            component "core/Sum" Sum2 {
-                execution_rate = "Ts_Control"
-                signs = "+-"
-            }
-            [
-                position = 6060, 7976
-            ]
-
-            component "core/Delay" Delay1 {
-                del_length = "1"
-                execution_rate = "Ts_Control"
-            }
-            [
-                position = 6056, 8092
-                rotation = down
-            ]
-
-            component "TI C2000 Toolbox/GPIO DO (Generic)" "GPIO DO (Generic)2" {
-                hil_di_nr = "7"
-                pin_action = "Pin Ctrl"
-            }
-            [
-                position = 6228, 7976
-                size = 127, 63
             ]
 
             component "core/Constant" Constant7 {
@@ -6237,46 +6114,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 7904, 8192
             ]
 
-            component "core/C function" Res_Imp_Inv1 {
-                arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                execution_rate = "Ts_Control"
-                global_variables = "real u1;real y1;real y2;"
-                init_fnc = "/*Begin code section*/
-u1 = 0;
-y1 = 0;
-y2 = 0;
-/*End code section*/"
-                input_terminals = "real u;inherit rst;"
-                input_terminals_dimensions = "inherit;inherit"
-                input_terminals_feedthrough = "True;True"
-                input_terminals_show_labels = "True;True"
-                output_fnc = "/*Begin code section*/
-y = Ts_Control*u - B*u1 + C*y1 - D*y2;
-/*End code section*/"
-                output_terminals = "real y;"
-                output_terminals_dimensions = "inherit"
-                output_terminals_feedthrough = "True"
-                output_terminals_show_labels = "True"
-                parameters = "real B;real C;real D;real Ts_Control;"
-                update_fnc = "/*Begin code section*/
-if (rst > 0.5){
-    u1 = u;
-    y2 = y1;
-    y1 = y;
-}else{
-    u1 = 0;
-    y1 = 0;
-    y2 = 0;
-}
-/*End code section*/"
-            }
-            [
-                position = 8868, 8320
-                size = 48, 48
-            ]
-
             component "core/Bus Split" "Bus Split2" {
                 execution_rate = "Ts_Control"
             }
@@ -6284,68 +6121,12 @@ if (rst > 0.5){
                 position = 8368, 8344
             ]
 
-            component "core/Gain" Gain13 {
-                execution_rate = "Ts_Control"
-                gain = "Kr_v"
-            }
-            [
-                position = 8960, 8320
-            ]
-
-            component "core/C function" Res_Imp_Inv2 {
-                arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                execution_rate = "Ts_Control"
-                global_variables = "real u1;real y1;real y2;"
-                init_fnc = "/*Begin code section*/
-u1 = 0;
-y1 = 0;
-y2 = 0;
-/*End code section*/"
-                input_terminals = "real u;inherit rst;"
-                input_terminals_dimensions = "inherit;inherit"
-                input_terminals_feedthrough = "True;True"
-                input_terminals_show_labels = "True;True"
-                output_fnc = "/*Begin code section*/
-y = Ts_Control*u - B*u1 + C*y1 - D*y2;
-/*End code section*/"
-                output_terminals = "real y;"
-                output_terminals_dimensions = "inherit"
-                output_terminals_feedthrough = "True"
-                output_terminals_show_labels = "True"
-                parameters = "real B;real C;real D;real Ts_Control;"
-                update_fnc = "/*Begin code section*/
-if (rst > 0.5){
-    u1 = u;
-    y2 = y1;
-    y1 = y;
-}else{
-    u1 = 0;
-    y1 = 0;
-    y2 = 0;
-}
-/*End code section*/"
-            }
-            [
-                position = 8868, 8404
-                size = 48, 48
-            ]
-
-            component "core/Gain" Gain14 {
-                execution_rate = "Ts_Control"
-                gain = "Kr_v"
-            }
-            [
-                position = 8960, 8404
-            ]
-
             component "core/Sum" Sum4 {
                 execution_rate = "Ts_Control"
                 signs = "+-"
             }
             [
-                position = 8696, 8296
+                position = 8748, 8292
             ]
 
             component "core/Constant" Constant13 {
@@ -6361,7 +6142,7 @@ if (rst > 0.5){
                 signs = "+-"
             }
             [
-                position = 8704, 8396
+                position = 8716, 8396
             ]
 
             component "core/Constant" Constant14 {
@@ -6476,54 +6257,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 gain = "1/3"
             }
             [
-                position = 8516, 8568
-            ]
-
-            component "core/C function" Res_Imp_Inv3 {
-                arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                global_variables = "real u1;real y1;real y2;"
-                init_fnc = "/*Begin code section*/
-u1 = 0;
-y1 = 0;
-y2 = 0;
-/*End code section*/"
-                input_terminals = "real u;inherit rst;"
-                input_terminals_dimensions = "inherit;inherit"
-                input_terminals_feedthrough = "True;True"
-                input_terminals_show_labels = "True;True"
-                output_fnc = "/*Begin code section*/
-y = Ts_Control*u - B*u1 + C*y1 - D*y2;
-/*End code section*/"
-                output_terminals = "real y;"
-                output_terminals_dimensions = "inherit"
-                output_terminals_feedthrough = "True"
-                output_terminals_show_labels = "True"
-                parameters = "real B;real C;real D;real Ts_Control;"
-                update_fnc = "/*Begin code section*/
-if (rst > 0.5){
-    u1 = u;
-    y2 = y1;
-    y1 = y;
-}else{
-    u1 = 0;
-    y1 = 0;
-    y2 = 0;
-}
-/*End code section*/"
-            }
-            [
-                position = 8988, 8600
-                size = 48, 48
-            ]
-
-            component "core/Gain" Gain16 {
-                execution_rate = "Ts_Control"
-                gain = "Kr_v"
-            }
-            [
-                position = 9080, 8600
+                position = 8508, 8568
             ]
 
             component "core/Sum" Sum8 {
@@ -6531,7 +6265,7 @@ if (rst > 0.5){
                 signs = "+-"
             }
             [
-                position = 8816, 8576
+                position = 9008, 8596
             ]
 
             component "core/Constant" Constant16 {
@@ -6539,7 +6273,7 @@ if (rst > 0.5){
                 value = "0"
             }
             [
-                position = 8692, 8540
+                position = 8884, 8560
             ]
 
             component "core/Gain" Gain17 {
@@ -6547,7 +6281,7 @@ if (rst > 0.5){
                 gain = "-1"
             }
             [
-                position = 9176, 8600
+                position = 9380, 8624
             ]
 
             component "core/Sum" Sum9 {
@@ -7260,6 +6994,569 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 position = 7588, 8636
             ]
 
+            component "core/Product" Product2 {
+            }
+            [
+                position = 8628, 8420
+            ]
+
+            component "core/Product" Product4 {
+            }
+            [
+                position = 8776, 8632
+            ]
+
+            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)1" {
+                conv_trigger = "ePWM6"
+                execution_rate = "Ts_Control"
+                hil_ao_nr = "4"
+                inten = "True"
+                offset = "AO_offset"
+                scaling = "I_scale"
+            }
+            [
+                position = 6108, 7480
+                size = 127, 63
+            ]
+
+            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)2" {
+                conv_trigger = "ePWM6"
+                execution_rate = "Ts_Control"
+                hil_ao_nr = "5"
+                inten = "True"
+                offset = "AO_offset"
+                scaling = "I_scale"
+            }
+            [
+                position = 6108, 7580
+                size = 127, 63
+            ]
+
+            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)3" {
+                conv_trigger = "ePWM6"
+                execution_rate = "Ts_Control"
+                hil_ao_nr = "6"
+                inten = "True"
+                offset = "AO_offset"
+                scaling = "I_scale"
+            }
+            [
+                position = 6116, 7688
+                size = 127, 63
+            ]
+
+            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)4" {
+                conv_trigger = "ePWM6"
+                execution_rate = "Ts_Control"
+                hil_ao_nr = "14"
+                inten = "True"
+                offset = "AO_offset"
+                scaling = "V_scale"
+            }
+            [
+                position = 6116, 7088
+                size = 127, 63
+            ]
+
+            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)5" {
+                conv_trigger = "ePWM6"
+                execution_rate = "Ts_Control"
+                hil_ao_nr = "15"
+                inten = "True"
+                offset = "AO_offset"
+                scaling = "V_scale"
+            }
+            [
+                position = 6116, 7188
+                size = 127, 63
+            ]
+
+            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)6" {
+                conv_trigger = "ePWM6"
+                execution_rate = "Ts_Control"
+                hil_ao_nr = "16"
+                inten = "True"
+                offset = "AO_offset"
+                scaling = "V_scale"
+            }
+            [
+                position = 6124, 7296
+                size = 127, 63
+            ]
+
+            component "TI C2000 Toolbox/ADC (Generic)" "ADC (Generic)7" {
+                conv_trigger = "ePWM6"
+                execution_rate = "Ts_Control"
+                hil_ao_nr = "7"
+                inten = "True"
+                offset = "AO_offset"
+                scaling = "I_scale"
+            }
+            [
+                position = 6116, 7800
+                size = 127, 63
+            ]
+
+            component "core/Constant" Constant4 {
+                execution_rate = "Ts_Control"
+            }
+            [
+                position = 6020, 7944
+            ]
+
+            component "core/Sum" Sum2 {
+                execution_rate = "Ts_Control"
+                signs = "+-"
+            }
+            [
+                position = 6148, 7952
+            ]
+
+            component "core/Delay" Delay1 {
+                del_length = "1"
+                execution_rate = "Ts_Control"
+            }
+            [
+                position = 6144, 8068
+                rotation = down
+            ]
+
+            component "TI C2000 Toolbox/GPIO DO (Generic)" "GPIO DO (Generic)2" {
+                hil_di_nr = "7"
+                pin_action = "Pin Ctrl"
+            }
+            [
+                position = 6316, 7952
+                size = 127, 63
+            ]
+
+            component "core/Gain" Gain21 {
+                execution_rate = "Ts_Control"
+            }
+            [
+                position = 8896, 8632
+            ]
+
+            component "core/C function" Res_Imp_Inv4 {
+                arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                global_variables = "real u1;real y1;real y2;"
+                init_fnc = "/*Begin code section*/
+u1 = 0;
+y1 = 0;
+y2 = 0;
+/*End code section*/"
+                input_terminals = "real u;inherit rst;"
+                input_terminals_dimensions = "inherit;inherit"
+                input_terminals_feedthrough = "True;True"
+                input_terminals_show_labels = "True;True"
+                output_fnc = "/*Begin code section*/
+y = Ts_Control*u - B*u1 + C*y1 - D*y2;
+/*End code section*/"
+                output_terminals = "real y;"
+                output_terminals_dimensions = "inherit"
+                output_terminals_feedthrough = "True"
+                output_terminals_show_labels = "True"
+                parameters = "real B;real C;real D;real Ts_Control;"
+                update_fnc = "/*Begin code section*/
+if (rst > 0.5){
+    u1 = u;
+    y2 = y1;
+    y1 = y;
+}else{
+    u1 = 0;
+    y1 = 0;
+    y2 = 0;
+}
+/*End code section*/"
+            }
+            [
+                position = 9784, 8528
+                size = 48, 48
+            ]
+
+            component Subsystem Subsystem13 {
+                layout = dynamic
+                component "core/Gain" Gain1 {
+                    gain = "Kr_v"
+                }
+                [
+                    position = 8068, 8120
+                ]
+
+                component "core/Discrete Transfer Function" "Discrete Transfer Function2" {
+                    a_coeff = "[1,-1]"
+                    b_coeff = "[Ts_Control,0]"
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 8328, 8260
+                    rotation = down
+                ]
+
+                component "core/Product" Product1 {
+                    signs = "3"
+                }
+                [
+                    position = 8440, 8260
+                    rotation = down
+                ]
+
+                component "core/Sum" Sum1 {
+                    signs = "+-"
+                }
+                [
+                    position = 8200, 8132
+                ]
+
+                component "core/Integrator" Integrator1 {
+                    show_reset = "rising"
+                }
+                [
+                    position = 8324, 8132
+                ]
+
+                port omega {
+                    position = left:2
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8528, 8280
+                    rotation = down
+                ]
+
+                port error {
+                    position = left:1
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8000, 8120
+                ]
+
+                port Out1 {
+                    position = auto:auto
+                    kind = sp
+                    direction =  in
+                    sp_type {
+                        default = inherit
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8568, 8132
+                ]
+
+                port reset {
+                    position = left:3
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8208, 8212
+                ]
+
+                junction Junction1 sp
+                [
+                    position = 8488, 8276
+                ]
+
+                junction Junction2 sp
+                [
+                    position = 8484, 8128
+                ]
+
+                connect Product1.in Junction1 as Connection963
+                connect Junction1 omega as Connection964
+                connect Product1.in1 Junction1 as Connection965
+                connect error Gain1.in as Connection969
+                connect Gain1.out Sum1.in as Connection970
+                connect Product1.out "Discrete Transfer Function2.in" as Connection957
+                connect "Discrete Transfer Function2.out" Sum1.in1 as Connection959
+                connect Integrator1.in Sum1.out as Connection982
+                connect Product1.in2 Junction2 as Connection983
+                connect Junction2 Out1 as Connection984
+                [
+                    breakpoints = 8484, 8132
+                ]
+                connect Integrator1.out Junction2 as Connection985
+                connect reset Integrator1.reset as Connection986
+            }
+            [
+                position = 9260, 8632
+                size = 128, 80
+            ]
+
+            component Subsystem Subsystem14 {
+                layout = dynamic
+                component "core/Gain" Gain1 {
+                    gain = "Kr_v"
+                }
+                [
+                    position = 8068, 8120
+                ]
+
+                component "core/Discrete Transfer Function" "Discrete Transfer Function2" {
+                    a_coeff = "[1,-1]"
+                    b_coeff = "[Ts_Control,0]"
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 8328, 8260
+                    rotation = down
+                ]
+
+                component "core/Product" Product1 {
+                    signs = "3"
+                }
+                [
+                    position = 8440, 8260
+                    rotation = down
+                ]
+
+                component "core/Sum" Sum1 {
+                    signs = "+-"
+                }
+                [
+                    position = 8200, 8132
+                ]
+
+                component "core/Integrator" Integrator1 {
+                    show_reset = "rising"
+                }
+                [
+                    position = 8324, 8132
+                ]
+
+                port omega {
+                    position = left:2
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8528, 8280
+                    rotation = down
+                ]
+
+                port error {
+                    position = left:1
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8000, 8120
+                ]
+
+                port Out1 {
+                    position = auto:auto
+                    kind = sp
+                    direction =  in
+                    sp_type {
+                        default = inherit
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8568, 8132
+                ]
+
+                port reset {
+                    position = left:3
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8208, 8212
+                ]
+
+                junction Junction1 sp
+                [
+                    position = 8488, 8276
+                ]
+
+                junction Junction2 sp
+                [
+                    position = 8484, 8128
+                ]
+
+                connect Product1.in Junction1 as Connection963
+                connect Junction1 omega as Connection964
+                connect Product1.in1 Junction1 as Connection965
+                connect error Gain1.in as Connection969
+                connect Gain1.out Sum1.in as Connection970
+                connect Product1.out "Discrete Transfer Function2.in" as Connection957
+                connect "Discrete Transfer Function2.out" Sum1.in1 as Connection959
+                connect Integrator1.in Sum1.out as Connection982
+                connect Product1.in2 Junction2 as Connection983
+                connect Junction2 Out1 as Connection984
+                [
+                    breakpoints = 8484, 8132
+                ]
+                connect Integrator1.out Junction2 as Connection985
+                connect reset Integrator1.reset as Connection986
+            }
+            [
+                position = 8900, 8436
+                size = 128, 80
+            ]
+
+            component Subsystem Subsystem15 {
+                layout = dynamic
+                component "core/Gain" Gain1 {
+                    gain = "Kr_v"
+                }
+                [
+                    position = 8068, 8120
+                ]
+
+                component "core/Discrete Transfer Function" "Discrete Transfer Function2" {
+                    a_coeff = "[1,-1]"
+                    b_coeff = "[Ts_Control,0]"
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 8328, 8260
+                    rotation = down
+                ]
+
+                component "core/Product" Product1 {
+                    signs = "3"
+                }
+                [
+                    position = 8440, 8260
+                    rotation = down
+                ]
+
+                component "core/Sum" Sum1 {
+                    signs = "+-"
+                }
+                [
+                    position = 8200, 8132
+                ]
+
+                component "core/Integrator" Integrator1 {
+                    show_reset = "rising"
+                }
+                [
+                    position = 8324, 8132
+                ]
+
+                port omega {
+                    position = left:2
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8528, 8280
+                    rotation = down
+                ]
+
+                port error {
+                    position = left:1
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8000, 8120
+                ]
+
+                port Out1 {
+                    position = auto:auto
+                    kind = sp
+                    direction =  in
+                    sp_type {
+                        default = inherit
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8568, 8132
+                ]
+
+                port reset {
+                    position = left:3
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 8208, 8212
+                ]
+
+                junction Junction1 sp
+                [
+                    position = 8488, 8276
+                ]
+
+                junction Junction2 sp
+                [
+                    position = 8484, 8128
+                ]
+
+                connect Product1.in Junction1 as Connection963
+                connect Junction1 omega as Connection964
+                connect Product1.in1 Junction1 as Connection965
+                connect error Gain1.in as Connection969
+                connect Gain1.out Sum1.in as Connection970
+                connect Product1.out "Discrete Transfer Function2.in" as Connection957
+                connect "Discrete Transfer Function2.out" Sum1.in1 as Connection959
+                connect Integrator1.in Sum1.out as Connection982
+                connect Product1.in2 Junction2 as Connection983
+                connect Junction2 Out1 as Connection984
+                [
+                    breakpoints = 8484, 8132
+                ]
+                connect Integrator1.out Junction2 as Connection985
+                connect reset Integrator1.reset as Connection986
+            }
+            [
+                position = 8892, 8324
+                size = 128, 80
+            ]
+
+            component "core/Product" Product5 {
+            }
+            [
+                position = 8644, 8312
+            ]
+
             tag From74 {
                 value = "eta_abc"
                 scope = local
@@ -7271,90 +7568,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 rotation = down
                 hide_name = True
                 scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag Goto43 {
-                value = "is_a"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6216, 7504
-                hide_name = True
-                size = 60, 20
-            ]
-
-            tag Goto44 {
-                value = "is_b"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6208, 7604
-                hide_name = True
-                size = 60, 20
-            ]
-
-            tag Goto45 {
-                value = "is_c"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6208, 7712
-                hide_name = True
-                size = 60, 20
-            ]
-
-            tag Goto46 {
-                value = "vs_a"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6220, 7080
-                hide_name = True
-                size = 60, 20
-            ]
-
-            tag Goto47 {
-                value = "vs_b"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6212, 7180
-                hide_name = True
-                size = 60, 20
-            ]
-
-            tag Goto48 {
-                value = "vs_c"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6212, 7288
-                hide_name = True
-                size = 60, 20
-            ]
-
-            tag Goto61 {
-                value = "is_n"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 6208, 7824
-                hide_name = True
                 size = 60, 20
             ]
 
@@ -7521,7 +7734,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = out
             }
             [
-                position = 6012, 6820
+                position = 6060, 6796
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -8297,7 +8510,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             ]
 
             tag From208 {
-                value = "is_n_r"
+                value = "omega_vsg"
                 scope = local
                 kind = sp
                 direction = out
@@ -8308,48 +8521,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 size = 122, 20
             ]
 
-            tag From218 {
-                value = "is_a"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8276, 7384
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag From219 {
-                value = "is_b"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8276, 7460
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag From220 {
-                value = "is_c"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8276, 7552
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
             tag From221 {
                 value = "is_n"
                 scope = local
@@ -8357,7 +8528,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = out
             }
             [
-                position = 8288, 7632
+                position = 8312, 7628
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -8938,20 +9109,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 size = 68, 20
             ]
 
-            tag From161 {
-                value = "reset_int"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8768, 8348
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
             tag From241 {
                 value = "vs_albe_neg"
                 scope = local
@@ -8990,48 +9147,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 size = 68, 20
             ]
 
-            tag From242 {
-                value = "vs_al_neg"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8572, 8308
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag From243 {
-                value = "reset_int"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8768, 8432
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
-            tag From244 {
-                value = "vs_be_neg"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8580, 8408
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
-            ]
-
             tag From245 {
                 value = "theta_vsg"
                 scope = local
@@ -9053,7 +9168,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = in
             }
             [
-                position = 9912, 8412
+                position = 9972, 8412
                 hide_name = True
                 size = 60, 20
             ]
@@ -9113,23 +9228,9 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = in
             }
             [
-                position = 8608, 8568
+                position = 8588, 8568
                 hide_name = True
                 size = 68, 20
-            ]
-
-            tag From250 {
-                value = "reset_int"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 8888, 8628
-                rotation = down
-                hide_name = True
-                scale = -1, 1
-                size = 60, 20
             ]
 
             tag From251 {
@@ -9139,7 +9240,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = out
             }
             [
-                position = 8696, 8620
+                position = 8688, 8644
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -9153,7 +9254,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = in
             }
             [
-                position = 9292, 8600
+                position = 9468, 8624
                 hide_name = True
                 size = 60, 20
             ]
@@ -9187,7 +9288,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             ]
 
             tag From254 {
-                value = "reset_int"
+                value = "p_m_c_ref"
                 scope = local
                 kind = sp
                 direction = out
@@ -9221,7 +9322,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = in
             }
             [
-                position = 9504, 8740
+                position = 9508, 8744
                 hide_name = True
                 size = 60, 20
             ]
@@ -9271,7 +9372,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 direction = out
             }
             [
-                position = 6312, 8364
+                position = 6336, 8352
                 hide_name = True
                 size = 60, 20
             ]
@@ -9304,9 +9405,270 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 size = 92, 20
             ]
 
-            junction Junction9 sp
+            tag From260 {
+                value = "p_m_c_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
             [
-                position = 6100, 7980
+                position = 8420, 8492
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag Goto43 {
+                value = "is_a"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6304, 7480
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto44 {
+                value = "is_b"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6296, 7580
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto45 {
+                value = "is_c"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6296, 7688
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto46 {
+                value = "vs_a"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6312, 7088
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto47 {
+                value = "vs_b"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6304, 7188
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto48 {
+                value = "vs_c"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6304, 7296
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag Goto61 {
+                value = "is_n"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6296, 7800
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From261 {
+                value = "vs_al_neg"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8324, 7380
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From262 {
+                value = "vs_be_neg"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8320, 7460
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From263 {
+                value = "vo"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8312, 7552
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From265 {
+                value = "vs_al_neg"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8456, 8300
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From266 {
+                value = "vs_be_neg"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8496, 8408
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From267 {
+                value = "p_m_c_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8672, 8608
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From268 {
+                value = "p_m_c_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9140, 8664
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From272 {
+                value = "omega_vsg"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9104, 8632
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 92, 20
+            ]
+
+            tag From273 {
+                value = "p_m_c_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8744, 8484
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From274 {
+                value = "omega_vsg"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8712, 8444
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 92, 20
+            ]
+
+            tag From275 {
+                value = "p_m_c_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8772, 8356
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From276 {
+                value = "omega_vsg"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8716, 8336
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 92, 20
             ]
 
             junction Junction222 sp
@@ -9317,11 +9679,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             junction Junction223 sp
             [
                 position = 9372, 7280
-            ]
-
-            junction Junction224 sp
-            [
-                position = 6076, 6820
             ]
 
             junction Junction225 sp
@@ -9354,6 +9711,26 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 position = 8928, 8756
             ]
 
+            junction Junction9 sp
+            [
+                position = 6188, 7956
+            ]
+
+            junction Junction234 sp
+            [
+                position = 6144, 6796
+            ]
+
+            junction Junction235 sp
+            [
+                position = 6144, 6820
+            ]
+
+            junction Junction236 sp
+            [
+                position = 8540, 8480
+            ]
+
             comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Three-phase virtual system</p></body></html> ENDCOMMENT 
             [
                 position = 6172, 6452
@@ -9374,22 +9751,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 position = 10108, 7072
             ]
 
-            scheme_area Area4 {
-                title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">Peripherals AO Currents</span></p></body></html>
-            }
-            [
-                position = 6096, 7664
-                size = 356, 508
-            ]
-
-            scheme_area Area5 {
-                title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">Peripherals AO Voltages</span></p></body></html>
-            }
-            [
-                position = 6100, 7176
-                size = 356, 380
-            ]
-
             scheme_area Area6 {
                 title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:0; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Peripherals</p></body></html>
             }
@@ -9406,12 +9767,22 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 size = 912, 532
             ]
 
-            connect Goto43 "ADC (Generic)1.Out" as Connection766
-            connect Goto44 "ADC (Generic)2.Out" as Connection767
-            connect Goto45 "ADC (Generic)3.Out" as Connection768
-            connect Goto46 "ADC (Generic)4.Out" as Connection769
-            connect Goto47 "ADC (Generic)5.Out" as Connection770
-            connect Goto48 "ADC (Generic)6.Out" as Connection771
+            scheme_area Area4 {
+                title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">Peripherals AO Currents</span></p></body></html>
+            }
+            [
+                position = 6184, 7640
+                size = 356, 508
+            ]
+
+            scheme_area Area5 {
+                title = <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Tahoma'; font-size:14pt; font-weight:100; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span style=" font-weight:1;">Peripherals AO Voltages</span></p></body></html>
+            }
+            [
+                position = 6188, 7180
+                size = 356, 380
+            ]
+
             connect Sum1.in From74 as Connection772
             connect Sum1.in1 Constant1.out as Connection773
             connect Sum1.out Gain1.in as Connection774
@@ -9420,7 +9791,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             connect "ePWM (Generic)1.In2" "Bus Split1.out1" as Connection777
             connect "Bus Split1.out2" "ePWM (Generic)1.In3" as Connection778
             connect Constant2.out "ePWM (Generic)2.In1" as Connection7565
-            connect Goto61 "ADC (Generic)7.Out" as Connection7589
             connect From113 "Virtual 3ph3w.is_a" as Connection894
             connect From115 "Virtual 3ph3w.is_b" as Connection904
             connect From117 "Virtual 3ph3w.is_c" as Connection906
@@ -9446,14 +9816,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             connect Sum3.in From156 as Connection7607
             connect Sum3.in1 Constant6.out as Connection7608
             connect Sum3.out Gain3.in as Connection7609
-            connect Sum2.in Constant4.out as Connection7577
-            connect Delay1.out Sum2.in1 as Connection7579
-            connect Delay1.in Junction9 as Connection7584
-            connect Junction9 Sum2.out as Connection7585
-            [
-                breakpoints = 6100, 7980
-            ]
-            connect "GPIO DO (Generic)2.In" Junction9 as Connection7586
             connect From155 current_ctrl.reset_int as Connection7613
             connect Constant7.out current_ctrl.v_dc as Connection7614
             connect Goto67 "Virtual 3ph3w.vs_c_albe" as Connection7618
@@ -9510,16 +9872,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             connect Goto102 VSG_a.is_dq_ref as Connection7719
             connect Goto98 VSG_b.is_al_ref as Connection7746
             connect Goto97 VSG_a.is_al_ref as Connection7748
-            connect From147 Junction224 as Connection7750
-            [
-                breakpoints = 6060, 6820
-            ]
-            connect Junction224 "Virtual 3ph3w.omega_rads_a" as Connection7751
-            [
-                breakpoints = 6076, 6820; 6076, 6788
-            ]
-            connect "Virtual 3ph3w.omega_rads_b" Junction224 as Connection7752
-            connect "Virtual 3ph3w.omega_rads_c" Junction224 as Connection7753
             connect From144 current_ctrl.is_n as Connection7754
             connect From175 "SCI Send1.var1" as Connection7757
             [
@@ -9564,9 +9916,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 breakpoints = 8824, 6604
             ]
             connect Goto73 Junction230 as Connection7853
-            connect From218 "RMS value1.in" as Connection7868
-            connect "RMS value2.in" From219 as Connection7869
-            connect "RMS value3.in" From220 as Connection7870
             connect From221 "RMS value4.in" as Connection7871
             connect From222 Gain8.in as Connection7881
             connect From224 Gain4.in as Connection7886
@@ -9652,21 +10001,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             connect "C function VSG.is_d" Termination1.in as Connection7950
             connect Termination2.in "C function VSG.is_q" as Connection7951
             connect Goto112 Subsystem10.albe_neg as Connection7952
-            connect From161 Res_Imp_Inv1.rst as Connection970
             connect From241 "Bus Split2.in" as Connection7953
             connect Goto114 "Bus Split2.out1" as Connection7954
             connect "Bus Split2.out" Goto113 as Connection7955
-            connect Gain13.in Res_Imp_Inv1.y as Connection7957
-            connect From243 Res_Imp_Inv2.rst as Connection7958
-            connect Gain14.in Res_Imp_Inv2.y as Connection7960
-            connect From242 Sum4.in1 as Connection7961
             connect Sum4.in Constant13.out as Connection7962
-            connect Sum4.out Res_Imp_Inv1.u as Connection7963
             connect Sum5.in Constant14.out as Connection7965
-            connect Sum5.out Res_Imp_Inv2.u as Connection7966
-            connect From244 Sum5.in1 as Connection7967
-            connect Gain13.out "Bus Join21.in" as Connection7968
-            connect "Bus Join21.in1" Gain14.out as Connection7969
+            [
+                breakpoints = 8676, 8380; 8612, 8380
+            ]
             connect "C function dq to abc4.dq" "Bus Join21.out" as Connection7970
             connect Constant15.out "C function dq to abc4.theta" as Connection7971
             connect "Bus Join22.in1" "C function dq to abc4.b" as Connection7972
@@ -9677,7 +10019,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 breakpoints = 9484, 8412; 9484, 8360
             ]
             connect From245 "C function abc to dq3.theta" as Connection7976
-            connect Goto115 "Bus Join23.out" as Connection7977
             connect "Bus Join23.in" "C function abc to dq3.d" as Connection7978
             connect "C function abc to dq3.q" "Bus Join23.in1" as Connection7979
             connect From103 Sum6.in as Connection7980
@@ -9686,20 +10027,10 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             connect From248 Sum7.in1 as Connection7983
             connect From247 Sum7.in as Connection7984
             connect From249 Sum7.in2 as Connection7985
-            connect Gain15.in Sum7.out as Connection7986
-            connect Goto116 Gain15.out as Connection7987
-            connect From250 Res_Imp_Inv3.rst as Connection7988
-            connect Gain16.in Res_Imp_Inv3.y as Connection7989
-            connect From251 Sum8.in1 as Connection7990
-            [
-                breakpoints = 8760, 8620; 8760, 8584
-            ]
             connect Sum8.in Constant16.out as Connection7991
             [
-                breakpoints = 8756, 8568; 8756, 8540
+                breakpoints = 8948, 8588; 8948, 8560
             ]
-            connect Sum8.out Res_Imp_Inv3.u as Connection7992
-            connect Gain17.in Gain16.out as Connection7993
             connect Gain17.out Goto117 as Connection7994
             connect From252 Sum9.in as Connection20
             connect From253 Sum9.in1 as Connection21
@@ -9716,7 +10047,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             connect Gain20.in Sum10.out as Connection8003
             connect Product1.in Gain20.out as Connection8004
             connect Constant17.out Product1.in1 as Connection8005
-            connect Goto118 Product1.out as Connection8006
             connect From255 "C function dq to abc1.dq" as Connection8007
             connect From256 "C function dq to abc1.theta" as Connection8008
             connect "Bus Join15.out" Goto108 as Connection8009
@@ -9743,10 +10073,77 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             connect "Unit Delay1.out" Subsystem10.omega_vsg as Connection8023
             connect Subsystem11.omega_vsg "Unit Delay2.out" as Connection8024
             connect "Unit Delay2.in" From259 as Connection8025
+            connect Goto43 "ADC (Generic)1.Out" as Connection766
+            connect Goto44 "ADC (Generic)2.Out" as Connection767
+            connect Goto45 "ADC (Generic)3.Out" as Connection768
+            connect Goto46 "ADC (Generic)4.Out" as Connection769
+            connect Goto47 "ADC (Generic)5.Out" as Connection770
+            connect Goto48 "ADC (Generic)6.Out" as Connection771
+            connect Goto61 "ADC (Generic)7.Out" as Connection7589
+            connect Sum2.in Constant4.out as Connection7577
+            connect Delay1.out Sum2.in1 as Connection7579
+            connect Delay1.in Junction9 as Connection7584
+            connect Junction9 Sum2.out as Connection7585
+            [
+                breakpoints = 6188, 7956
+            ]
+            connect "GPIO DO (Generic)2.In" Junction9 as Connection7586
+            connect From147 Junction234 as Connection8038
+            connect Junction234 "Virtual 3ph3w.omega_rads_a" as Connection8039
+            connect "Virtual 3ph3w.omega_rads_b" Junction235 as Connection8041
+            connect Junction235 Junction234 as Connection8042
+            connect "Virtual 3ph3w.omega_rads_c" Junction235 as Connection8043
+            connect From261 "RMS value1.in" as Connection8044
+            connect "RMS value2.in" From262 as Connection8045
+            connect From263 "RMS value3.in" as Connection8046
+            connect Product1.out Goto118 as Connection8050
+            connect Sum7.out Gain15.in as Connection8051
+            connect Gain15.out Goto116 as Connection8052
+            connect From251 Product4.in1 as Connection8053
+            connect Product4.out Gain21.in as Connection8055
+            connect Gain21.out Sum8.in1 as Connection8056
+            connect From267 Product4.in as Connection8060
+            connect "Bus Join23.out" Goto115 as Connection8061
+            connect Subsystem13.reset From268 as Connection8124
+            connect From272 Subsystem13.omega as Connection8125
+            connect Subsystem13.Out1 Gain17.in as Connection8126
+            connect Sum8.out Subsystem13.error as Connection8127
+            connect Subsystem14.reset From273 as Connection8128
+            connect From274 Subsystem14.omega as Connection8129
+            connect Subsystem15.reset From275 as Connection8130
+            connect From276 Subsystem15.omega as Connection8131
+            connect Subsystem15.error Sum4.out as Connection8132
+            connect Subsystem14.error Sum5.out as Connection8133
+            connect Subsystem15.Out1 "Bus Join21.in" as Connection8134
+            connect Subsystem14.Out1 "Bus Join21.in1" as Connection8135
+            connect Product5.out Sum4.in1 as Connection8136
+            connect Product5.in From265 as Connection8137
+            connect From260 Junction236 as Connection8138
+            [
+                breakpoints = 8496, 8452
+            ]
+            connect Junction236 Product2.in1 as Connection8139
+            connect Product5.in1 Junction236 as Connection8140
+            connect From266 Product2.in as Connection8141
+            connect Product2.out Sum5.in1 as Connection8142
         }
         [
-            position = 9376, 8268
+            position = 9376, 8264
             size = 512, 416
+        ]
+
+        component "TI C2000 Toolbox/TI C2000 Setup" "TI C2000 Setup1" {
+            build_and_deploy_action = "False"
+            c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
+            ccs_project_name = "dq_unb_pi_vsg_sec"
+            ccs_project_path = "C:\workspace\Typhoon_USE\Andrei_unb_vsg"
+            ccs_root_path = "C:\ti\ccs1260"
+            exp_subsys_name = "dq_unb_pi_vsg"
+            scheduling = "ADCA Interrupt"
+        }
+        [
+            position = 9768, 8184
+            size = 64, 64
         ]
 
         component Subsystem Plant {
@@ -9847,7 +10244,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
             component "core/Ground" gnd2 {
             }
             [
-                position = 9672, 8156
+                position = 10064, 8168
             ]
 
             component "core/Resistor" R1 {
@@ -9939,74 +10336,15 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                 sig_output = "True"
             }
             [
-                position = 8772, 8512
+                position = 8768, 8512
                 size = 64, 32
-            ]
-
-            component "core/C function" "C function powers" {
-                arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                execution_rate = "100e-6"
-                global_variables = "real p_fil;real q_fil;"
-                init_fnc = "/*Begin code section*/
-p_fil = 0;
-q_fil = 0;
-/*End code section*/"
-                input_terminals = "real v_a;real v_b;real v_c;real i_a;real i_b;real i_c;"
-                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit"
-                input_terminals_feedthrough = "True;True;True;True;True;True"
-                input_terminals_show_labels = "True;True;True;True;True;True"
-                output_fnc = "/*Begin code section*/
-p = v_a*i_a + v_b*i_b + v_c*i_c;
-q = 1/sqrt(3)*(i_c*(v_a - v_b) + i_a*(v_b - v_c) + i_b*(v_c - v_a));
-p_f = p_fil;
-q_f = q_fil;
-/*End code section*/"
-                output_terminals = "real p;real q;real p_f;real q_f;"
-                output_terminals_dimensions = "inherit;inherit;inherit;inherit"
-                output_terminals_feedthrough = "True;True;True;True"
-                output_terminals_show_labels = "True;True;True;True"
-                parameters = "real Ts_Control;real fc;"
-                update_fnc = "/*Begin code section*/
-p_fil = p_fil + Ts_Control*2*M_PI*fc*(p - p_fil);
-q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
-/*End code section*/"
-            }
-            [
-                position = 10136, 8284
-                size = 184, 312
-            ]
-
-            component "core/Probe" p {
-            }
-            [
-                position = 10292, 8152
-            ]
-
-            component "core/Probe" q {
-            }
-            [
-                position = 10292, 8228
-            ]
-
-            component "core/Probe" pf {
-            }
-            [
-                position = 10280, 8328
-            ]
-
-            component "core/Probe" qf {
-            }
-            [
-                position = 10284, 8404
             ]
 
             component "core/Single Phase Power Meter" "Single Phase Power Meter1" {
                 zero_crossing_calc_filter = "30.0"
             }
             [
-                position = 9772, 7788
+                position = 9280, 7580
                 size = 48, 48
             ]
 
@@ -10014,7 +10352,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 zero_crossing_calc_filter = "30.0"
             }
             [
-                position = 9772, 7860
+                position = 9276, 7652
                 size = 48, 48
             ]
 
@@ -10022,65 +10360,44 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 zero_crossing_calc_filter = "30.0"
             }
             [
-                position = 9772, 7936
+                position = 9276, 7728
                 size = 48, 48
             ]
 
             component "core/Probe" p1 {
             }
             [
-                position = 9876, 7740
+                position = 9380, 7532
             ]
 
             component "core/Probe" q1 {
             }
             [
-                position = 9876, 7776
+                position = 9380, 7568
             ]
 
             component "core/Probe" p2 {
             }
             [
-                position = 9892, 7836
+                position = 9396, 7628
             ]
 
             component "core/Probe" q2 {
             }
             [
-                position = 9892, 7876
+                position = 9396, 7668
             ]
 
             component "core/Probe" p3 {
             }
             [
-                position = 9892, 7928
+                position = 9396, 7720
             ]
 
             component "core/Probe" q3 {
             }
             [
-                position = 9892, 7976
-            ]
-
-            component "core/RMS value" "RMS value1" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8876, 7384
-            ]
-
-            component "core/RMS value" "RMS value2" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8872, 7468
-            ]
-
-            component "core/RMS value" "RMS value3" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8876, 7548
+                position = 9396, 7768
             ]
 
             component "core/RMS value" "RMS value4" {
@@ -10090,30 +10407,16 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 8876, 7632
             ]
 
-            component "core/RMS value" "RMS value5" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8872, 7704
-            ]
-
-            component "core/RMS value" "RMS value6" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8876, 7776
-            ]
-
             component "core/Probe" va_rms {
             }
             [
-                position = 8980, 7384
+                position = 8972, 7148
             ]
 
             component "core/Probe" vb_rms {
             }
             [
-                position = 8976, 7468
+                position = 8968, 7336
             ]
 
             component "core/Probe" vc_rms {
@@ -10138,13 +10441,6 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             }
             [
                 position = 8968, 7776
-            ]
-
-            component "core/RMS value" "RMS value7" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8864, 7864
             ]
 
             component "core/Probe" in_rms {
@@ -10219,71 +10515,292 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 8644, 8924
             ]
 
-            component "core/Probe" pi {
+            component "core/Signal Controlled Voltage Source" Vsp1 {
             }
             [
-                position = 9836, 8560
+                position = 9952, 8092
+                size = 64, 32
             ]
 
-            component "core/Probe" qi {
+            component "core/Signal Controlled Voltage Source" Vsp2 {
             }
             [
-                position = 9840, 8624
+                position = 9944, 8184
+                size = 64, 32
             ]
 
-            component "core/C function" "C function1" {
-                arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                init_fnc = "/*Begin code section*/
-
-/*End code section*/"
-                input_terminals = "real va;inherit vb;inherit vc;inherit ia;inherit ib;inherit ic;"
-                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit"
-                input_terminals_feedthrough = "True;True;True;True;True;True"
-                input_terminals_show_labels = "True;True;True;True;True;True"
-                output_fnc = "/*Begin code section*/
-p = va*ia + vb*ib + vc*ic;
-q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
-/*End code section*/"
-                output_terminals = "real p;inherit q;"
-                output_terminals_dimensions = "inherit;inherit"
-                output_terminals_feedthrough = "True;True"
-                output_terminals_show_labels = "True;True"
-                update_fnc = "/*Begin code section*/
-
-/*End code section*/"
+            component "core/Signal Controlled Voltage Source" Vsp3 {
             }
             [
-                position = 9748, 8588
-                size = 48, 112
+                position = 9956, 8280
+                size = 64, 32
+            ]
+
+            component "core/Analog Input" "Analog Input1" {
+                execution_rate = "10e-6"
+            }
+            [
+                position = 9940, 7136
+            ]
+
+            component "core/Probe" va_opal_fil {
+            }
+            [
+                position = 10268, 7148
+            ]
+
+            component "core/Analog Input" "Analog Input2" {
+                addr = "2"
+                execution_rate = "10e-6"
+            }
+            [
+                position = 9936, 7236
+            ]
+
+            component "core/Probe" vb_opal_fil {
+            }
+            [
+                position = 10224, 7292
+            ]
+
+            component "core/Analog Input" "Analog Input3" {
+                addr = "3"
+                execution_rate = "10e-6"
+            }
+            [
+                position = 9844, 7396
+            ]
+
+            component "core/Probe" vc_opal {
+            }
+            [
+                position = 10164, 7400
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter1" {
+                execution_rate = "10e-6"
+                frequency = "3e3"
+            }
+            [
+                position = 10160, 7460
+            ]
+
+            component "core/Probe" vc_opal_fil {
+            }
+            [
+                position = 10284, 7460
+            ]
+
+            component "core/Gain" Gain4 {
+                gain = "K_ana_in"
+            }
+            [
+                position = 10008, 7136
+            ]
+
+            component "core/Gain" Gain5 {
+                gain = "K_ana_in"
+            }
+            [
+                position = 10016, 7236
+            ]
+
+            component "core/Gain" Gain6 {
+                gain = "K_ana_in"
+            }
+            [
+                position = 9940, 7392
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter2" {
+                execution_rate = "10e-6"
+                frequency = "3e3"
+            }
+            [
+                position = 10140, 7292
+            ]
+
+            component "core/Low-Pass Filter" "Low-Pass Filter3" {
+                execution_rate = "10e-6"
+                frequency = "3e3"
+            }
+            [
+                position = 10160, 7144
+            ]
+
+            component "core/Probe" va_opal1 {
+            }
+            [
+                position = 10396, 7108
+            ]
+
+            component "core/Probe" vb_opal {
+            }
+            [
+                position = 10208, 7208
+            ]
+
+            component "core/RMS value" "RMS value5" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8864, 7152
+            ]
+
+            component "core/RMS value" "RMS value6" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8864, 7336
+            ]
+
+            component "core/RMS value" "RMS value7" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8872, 7544
+            ]
+
+            component "core/RMS value" "RMS value8" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8876, 7708
+            ]
+
+            component "core/RMS value" "RMS value9" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8872, 7776
+            ]
+
+            component "core/RMS value" "RMS value10" {
+                op_mode = "Fixed frequency"
+            }
+            [
+                position = 8872, 7860
+            ]
+
+            component "core/Single phase PLL" "Single phase PLL4" {
+                offset_Hz = "50"
+                vd_init = "0"
+            }
+            [
+                position = 8868, 7048
+                size = 64, 98
+            ]
+
+            component "core/Probe" omega_a {
+            }
+            [
+                position = 8976, 7048
+            ]
+
+            component "core/Single phase PLL" "Single phase PLL5" {
+                offset_Hz = "50"
+                vd_init = "0"
+            }
+            [
+                position = 8860, 7248
+                size = 64, 98
+            ]
+
+            component "core/Probe" omega_b {
+            }
+            [
+                position = 8968, 7248
+            ]
+
+            component "core/Single phase PLL" "Single phase PLL6" {
+                offset_Hz = "50"
+                vd_init = "0"
+            }
+            [
+                position = 8876, 7448
+                size = 64, 98
+            ]
+
+            component "core/Probe" omega_c {
+            }
+            [
+                position = 8976, 7448
+            ]
+
+            component "core/Gain" Gain7 {
+                gain = "1.013"
+            }
+            [
+                position = 10024, 7392
+            ]
+
+            component "core/Voltage Source" Vs1 {
+                init_rms_value = "230"
+                init_source_nature = "Sine"
+            }
+            [
+                position = 9976, 7800
             ]
 
             component "core/Voltage Source" Vs2 {
+                init_phase = "120"
+                init_rms_value = "230"
+                init_source_nature = "Sine"
             }
             [
-                position = 9416, 7952
-            ]
-
-            component "core/Three Phase Voltage Source" Vs1 {
-            }
-            [
-                position = 9988, 7896
-                rotation = down
-                scale = 1, -1
-                size = 62, 256
+                position = 9972, 7896
             ]
 
             component "core/Voltage Source" Vs3 {
+                init_phase = "-120"
+                init_rms_value = "230"
+                init_source_nature = "Sine"
             }
             [
-                position = 9424, 8036
+                position = 9972, 7956
             ]
 
-            component "core/Voltage Source" Vs4 {
+            component "core/Series RLC Branch" "Series RLC Branch5" {
+                branch_type = "R"
+                inductance = "0.2e-3"
+                num_phases = "Three-Phase"
+                resistance = "0.34"
             }
             [
-                position = 9428, 8132
+                position = 9460, 8028
+                size = 128, 256
+            ]
+
+            component "core/Series RLC Branch" "Series RLC Branch6" {
+                branch_type = "R"
+                inductance = "Ln"
+                resistance = "0.34"
+            }
+            [
+                position = 9496, 8512
+                size = 128, 100
+            ]
+
+            component "core/Sinusoidal Source" "Sinusoidal Source1" {
+                amplitude = "325*0.9"
+            }
+            [
+                position = 10048, 7036
+            ]
+
+            component "core/Sinusoidal Source" "Sinusoidal Source2" {
+                amplitude = "325"
+                phase = "-120"
+            }
+            [
+                position = 9992, 7192
+            ]
+
+            component "core/Sum" Sum1 {
+                signs = "--"
+            }
+            [
+                position = 9996, 7332
             ]
 
             tag From1 {
@@ -10293,7 +10810,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 9588, 7796
+                position = 9092, 7588
                 size = 60, 20
             ]
 
@@ -10337,7 +10854,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 9592, 7868
+                position = 9096, 7660
                 size = 60, 20
             ]
 
@@ -10348,7 +10865,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 9592, 7944
+                position = 9096, 7736
                 size = 60, 20
             ]
 
@@ -10392,7 +10909,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 9668, 7780
+                position = 9172, 7572
                 size = 60, 20
             ]
 
@@ -10403,7 +10920,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 9672, 7852
+                position = 9176, 7644
                 size = 60, 20
             ]
 
@@ -10414,73 +10931,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 9672, 7928
-                size = 60, 20
-            ]
-
-            tag From7 {
-                value = "ia"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9940, 8304
-                size = 60, 20
-            ]
-
-            tag From8 {
-                value = "ib"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9928, 8360
-                size = 60, 20
-            ]
-
-            tag From9 {
-                value = "ic"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9924, 8408
-                size = 60, 20
-            ]
-
-            tag From10 {
-                value = "va"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9936, 8164
-                size = 60, 20
-            ]
-
-            tag From11 {
-                value = "vb"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9936, 8208
-                size = 60, 20
-            ]
-
-            tag From12 {
-                value = "vc"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9940, 8256
+                position = 9176, 7720
                 size = 60, 20
             ]
 
@@ -10524,7 +10975,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 8732, 7376
+                position = 8732, 7152
                 size = 60, 20
             ]
 
@@ -10535,7 +10986,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 direction = out
             }
             [
-                position = 8744, 7468
+                position = 8736, 7336
                 size = 60, 20
             ]
 
@@ -10605,69 +11056,91 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 size = 60, 20
             ]
 
-            tag From23 {
-                value = "ia"
+            tag From29 {
+                value = "v_opal_a"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 9592, 8584
+                position = 9868, 8044
                 size = 60, 20
             ]
 
-            tag From24 {
-                value = "ib"
+            tag From30 {
+                value = "v_opal_b"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 9588, 8644
+                position = 9884, 8148
                 size = 60, 20
             ]
 
-            tag From25 {
-                value = "ic"
+            tag From31 {
+                value = "v_opal_c"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 9588, 8724
+                position = 9892, 8240
                 size = 60, 20
             ]
 
-            tag From26 {
-                value = "va"
+            tag Goto19 {
+                value = "v_opal_a"
                 scope = local
                 kind = sp
-                direction = out
+                direction = in
             }
             [
-                position = 9592, 8440
+                position = 10304, 7036
                 size = 60, 20
             ]
 
-            tag From27 {
-                value = "vb"
+            tag Goto20 {
+                value = "v_opal_b"
                 scope = local
                 kind = sp
-                direction = out
+                direction = in
             }
             [
-                position = 9616, 8492
+                position = 10364, 7188
                 size = 60, 20
             ]
 
-            tag From28 {
-                value = "vc"
+            tag Goto21 {
+                value = "v_opal_c"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 10360, 7348
+                size = 60, 20
+            ]
+
+            tag From32 {
+                value = "v_opal_a"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 9592, 8540
+                position = 9852, 7316
+                size = 60, 20
+            ]
+
+            tag From33 {
+                value = "v_opal_b"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 9852, 7340
                 size = 60, 20
             ]
 
@@ -10736,11 +11209,6 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 position = 9308, 8512
             ]
 
-            junction Junction60 pe
-            [
-                position = 9372, 8512
-            ]
-
             junction Junction62 pe
             [
                 position = 6984, 8684
@@ -10766,34 +11234,114 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
                 position = 8412, 8516
             ]
 
-            junction Junction68 sp
+            junction Junction241 sp
+            [
+                position = 10104, 7128
+            ]
+
+            junction Junction252 sp
             [
                 position = 8812, 7864
             ]
 
-            junction Junction69 pe
+            junction Junction253 sp
             [
-                position = 9372, 8132
+                position = 8788, 7152
             ]
 
-            junction Junction70 pe
+            junction Junction254 sp
             [
-                position = 9476, 8124
+                position = 8788, 7328
             ]
 
-            junction Junction71 pe
+            junction Junction255 sp
+            [
+                position = 8792, 7552
+            ]
+
+            junction Junction256 sp
+            [
+                position = 10076, 7400
+            ]
+
+            junction Junction257 pe
+            [
+                position = 10020, 7896
+            ]
+
+            junction Junction262 pe
+            [
+                position = 9372, 8512
+            ]
+
+            junction Junction263 sp
+            [
+                position = 10092, 7292
+            ]
+
+            junction Junction264 pe
+            [
+                position = 10004, 8184
+            ]
+
+            junction Junction265 pe
+            [
+                position = 9376, 8132
+            ]
+
+            junction Junction266 pe
             [
                 position = 9300, 8036
             ]
 
-            junction Junction72 pe
+            junction Junction267 pe
             [
-                position = 9480, 8036
+                position = 9256, 7940
             ]
 
-            junction Junction73 pe
+            junction Junction268 pe
             [
-                position = 9252, 7940
+                position = 9592, 7932
+            ]
+
+            junction Junction269 pe
+            [
+                position = 9540, 8020
+            ]
+
+            junction Junction270 pe
+            [
+                position = 9540, 8132
+            ]
+
+            junction Junction271 pe
+            [
+                position = 10004, 8144
+            ]
+
+            junction Junction272 pe
+            [
+                position = 10052, 8144
+            ]
+
+            junction Junction273 pe
+            [
+                position = 10028, 8144
+            ]
+
+            junction Junction274 sp
+            [
+                position = 10204, 7140
+            ]
+
+            junction Junction275 sp
+            [
+                position = 10184, 7292
+            ]
+
+            junction Junction276 sp
+            [
+                position = 10228, 7460
             ]
 
             connect "Series RLC Branch1.P1_neg" Junction1 as Connection9
@@ -10852,8 +11400,6 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             connect Junction55 Junction54 as Connection252
             connect "Series RLC Branch4.P1_neg" Junction55 as Connection253
             connect Vb.n_node Junction59 as Connection265
-            connect Vc.n_node Junction60 as Connection268
-            connect Junction60 Junction59 as Connection269
             connect Junction62 Junction37 as Connection275
             connect "IGBT Leg2.neg_out" Junction62 as Connection276
             connect Junction38 Junction63 as Connection277
@@ -10875,10 +11421,6 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             connect "Series RLC Branch3.P1_neg" Junction67 as Connection294
             connect Junction67 Junction54 as Connection295
             connect Ing.p_node Junction67 as Connection296
-            connect p.in "C function powers.p" as Connection303
-            connect "C function powers.q" q.in as Connection304
-            connect "C function powers.p_f" pf.in as Connection305
-            connect "C function powers.q_f" qf.in as Connection306
             connect Goto3 Icg.out as Connection307
             connect Goto2 Ibg.out as Connection308
             connect Goto1 Iag.out as Connection309
@@ -10891,35 +11433,15 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             connect From4 "Single Phase Power Meter1.Va" as Connection316
             connect From5 "Single Phase Power Meter2.Va" as Connection317
             connect From6 "Single Phase Power Meter3.Va" as Connection318
-            connect "C function powers.v_a" From10 as Connection319
-            connect "C function powers.v_b" From11 as Connection320
-            connect "C function powers.v_c" From12 as Connection321
-            connect "C function powers.i_a" From7 as Connection322
-            connect "C function powers.i_b" From8 as Connection323
-            connect "C function powers.i_c" From9 as Connection324
             connect "Single Phase Power Meter1.P" p1.in as Connection325
             connect "Single Phase Power Meter1.Q" q1.in as Connection326
             connect "Single Phase Power Meter2.P" p2.in as Connection327
             connect "Single Phase Power Meter2.Q" q2.in as Connection328
             connect "Single Phase Power Meter3.P" p3.in as Connection329
             connect "Single Phase Power Meter3.Q" q3.in as Connection330
-            connect From16 "RMS value1.in" as Connection334
-            connect From17 "RMS value2.in" as Connection335
             connect From13 "RMS value4.in" as Connection336
-            connect From18 "RMS value3.in" as Connection337
-            connect From14 "RMS value5.in" as Connection338
-            connect From15 "RMS value6.in" as Connection339
-            connect "RMS value1.out" va_rms.in as Connection340
-            connect "RMS value2.out" vb_rms.in as Connection341
-            connect "RMS value3.out" vc_rms.in as Connection342
             connect "RMS value4.out" ia_rms.in as Connection343
-            connect "RMS value5.out" ib_rms.in as Connection344
-            connect "RMS value6.out" ic_rms.in as Connection345
-            connect "RMS value7.out" in_rms.in as Connection347
             connect Goto7 Ing.out as Connection348
-            connect From19 Junction68 as Connection349
-            connect Junction68 "RMS value7.in" as Connection350
-            connect in.in Junction68 as Connection351
             connect From21 "Single phase PLL2.In" as Connection352
             connect From22 "Single phase PLL3.In" as Connection353
             connect From20 "Single phase PLL1.In" as Connection354
@@ -10929,249 +11451,207 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             connect Gain3.out w_c.in as Connection358
             connect Gain3.in "Single phase PLL3.f" as Connection359
             connect "Single phase PLL2.f" Gain2.in as Connection360
-            connect "C function1.va" From26 as Connection381
+            connect From29 Vsp1.in as Connection452
+            connect From30 Vsp2.in as Connection453
+            connect From31 Vsp3.in as Connection454
+            connect Gain4.in "Analog Input1.out" as Connection1462
+            connect Gain5.in "Analog Input2.out" as Connection1466
+            connect Gain6.in "Analog Input3.out" as Connection1470
+            connect Gain4.out Junction241 as Connection1511
             [
-                breakpoints = 9692, 8548; 9692, 8440
+                breakpoints = 10064, 7136; 10064, 7128
             ]
-            connect "C function1.vc" From28 as Connection383
-            connect "C function1.ia" From23 as Connection384
-            connect "C function1.ib" From24 as Connection385
-            connect "C function1.ic" From25 as Connection386
-            connect "C function1.p" pi.in as Connection387
-            connect "C function1.q" qi.in as Connection388
-            connect From27 "C function1.vb" as Connection389
+            connect Junction241 "Low-Pass Filter3.in" as Connection1512
             [
-                breakpoints = 9676, 8492; 9676, 8564
+                breakpoints = 10104, 7144
             ]
-            connect Icg.n_node Junction69 as Connection410
-            connect Junction69 Vc.p_node as Connection411
+            connect Junction241 va_opal1.in as Connection1553
             [
-                breakpoints = 9372, 8132; 9372, 8220
+                breakpoints = 10104, 7108
             ]
-            connect Vs4.p_node Junction69 as Connection412
-            connect Junction70 Junction60 as Connection414
+            connect in_rms.in "RMS value10.out" as Connection1566
+            connect in.in Junction252 as Connection1567
             [
-                breakpoints = 9476, 8136; 9372, 8512
+                breakpoints = 8928, 7912; 8812, 7912
             ]
-            connect Vs4.n_node Junction70 as Connection415
-            connect Vb.p_node Junction71 as Connection416
+            connect Junction252 From19 as Connection1568
             [
-                breakpoints = 9300, 8220
+                breakpoints = 8812, 7864
             ]
-            connect Junction71 Ibg.n_node as Connection417
+            connect "RMS value10.in" Junction252 as Connection1569
+            connect "RMS value9.in" From15 as Connection1570
+            connect "RMS value9.out" ic_rms.in as Connection1571
+            connect ib_rms.in "RMS value8.out" as Connection1572
+            connect "RMS value8.in" From14 as Connection1573
+            connect "RMS value7.out" vc_rms.in as Connection1575
+            connect vb_rms.in "RMS value6.out" as Connection1576
+            connect "RMS value5.out" va_rms.in as Connection1579
+            connect From16 Junction253 as Connection1580
+            connect Junction253 "RMS value5.in" as Connection1581
+            connect "Single phase PLL4.In" Junction253 as Connection1582
+            connect "Single phase PLL4.f" omega_a.in as Connection1583
+            connect "Single phase PLL5.f" omega_b.in as Connection1584
+            connect "RMS value6.in" Junction254 as Connection1585
+            connect Junction254 From17 as Connection1586
+            connect "Single phase PLL5.In" Junction254 as Connection1587
+            connect From18 Junction255 as Connection1588
+            connect Junction255 "RMS value7.in" as Connection1589
+            connect "Single phase PLL6.In" Junction255 as Connection1590
+            connect omega_c.in "Single phase PLL6.f" as Connection1591
+            connect Gain6.out Gain7.in as Connection1593
             [
-                breakpoints = 9300, 8036
+                breakpoints = 9984, 7388
             ]
-            connect Vs3.p_node Junction71 as Connection418
-            connect gnd2.node Junction72 as Connection419
-            connect Junction72 Junction70 as Connection420
+            connect vc_opal.in Junction256 as Connection1594
+            connect Junction256 "Low-Pass Filter1.in" as Connection1595
             [
-                breakpoints = 9480, 8036; 9476, 8048
+                breakpoints = 10076, 7400; 10108, 7460
             ]
-            connect Vs3.n_node Junction72 as Connection421
-            connect Vs2.n_node Junction72 as Connection422
+            connect Gain7.out Junction256 as Connection1596
+            connect Vs1.n_node Junction257 as Connection1614
             [
-                breakpoints = 9480, 8032
+                breakpoints = 10020, 7840
             ]
-            connect Iag.n_node Junction73 as Connection423
-            connect Junction73 Va.p_node as Connection424
+            connect Junction257 Vs2.n_node as Connection1615
+            [
+                breakpoints = 10020, 7896
+            ]
+            connect Vc.n_node Junction262 as Connection1646
+            connect Junction262 Junction59 as Connection1647
+            [
+                breakpoints = 9372, 8512
+            ]
+            connect "Series RLC Branch6.P1_pos" Junction262 as Connection1648
+            connect Gain5.out Junction263 as Connection1654
+            [
+                breakpoints = 10060, 7236; 10060, 7240; 10080, 7292
+            ]
+            connect Junction263 "Low-Pass Filter2.in" as Connection1655
+            connect vb_opal.in Junction263 as Connection1656
+            [
+                breakpoints = 10092, 7284
+            ]
+            connect From32 Sum1.in as Connection1658
+            connect Sum1.in1 From33 as Connection1659
+            connect Junction257 Vs3.n_node as Connection1663
+            [
+                breakpoints = 10024, 7896; 10024, 7956
+            ]
+            connect Junction264 Vsp3.n_node as Connection1666
+            connect Vsp2.n_node Junction264 as Connection1667
+            connect Icg.n_node Junction265 as Connection1673
+            connect Junction265 Vc.p_node as Connection1674
+            [
+                breakpoints = 9372, 8136; 9372, 8220
+            ]
+            connect "Series RLC Branch5.P3_pos" Junction265 as Connection1675
+            connect Vb.p_node Junction266 as Connection1676
+            [
+                breakpoints = 9300, 8220; 9300, 8044
+            ]
+            connect Junction266 Ibg.n_node as Connection1677
+            connect "Series RLC Branch5.P2_pos" Junction266 as Connection1678
+            connect Iag.n_node Junction267 as Connection1679
+            connect Junction267 Va.p_node as Connection1680
             [
                 breakpoints = 9252, 7940
             ]
-            connect Vs2.p_node Junction73 as Connection425
+            connect "Series RLC Branch5.P1_pos" Junction267 as Connection1681
+            connect "Series RLC Branch5.P1_neg" Junction268 as Connection1683
+            connect Junction268 Vs1.p_node as Connection1684
+            [
+                breakpoints = 9592, 7800; 9924, 7800
+            ]
+            connect Vsp1.p_node Junction268 as Connection1690
+            [
+                breakpoints = 9592, 8092
+            ]
+            connect "Series RLC Branch5.P2_neg" Junction269 as Connection1691
+            connect Junction269 Vs2.p_node as Connection1692
+            [
+                breakpoints = 9572, 8020; 9572, 7888; 9924, 7888
+            ]
+            connect Vsp2.p_node Junction269 as Connection1693
+            [
+                breakpoints = 9572, 8184; 9572, 8024; 9540, 8024
+            ]
+            connect Vsp3.p_node Junction270 as Connection1695
+            [
+                breakpoints = 9620, 8280; 9620, 8132
+            ]
+            connect Junction270 "Series RLC Branch5.P3_neg" as Connection1696
+            connect Vs3.p_node Junction270 as Connection1697
+            [
+                breakpoints = 9620, 7956; 9620, 8132
+            ]
+            connect Vsp1.n_node Junction271 as Connection1698
+            connect Junction271 Junction264 as Connection1699
+            connect gnd2.node Junction272 as Connection1701
+            connect Junction257 Junction272 as Connection1703
+            [
+                breakpoints = 10064, 7896; 10064, 8144
+            ]
+            connect Junction272 Junction273 as Connection1704
+            connect Junction273 Junction271 as Connection1705
+            connect "Series RLC Branch6.P1_neg" Junction273 as Connection1706
+            connect va_opal_fil.in Junction274 as Connection1707
+            [
+                breakpoints = 10204, 7148
+            ]
+            connect Junction274 "Low-Pass Filter3.out" as Connection1708
+            [
+                breakpoints = 10204, 7144
+            ]
+            connect Goto19 Junction274 as Connection1709
+            connect vb_opal_fil.in Junction275 as Connection1710
+            connect Junction275 "Low-Pass Filter2.out" as Connection1711
+            connect Goto20 Junction275 as Connection1712
+            connect vc_opal_fil.in Junction276 as Connection1713
+            connect Junction276 "Low-Pass Filter1.out" as Connection1714
+            connect Goto21 Junction276 as Connection1715
         }
         [
-            position = 8704, 8264
+            position = 8752, 8272
             size = 584, 424
-        ]
-
-        component "TI C2000 Toolbox/TI C2000 Setup" "TI C2000 Setup1" {
-            build_and_deploy_action = "False"
-            c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
-            ccs_project_name = "dq_unb_pi_vsg_acg"
-            ccs_project_path = "C:\workspace\Typhoon_USE\Andrei_unb_vsg"
-            ccs_root_path = "C:\ti\ccs1271"
-            exp_subsys_name = "dq_unb_pi_vsg"
-            scheduling = "ADCA Interrupt"
-        }
-        [
-            position = 9768, 8184
-            size = 64, 64
         ]
     }
 
     logically_deleted {
-        "dq_unb_pi_vsg.Virtual 3ph3w"
-        "dq_unb_pi_vsg.current_ctrl"
-        "dq_unb_pi_vsg.Bus Join10"
-        "dq_unb_pi_vsg.Bus Join12"
-        "dq_unb_pi_vsg.Bus Join13"
-        "dq_unb_pi_vsg.Constant5"
-        "dq_unb_pi_vsg.Constant7"
-        "dq_unb_pi_vsg.VSG_a"
-        "dq_unb_pi_vsg.Gain4"
-        "dq_unb_pi_vsg.Gain5"
-        "dq_unb_pi_vsg.Gain6"
-        "dq_unb_pi_vsg.Gain7"
-        "dq_unb_pi_vsg.Gain8"
-        "dq_unb_pi_vsg.Gain9"
-        "dq_unb_pi_vsg.VSG_b"
-        "dq_unb_pi_vsg.VSG_c"
-        "dq_unb_pi_vsg.From113"
-        "dq_unb_pi_vsg.From114"
-        "dq_unb_pi_vsg.Goto62"
-        "dq_unb_pi_vsg.Goto63"
-        "dq_unb_pi_vsg.Goto64"
-        "dq_unb_pi_vsg.Goto65"
-        "dq_unb_pi_vsg.Goto66"
-        "dq_unb_pi_vsg.Goto67"
-        "dq_unb_pi_vsg.From115"
-        "dq_unb_pi_vsg.From116"
-        "dq_unb_pi_vsg.From117"
-        "dq_unb_pi_vsg.From118"
-        "dq_unb_pi_vsg.From147"
-        "dq_unb_pi_vsg.From134"
-        "dq_unb_pi_vsg.From135"
-        "dq_unb_pi_vsg.From136"
-        "dq_unb_pi_vsg.From137"
-        "dq_unb_pi_vsg.From138"
-        "dq_unb_pi_vsg.From139"
-        "dq_unb_pi_vsg.From140"
-        "dq_unb_pi_vsg.From142"
-        "dq_unb_pi_vsg.From143"
-        "dq_unb_pi_vsg.From144"
-        "dq_unb_pi_vsg.Goto71"
-        "dq_unb_pi_vsg.Goto72"
-        "dq_unb_pi_vsg.Goto73"
-        "dq_unb_pi_vsg.From155"
-        "dq_unb_pi_vsg.Goto78"
-        "dq_unb_pi_vsg.Goto79"
-        "dq_unb_pi_vsg.Goto80"
-        "dq_unb_pi_vsg.From122"
-        "dq_unb_pi_vsg.From123"
-        "dq_unb_pi_vsg.From124"
-        "dq_unb_pi_vsg.From125"
-        "dq_unb_pi_vsg.From126"
-        "dq_unb_pi_vsg.From127"
-        "dq_unb_pi_vsg.Goto84"
-        "dq_unb_pi_vsg.Goto85"
-        "dq_unb_pi_vsg.Goto86"
-        "dq_unb_pi_vsg.Goto88"
-        "dq_unb_pi_vsg.Goto89"
-        "dq_unb_pi_vsg.Goto90"
-        "dq_unb_pi_vsg.Goto92"
-        "dq_unb_pi_vsg.Goto93"
-        "dq_unb_pi_vsg.Goto94"
-        "dq_unb_pi_vsg.From151"
-        "dq_unb_pi_vsg.Goto97"
-        "dq_unb_pi_vsg.Goto98"
-        "dq_unb_pi_vsg.Goto99"
-        "dq_unb_pi_vsg.Goto100"
-        "dq_unb_pi_vsg.From166"
-        "dq_unb_pi_vsg.Goto101"
-        "dq_unb_pi_vsg.Goto102"
-        "dq_unb_pi_vsg.From178"
-        "dq_unb_pi_vsg.From179"
-        "dq_unb_pi_vsg.From180"
-        "dq_unb_pi_vsg.Goto103"
-        "dq_unb_pi_vsg.From222"
-        "dq_unb_pi_vsg.From224"
-        "dq_unb_pi_vsg.From225"
-        "dq_unb_pi_vsg.From226"
-        "dq_unb_pi_vsg.From227"
-        "dq_unb_pi_vsg.From228"
-        "dq_unb_pi_vsg.Junction224"
-        "dq_unb_pi_vsg.Junction225"
-        "dq_unb_pi_vsg.Junction226"
-        "dq_unb_pi_vsg.Junction227"
-        "dq_unb_pi_vsg.Junction230"
-        "dq_unb_pi_vsg.Connection894"
-        "dq_unb_pi_vsg.Connection904"
-        "dq_unb_pi_vsg.Connection906"
-        "dq_unb_pi_vsg.Connection945"
-        "dq_unb_pi_vsg.Connection946"
-        "dq_unb_pi_vsg.Connection947"
-        "dq_unb_pi_vsg.Connection949"
-        "dq_unb_pi_vsg.Connection950"
-        "dq_unb_pi_vsg.Connection951"
-        "dq_unb_pi_vsg.Connection952"
-        "dq_unb_pi_vsg.Connection953"
-        "dq_unb_pi_vsg.Connection954"
-        "dq_unb_pi_vsg.Connection955"
-        "dq_unb_pi_vsg.Connection1000"
-        "dq_unb_pi_vsg.Connection1027"
-        "dq_unb_pi_vsg.Connection7613"
-        "dq_unb_pi_vsg.Connection7614"
-        "dq_unb_pi_vsg.Connection7618"
-        "dq_unb_pi_vsg.Connection7619"
-        "dq_unb_pi_vsg.Connection7620"
-        "dq_unb_pi_vsg.Connection7621"
-        "dq_unb_pi_vsg.Connection7622"
-        "dq_unb_pi_vsg.Connection7623"
-        "dq_unb_pi_vsg.Connection7624"
-        "dq_unb_pi_vsg.Connection7625"
-        "dq_unb_pi_vsg.Connection7626"
-        "dq_unb_pi_vsg.Connection7639"
-        "dq_unb_pi_vsg.Connection7640"
-        "dq_unb_pi_vsg.Connection7641"
-        "dq_unb_pi_vsg.Connection911"
-        "dq_unb_pi_vsg.Connection919"
-        "dq_unb_pi_vsg.Connection920"
-        "dq_unb_pi_vsg.Connection1114"
-        "dq_unb_pi_vsg.Connection1115"
-        "dq_unb_pi_vsg.Connection1208"
-        "dq_unb_pi_vsg.Connection1209"
-        "dq_unb_pi_vsg.Connection1210"
-        "dq_unb_pi_vsg.Connection1216"
-        "dq_unb_pi_vsg.Connection1217"
-        "dq_unb_pi_vsg.Connection7661"
-        "dq_unb_pi_vsg.Connection7662"
-        "dq_unb_pi_vsg.Connection7664"
-        "dq_unb_pi_vsg.Connection7675"
-        "dq_unb_pi_vsg.Connection7676"
-        "dq_unb_pi_vsg.Connection7710"
-        "dq_unb_pi_vsg.Connection7718"
-        "dq_unb_pi_vsg.Connection7719"
-        "dq_unb_pi_vsg.Connection7746"
-        "dq_unb_pi_vsg.Connection7748"
-        "dq_unb_pi_vsg.Connection7750"
-        "dq_unb_pi_vsg.Connection7751"
-        "dq_unb_pi_vsg.Connection7752"
-        "dq_unb_pi_vsg.Connection7753"
-        "dq_unb_pi_vsg.Connection7754"
-        "dq_unb_pi_vsg.Connection7758"
-        "dq_unb_pi_vsg.Connection7759"
-        "dq_unb_pi_vsg.Connection7761"
-        "dq_unb_pi_vsg.Connection7762"
-        "dq_unb_pi_vsg.Connection7763"
-        "dq_unb_pi_vsg.Connection7764"
-        "dq_unb_pi_vsg.Connection7767"
-        "dq_unb_pi_vsg.Connection7768"
-        "dq_unb_pi_vsg.Connection7769"
-        "dq_unb_pi_vsg.Connection7770"
-        "dq_unb_pi_vsg.Connection7774"
-        "dq_unb_pi_vsg.Connection7775"
-        "dq_unb_pi_vsg.Connection7776"
-        "dq_unb_pi_vsg.Connection7777"
-        "dq_unb_pi_vsg.Connection7778"
-        "dq_unb_pi_vsg.Connection7779"
-        "dq_unb_pi_vsg.Connection7780"
-        "dq_unb_pi_vsg.Connection7781"
-        "dq_unb_pi_vsg.Connection7782"
-        "dq_unb_pi_vsg.Connection7844"
-        "dq_unb_pi_vsg.Connection7851"
-        "dq_unb_pi_vsg.Connection7852"
-        "dq_unb_pi_vsg.Connection7853"
-        "dq_unb_pi_vsg.Connection7881"
-        "dq_unb_pi_vsg.Connection7886"
-        "dq_unb_pi_vsg.Connection7887"
-        "dq_unb_pi_vsg.Connection7893"
-        "dq_unb_pi_vsg.Connection7894"
-        "dq_unb_pi_vsg.Connection7895"
+        "dq_unb_pi_vsg"
+        "TI C2000 Setup1"
         "Plant.Vs1"
+        "Plant.Vs2"
+        "Plant.Vs3"
+        "Plant.Junction257"
+        "Plant.Connection1614"
+        "Plant.Connection1615"
+        "Plant.Series RLC Branch6"
+        "Plant.Sinusoidal Source1"
+        "Plant.Sinusoidal Source2"
+        "Plant.From32"
+        "Plant.From33"
+        "Plant.Sum1"
+        "Plant.Connection1658"
+        "Plant.Connection1659"
+        "Plant.Connection1663"
+        "Plant.Connection1684"
+        "Plant.Connection1692"
+        "Plant.Connection1697"
+        "Plant.Connection1703"
+    }
+
+    bypassed {
+        "Plant.Series RLC Branch6"
     }
 
     default {
+        "core/Analog Input" {
+            addr = "1"
+            ai_offset = "0"
+            ai_gain = "1"
+            execution_rate = "100e-6"
+        }
+
         "core/Bus Join" {
             inputs = "2"
             execution_rate = "inherit"
@@ -11239,6 +11719,15 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             del_length = "2"
             max_delay_length = "20"
             init_value = "0"
+            signal_out_type = "inherit"
+            execution_rate = "inherit"
+        }
+
+        "core/Discrete Transfer Function" {
+            domain = "Z-domain"
+            method = "Zero-order hold"
+            b_coeff = "[1,1]"
+            a_coeff = "[1,1]"
             signal_out_type = "inherit"
             execution_rate = "inherit"
         }
@@ -11313,6 +11802,15 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             criterion = "ctrl > threshold"
             threshold = "0.5"
             execution_rate = "inherit"
+        }
+
+        "core/Sinusoidal Source" {
+            amplitude = "1"
+            dc_offset = "0"
+            frequency = "50"
+            phase = "0"
+            execution_rate = "100e-6"
+            _tunable = "False"
         }
 
         "core/Sum" {
@@ -11520,6 +12018,10 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             initial_voltage = "0"
         }
 
+        "core/Signal Controlled Voltage Source" {
+            execution_rate = "inherit"
+        }
+
         "core/Single Phase Power Meter" {
             op_mode = "Fixed frequency"
             frequency = "50.0"
@@ -11571,12 +12073,6 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             c2000ware_root_path = "C:\ti\C2000Ware_5_02_00_00"
             write_settings = "Write settings"
             scheduling = "CPU Timer Based Scheduler"
-        }
-
-        "core/Three Phase Voltage Source" {
-            init_rms_value = "0.0"
-            init_frequency = "50.0"
-            init_phase = "0.0"
         }
 
         "core/Voltage Measurement" {
@@ -11658,7 +12154,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
         R = R_s + R_t
         Ln = L
         Rn = R
-        Kp_i = 2*L/tau_c
+        Kp_i = 1*L/tau_c
         Ki_i = R/tau_c
         Kr_i = 2*Ki_i
         
@@ -11679,7 +12175,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
         
         H = 5.0 # desired virtual inertia 
         #Kp_p = 0.015 # active power proportinal gain
-        Kp_p = 0.0159
+        Kp_p = 0.015
         Ki_p = 1.0/(2.0*H) #proportional gain active power control loop
         Kp_q = 0.1
         Ki_q = 1.0
@@ -11712,5 +12208,8 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
         #B = 4.99938317532706e-05
         #C = 1.99969044283538
         #D = 0.999937170120808
+        
+        #gain analog inputs
+        K_ana_in = 400/np.sqrt(3)*np.sqrt(2)/88
     ENDCODE
 }

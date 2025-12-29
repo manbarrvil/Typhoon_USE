@@ -27,14 +27,41 @@
             <input>
                 <name>Plant.Vs1</name>
                 <device>0</device>
-                <input_address>2</input_address>
-                <child_input_address>[0, 1, 2]</child_input_address>
-                <device>0</device>
-            	<input_type>ThreePhaseInput</input_type>
+            	<input_type>OnePhaseInput</input_type>
                 <waveform_type>Sine</waveform_type>
+                <waveform></waveform>
+                <constant_value>0.0</constant_value>
                 <rms>230.0</rms>
                 <frequency>50.0</frequency>
                 <phase>0.0</phase>
+                <use_harmonics>False</use_harmonics>
+                <harmonics>[]</harmonics>
+                <harmonics_type>per_rms_unit_harmonics</harmonics_type>
+            </input>
+            <input>
+                <name>Plant.Vs2</name>
+                <device>0</device>
+            	<input_type>OnePhaseInput</input_type>
+                <waveform_type>Sine</waveform_type>
+                <waveform></waveform>
+                <constant_value>0.0</constant_value>
+                <rms>230.0</rms>
+                <frequency>50.0</frequency>
+                <phase>-120.0</phase>
+                <use_harmonics>False</use_harmonics>
+                <harmonics>[]</harmonics>
+                <harmonics_type>per_rms_unit_harmonics</harmonics_type>
+            </input>
+            <input>
+                <name>Plant.Vs3</name>
+                <device>0</device>
+            	<input_type>OnePhaseInput</input_type>
+                <waveform_type>Sine</waveform_type>
+                <waveform></waveform>
+                <constant_value>0.0</constant_value>
+                <rms>230.0</rms>
+                <frequency>50.0</frequency>
+                <phase>120.0</phase>
                 <use_harmonics>False</use_harmonics>
                 <harmonics>[]</harmonics>
                 <harmonics_type>per_rms_unit_harmonics</harmonics_type>

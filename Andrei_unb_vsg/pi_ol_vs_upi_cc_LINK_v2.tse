@@ -8172,14 +8172,6 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
                 position = 8976, 7448
             ]
 
-            component "core/Low-Pass Filter" "Low-Pass Filter4" {
-                execution_rate = "10e-6"
-                frequency = "3e3"
-            }
-            [
-                position = 9136, 7452
-            ]
-
             component "core/Gain" Gain7 {
                 gain = "1.013"
             }
@@ -8949,19 +8941,13 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
     }
 
     logically_deleted {
-        "Plant.Vsp1"
-        "Plant.Vsp2"
-        "Plant.Vsp3"
-        "Plant.Low-Pass Filter4"
-        "Plant.Connection440"
-        "Plant.Connection441"
-        "Plant.Connection444"
-        "Plant.Connection452"
-        "Plant.Connection453"
-        "Plant.Connection454"
-        "Plant.Connection1600"
-        "Plant.Connection1603"
-        "Plant.Connection1606"
+        "dq_unb_pi_vsg"
+        "Plant.Vs1"
+        "Plant.Connection1599"
+        "Plant.Connection1602"
+        "Plant.Connection1605"
+        "Plant.Connection1608"
+        "TI C2000 Setup1"
     }
 
     default {
@@ -9488,11 +9474,11 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
         
         # PI-CC
         H = 5.0  # desired virtual inertia 
-        Kp_p = 0.015  #0.07  # active power proportinal gain
+        Kp_p = 0.07  #0.07 #0.015 # active power proportinal gain
         Ki_p = 1.0/(2.0*H)  # proportional gain active power control loop
         Kp_q = 0.1
-        Ki_q = 25    #1.0
-        Xv =0.4  #0.50
+        Ki_q = 1.0    #1.0  #25
+        Xv =0.50  #0.50  #0.4
         Rv = 0.0
         e_o = 1.0
         omega_base = 1.0
