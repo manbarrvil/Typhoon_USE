@@ -5,11 +5,11 @@
 *
 * File: dq_unb_pi_vsg.h
 *
-* Code generated from model             : 'dq_unb_pi_vsg_ctrl_v3'.
+* Code generated from model             : 'pi_ol_vs_upi_cc_LINK_v2'.
 * Subsystem selected for code generation: 'dq_unb_pi_vsg'.
 *
 * Schematic Editor version              : 2025.3
-* C source code generated on            : 16-Oct-2025 @ 08:20:25 PM
+* C source code generated on            : 29-Dec-2025 @ 09:02:40 AM
 *
 */
 
@@ -68,11 +68,23 @@ typedef struct {
 
 
 
+    // Generated from the component: dq_unb_pi_vsg.VSG_a.Unit Delay1
+    real_t _dq_unb_pi_vsg_vsg_a_unit_delay1__state;
+    // Generated from the component: dq_unb_pi_vsg.VSG_a.Unit Delay2
+    real_t _dq_unb_pi_vsg_vsg_a_unit_delay2__state[2];
     // Generated from the component: dq_unb_pi_vsg.VSG_b.Low-Pass Filter1
     real_t _dq_unb_pi_vsg_vsg_b_low_pass_filter1__filtered_value;
-    real_t _dq_unb_pi_vsg_vsg_b_low_pass_filter1__previous_in;    // Generated from the component: dq_unb_pi_vsg.VSG_c.Low-Pass Filter1
+    real_t _dq_unb_pi_vsg_vsg_b_low_pass_filter1__previous_in;    // Generated from the component: dq_unb_pi_vsg.VSG_b.Unit Delay2
+    real_t _dq_unb_pi_vsg_vsg_b_unit_delay2__state;
+    // Generated from the component: dq_unb_pi_vsg.VSG_b.Unit Delay3
+    real_t _dq_unb_pi_vsg_vsg_b_unit_delay3__state[2];
+    // Generated from the component: dq_unb_pi_vsg.VSG_c.Low-Pass Filter1
     real_t _dq_unb_pi_vsg_vsg_c_low_pass_filter1__filtered_value;
-    real_t _dq_unb_pi_vsg_vsg_c_low_pass_filter1__previous_in;    // Generated from the component: dq_unb_pi_vsg.current_ctrl.Integrator1
+    real_t _dq_unb_pi_vsg_vsg_c_low_pass_filter1__previous_in;    // Generated from the component: dq_unb_pi_vsg.VSG_c.Unit Delay2
+    real_t _dq_unb_pi_vsg_vsg_c_unit_delay2__state;
+    // Generated from the component: dq_unb_pi_vsg.VSG_c.Unit Delay3
+    real_t _dq_unb_pi_vsg_vsg_c_unit_delay3__state[2];
+    // Generated from the component: dq_unb_pi_vsg.current_ctrl.Integrator1
     real_t _dq_unb_pi_vsg_current_ctrl_integrator1__state;
     real_t _dq_unb_pi_vsg_current_ctrl_integrator1__reset_state;
     // Generated from the component: dq_unb_pi_vsg.ePWM (Generic)2.D_to_CMPA 1.D_to_CMPA
@@ -83,11 +95,47 @@ typedef struct {
 
 
 
+    // Generated from the component: dq_unb_pi_vsg.VSG_a.LPF
+    real_t _dq_unb_pi_vsg_vsg_a_lpf__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.VSG_b.LPF
+    real_t _dq_unb_pi_vsg_vsg_b_lpf__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.VSG_c.LPF
+    real_t _dq_unb_pi_vsg_vsg_c_lpf__x_out;
+
+
+
+
     // Generated from the component: dq_unb_pi_vsg.ePWM (Generic)2.ePWM 1.advanced c function
 
 
 
     // Generated from the component: dq_unb_pi_vsg.GPIO DO (Generic)2.GPIO DO.advanced c function
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF
+    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem8.LPF
+    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
+    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out;
+
 
 
 
@@ -100,8 +148,8 @@ typedef struct {
     real_t _dq_unb_pi_vsg_rms_value1__previous_correction;
     real_t _dq_unb_pi_vsg_rms_value1__previous_value;
     real_t _dq_unb_pi_vsg_rms_value1__correction;
-    real_t _dq_unb_pi_vsg_rms_value1__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem6.LPF
-    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem6_lpf__x_out;
+    real_t _dq_unb_pi_vsg_rms_value1__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem7.LPF
+    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__x_out;
 
 
 
@@ -115,8 +163,8 @@ typedef struct {
     real_t _dq_unb_pi_vsg_rms_value2__previous_correction;
     real_t _dq_unb_pi_vsg_rms_value2__previous_value;
     real_t _dq_unb_pi_vsg_rms_value2__correction;
-    real_t _dq_unb_pi_vsg_rms_value2__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem8.LPF
-    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem8_lpf__x_out;
+    real_t _dq_unb_pi_vsg_rms_value2__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem9.LPF
+    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem9_lpf__x_out;
 
 
 
@@ -130,25 +178,7 @@ typedef struct {
     real_t _dq_unb_pi_vsg_rms_value3__previous_correction;
     real_t _dq_unb_pi_vsg_rms_value3__previous_value;
     real_t _dq_unb_pi_vsg_rms_value3__correction;
-    real_t _dq_unb_pi_vsg_rms_value3__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem11.LPF
-    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem11_lpf__x_out;
-
-
-
-
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem7.LPF
-    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem7_lpf__x_out;
-
-
-
-
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem9.LPF
-    real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem9_lpf__x_out;
-
-
-
-
-    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem10.LPF
+    real_t _dq_unb_pi_vsg_rms_value3__out_state;    // Generated from the component: dq_unb_pi_vsg.Virtual 3ph3w.Subsystem10.LPF
     real_t _dq_unb_pi_vsg_virtual_3ph3w_subsystem10_lpf__x_out;
 
 
@@ -165,6 +195,24 @@ typedef struct {
     real_t _dq_unb_pi_vsg_rms_value4__correction;
     real_t _dq_unb_pi_vsg_rms_value4__out_state;    // Generated from the component: dq_unb_pi_vsg.current_ctrl.LPF
     real_t _dq_unb_pi_vsg_current_ctrl_lpf__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.VSG_a.LPF1
+    real_t _dq_unb_pi_vsg_vsg_a_lpf1__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.VSG_b.LPF1
+    real_t _dq_unb_pi_vsg_vsg_b_lpf1__x_out;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.VSG_c.LPF1
+    real_t _dq_unb_pi_vsg_vsg_c_lpf1__x_out;
 
 
 
@@ -231,33 +279,7 @@ typedef struct {
 
 
 
-    // Generated from the component: dq_unb_pi_vsg.VSG_a.C function VSG1
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_p;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_q;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__theta;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_isd;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_isq;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__e_p;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__e_q;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_ps;
-
-    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_qs;
-
-
-
-
     // Generated from the component: dq_unb_pi_vsg.VSG_c.C function dq to abc1
-
-
-
-    // Generated from the component: dq_unb_pi_vsg.VSG_a.C function dq to abc
 
 
 
@@ -277,6 +299,28 @@ typedef struct {
     real_t _dq_unb_pi_vsg_vsg_c_c_function_pll__theta;
 
     real_t _dq_unb_pi_vsg_vsg_c_c_function_pll__y_d;
+
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.VSG_a.C function VSG1
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_p;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_q;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__theta;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_isd;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_isq;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__e_p;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__e_q;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_ps;
+
+    real_t _dq_unb_pi_vsg_vsg_a_c_function_vsg1__x_qs;
 
 
 
@@ -303,10 +347,6 @@ typedef struct {
 
 
 
-    // Generated from the component: dq_unb_pi_vsg.VSG_a.C function abc to dq
-
-
-
     // Generated from the component: dq_unb_pi_vsg.VSG_c.C function VSG2
     real_t _dq_unb_pi_vsg_vsg_c_c_function_vsg2__x_p;
 
@@ -329,11 +369,19 @@ typedef struct {
 
 
 
+    // Generated from the component: dq_unb_pi_vsg.VSG_a.C function dq to abc
+
+
+
     // Generated from the component: dq_unb_pi_vsg.VSG_b.C function dq to abc
 
 
 
     // Generated from the component: dq_unb_pi_vsg.VSG_c.C function dq to abc
+
+
+
+    // Generated from the component: dq_unb_pi_vsg.VSG_a.C function abc to dq
 
 
 

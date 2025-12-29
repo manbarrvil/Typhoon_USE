@@ -4,7 +4,7 @@ version = 4.2
 // Saved by sw version: 2025.3
 //
 
-model "pi_ol_vs_upi_cc_LINK" {
+model "pi_ol_vs_upi_cc_LINK_v2" {
     configuration {
         hil_device = "HIL404"
         hil_configuration_id = 3
@@ -39,12 +39,12 @@ model "pi_ol_vs_upi_cc_LINK" {
         dss_num_tol = 1e-15
         cce_platform = "launchxl-f28379d"
         cce_use_relative_names = False
-        cce_type_mapping_real = "float"
+        cce_type_mapping_real = "launchxl-f28379d"
         cce_type_mapping_uint = "unsigned int"
         cce_type_mapping_int = "int"
         cce_platform = "launchxl-f28379d"
         cce_use_relative_names = False
-        cce_type_mapping_real = "float"
+        cce_type_mapping_real = "launchxl-f28379d"
         cce_type_mapping_uint = "unsigned int"
         cce_type_mapping_int = "int"
         cce_term_var_location = "local"
@@ -66,7 +66,7 @@ model "pi_ol_vs_upi_cc_LINK" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-4
-        simulation_time = 5
+        simulation_time = 1.0
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -3098,6 +3098,187 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     position = 8688, 8400
                 ]
 
+                component "core/Sum" Sum1 {
+                }
+                [
+                    position = 8064, 7860
+                ]
+
+                component "core/C function" LPF {
+                    arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                    execution_rate = "Ts_Control"
+                    global_variables = "real x_out;"
+                    init_fnc = "/*Begin code section*/
+x_out = 0.0;
+/*End code section*/"
+                    input_terminals_dimensions = "1"
+                    input_terminals_feedthrough = "True"
+                    input_terminals_show_labels = "True"
+                    output_fnc = "/*Begin code section*/
+out_fil = x_out;
+/*End code section*/"
+                    output_terminals = "real out_fil;"
+                    output_terminals_dimensions = "1"
+                    output_terminals_feedthrough = "True"
+                    output_terminals_show_labels = "True"
+                    parameters = "real period_2;real Ts_Control;"
+                    update_fnc = "/*Begin code section*/
+x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
+/*End code section*/"
+                }
+                [
+                    position = 7624, 7932
+                    size = 72, 64
+                ]
+
+                component "core/Gain" Gain2 {
+                    gain = "1/omega"
+                }
+                [
+                    position = 7716, 7932
+                ]
+
+                component "core/Sum" Sum2 {
+                    signs = "+-"
+                }
+                [
+                    position = 7816, 7924
+                ]
+
+                component "core/Constant" Constant3 {
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 7688, 7892
+                ]
+
+                component "core/Gain" Gain3 {
+                    gain = "20"
+                }
+                [
+                    position = 7892, 7924
+                ]
+
+                component "core/Product" Product1 {
+                }
+                [
+                    position = 7976, 7932
+                ]
+
+                component "core/Sum" Sum3 {
+                }
+                [
+                    position = 7968, 8044
+                ]
+
+                component "core/C function" LPF1 {
+                    arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                    execution_rate = "Ts_Control"
+                    global_variables = "real x_out;"
+                    init_fnc = "/*Begin code section*/
+x_out = 0.0;
+/*End code section*/"
+                    input_terminals_dimensions = "1"
+                    input_terminals_feedthrough = "True"
+                    input_terminals_show_labels = "True"
+                    output_fnc = "/*Begin code section*/
+out_fil = x_out;
+/*End code section*/"
+                    output_terminals = "real out_fil;"
+                    output_terminals_dimensions = "1"
+                    output_terminals_feedthrough = "True"
+                    output_terminals_show_labels = "True"
+                    parameters = "real period_2;real Ts_Control;"
+                    update_fnc = "/*Begin code section*/
+x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
+/*End code section*/"
+                }
+                [
+                    position = 7540, 8104
+                    size = 72, 64
+                ]
+
+                component "core/Gain" Gain4 {
+                    gain = "1/U_bdq"
+                }
+                [
+                    position = 7632, 8104
+                ]
+
+                component "core/Sum" Sum4 {
+                    signs = "+-"
+                }
+                [
+                    position = 7732, 8096
+                ]
+
+                component "core/Constant" Constant4 {
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 7604, 8064
+                ]
+
+                component "core/Gain" Gain5 {
+                    gain = "20"
+                }
+                [
+                    position = 7808, 8096
+                ]
+
+                component "core/Product" Product2 {
+                }
+                [
+                    position = 7892, 8104
+                ]
+
+                component "core/Mathematical function" "Mathematical function1" {
+                    mathematical_fn = "sqrt"
+                }
+                [
+                    position = 7428, 8104
+                ]
+
+                component "core/Product" Product3 {
+                }
+                [
+                    position = 7236, 8076
+                ]
+
+                component "core/Sum" Sum5 {
+                }
+                [
+                    position = 7348, 8104
+                ]
+
+                component "core/Bus Split" "Bus Split2" {
+                }
+                [
+                    position = 7156, 8112
+                ]
+
+                component "core/Product" Product4 {
+                }
+                [
+                    position = 7240, 8140
+                ]
+
+                component "core/Unit Delay" "Unit Delay1" {
+                }
+                [
+                    position = 7528, 7932
+                ]
+
+                component "core/Unit Delay" "Unit Delay2" {
+                }
+                [
+                    position = 7088, 8112
+                ]
+
                 port i_albe {
                     position = left:1
                     kind = sp
@@ -3108,7 +3289,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     }
                 }
                 [
-                    position = 8304, 8036
+                    position = 8312, 7988
                 ]
 
                 port v_albe {
@@ -3121,7 +3302,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     }
                 }
                 [
-                    position = 8060, 8088
+                    position = 8312, 8052
                 ]
 
                 port p_m_ref {
@@ -3134,7 +3315,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     }
                 }
                 [
-                    position = 8292, 7852
+                    position = 7700, 7828
                 ]
 
                 port q_s_ref {
@@ -3147,7 +3328,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     }
                 }
                 [
-                    position = 8312, 7948
+                    position = 7752, 8036
                 ]
 
                 port omega_vsg {
@@ -3293,6 +3474,19 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     position = 9628, 8044
                 ]
 
+                port enable_primary {
+                    position = left:9
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 7652, 7996
+                ]
+
                 tag Goto46 {
                     value = "is_dq_ref"
                     scope = local
@@ -3312,7 +3506,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     direction = in
                 }
                 [
-                    position = 8708, 7900
+                    position = 8708, 7884
                     hide_name = True
                     size = 68, 20
                 ]
@@ -3511,9 +3705,48 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     size = 60, 20
                 ]
 
+                tag From140 {
+                    value = "omega_vsg"
+                    scope = local
+                    kind = sp
+                    direction = out
+                }
+                [
+                    position = 7444, 7932
+                    hide_name = True
+                    size = 60, 20
+                ]
+
+                tag From141 {
+                    value = "vs_dq"
+                    scope = local
+                    kind = sp
+                    direction = out
+                }
+                [
+                    position = 7016, 8112
+                    hide_name = True
+                    size = 60, 20
+                ]
+
                 junction Junction1 sp
                 [
                     position = 7792, 8220
+                ]
+
+                junction Junction2 sp
+                [
+                    position = 7840, 7996
+                ]
+
+                junction Junction3 sp
+                [
+                    position = 7196, 8084
+                ]
+
+                junction Junction4 sp
+                [
+                    position = 7196, 8144
                 ]
 
                 connect From129 "C function dq to abc.theta" as Connection898
@@ -3538,13 +3771,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 connect is_al_ref "C function abc to dq.d" as Connection1017
                 connect Termination8.in "C function abc to dq.q" as Connection1018
                 connect From139 "C function dq to abc.dq" as Connection1019
-                connect p_m_ref "C function VSG1.p_m_ref" as Connection1028
-                connect q_s_ref "C function VSG1.q_s_ref" as Connection1029
                 connect i_albe "C function VSG1.is_albe" as Connection1030
-                connect v_albe "C function VSG1.vs_albe" as Connection1031
-                [
-                    breakpoints = 8088, 8092; 8360, 8092
-                ]
                 connect "Signal switch1.out" "C function VSG1.omega_base" as Connection1032
                 [
                     breakpoints = 8108, 8316; 8108, 8116
@@ -3570,6 +3797,49 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 connect "C function VSG1.vs_q" "Bus Join18.in1" as Connection1048
                 connect Termination9.in "C function VSG1.p_s_fil" as Connection1049
                 connect Gain1.out "Signal switch1.in1" as Connection1050
+                connect Sum1.in p_m_ref as Connection1051
+                connect Sum1.out "C function VSG1.p_m_ref" as Connection1052
+                connect v_albe "C function VSG1.vs_albe" as Connection1053
+                connect Gain2.in LPF.out_fil as Connection1055
+                connect Sum2.in1 Gain2.out as Connection1056
+                connect Constant3.out Sum2.in as Connection1057
+                [
+                    breakpoints = 7776, 7908
+                ]
+                connect Gain3.in Sum2.out as Connection1058
+                connect Gain3.out Product1.in as Connection1059
+                connect Product1.out Sum1.in1 as Connection1060
+                connect Sum3.in q_s_ref as Connection1062
+                connect Gain4.in LPF1.out_fil as Connection1064
+                connect Sum4.in1 Gain4.out as Connection1065
+                connect Constant4.out Sum4.in as Connection1066
+                [
+                    breakpoints = 7692, 8080
+                ]
+                connect Gain5.in Sum4.out as Connection1067
+                connect Gain5.out Product2.in as Connection1068
+                connect enable_primary Junction2 as Connection1069
+                connect Junction2 Product1.in1 as Connection1070
+                connect Product2.in1 Junction2 as Connection1071
+                connect Product2.out Sum3.in1 as Connection1072
+                connect Sum3.out "C function VSG1.q_s_ref" as Connection1073
+                [
+                    breakpoints = 8008, 7944; 8356, 7944
+                ]
+                connect Sum5.out "Mathematical function1.in" as Connection1081
+                connect "Mathematical function1.out" LPF1.in as Connection1082
+                connect "Bus Split2.out" Junction3 as Connection1085
+                connect Junction3 Product3.in as Connection1086
+                connect Product3.in1 Junction3 as Connection1087
+                connect Product4.in Junction4 as Connection1089
+                connect Junction4 "Bus Split2.out1" as Connection1090
+                connect Product4.in1 Junction4 as Connection1091
+                connect Product3.out Sum5.in as Connection1093
+                connect Product4.out Sum5.in1 as Connection1094
+                connect From140 "Unit Delay1.in" as Connection1095
+                connect "Unit Delay1.out" LPF.in as Connection1096
+                connect From141 "Unit Delay2.in" as Connection1097
+                connect "Unit Delay2.out" "Bus Split2.in" as Connection1098
             }
             [
                 position = 6980, 7852
@@ -3587,7 +3857,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 gain = "3000/S_b"
             }
             [
-                position = 8212, 7852
+                position = 8160, 7844
             ]
 
             component Subsystem VSG_b {
@@ -3747,7 +4017,7 @@ if (theta<0.0){
 /*End code section*/"
                 }
                 [
-                    position = 7528, 7804
+                    position = 6684, 7424
                     size = 224, 304
                 ]
 
@@ -3777,7 +4047,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 }
                 [
-                    position = 7140, 7792
+                    position = 6296, 7412
                     size = 176, 152
                 ]
 
@@ -3786,7 +4056,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                     inputs = "3"
                 }
                 [
-                    position = 7348, 7804
+                    position = 6504, 7424
                 ]
 
                 component "core/Constant" Constant3 {
@@ -3794,31 +4064,31 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                     value = "0"
                 }
                 [
-                    position = 6972, 7852
+                    position = 6128, 7472
                 ]
 
                 component "core/Termination" Termination3 {
                 }
                 [
-                    position = 7720, 7684
+                    position = 6876, 7304
                 ]
 
                 component "core/Termination" Termination4 {
                 }
                 [
-                    position = 7724, 7732
+                    position = 6880, 7352
                 ]
 
                 component "core/Termination" Termination6 {
                 }
                 [
-                    position = 7692, 7884
+                    position = 6848, 7504
                 ]
 
                 component "core/Termination" Termination7 {
                 }
                 [
-                    position = 7696, 7924
+                    position = 6852, 7544
                 ]
 
                 component "core/Termination" Termination8 {
@@ -3831,7 +4101,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                     execution_rate = "Ts_Control"
                 }
                 [
-                    position = 7732, 7832
+                    position = 6888, 7452
                 ]
 
                 component "core/Termination" Termination9 {
@@ -3969,6 +4239,187 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     size = 232, 520
                 ]
 
+                component "core/Sum" Sum1 {
+                }
+                [
+                    position = 7920, 7672
+                ]
+
+                component "core/C function" LPF {
+                    arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                    execution_rate = "Ts_Control"
+                    global_variables = "real x_out;"
+                    init_fnc = "/*Begin code section*/
+x_out = 0.0;
+/*End code section*/"
+                    input_terminals_dimensions = "1"
+                    input_terminals_feedthrough = "True"
+                    input_terminals_show_labels = "True"
+                    output_fnc = "/*Begin code section*/
+out_fil = x_out;
+/*End code section*/"
+                    output_terminals = "real out_fil;"
+                    output_terminals_dimensions = "1"
+                    output_terminals_feedthrough = "True"
+                    output_terminals_show_labels = "True"
+                    parameters = "real period_2;real Ts_Control;"
+                    update_fnc = "/*Begin code section*/
+x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
+/*End code section*/"
+                }
+                [
+                    position = 7480, 7744
+                    size = 72, 64
+                ]
+
+                component "core/Gain" Gain2 {
+                    gain = "1/omega"
+                }
+                [
+                    position = 7572, 7744
+                ]
+
+                component "core/Sum" Sum2 {
+                    signs = "+-"
+                }
+                [
+                    position = 7672, 7736
+                ]
+
+                component "core/Constant" Constant4 {
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 7544, 7704
+                ]
+
+                component "core/Gain" Gain3 {
+                    gain = "20"
+                }
+                [
+                    position = 7748, 7736
+                ]
+
+                component "core/Product" Product1 {
+                }
+                [
+                    position = 7832, 7744
+                ]
+
+                component "core/Sum" Sum3 {
+                }
+                [
+                    position = 7824, 7856
+                ]
+
+                component "core/C function" LPF1 {
+                    arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                    execution_rate = "Ts_Control"
+                    global_variables = "real x_out;"
+                    init_fnc = "/*Begin code section*/
+x_out = 0.0;
+/*End code section*/"
+                    input_terminals_dimensions = "1"
+                    input_terminals_feedthrough = "True"
+                    input_terminals_show_labels = "True"
+                    output_fnc = "/*Begin code section*/
+out_fil = x_out;
+/*End code section*/"
+                    output_terminals = "real out_fil;"
+                    output_terminals_dimensions = "1"
+                    output_terminals_feedthrough = "True"
+                    output_terminals_show_labels = "True"
+                    parameters = "real period_2;real Ts_Control;"
+                    update_fnc = "/*Begin code section*/
+x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
+/*End code section*/"
+                }
+                [
+                    position = 7396, 7916
+                    size = 72, 64
+                ]
+
+                component "core/Gain" Gain4 {
+                    gain = "1/U_bdq"
+                }
+                [
+                    position = 7488, 7916
+                ]
+
+                component "core/Sum" Sum4 {
+                    signs = "+-"
+                }
+                [
+                    position = 7588, 7908
+                ]
+
+                component "core/Constant" Constant5 {
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 7460, 7876
+                ]
+
+                component "core/Gain" Gain5 {
+                    gain = "20"
+                }
+                [
+                    position = 7664, 7908
+                ]
+
+                component "core/Product" Product2 {
+                }
+                [
+                    position = 7748, 7916
+                ]
+
+                component "core/Mathematical function" "Mathematical function1" {
+                    mathematical_fn = "sqrt"
+                }
+                [
+                    position = 7284, 7916
+                ]
+
+                component "core/Product" Product3 {
+                }
+                [
+                    position = 7092, 7888
+                ]
+
+                component "core/Sum" Sum5 {
+                }
+                [
+                    position = 7204, 7916
+                ]
+
+                component "core/Bus Split" "Bus Split2" {
+                }
+                [
+                    position = 7012, 7924
+                ]
+
+                component "core/Product" Product4 {
+                }
+                [
+                    position = 7096, 7952
+                ]
+
+                component "core/Unit Delay" "Unit Delay2" {
+                }
+                [
+                    position = 7380, 7744
+                ]
+
+                component "core/Unit Delay" "Unit Delay3" {
+                }
+                [
+                    position = 6928, 7916
+                ]
+
                 port i_albe {
                     position = left:1
                     kind = sp
@@ -3979,7 +4430,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     }
                 }
                 [
-                    position = 8028, 7964
+                    position = 8064, 8024
                 ]
 
                 port is_al_ref {
@@ -4006,32 +4457,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 }
                 [
                     position = 7844, 8076
-                ]
-
-                port p_m_ref {
-                    position = left:3
-                    kind = sp
-                    direction =  out
-                    sp_type {
-                        default = auto
-                        readonly = True
-                    }
-                }
-                [
-                    position = 8024, 7840
-                ]
-
-                port q_s_ref {
-                    position = left:4
-                    kind = sp
-                    direction =  out
-                    sp_type {
-                        default = auto
-                        readonly = True
-                    }
-                }
-                [
-                    position = 8044, 7904
                 ]
 
                 port omega_vsg {
@@ -4097,6 +4522,45 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 }
                 [
                     position = 8024, 8344
+                ]
+
+                port p_m_ref {
+                    position = left:3
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 7556, 7640
+                ]
+
+                port q_s_ref {
+                    position = left:4
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 7608, 7848
+                ]
+
+                port enable_primary {
+                    position = left:9
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 7508, 7808
                 ]
 
                 tag Goto46 {
@@ -4282,7 +4746,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     direction = in
                 }
                 [
-                    position = 7824, 7832
+                    position = 6980, 7452
                     hide_name = True
                     size = 60, 20
                 ]
@@ -4306,7 +4770,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     direction = in
                 }
                 [
-                    position = 7712, 7784
+                    position = 6868, 7404
                     hide_name = True
                     size = 60, 20
                 ]
@@ -4335,6 +4799,30 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     size = 60, 20
                 ]
 
+                tag From140 {
+                    value = "omega_vsg"
+                    scope = local
+                    kind = sp
+                    direction = out
+                }
+                [
+                    position = 7308, 7744
+                    hide_name = True
+                    size = 60, 20
+                ]
+
+                tag From141 {
+                    value = "vs_dq"
+                    scope = local
+                    kind = sp
+                    direction = out
+                }
+                [
+                    position = 6848, 7916
+                    hide_name = True
+                    size = 60, 20
+                ]
+
                 junction Junction1 sp
                 [
                     position = 7996, 8032
@@ -4343,6 +4831,21 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 junction Junction2 sp
                 [
                     position = 7792, 8236
+                ]
+
+                junction Junction3 sp
+                [
+                    position = 7696, 7808
+                ]
+
+                junction Junction4 sp
+                [
+                    position = 7052, 7896
+                ]
+
+                junction Junction5 sp
+                [
+                    position = 7052, 7956
                 ]
 
                 connect From129 "C function dq to abc.theta" as Connection898
@@ -4390,8 +4893,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 connect "C function VSG2.vs_q" "Bus Join14.in1" as Connection1082
                 connect "C function VSG2.p_s_fil" Termination9.in as Connection1083
                 connect "C function VSG2.q_s_fil" Termination10.in as Connection1084
-                connect "C function VSG2.p_m_ref" p_m_ref as Connection1085
-                connect "C function VSG2.q_s_ref" q_s_ref as Connection1086
                 connect "C function VSG2.is_albe" i_albe as Connection1087
                 connect v_albe Junction1 as Connection1088
                 connect Junction1 "C function dq to abc1.dq" as Connection1089
@@ -4411,6 +4912,45 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 ]
                 connect "C function VSG2.on_vsg" Junction2 as Connection1095
                 connect init_pll "C function VSG2.reset_int" as Connection1096
+                connect Sum1.in p_m_ref as Connection1051
+                connect Gain2.in LPF.out_fil as Connection1055
+                connect Sum2.in1 Gain2.out as Connection1056
+                connect Constant4.out Sum2.in as Connection1057
+                [
+                    breakpoints = 7632, 7720
+                ]
+                connect Gain3.in Sum2.out as Connection1058
+                connect Gain3.out Product1.in as Connection1059
+                connect Product1.out Sum1.in1 as Connection1060
+                connect Sum3.in q_s_ref as Connection1062
+                connect Gain4.in LPF1.out_fil as Connection1064
+                connect Sum4.in1 Gain4.out as Connection1065
+                connect Constant5.out Sum4.in as Connection1066
+                [
+                    breakpoints = 7548, 7892
+                ]
+                connect Gain5.in Sum4.out as Connection1067
+                connect Gain5.out Product2.in as Connection1068
+                connect enable_primary Junction3 as Connection1069
+                connect Junction3 Product1.in1 as Connection1070
+                connect Product2.in1 Junction3 as Connection1071
+                connect Product2.out Sum3.in1 as Connection1097
+                connect Sum5.out "Mathematical function1.in" as Connection1098
+                connect "Mathematical function1.out" LPF1.in as Connection1099
+                connect "Bus Split2.out" Junction4 as Connection1085
+                connect Junction4 Product3.in as Connection1086
+                connect Product3.in1 Junction4 as Connection1101
+                connect Product4.in Junction5 as Connection1102
+                connect Junction5 "Bus Split2.out1" as Connection1103
+                connect Product4.in1 Junction5 as Connection1104
+                connect Product3.out Sum5.in as Connection1105
+                connect Product4.out Sum5.in1 as Connection1106
+                connect "C function VSG2.p_m_ref" Sum1.out as Connection1107
+                connect "C function VSG2.q_s_ref" Sum3.out as Connection1108
+                connect From140 "Unit Delay2.in" as Connection1109
+                connect "Unit Delay2.out" LPF.in as Connection1110
+                connect From141 "Unit Delay3.in" as Connection1111
+                connect "Unit Delay3.out" "Bus Split2.in" as Connection1112
             }
             [
                 position = 7612, 7808
@@ -4574,7 +5114,7 @@ if (theta<0.0){
 /*End code section*/"
                 }
                 [
-                    position = 7528, 7804
+                    position = 7188, 7476
                     size = 224, 304
                 ]
 
@@ -4604,7 +5144,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 }
                 [
-                    position = 7140, 7792
+                    position = 6800, 7464
                     size = 176, 152
                 ]
 
@@ -4613,7 +5153,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                     inputs = "3"
                 }
                 [
-                    position = 7348, 7804
+                    position = 7008, 7476
                 ]
 
                 component "core/Constant" Constant3 {
@@ -4621,31 +5161,31 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                     value = "0"
                 }
                 [
-                    position = 6972, 7852
+                    position = 6632, 7524
                 ]
 
                 component "core/Termination" Termination3 {
                 }
                 [
-                    position = 7720, 7684
+                    position = 7380, 7356
                 ]
 
                 component "core/Termination" Termination4 {
                 }
                 [
-                    position = 7724, 7732
+                    position = 7384, 7404
                 ]
 
                 component "core/Termination" Termination6 {
                 }
                 [
-                    position = 7692, 7884
+                    position = 7352, 7556
                 ]
 
                 component "core/Termination" Termination7 {
                 }
                 [
-                    position = 7696, 7924
+                    position = 7356, 7596
                 ]
 
                 component "core/Termination" Termination8 {
@@ -4658,7 +5198,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                     execution_rate = "Ts_Control"
                 }
                 [
-                    position = 7732, 7832
+                    position = 7392, 7504
                 ]
 
                 component "core/Termination" Termination9 {
@@ -4796,6 +5336,187 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     size = 232, 520
                 ]
 
+                component "core/Sum" Sum1 {
+                }
+                [
+                    position = 7924, 7708
+                ]
+
+                component "core/C function" LPF {
+                    arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                    execution_rate = "Ts_Control"
+                    global_variables = "real x_out;"
+                    init_fnc = "/*Begin code section*/
+x_out = 0.0;
+/*End code section*/"
+                    input_terminals_dimensions = "1"
+                    input_terminals_feedthrough = "True"
+                    input_terminals_show_labels = "True"
+                    output_fnc = "/*Begin code section*/
+out_fil = x_out;
+/*End code section*/"
+                    output_terminals = "real out_fil;"
+                    output_terminals_dimensions = "1"
+                    output_terminals_feedthrough = "True"
+                    output_terminals_show_labels = "True"
+                    parameters = "real period_2;real Ts_Control;"
+                    update_fnc = "/*Begin code section*/
+x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
+/*End code section*/"
+                }
+                [
+                    position = 7484, 7780
+                    size = 72, 64
+                ]
+
+                component "core/Gain" Gain2 {
+                    gain = "1/omega"
+                }
+                [
+                    position = 7576, 7780
+                ]
+
+                component "core/Sum" Sum2 {
+                    signs = "+-"
+                }
+                [
+                    position = 7676, 7772
+                ]
+
+                component "core/Constant" Constant4 {
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 7548, 7740
+                ]
+
+                component "core/Gain" Gain3 {
+                    gain = "20"
+                }
+                [
+                    position = 7752, 7772
+                ]
+
+                component "core/Product" Product1 {
+                }
+                [
+                    position = 7836, 7780
+                ]
+
+                component "core/Sum" Sum3 {
+                }
+                [
+                    position = 7828, 7892
+                ]
+
+                component "core/C function" LPF1 {
+                    arb_defs = "/*Begin code section*/
+
+/*End code section*/"
+                    execution_rate = "Ts_Control"
+                    global_variables = "real x_out;"
+                    init_fnc = "/*Begin code section*/
+x_out = 0.0;
+/*End code section*/"
+                    input_terminals_dimensions = "1"
+                    input_terminals_feedthrough = "True"
+                    input_terminals_show_labels = "True"
+                    output_fnc = "/*Begin code section*/
+out_fil = x_out;
+/*End code section*/"
+                    output_terminals = "real out_fil;"
+                    output_terminals_dimensions = "1"
+                    output_terminals_feedthrough = "True"
+                    output_terminals_show_labels = "True"
+                    parameters = "real period_2;real Ts_Control;"
+                    update_fnc = "/*Begin code section*/
+x_out = x_out + Ts_Control*2*M_PI*1/(period_2)*(in - x_out);
+/*End code section*/"
+                }
+                [
+                    position = 7400, 7952
+                    size = 72, 64
+                ]
+
+                component "core/Gain" Gain4 {
+                    gain = "1/U_bdq"
+                }
+                [
+                    position = 7492, 7952
+                ]
+
+                component "core/Sum" Sum4 {
+                    signs = "+-"
+                }
+                [
+                    position = 7592, 7944
+                ]
+
+                component "core/Constant" Constant5 {
+                    execution_rate = "Ts_Control"
+                }
+                [
+                    position = 7464, 7912
+                ]
+
+                component "core/Gain" Gain5 {
+                    gain = "20"
+                }
+                [
+                    position = 7668, 7944
+                ]
+
+                component "core/Product" Product2 {
+                }
+                [
+                    position = 7752, 7952
+                ]
+
+                component "core/Mathematical function" "Mathematical function1" {
+                    mathematical_fn = "sqrt"
+                }
+                [
+                    position = 7288, 7952
+                ]
+
+                component "core/Product" Product3 {
+                }
+                [
+                    position = 7096, 7924
+                ]
+
+                component "core/Sum" Sum5 {
+                }
+                [
+                    position = 7208, 7952
+                ]
+
+                component "core/Bus Split" "Bus Split2" {
+                }
+                [
+                    position = 7016, 7960
+                ]
+
+                component "core/Product" Product4 {
+                }
+                [
+                    position = 7100, 7988
+                ]
+
+                component "core/Unit Delay" "Unit Delay2" {
+                }
+                [
+                    position = 7372, 7776
+                ]
+
+                component "core/Unit Delay" "Unit Delay3" {
+                }
+                [
+                    position = 6948, 7960
+                ]
+
                 port i_albe {
                     position = left:1
                     kind = sp
@@ -4806,7 +5527,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     }
                 }
                 [
-                    position = 8028, 7964
+                    position = 8056, 8020
                 ]
 
                 port is_al_ref {
@@ -4833,32 +5554,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 }
                 [
                     position = 7844, 8076
-                ]
-
-                port p_m_ref {
-                    position = left:3
-                    kind = sp
-                    direction =  out
-                    sp_type {
-                        default = auto
-                        readonly = True
-                    }
-                }
-                [
-                    position = 8024, 7840
-                ]
-
-                port q_s_ref {
-                    position = left:4
-                    kind = sp
-                    direction =  out
-                    sp_type {
-                        default = auto
-                        readonly = True
-                    }
-                }
-                [
-                    position = 8044, 7904
                 ]
 
                 port omega_vsg {
@@ -4924,6 +5619,45 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 }
                 [
                     position = 7968, 8344
+                ]
+
+                port p_m_ref {
+                    position = left:3
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 7560, 7676
+                ]
+
+                port q_s_ref {
+                    position = left:4
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 7612, 7884
+                ]
+
+                port enable_primary {
+                    position = left:9
+                    kind = sp
+                    direction =  out
+                    sp_type {
+                        default = auto
+                        readonly = True
+                    }
+                }
+                [
+                    position = 7512, 7844
                 ]
 
                 tag Goto46 {
@@ -5109,7 +5843,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     direction = in
                 }
                 [
-                    position = 7824, 7832
+                    position = 7484, 7504
                     hide_name = True
                     size = 60, 20
                 ]
@@ -5133,7 +5867,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     direction = in
                 }
                 [
-                    position = 7712, 7784
+                    position = 7372, 7456
                     hide_name = True
                     size = 60, 20
                 ]
@@ -5162,6 +5896,30 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                     size = 60, 20
                 ]
 
+                tag From140 {
+                    value = "omega_vsg"
+                    scope = local
+                    kind = sp
+                    direction = out
+                }
+                [
+                    position = 7284, 7776
+                    hide_name = True
+                    size = 60, 20
+                ]
+
+                tag From141 {
+                    value = "vs_dq"
+                    scope = local
+                    kind = sp
+                    direction = out
+                }
+                [
+                    position = 6872, 7960
+                    hide_name = True
+                    size = 60, 20
+                ]
+
                 junction Junction1 sp
                 [
                     position = 7996, 8032
@@ -5170,6 +5928,21 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 junction Junction2 sp
                 [
                     position = 7792, 8236
+                ]
+
+                junction Junction3 sp
+                [
+                    position = 7700, 7844
+                ]
+
+                junction Junction4 sp
+                [
+                    position = 7056, 7932
+                ]
+
+                junction Junction5 sp
+                [
+                    position = 7056, 7992
                 ]
 
                 connect From129 "C function dq to abc.theta" as Connection898
@@ -5217,8 +5990,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 connect "C function VSG2.vs_q" "Bus Join14.in1" as Connection1082
                 connect "C function VSG2.p_s_fil" Termination9.in as Connection1083
                 connect "C function VSG2.q_s_fil" Termination10.in as Connection1084
-                connect "C function VSG2.p_m_ref" p_m_ref as Connection1085
-                connect "C function VSG2.q_s_ref" q_s_ref as Connection1086
                 connect "C function VSG2.is_albe" i_albe as Connection1087
                 connect v_albe Junction1 as Connection1088
                 connect Junction1 "C function dq to abc1.dq" as Connection1089
@@ -5238,6 +6009,45 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 ]
                 connect "C function VSG2.on_vsg" Junction2 as Connection1095
                 connect init_pll "C function VSG2.reset_int" as Connection1096
+                connect Sum1.in p_m_ref as Connection1051
+                connect Gain2.in LPF.out_fil as Connection1055
+                connect Sum2.in1 Gain2.out as Connection1056
+                connect Constant4.out Sum2.in as Connection1057
+                [
+                    breakpoints = 7636, 7756
+                ]
+                connect Gain3.in Sum2.out as Connection1058
+                connect Gain3.out Product1.in as Connection1059
+                connect Product1.out Sum1.in1 as Connection1060
+                connect Sum3.in q_s_ref as Connection1062
+                connect Gain4.in LPF1.out_fil as Connection1064
+                connect Sum4.in1 Gain4.out as Connection1065
+                connect Constant5.out Sum4.in as Connection1066
+                [
+                    breakpoints = 7552, 7928
+                ]
+                connect Gain5.in Sum4.out as Connection1067
+                connect Gain5.out Product2.in as Connection1068
+                connect enable_primary Junction3 as Connection1069
+                connect Junction3 Product1.in1 as Connection1070
+                connect Product2.in1 Junction3 as Connection1071
+                connect Product2.out Sum3.in1 as Connection1097
+                connect Sum5.out "Mathematical function1.in" as Connection1098
+                connect "Mathematical function1.out" LPF1.in as Connection1099
+                connect "Bus Split2.out" Junction4 as Connection1085
+                connect Junction4 Product3.in as Connection1086
+                connect Product3.in1 Junction4 as Connection1101
+                connect Product4.in Junction5 as Connection1102
+                connect Junction5 "Bus Split2.out1" as Connection1103
+                connect Product4.in1 Junction5 as Connection1104
+                connect Product3.out Sum5.in as Connection1105
+                connect Product4.out Sum5.in1 as Connection1106
+                connect "C function VSG2.p_m_ref" Sum1.out as Connection1107
+                connect "C function VSG2.q_s_ref" Sum3.out as Connection1108
+                connect From140 "Unit Delay2.in" as Connection1109
+                connect "Unit Delay2.out" LPF.in as Connection1110
+                connect From141 "Unit Delay3.in" as Connection1111
+                connect "Unit Delay3.out" "Bus Split2.in" as Connection1112
             }
             [
                 position = 8348, 7872
@@ -5259,6 +6069,13 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 position = 6840, 7836
             ]
 
+            component "core/Gain" Gain13 {
+                gain = "3000/S_b"
+            }
+            [
+                position = 8148, 7896
+            ]
+
             component "core/Gain" Gain14 {
                 gain = "3000/S_b"
             }
@@ -5270,7 +6087,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 gain = "3000/S_b"
             }
             [
-                position = 7436, 7844
+                position = 7436, 7840
             ]
 
             component "core/Constant" Constant8 {
@@ -5278,7 +6095,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 value = "0"
             }
             [
-                position = 6752, 7836
+                position = 6820, 7988
             ]
 
             component "core/Constant" Constant9 {
@@ -5286,14 +6103,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 value = "0"
             }
             [
-                position = 7344, 7844
-            ]
-
-            component "core/Gain" Gain16 {
-                gain = "3000/S_b"
-            }
-            [
-                position = 8212, 7892
+                position = 7404, 7940
             ]
 
             component "core/Constant" Constant10 {
@@ -5301,7 +6111,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 value = "0"
             }
             [
-                position = 8140, 7892
+                position = 8200, 8016
             ]
 
             tag From74 {
@@ -5971,7 +6781,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 direction = out
             }
             [
-                position = 7456, 7748
+                position = 7456, 7744
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -6207,7 +7017,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 direction = out
             }
             [
-                position = 6816, 7952
+                position = 6804, 7916
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -6257,7 +7067,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 direction = out
             }
             [
-                position = 6796, 7996
+                position = 6796, 7952
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -6285,7 +7095,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 direction = out
             }
             [
-                position = 8188, 8072
+                position = 8136, 7980
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -6353,7 +7163,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             ]
 
             tag From218 {
-                value = "is_a"
+                value = "vs_a"
                 scope = local
                 kind = sp
                 direction = out
@@ -6367,7 +7177,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             ]
 
             tag From219 {
-                value = "is_b"
+                value = "vs_b"
                 scope = local
                 kind = sp
                 direction = out
@@ -6381,7 +7191,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             ]
 
             tag From220 {
-                value = "is_c"
+                value = "vs_c"
                 scope = local
                 kind = sp
                 direction = out
@@ -6408,14 +7218,42 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 size = 60, 20
             ]
 
-            tag From224 {
+            tag From230 {
+                value = "p_m_b_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7340, 7848
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From231 {
+                value = "p_m_c_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8048, 7844
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From232 {
                 value = "p_m_a_ref"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 6752, 7796
+                position = 7344, 7792
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -6423,13 +7261,13 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             ]
 
             tag From233 {
-                value = "p_m_c_ref"
+                value = "p_m_a_ref"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 8128, 7852
+                position = 6740, 7796
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -6443,7 +7281,21 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 direction = out
             }
             [
-                position = 7336, 7792
+                position = 6736, 7836
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From235 {
+                value = "p_m_b_ref"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 8036, 7896
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -6477,17 +7329,17 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
 
             junction Junction226 sp
             [
-                position = 6864, 7996
-            ]
-
-            junction Junction227 sp
-            [
-                position = 8244, 7972
+                position = 6864, 7960
             ]
 
             junction Junction230 sp
             [
                 position = 9256, 7280
+            ]
+
+            junction Junction231 sp
+            [
+                position = 8244, 7964
             ]
 
             comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Three-phase virtual system</p></body></html> ENDCOMMENT 
@@ -6641,6 +7493,9 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             connect From123 VSG_a.v_albe as Connection7675
             connect Goto100 VSG_a.vs_dq as Connection7676
             connect From166 VSG_a.theta_pll as Connection7710
+            [
+                breakpoints = 6848, 7916; 6892, 7916
+            ]
             connect Goto101 VSG_a.is_dq as Connection7718
             connect Goto102 VSG_a.is_dq_ref as Connection7719
             connect Goto98 VSG_b.is_al_ref as Connection7746
@@ -6662,16 +7517,18 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             ]
             connect "Bus Join12.out" current_ctrl.is_abc as Connection7758
             connect VSG_a.omega_pll From151 as Connection7759
+            [
+                breakpoints = 6876, 7896; 6712, 7896
+            ]
             connect VSG_c.i_albe From126 as Connection7761
             connect VSG_c.v_albe From127 as Connection7762
-            connect VSG_c.p_m_ref Gain8.out as Connection7763
             connect VSG_c.is_al_ref Goto99 as Connection7767
             connect VSG_c.omega_vsg Goto92 as Connection7768
             connect VSG_c.p_s Goto93 as Connection7769
             connect VSG_c.q_s Goto94 as Connection7770
             connect From179 Junction225 as Connection7774
             [
-                breakpoints = 7512, 7964
+                breakpoints = 7496, 7908; 7496, 7964
             ]
             connect Junction225 VSG_b.init_pll as Connection7775
             [
@@ -6680,13 +7537,13 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             connect VSG_b.on_vsg Junction225 as Connection7776
             connect From178 Junction226 as Connection7777
             connect Junction226 VSG_a.init_pll as Connection7778
-            connect VSG_a.on_vsg Junction226 as Connection7779
-            connect From180 Junction227 as Connection7780
             [
-                breakpoints = 8240, 8072; 8240, 7972
+                breakpoints = 6864, 7956; 6892, 7956
             ]
-            connect Junction227 VSG_c.init_pll as Connection7781
-            connect VSG_c.on_vsg Junction227 as Connection7782
+            connect VSG_a.on_vsg Junction226 as Connection7779
+            [
+                breakpoints = 6876, 7884; 6876, 7952; 6864, 7952
+            ]
             connect Goto104 "RMS value4.out" as Connection7798
             connect "Bus Join10.out" current_ctrl.is_abc_ref as Connection7844
             connect "SCI Send1.var2" From206 as Connection7847
@@ -6703,15 +7560,31 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             connect "RMS value3.in" From220 as Connection7870
             connect From221 "RMS value4.in" as Connection7871
             connect Gain12.out VSG_a.q_s_ref as Connection7908
-            connect From233 Gain8.in as Connection7910
-            connect Gain14.in From234 as Connection7914
-            connect Gain14.out VSG_b.p_m_ref as Connection7915
-            connect VSG_b.q_s_ref Gain15.out as Connection7916
-            connect From224 Gain4.in as Connection7918
-            connect Constant8.out Gain12.in as Connection7919
-            connect Constant9.out Gain15.in as Connection7920
-            connect Constant10.out Gain16.in as Connection7921
-            connect Gain16.out VSG_c.q_s_ref as Connection7922
+            connect Gain14.out VSG_b.p_m_ref as Connection7923
+            connect VSG_b.q_s_ref Gain15.out as Connection7924
+            connect Gain8.out VSG_c.p_m_ref as Connection7925
+            connect VSG_c.q_s_ref Gain13.out as Connection7926
+            connect From233 Gain4.in as Connection7932
+            connect From234 Gain12.in as Connection7933
+            connect From230 Gain15.in as Connection7934
+            connect From232 Gain14.in as Connection7935
+            [
+                breakpoints = 7420, 7792
+            ]
+            connect Constant8.out VSG_a.enable_primary as Connection7938
+            connect Constant9.out VSG_b.enable_primary as Connection7939
+            connect VSG_c.init_pll Junction231 as Connection7941
+            [
+                breakpoints = 8244, 7936
+            ]
+            connect Junction231 VSG_c.on_vsg as Connection7942
+            [
+                breakpoints = 8244, 7972
+            ]
+            connect From180 Junction231 as Connection7943
+            connect Constant10.out VSG_c.enable_primary as Connection7944
+            connect From231 Gain8.in as Connection7945
+            connect From235 Gain13.in as Connection7946
         }
         [
             position = 9376, 8268
@@ -6731,6 +7604,17 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 size = 128, 256
             ]
 
+            component "core/Series RLC Branch" "Series RLC Branch2" {
+                branch_type = "RL"
+                inductance = "2.5e-3"
+                num_phases = "Three-Phase"
+                resistance = "0.1"
+            }
+            [
+                position = 8540, 8036
+                size = 128, 256
+            ]
+
             component "core/Series RLC Branch" "Series RLC Branch3" {
                 branch_type = "RC"
                 capacitance = "1e-6"
@@ -6747,69 +7631,75 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Voltage Source" v_dc {
             }
             [
-                position = 6500, 8308
+                position = 6440, 8308
                 rotation = right
             ]
 
             component "core/Current Measurement" Iag {
-                execution_rate = "50e-6"
                 sig_output = "True"
             }
             [
-                position = 8984, 7940
+                position = 9172, 7940
                 size = 64, 32
             ]
 
             component "core/Voltage Measurement" Va {
-                execution_rate = "50e-6"
                 sig_output = "True"
             }
             [
-                position = 9128, 8272
+                position = 9228, 8260
                 rotation = right
                 size = 64, 32
             ]
 
             component "core/Current Measurement" Ibg {
-                execution_rate = "50e-6"
                 sig_output = "True"
             }
             [
-                position = 8980, 8036
+                position = 9172, 8036
                 size = 64, 32
             ]
 
             component "core/Current Measurement" Icg {
-                execution_rate = "50e-6"
                 sig_output = "True"
             }
             [
-                position = 8980, 8132
+                position = 9180, 8132
                 size = 64, 32
             ]
 
             component "core/Voltage Measurement" Vb {
-                execution_rate = "50e-6"
                 sig_output = "True"
             }
             [
-                position = 9200, 8272
+                position = 9300, 8260
                 rotation = right
                 size = 64, 32
             ]
 
             component "core/Voltage Measurement" Vc {
-                execution_rate = "50e-6"
                 sig_output = "True"
             }
             [
-                position = 9272, 8272
+                position = 9372, 8260
                 rotation = right
                 size = 64, 32
             ]
 
+            component "core/Ground" gnd2 {
+            }
+            [
+                position = 9892, 8164
+            ]
+
+            component "core/Resistor" R1 {
+                resistance = "0.001"
+            }
+            [
+                position = 6532, 7828
+            ]
+
             component "core/Half Bridge" "IGBT Leg1" {
-                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -6823,7 +7713,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Half Bridge" "IGBT Leg2" {
                 S_bot = "4"
                 S_top = "3"
-                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -6837,7 +7726,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Half Bridge" "IGBT Leg3" {
                 S_bot = "6"
                 S_top = "5"
-                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -6851,9 +7739,19 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Voltage Measurement" v_h {
             }
             [
-                position = 6664, 8060
+                position = 6604, 8060
                 rotation = right
                 size = 64, 32
+            ]
+
+            component "core/Capacitor" C2 {
+                capacitance = "2200e-6"
+                initial_voltage = "730"
+                signal_access = "Inherit"
+            }
+            [
+                position = 6696, 8248
+                rotation = right
             ]
 
             component "core/Series RLC Branch" "Series RLC Branch4" {
@@ -6869,7 +7767,6 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
             component "core/Half Bridge" "IGBT Leg4" {
                 S_bot = "10"
                 S_top = "9"
-                dtv_flag_en = "False"
                 fvd_def_method = "LUT"
                 pwm_enable_di = "12"
                 pwm_enabling = "True"
@@ -6888,70 +7785,11 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
                 size = 64, 32
             ]
 
-            component "core/C function" "C function powers" {
-                arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                execution_rate = "50e-6"
-                global_variables = "real p_fil;real q_fil;"
-                init_fnc = "/*Begin code section*/
-p_fil = 0;
-q_fil = 0;
-/*End code section*/"
-                input_terminals = "real v_a;real v_b;real v_c;real i_a;real i_b;real i_c;"
-                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit"
-                input_terminals_feedthrough = "True;True;True;True;True;True"
-                input_terminals_show_labels = "True;True;True;True;True;True"
-                output_fnc = "/*Begin code section*/
-p = v_a*i_a + v_b*i_b + v_c*i_c;
-q = 1/sqrt(3)*(i_c*(v_a - v_b) + i_a*(v_b - v_c) + i_b*(v_c - v_a));
-p_f = p_fil;
-q_f = q_fil;
-/*End code section*/"
-                output_terminals = "real p;real q;real p_f;real q_f;"
-                output_terminals_dimensions = "inherit;inherit;inherit;inherit"
-                output_terminals_feedthrough = "True;True;True;True"
-                output_terminals_show_labels = "True;True;True;True"
-                parameters = "real Ts_Control;real fc;"
-                update_fnc = "/*Begin code section*/
-p_fil = p_fil + Ts_Control*2*M_PI*fc*(p - p_fil);
-q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
-/*End code section*/"
-            }
-            [
-                position = 9664, 7616
-                size = 184, 312
-            ]
-
-            component "core/Probe" p {
-            }
-            [
-                position = 9820, 7484
-            ]
-
-            component "core/Probe" q {
-            }
-            [
-                position = 9820, 7560
-            ]
-
-            component "core/Probe" pf {
-            }
-            [
-                position = 9808, 7660
-            ]
-
-            component "core/Probe" qf {
-            }
-            [
-                position = 9812, 7736
-            ]
-
             component "core/Single Phase Power Meter" "Single Phase Power Meter1" {
                 zero_crossing_calc_filter = "30.0"
             }
             [
-                position = 8908, 7276
+                position = 9280, 7580
                 size = 48, 48
             ]
 
@@ -6959,7 +7797,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 zero_crossing_calc_filter = "30.0"
             }
             [
-                position = 8904, 7348
+                position = 9276, 7652
                 size = 48, 48
             ]
 
@@ -6967,1408 +7805,193 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 zero_crossing_calc_filter = "30.0"
             }
             [
-                position = 8904, 7424
+                position = 9276, 7728
                 size = 48, 48
             ]
 
             component "core/Probe" p1 {
             }
             [
-                position = 9008, 7228
+                position = 9380, 7532
             ]
 
             component "core/Probe" q1 {
             }
             [
-                position = 9008, 7264
+                position = 9380, 7568
             ]
 
             component "core/Probe" p2 {
             }
             [
-                position = 9024, 7324
+                position = 9396, 7628
             ]
 
             component "core/Probe" q2 {
             }
             [
-                position = 9024, 7364
+                position = 9396, 7668
             ]
 
             component "core/Probe" p3 {
             }
             [
-                position = 9024, 7416
+                position = 9396, 7720
             ]
 
             component "core/Probe" q3 {
             }
             [
-                position = 9024, 7464
-            ]
-
-            component "core/RMS value" "RMS value1" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8464, 7220
-            ]
-
-            component "core/RMS value" "RMS value2" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8460, 7304
-            ]
-
-            component "core/RMS value" "RMS value3" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8464, 7384
+                position = 9396, 7768
             ]
 
             component "core/RMS value" "RMS value4" {
                 op_mode = "Fixed frequency"
             }
             [
-                position = 8464, 7468
-            ]
-
-            component "core/RMS value" "RMS value5" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8460, 7540
-            ]
-
-            component "core/RMS value" "RMS value6" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8464, 7612
+                position = 8876, 7632
             ]
 
             component "core/Probe" va_rms {
             }
             [
-                position = 8568, 7220
+                position = 8972, 7148
             ]
 
             component "core/Probe" vb_rms {
             }
             [
-                position = 8564, 7304
+                position = 8968, 7336
             ]
 
             component "core/Probe" vc_rms {
             }
             [
-                position = 8560, 7384
+                position = 8972, 7548
             ]
 
             component "core/Probe" ia_rms {
             }
             [
-                position = 8560, 7468
+                position = 8972, 7632
             ]
 
             component "core/Probe" ib_rms {
             }
             [
-                position = 8564, 7540
+                position = 8976, 7704
             ]
 
             component "core/Probe" ic_rms {
             }
             [
-                position = 8556, 7612
-            ]
-
-            component "core/RMS value" "RMS value7" {
-                op_mode = "Fixed frequency"
-            }
-            [
-                position = 8452, 7700
+                position = 8968, 7776
             ]
 
             component "core/Probe" in_rms {
             }
             [
-                position = 8548, 7700
+                position = 8956, 7864
             ]
 
             component "core/Probe" in {
             }
             [
-                position = 8548, 7752
+                position = 8960, 7916
             ]
 
             component "core/Single phase PLL" "Single phase PLL1" {
             }
             [
-                position = 8812, 7520
+                position = 8536, 8660
                 size = 64, 98
             ]
 
             component "core/Single phase PLL" "Single phase PLL2" {
             }
             [
-                position = 8812, 7652
+                position = 8536, 8792
                 size = 64, 98
             ]
 
             component "core/Single phase PLL" "Single phase PLL3" {
             }
             [
-                position = 8812, 7784
+                position = 8536, 8924
                 size = 64, 98
             ]
 
             component "core/Probe" w_a {
             }
             [
-                position = 9004, 7520
+                position = 8728, 8660
             ]
 
             component "core/Gain" Gain1 {
                 gain = "2*np.pi"
             }
             [
-                position = 8920, 7520
+                position = 8644, 8660
             ]
 
             component "core/Probe" w_b {
             }
             [
-                position = 9004, 7652
+                position = 8728, 8792
             ]
 
             component "core/Gain" Gain2 {
                 gain = "2*np.pi"
             }
             [
-                position = 8920, 7652
+                position = 8644, 8792
             ]
 
             component "core/Probe" w_c {
             }
             [
-                position = 9004, 7784
+                position = 8728, 8924
             ]
 
             component "core/Gain" Gain3 {
                 gain = "2*np.pi"
             }
             [
-                position = 8920, 7784
-            ]
-
-            component "core/Probe" pi {
-            }
-            [
-                position = 9328, 7628
-            ]
-
-            component "core/Probe" qi {
-            }
-            [
-                position = 9332, 7692
-            ]
-
-            component "core/C function" "C function1" {
-                arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                init_fnc = "/*Begin code section*/
-
-/*End code section*/"
-                input_terminals = "real va;inherit vb;inherit vc;inherit ia;inherit ib;inherit ic;"
-                input_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit"
-                input_terminals_feedthrough = "True;True;True;True;True;True"
-                input_terminals_show_labels = "True;True;True;True;True;True"
-                output_fnc = "/*Begin code section*/
-p = va*ia + vb*ib + vc*ic;
-q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
-/*End code section*/"
-                output_terminals = "real p;inherit q;"
-                output_terminals_dimensions = "inherit;inherit"
-                output_terminals_feedthrough = "True;True"
-                output_terminals_show_labels = "True;True"
-                update_fnc = "/*Begin code section*/
-
-/*End code section*/"
-            }
-            [
-                position = 9240, 7656
-                size = 48, 112
-            ]
-
-            component Subsystem UPI_CC {
-                layout = dynamic
-                component "core/Bus Join" "Bus Join11" {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 8700, 8204
-                ]
-
-                component "core/C function" "C function dq to abc" {
-                    arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                    execution_rate = "Ts_Control"
-                    init_fnc = "/*Begin code section*/
-
-/*End code section*/"
-                    input_terminals = "real dq;real theta;"
-                    input_terminals_dimensions = "2;1"
-                    input_terminals_feedthrough = "True;True"
-                    input_terminals_show_labels = "True;True"
-                    output_fnc = "/*Begin code section*/
-a= cos(theta)*dq[0] - sin(theta)*dq[1];
-b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
-c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
-/*End code section*/"
-                    output_terminals = "real a;real b;real c;"
-                    output_terminals_dimensions = "1;1;1"
-                    output_terminals_feedthrough = "True;True;True"
-                    output_terminals_show_labels = "True;True;True"
-                    update_fnc = "/*Begin code section*/
-
-/*End code section*/"
-                }
-                [
-                    position = 9056, 7876
-                    size = 152, 96
-                ]
-
-                component "core/Bus Join" "Bus Join15" {
-                    execution_rate = "Ts_Control"
-                    inputs = "3"
-                }
-                [
-                    position = 9200, 7880
-                ]
-
-                component "core/Constant" Constant2 {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 8316, 8084
-                ]
-
-                component "core/Bus Join" "Bus Join18" {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 8696, 8304
-                ]
-
-                component "core/C function" "C function VSG1" {
-                    arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                    execution_rate = "Ts_Control"
-                    global_variables = "real x_p;real x_q;real theta;real x_isd;real x_isq;real e_p;real e_q;real x_ps;real x_qs;"
-                    init_fnc = "/*Begin code section*/
-x_p = 0.0;
-x_q = 0.0;
-theta = 0.0;
-x_isd = 0.0;
-x_isq = 0.0;
-e_p = 0.0;
-e_q = 0.0;
-x_ps = 0.0;
-x_qs = 0.0;
-/*End code section*/"
-                    input_terminals = "real p_m_ref;real q_s_ref;real is_albe;real vs_albe;real omega_base;real on_vsg;real theta_pll;real reset_int;inherit e_0;"
-                    input_terminals_dimensions = "1;1;2;2;1;1;1;1;1"
-                    input_terminals_feedthrough = "True;True;True;True;True;True;True;True;True"
-                    input_terminals_show_labels = "True;True;True;True;True;True;True;True;True"
-                    output_fnc = "/*Begin code section*/
-//omega VSG rads
-omega_vsg = (Kp_p_ol*e_p + x_p + omega_base)*2.0*M_PI*50.0;
-//theta VSG
-
-theta_vsg= theta;
-//if (on_vsg<0.5){
-//    theta_vsg = theta_pll;
-//}
-// current dq transformation
-is_d= is_albe[0]*cos(theta_vsg)+ is_albe[1]*sin(theta_vsg);
-is_q = -is_albe[0]*sin(theta_vsg) + is_albe[1]*cos(theta_vsg);
-
-// voltage dq transformation
-vs_d= vs_albe[0]*cos(theta_vsg)+ vs_albe[1]*sin(theta_vsg);
-vs_q = -vs_albe[0]*sin(theta_vsg) + vs_albe[1]*cos(theta_vsg);
-
-//if (time<=T_on_contactor){
-//    vs_q = -sqrt(pow(vs_d,2)+pow(vs_q,2));
-//    vs_d = 0.0;
-    
-//}
-// powers in pu
-p_s = (is_d* vs_d + is_q*vs_q)/(I_bdq*U_bdq);
-q_s = (is_d* vs_q -  is_q*vs_d)/(I_bdq*U_bdq);
-p_s_fil = x_ps;
-q_s_fil = x_qs;
-//p_s = (is_albe[0]* vs_albe[0] +  is_albe[1]*vs_albe[1])/(I_bdq*U_bdq);
-//q_s = (is_albe[0]* vs_albe[1] -  is_albe[1]*vs_albe[0])/(I_bdq*U_bdq);
-
-if (on_vsg<0.5){
-    p_s = 0.0;
-    q_s = 0.0;
-}
-
-// electromotive force pu
-e = e_0; //+ Kp_q*e_q + x_q;
-
-
-
-//current references SI
-vt_dq_ref[0] = 0;
-vt_dq_ref[1] = -e*U_bdq;
-/*End code section*/"
-                    output_terminals = "real vt_dq_ref;real omega_vsg;real theta_vsg;real e;real p_s;real q_s;real is_dq_ref_fil;inherit is_d;inherit is_q;inherit vs_d;inherit vs_q;real p_s_fil;real q_s_fil;"
-                    output_terminals_dimensions = "2;1;1;1;1;1;2;1;1;1;1;1;1"
-                    output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True"
-                    output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True;True;True"
-                    parameters = "real Kp_p_ol;real Ki_p_ol;real Kp_q;real Ki_q;real Xv;real Rv;real I_bdq;real U_bdq;real Ts_Control;real tau_vsg;real T_on_contactor;"
-                    update_fnc = "/*Begin code section*/
-//active and reactive power error pu
-
-e_p = p_m_ref - p_s;
-//e_p = p_m_ref - p_s_fil;
-e_q = q_s_ref - q_s;
-//e_q = q_s_ref - q_s_fil;
-
-//integrator PI active adn reactive power
-x_p = x_p + Ki_p_ol*Ts_Control*e_p;
-x_q = x_q + Ki_q*Ts_Control*e_q;
-
-//integrator omega rad
-theta = theta + omega_vsg*Ts_Control;
-if (reset_int<0.5){
-    theta = theta_pll;
-    x_p = 0.0;
-    x_q = 0.0;
-}
-
-if (theta>=2*M_PI){
-    theta = theta - 2*M_PI;
-}
-//if (theta<0.0){
-//    theta = theta + abs(theta);
-//}
-
-//filter of the reference currents
-x_ps = x_ps + Ts_Control*2*M_PI*1/(tau_vsg)*(p_s - x_ps);
-x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
-
-//if (time<=T_on_contactor){
-//    x_p = 0.0;
-//    theta = 0.0;
-//    x_q = 0.0;
-//}
-/*End code section*/"
-                }
-                [
-                    position = 8488, 8084
-                    size = 232, 520
-                ]
-
-                component "core/Termination" Termination9 {
-                }
-                [
-                    position = 8688, 8400
-                ]
-
-                component "core/Constant" Constant3 {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 7868, 7812
-                ]
-
-                component "core/Sum" Sum1 {
-                    signs = "+-"
-                }
-                [
-                    position = 7964, 7820
-                ]
-
-                component "core/Low-Pass Filter" "Low-Pass Filter1" {
-                    frequency = "100"
-                }
-                [
-                    position = 7800, 7896
-                ]
-
-                component "core/Gain" Gain2 {
-                    execution_rate = "Ts_Control"
-                    gain = "1/omega_base_rads"
-                }
-                [
-                    position = 7880, 7896
-                ]
-
-                component "core/Gain" Gain3 {
-                    execution_rate = "Ts_Control"
-                    gain = "20"
-                }
-                [
-                    position = 8076, 7820
-                ]
-
-                component "core/Constant" Constant5 {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 7972, 7896
-                ]
-
-                component "core/Low-Pass Filter" "Low-Pass Filter2" {
-                    frequency = "100"
-                }
-                [
-                    position = 7904, 7980
-                ]
-
-                component "core/Gain" Gain4 {
-                    execution_rate = "Ts_Control"
-                    gain = "1/omega_base_rads"
-                }
-                [
-                    position = 7984, 7980
-                ]
-
-                component "core/Gain" Gain5 {
-                    execution_rate = "Ts_Control"
-                    gain = "20"
-                }
-                [
-                    position = 8180, 7904
-                ]
-
-                component "core/RMS value" "RMS value6" {
-                    op_mode = "Fixed frequency"
-                }
-                [
-                    position = 7820, 7980
-                ]
-
-                component "core/Bus Split" "Bus Split1" {
-                    outputs = "3"
-                }
-                [
-                    position = 7728, 7996
-                ]
-
-                component "core/Termination" Termination10 {
-                }
-                [
-                    position = 7840, 8040
-                ]
-
-                component "core/Termination" Termination11 {
-                }
-                [
-                    position = 7840, 8080
-                ]
-
-                component "core/Ramp" Ramp1 {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 8248, 8308
-                ]
-
-                component "core/Limit" Limit1 {
-                    lower_limit = "-1"
-                    upper_limit = "1"
-                }
-                [
-                    position = 8312, 8308
-                ]
-
-                component "core/C function" "C function abc to d" {
-                    arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                    execution_rate = "Ts_Control"
-                    input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
-                    input_terminals_feedthrough = "True;True"
-                    input_terminals_show_labels = "True;True"
-                    output_fnc = "/*Begin code section*/
-d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 2.0/3.0*M_PI)*abc[2] );
-q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
-/*End code section*/"
-                    output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
-                    output_terminals_feedthrough = "True;True"
-                    output_terminals_show_labels = "True;True"
-                }
-                [
-                    position = 7596, 7628
-                    size = 88, 104
-                ]
-
-                component "core/Constant" Constant6 {
-                    execution_rate = "Ts_Control"
-                    value = "0"
-                }
-                [
-                    position = 7480, 7660
-                ]
-
-                component "core/Bus Join" "Bus Join19" {
-                }
-                [
-                    position = 7784, 7624
-                ]
-
-                component "core/C function" "C function abc to d1" {
-                    arb_defs = "/*Begin code section*/
-
-/*End code section*/"
-                    execution_rate = "Ts_Control"
-                    input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
-                    input_terminals_feedthrough = "True;True"
-                    input_terminals_show_labels = "True;True"
-                    output_fnc = "/*Begin code section*/
-d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 2.0/3.0*M_PI)*abc[2] );
-q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
-/*End code section*/"
-                    output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
-                    output_terminals_feedthrough = "True;True"
-                    output_terminals_show_labels = "True;True"
-                }
-                [
-                    position = 7592, 7764
-                    size = 88, 104
-                ]
-
-                component "core/Bus Join" "Bus Join20" {
-                }
-                [
-                    position = 7780, 7760
-                ]
-
-                component "core/Constant" Constant7 {
-                    execution_rate = "Ts_Control"
-                    value = "0"
-                }
-                [
-                    position = 7500, 7796
-                ]
-
-                component "core/Constant" Constant8 {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 8284, 8252
-                ]
-
-                component "core/Constant" Constant9 {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 8324, 8136
-                ]
-
-                component "core/Constant" Constant10 {
-                    execution_rate = "Ts_Control"
-                }
-                [
-                    position = 8320, 8192
-                ]
-
-                component "core/Probe" omega {
-                }
-                [
-                    position = 8908, 8012
-                ]
-
-                component "core/Sum" Sum2 {
-                    signs = "+-"
-                }
-                [
-                    position = 8064, 7904
-                ]
-
-                port i_abc {
-                    position = left:1
-                    kind = sp
-                    direction =  out
-                    sp_type {
-                        default = auto
-                        readonly = True
-                    }
-                }
-                [
-                    position = 7480, 7592
-                ]
-
-                port v_abc {
-                    position = left:2
-                    kind = sp
-                    direction =  out
-                    sp_type {
-                        default = auto
-                        readonly = True
-                    }
-                }
-                [
-                    position = 7440, 7996
-                ]
-
-                port omega_vsg {
-                    position = right:2
-                    kind = sp
-                    direction =  in
-                    sp_type {
-                        default = inherit
-                        readonly = True
-                    }
-                }
-                [
-                    position = 9292, 8000
-                ]
-
-                port p_s {
-                    position = right:3
-                    kind = sp
-                    direction =  in
-                    sp_type {
-                        default = inherit
-                        readonly = True
-                    }
-                }
-                [
-                    position = 9300, 8056
-                ]
-
-                port q_s {
-                    position = right:4
-                    kind = sp
-                    direction =  in
-                    sp_type {
-                        default = inherit
-                        readonly = True
-                    }
-                }
-                [
-                    position = 9304, 8144
-                ]
-
-                port vs_dq {
-                    position = right:5
-                    kind = sp
-                    direction =  in
-                    sp_type {
-                        default = inherit
-                        readonly = True
-                    }
-                }
-                [
-                    position = 9324, 8208
-                ]
-
-                port is_dq {
-                    position = right:6
-                    kind = sp
-                    direction =  in
-                    sp_type {
-                        default = inherit
-                        readonly = True
-                    }
-                }
-                [
-                    position = 9332, 8280
-                ]
-
-                port is_dq_ref {
-                    position = right:7
-                    kind = sp
-                    direction =  in
-                    sp_type {
-                        default = inherit
-                        readonly = True
-                    }
-                }
-                [
-                    position = 9328, 8364
-                ]
-
-                port vt_abc_ref {
-                    position = right:1
-                    kind = sp
-                    direction =  in
-                    sp_type {
-                        default = inherit
-                        readonly = True
-                    }
-                }
-                [
-                    position = 9280, 7880
-                ]
-
-                tag Goto46 {
-                    value = "is_dq_ref"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8708, 7852
-                    hide_name = True
-                    size = 60, 20
-                ]
-
-                tag Goto47 {
-                    value = "omega_vsg"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8708, 7900
-                    hide_name = True
-                    size = 68, 20
-                ]
-
-                tag Goto48 {
-                    value = "theta_vsg"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8700, 7948
-                    hide_name = True
-                    size = 68, 20
-                ]
-
-                tag Goto49 {
-                    value = "e"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8704, 7996
-                    hide_name = True
-                    size = 68, 20
-                ]
-
-                tag Goto50 {
-                    value = "p_s"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8708, 8044
-                    hide_name = True
-                    size = 68, 20
-                ]
-
-                tag Goto51 {
-                    value = "q_s"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8704, 8092
-                    hide_name = True
-                    size = 68, 20
-                ]
-
-                tag Goto54 {
-                    value = "is_dq_ref_fil"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8720, 8140
-                    hide_name = True
-                    size = 92, 20
-                ]
-
-                tag Goto52 {
-                    value = "is_dq"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8808, 8204
-                    hide_name = True
-                    size = 60, 20
-                ]
-
-                tag From129 {
-                    value = "theta_vsg"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 8868, 7908
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag From130 {
-                    value = "omega_vsg"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 9192, 8000
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag From131 {
-                    value = "p_s"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 9184, 8056
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag From132 {
-                    value = "q_s"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 9180, 8144
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag From133 {
-                    value = "vs_dq"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 9204, 8208
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag Goto53 {
-                    value = "vs_dq"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 8804, 8304
-                    hide_name = True
-                    size = 60, 20
-                ]
-
-                tag From137 {
-                    value = "is_dq"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 9212, 8280
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag From138 {
-                    value = "is_dq_ref"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 9208, 8364
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag From139 {
-                    value = "is_dq_ref"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 8872, 7848
-                    hide_name = True
-                    size = 60, 20
-                ]
-
-                tag From140 {
-                    value = "omega_vsg"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 7696, 7896
-                    rotation = down
-                    hide_name = True
-                    scale = -1, 1
-                    size = 60, 20
-                ]
-
-                tag Goto55 {
-                    value = "i_albe"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 7900, 7624
-                    size = 60, 20
-                ]
-
-                tag Goto56 {
-                    value = "v_albe"
-                    scope = local
-                    kind = sp
-                    direction = in
-                }
-                [
-                    position = 7896, 7760
-                    size = 60, 20
-                ]
-
-                tag From141 {
-                    value = "i_albe"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 8236, 7972
-                    size = 60, 20
-                ]
-
-                tag From142 {
-                    value = "v_albe"
-                    scope = local
-                    kind = sp
-                    direction = out
-                }
-                [
-                    position = 8236, 8028
-                    size = 60, 20
-                ]
-
-                junction Junction2 sp
-                [
-                    position = 7472, 7996
-                ]
-
-                junction Junction3 sp
-                [
-                    position = 8660, 7900
-                ]
-
-                connect From129 "C function dq to abc.theta" as Connection898
-                connect omega_vsg From130 as Connection902
-                connect From131 p_s as Connection903
-                [
-                    breakpoints = 9276, 8052
-                ]
-                connect q_s From132 as Connection904
-                connect Goto52 "Bus Join11.out" as Connection914
-                connect "Bus Join15.in1" "C function dq to abc.b" as Connection915
-                connect "Bus Join15.in" "C function dq to abc.a" as Connection916
-                connect "C function dq to abc.c" "Bus Join15.in2" as Connection917
-                connect From133 vs_dq as Connection975
-                connect Goto53 "Bus Join18.out" as Connection1013
-                connect From137 is_dq as Connection1014
-                connect From138 is_dq_ref as Connection1015
-                connect From139 "C function dq to abc.dq" as Connection1019
-                connect Goto46 "C function VSG1.vt_dq_ref" as Connection1038
-                connect "C function VSG1.theta_vsg" Goto48 as Connection1040
-                connect Goto49 "C function VSG1.e" as Connection1041
-                connect "C function VSG1.p_s" Goto50 as Connection1042
-                connect Goto51 "C function VSG1.q_s" as Connection1043
-                connect "C function VSG1.is_dq_ref_fil" Goto54 as Connection1044
-                connect "C function VSG1.is_d" "Bus Join11.in" as Connection1045
-                connect "Bus Join11.in1" "C function VSG1.is_q" as Connection1046
-                connect "C function VSG1.vs_d" "Bus Join18.in" as Connection1047
-                connect "C function VSG1.vs_q" "Bus Join18.in1" as Connection1048
-                connect Termination9.in "C function VSG1.p_s_fil" as Connection1049
-                connect Constant3.out Sum1.in as Connection1051
-                connect From140 "Low-Pass Filter1.in" as Connection1052
-                connect "Low-Pass Filter1.out" Gain2.in as Connection1053
-                connect Gain2.out Sum1.in1 as Connection1054
-                connect Sum1.out Gain3.in as Connection1055
-                connect Gain3.out "C function VSG1.p_m_ref" as Connection1056
-                connect "Low-Pass Filter2.out" Gain4.in as Connection1060
-                connect "RMS value6.out" "Low-Pass Filter2.in" as Connection1063
-                [
-                    breakpoints = 7868, 7980
-                ]
-                connect "Bus Split1.out" "RMS value6.in" as Connection1065
-                connect Termination10.in "Bus Split1.out1" as Connection1066
-                connect Termination11.in "Bus Split1.out2" as Connection1067
-                connect Gain5.out "C function VSG1.q_s_ref" as Connection1068
-                connect Ramp1.out Limit1.in as Connection1070
-                connect "C function abc to d.theta" Constant6.out as Connection1071
-                connect i_abc "C function abc to d.abc" as Connection1072
-                connect "Bus Join19.in" "C function abc to d.d" as Connection1073
-                connect "Bus Join19.in1" "C function abc to d.q" as Connection1074
-                connect Goto55 "Bus Join19.out" as Connection1075
-                connect "Bus Join20.in" "C function abc to d1.d" as Connection1076
-                connect "Bus Join20.in1" "C function abc to d1.q" as Connection1077
-                connect Goto56 "Bus Join20.out" as Connection1078
-                connect v_abc Junction2 as Connection1079
-                connect Junction2 "Bus Split1.in" as Connection1080
-                connect "C function abc to d1.abc" Junction2 as Connection1081
-                connect Constant7.out "C function abc to d1.theta" as Connection1082
-                connect From141 "C function VSG1.is_albe" as Connection1083
-                connect From142 "C function VSG1.vs_albe" as Connection1084
-                connect Constant8.out "C function VSG1.reset_int" as Connection1085
-                connect Constant2.out "C function VSG1.omega_base" as Connection1086
-                connect "Bus Join15.out" vt_abc_ref as Connection1087
-                connect Constant9.out "C function VSG1.on_vsg" as Connection1088
-                connect Constant10.out "C function VSG1.theta_pll" as Connection1089
-                connect Goto47 Junction3 as Connection1090
-                connect Junction3 "C function VSG1.omega_vsg" as Connection1091
-                connect omega.in Junction3 as Connection1092
-                [
-                    breakpoints = 8876, 7924; 8660, 7924
-                ]
-                connect Sum2.in Constant5.out as Connection1093
-                connect Sum2.out Gain5.in as Connection1094
-                connect Gain4.out Sum2.in1 as Connection1095
-                connect Limit1.out "C function VSG1.e_0" as Connection1096
-            }
-            [
-                position = 12480, 7488
-                size = 144, 336
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch6" {
-                branch_type = "RL"
-                inductance = "L_13_14"
-                num_phases = "Three-Phase"
-                resistance = "R_13_14"
-            }
-            [
-                position = 11096, 7984
-                size = 128, 256
-            ]
-
-            component "core/Constant Impedance Load" "Constant Impedance Load1" {
-                SAB = "6185/3"
-                SAn = "6185/3"
-                SBC = "6185/3"
-                SBn = "1"
-                SCA = "6185/3"
-                SCn = "1"
-                Sn_3ph = "6185"
-                VAB = "400"
-                VAn = "400/np.sqrt(3)"
-                VBC = "400"
-                VBn = "400/np.sqrt(3)"
-                VCA = "400"
-                VCn = "400/np.sqrt(3)"
-                Vn_3ph = "400"
-                enable_neutral = "True"
-                fn = "50"
-                pfA = "0.97"
-                pfB = "0.97"
-                pfC = "0.97"
-                pf_3ph = "0.97"
-                pf_modeA = "Lag"
-                pf_modeB = "Lag"
-                pf_modeC = "Lag"
-                pf_mode_3ph = "Lag"
-                set_balanced = "False"
-            }
-            [
-                position = 10432, 8524
-                size = 184, 152
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch8" {
-                branch_type = "RL"
-                inductance = "L_13_14"
-                resistance = "R_13_14"
-            }
-            [
-                position = 11104, 8612
-                size = 128, 100
+                position = 8644, 8924
             ]
 
             component "core/Signal Controlled Voltage Source" Vsp1 {
             }
             [
-                position = 12840, 7888
-                size = 64, 32
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch9" {
-                branch_type = "RL"
-                inductance = "2.5e-3"
-                num_phases = "Three-Phase"
-                resistance = "0.1"
-            }
-            [
-                position = 11584, 7984
-                size = 128, 256
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch10" {
-                branch_type = "RL"
-                inductance = "2.5e-3"
-                num_phases = "Three-Phase"
-                resistance = "0.1"
-            }
-            [
-                position = 12320, 7984
-                size = 128, 256
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch11" {
-                branch_type = "RC"
-                capacitance = "1e-6"
-                inductance = "L_t"
-                num_phases = "Three-Phase"
-                resistance = "27"
-            }
-            [
-                position = 12096, 8272
-                rotation = right
-                size = 128, 256
-            ]
-
-            component "core/Series RLC Branch" "Series RLC Branch12" {
-                branch_type = "RL"
-                inductance = "Ln"
-                resistance = "Rn"
-            }
-            [
-                position = 12612, 8464
-                size = 128, 100
-            ]
-
-            component "core/Current Measurement" Iag1 {
-                sig_output = "True"
-            }
-            [
-                position = 11276, 7888
-                size = 64, 32
-            ]
-
-            component "core/Voltage Measurement" Va1 {
-                sig_output = "True"
-            }
-            [
-                position = 11332, 8208
-                rotation = right
-                size = 64, 32
-            ]
-
-            component "core/Current Measurement" Ibg1 {
-                sig_output = "True"
-            }
-            [
-                position = 11276, 7984
-                size = 64, 32
-            ]
-
-            component "core/Current Measurement" Icg1 {
-                sig_output = "True"
-            }
-            [
-                position = 11284, 8080
-                size = 64, 32
-            ]
-
-            component "core/Voltage Measurement" Vb1 {
-                sig_output = "True"
-            }
-            [
-                position = 11404, 8208
-                rotation = right
-                size = 64, 32
-            ]
-
-            component "core/Voltage Measurement" Vc1 {
-                sig_output = "True"
-            }
-            [
-                position = 11476, 8208
-                rotation = right
+                position = 9396, 7944
                 size = 64, 32
             ]
 
             component "core/Signal Controlled Voltage Source" Vsp2 {
             }
             [
-                position = 12908, 7984
+                position = 9412, 8036
                 size = 64, 32
             ]
 
             component "core/Signal Controlled Voltage Source" Vsp3 {
             }
             [
-                position = 12984, 8084
+                position = 9424, 8132
                 size = 64, 32
-            ]
-
-            component "core/Signal Controlled Voltage Source" Vsp4 {
-            }
-            [
-                position = 12972, 8464
-                size = 64, 32
-            ]
-
-            component "core/Bus Join" "Bus Join1" {
-                inputs = "3"
-            }
-            [
-                position = 12216, 7604
-            ]
-
-            component "core/Bus Join" "Bus Join2" {
-                inputs = "3"
-            }
-            [
-                position = 12224, 7340
-            ]
-
-            component "core/Constant" Constant1 {
-                execution_rate = "Ts_Control"
-                value = "0"
-            }
-            [
-                position = 12840, 8372
-            ]
-
-            component "core/Bus Split" "Bus Split1" {
-                outputs = "3"
-            }
-            [
-                position = 12752, 7744
-            ]
-
-            component "core/Rate Transition" "Rate Transition1" {
-                execution_rate = "Ts_Control"
-            }
-            [
-                position = 12328, 7340
-                size = 32, 32
-            ]
-
-            component "core/Rate Transition" "Rate Transition2" {
-                execution_rate = "Ts_Control"
-            }
-            [
-                position = 12328, 7604
-                size = 32, 32
-            ]
-
-            component "core/Scope" Scoep {
-                selected_signals = "[\'Plant.UPI_CC.omega\', \'Plant.Va1\', \'Plant.Vb1\', \'Plant.Vc1\', \'Plant.Iag1\', \'Plant.Ibg1\', \'Plant.Icg1\']"
-                signals_data = "{\"signals\": {\"Plant.Va1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Plant.Vb1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"Plant.Vc1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"Plant.Iag1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"Plant.Ibg1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"Plant.Icg1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"Plant.UPI_CC.omega\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
-            }
-            [
-                position = 11268, 7704
-            ]
-
-            component "core/Resistor" R2 {
-                resistance = "12"
-            }
-            [
-                position = 10632, 8300
-                rotation = right
-            ]
-
-            component "core/Resistor" R3 {
-                resistance = "12"
-            }
-            [
-                position = 10748, 8300
-                rotation = right
-            ]
-
-            component "core/Resistor" R4 {
-                resistance = "12"
-            }
-            [
-                position = 10692, 8300
-                rotation = right
-            ]
-
-            component "core/Triple Pole Single Throw Contactor" S4 {
-                ctrl_src = "Model"
-            }
-            [
-                position = 10428, 8280
-                rotation = left
-                size = 64, 256
-            ]
-
-            component "core/Step" Step1 {
-                step_time = "3"
-            }
-            [
-                position = 11604, 8248
-            ]
-
-            component "core/Output Settings" "Output Settings1" {
-                analog_outputs = "[\'AO1;..Iag.Mask@top.current;226.27;0.00;False;-10;10\', \'AO2;..Ibg.Mask@top.current;226.27;0.00;False;-10;10\', \'AO3;..Icg.Mask@top.current;226.27;0.00;False;-10;10\']"
-            }
-            [
-                position = 10052, 7744
             ]
 
             component "core/Analog Input" "Analog Input1" {
                 execution_rate = "10e-6"
             }
             [
-                position = 10328, 7304
+                position = 9940, 7136
             ]
 
             component "core/Probe" va_opal_fil {
             }
             [
-                position = 10656, 7316
+                position = 10268, 7148
             ]
 
             component "core/Analog Input" "Analog Input2" {
@@ -8376,13 +7999,13 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 execution_rate = "10e-6"
             }
             [
-                position = 10324, 7404
+                position = 9936, 7236
             ]
 
             component "core/Probe" vb_opal_fil {
             }
             [
-                position = 10612, 7460
+                position = 10224, 7292
             ]
 
             component "core/Analog Input" "Analog Input3" {
@@ -8390,168 +8013,179 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 execution_rate = "10e-6"
             }
             [
-                position = 10316, 7564
+                position = 9844, 7396
             ]
 
             component "core/Probe" vc_opal {
             }
             [
-                position = 10552, 7568
+                position = 10164, 7400
             ]
 
             component "core/Low-Pass Filter" "Low-Pass Filter1" {
                 execution_rate = "10e-6"
-                frequency = "5e3"
+                frequency = "3e3"
             }
             [
-                position = 10548, 7628
+                position = 10160, 7460
             ]
 
             component "core/Probe" vc_opal_fil {
             }
             [
-                position = 10672, 7628
-            ]
-
-            component "core/Signal Controlled Voltage Source" Vsp5 {
-            }
-            [
-                position = 10000, 7940
-                size = 64, 32
-            ]
-
-            component "core/Signal Controlled Voltage Source" Vsp6 {
-            }
-            [
-                position = 10000, 8036
-                size = 64, 32
-            ]
-
-            component "core/Signal Controlled Voltage Source" Vsp7 {
-            }
-            [
-                position = 9996, 8132
-                size = 64, 32
+                position = 10284, 7460
             ]
 
             component "core/Gain" Gain4 {
                 gain = "K_ana_in"
             }
             [
-                position = 10396, 7304
+                position = 10008, 7136
             ]
 
             component "core/Gain" Gain5 {
                 gain = "K_ana_in"
             }
             [
-                position = 10404, 7404
+                position = 10016, 7236
             ]
 
             component "core/Gain" Gain6 {
                 gain = "K_ana_in"
             }
             [
-                position = 10396, 7564
+                position = 9940, 7392
             ]
 
             component "core/Low-Pass Filter" "Low-Pass Filter2" {
                 execution_rate = "10e-6"
-                frequency = "5e3"
+                frequency = "3e3"
             }
             [
-                position = 10528, 7460
+                position = 10140, 7292
             ]
 
             component "core/Low-Pass Filter" "Low-Pass Filter3" {
                 execution_rate = "10e-6"
-                frequency = "5e3"
+                frequency = "3e3"
             }
             [
-                position = 10548, 7312
+                position = 10160, 7144
             ]
 
             component "core/Probe" va_opal1 {
             }
             [
-                position = 10784, 7276
+                position = 10396, 7108
             ]
 
             component "core/Probe" vb_opal {
             }
             [
-                position = 10676, 7376
+                position = 10288, 7208
             ]
 
-            component "core/Series RLC Branch" "Series RLC Branch13" {
-                branch_type = "RL"
-                inductance = "2.5e-3"
-                num_phases = "Three-Phase"
-                resistance = "0.1"
+            component "core/RMS value" "RMS value5" {
+                op_mode = "Fixed frequency"
             }
             [
-                position = 8716, 8036
-                size = 128, 256
+                position = 8864, 7152
             ]
 
-            component "core/Series RLC Branch" "Series RLC Branch14" {
-                branch_type = "RL"
-                inductance = "L_12_13"
-                num_phases = "Three-Phase"
-                resistance = "R_12_13"
+            component "core/RMS value" "RMS value6" {
+                op_mode = "Fixed frequency"
             }
             [
-                position = 9492, 8036
-                size = 128, 256
+                position = 8864, 7336
             ]
 
-            component "core/Series RLC Branch" "Series RLC Branch15" {
-                branch_type = "RL"
-                inductance = "L_12_13"
-                resistance = "R_12_13"
+            component "core/RMS value" "RMS value7" {
+                op_mode = "Fixed frequency"
             }
             [
-                position = 9488, 8512
-                size = 128, 100
+                position = 8872, 7544
             ]
 
-            component "core/Low-Pass Filter" "Low-Pass Filter4" {
-                frequency = "5e3"
+            component "core/RMS value" "RMS value8" {
+                op_mode = "Fixed frequency"
             }
             [
-                position = 10540, 7716
+                position = 8876, 7708
             ]
 
-            component "core/Probe" va_fil {
+            component "core/RMS value" "RMS value9" {
+                op_mode = "Fixed frequency"
             }
             [
-                position = 10776, 7716
+                position = 8872, 7776
             ]
 
-            component "core/Low-Pass Filter" "Low-Pass Filter5" {
-                frequency = "5e3"
+            component "core/RMS value" "RMS value10" {
+                op_mode = "Fixed frequency"
             }
             [
-                position = 10540, 7772
+                position = 8872, 7860
             ]
 
-            component "core/Probe" vb_fil {
+            component "core/Single phase PLL" "Single phase PLL4" {
+                offset_Hz = "50"
+                vd_init = "0"
             }
             [
-                position = 10776, 7772
+                position = 8868, 7048
+                size = 64, 98
             ]
 
-            component "core/Low-Pass Filter" "Low-Pass Filter6" {
-                frequency = "5e3"
+            component "core/Probe" omega_a {
             }
             [
-                position = 10540, 7828
+                position = 8976, 7048
             ]
 
-            component "core/Probe" vc_fil {
+            component "core/Single phase PLL" "Single phase PLL5" {
+                offset_Hz = "50"
+                vd_init = "0"
             }
             [
-                position = 10776, 7828
+                position = 8860, 7248
+                size = 64, 98
+            ]
+
+            component "core/Probe" omega_b {
+            }
+            [
+                position = 8968, 7248
+            ]
+
+            component "core/Single phase PLL" "Single phase PLL6" {
+                offset_Hz = "50"
+                vd_init = "0"
+            }
+            [
+                position = 8876, 7448
+                size = 64, 98
+            ]
+
+            component "core/Probe" omega_c {
+            }
+            [
+                position = 8976, 7448
+            ]
+
+            component "core/Gain" Gain7 {
+                gain = "1.013"
+            }
+            [
+                position = 10024, 7392
+            ]
+
+            component "core/Three Phase Voltage Source" Vs1 {
+                init_rms_value = "230"
+            }
+            [
+                position = 9592, 7856
+                scale = -1, 1
+                size = 62, 256
             ]
 
             tag From1 {
@@ -8561,7 +8195,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8720, 7284
+                position = 9092, 7588
                 size = 60, 20
             ]
 
@@ -8572,7 +8206,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9076, 7892
+                position = 9264, 7892
                 size = 60, 20
             ]
 
@@ -8583,7 +8217,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9100, 8000
+                position = 9292, 8000
                 size = 60, 20
             ]
 
@@ -8594,7 +8228,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9076, 8096
+                position = 9276, 8096
                 size = 60, 20
             ]
 
@@ -8605,7 +8239,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8724, 7356
+                position = 9096, 7660
                 size = 60, 20
             ]
 
@@ -8616,7 +8250,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8724, 7432
+                position = 9096, 7736
                 size = 60, 20
             ]
 
@@ -8627,7 +8261,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9216, 8432
+                position = 9304, 8204
                 size = 60, 20
             ]
 
@@ -8638,7 +8272,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9280, 8408
+                position = 9376, 8316
                 size = 60, 20
             ]
 
@@ -8649,7 +8283,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = in
             }
             [
-                position = 9352, 8384
+                position = 9452, 8212
                 size = 60, 20
             ]
 
@@ -8660,7 +8294,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8800, 7268
+                position = 9172, 7572
                 size = 60, 20
             ]
 
@@ -8671,7 +8305,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8804, 7340
+                position = 9176, 7644
                 size = 60, 20
             ]
 
@@ -8682,73 +8316,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8804, 7416
-                size = 60, 20
-            ]
-
-            tag From7 {
-                value = "ia"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9468, 7636
-                size = 60, 20
-            ]
-
-            tag From8 {
-                value = "ib"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9456, 7692
-                size = 60, 20
-            ]
-
-            tag From9 {
-                value = "ic"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9452, 7740
-                size = 60, 20
-            ]
-
-            tag From10 {
-                value = "va"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9464, 7496
-                size = 60, 20
-            ]
-
-            tag From11 {
-                value = "vb"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9464, 7540
-                size = 60, 20
-            ]
-
-            tag From12 {
-                value = "vc"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9468, 7588
+                position = 9176, 7720
                 size = 60, 20
             ]
 
@@ -8759,7 +8327,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8344, 7468
+                position = 8756, 7632
                 size = 60, 20
             ]
 
@@ -8770,7 +8338,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8344, 7540
+                position = 8756, 7704
                 size = 60, 20
             ]
 
@@ -8781,7 +8349,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8336, 7612
+                position = 8748, 7776
                 size = 60, 20
             ]
 
@@ -8792,7 +8360,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8320, 7212
+                position = 8732, 7152
                 size = 60, 20
             ]
 
@@ -8803,7 +8371,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8332, 7304
+                position = 8736, 7336
                 size = 60, 20
             ]
 
@@ -8814,7 +8382,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8324, 7388
+                position = 8736, 7552
                 size = 60, 20
             ]
 
@@ -8825,7 +8393,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8324, 7700
+                position = 8736, 7864
                 size = 60, 20
             ]
 
@@ -8847,7 +8415,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8660, 7612
+                position = 8384, 8752
                 size = 60, 20
             ]
 
@@ -8858,7 +8426,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8660, 7656
+                position = 8384, 8796
                 size = 60, 20
             ]
 
@@ -8869,305 +8437,89 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 direction = out
             }
             [
-                position = 8664, 7704
-                size = 60, 20
-            ]
-
-            tag From23 {
-                value = "ia"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9084, 7652
-                size = 60, 20
-            ]
-
-            tag From24 {
-                value = "ib"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9080, 7712
-                size = 60, 20
-            ]
-
-            tag From25 {
-                value = "ic"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9080, 7792
-                size = 60, 20
-            ]
-
-            tag From26 {
-                value = "va"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9084, 7508
-                size = 60, 20
-            ]
-
-            tag From27 {
-                value = "vb"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9108, 7560
-                size = 60, 20
-            ]
-
-            tag From28 {
-                value = "vc"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 9084, 7608
-                size = 60, 20
-            ]
-
-            tag Goto8 {
-                value = "ia1"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 11368, 7840
-                size = 60, 20
-            ]
-
-            tag Goto9 {
-                value = "ib1"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 11396, 7948
-                size = 60, 20
-            ]
-
-            tag Goto10 {
-                value = "ic1"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 11380, 8044
-                size = 60, 20
-            ]
-
-            tag Goto11 {
-                value = "va1"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 11408, 8152
-                size = 60, 20
-            ]
-
-            tag Goto12 {
-                value = "vb1"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 11480, 8264
-                size = 60, 20
-            ]
-
-            tag Goto13 {
-                value = "vc1"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 11552, 8172
+                position = 8388, 8844
                 size = 60, 20
             ]
 
             tag From29 {
-                value = "ia1"
+                value = "v_opal_a"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 12116, 7308
+                position = 9336, 7896
                 size = 60, 20
             ]
 
             tag From30 {
-                value = "ib1"
+                value = "v_opal_b"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 12116, 7340
+                position = 9352, 8000
                 size = 60, 20
             ]
 
             tag From31 {
-                value = "ic1"
+                value = "v_opal_c"
                 scope = local
                 kind = sp
                 direction = out
             }
             [
-                position = 12116, 7376
-                size = 60, 20
-            ]
-
-            tag From32 {
-                value = "va1"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 12076, 7568
-                size = 60, 20
-            ]
-
-            tag From33 {
-                value = "vb1"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 12076, 7604
-                size = 60, 20
-            ]
-
-            tag From34 {
-                value = "vc1"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 12080, 7648
-                size = 60, 20
-            ]
-
-            tag Goto17 {
-                value = "vc_opal"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 10724, 7528
-                size = 60, 20
-            ]
-
-            tag Goto18 {
-                value = "vb_opal"
-                scope = local
-                kind = sp
-                direction = in
-            }
-            [
-                position = 10752, 7436
+                position = 9360, 8092
                 size = 60, 20
             ]
 
             tag Goto19 {
-                value = "va_opal"
+                value = "v_opal_a"
                 scope = local
                 kind = sp
                 direction = in
             }
             [
-                position = 10692, 7204
+                position = 10304, 7036
                 size = 60, 20
             ]
 
-            tag From35 {
-                value = "va_opal"
+            tag Goto20 {
+                value = "v_opal_b"
                 scope = local
                 kind = sp
-                direction = out
+                direction = in
             }
             [
-                position = 9896, 7852
+                position = 10368, 7256
                 size = 60, 20
             ]
 
-            tag From36 {
-                value = "vb_opal"
+            tag Goto21 {
+                value = "v_opal_c"
                 scope = local
                 kind = sp
-                direction = out
+                direction = in
             }
             [
-                position = 9892, 7976
+                position = 10368, 7432
                 size = 60, 20
             ]
 
-            tag From37 {
-                value = "vc_opal"
-                scope = local
-                kind = sp
-                direction = out
-            }
+            junction Junction1 pe
             [
-                position = 9900, 8076
-                size = 60, 20
+                position = 8220, 7940
             ]
 
-            tag From38 {
-                value = "va"
-                scope = local
-                kind = sp
-                direction = out
-            }
+            junction Junction2 pe
             [
-                position = 10472, 7716
-                size = 60, 20
+                position = 8316, 8036
             ]
 
-            tag From39 {
-                value = "vb"
-                scope = local
-                kind = sp
-                direction = out
-            }
+            junction Junction3 pe
             [
-                position = 10472, 7772
-                size = 60, 20
-            ]
-
-            tag From40 {
-                value = "vc"
-                scope = local
-                kind = sp
-                direction = out
-            }
-            [
-                position = 10472, 7828
-                size = 60, 20
+                position = 8412, 8132
             ]
 
             junction Junction23 pe
@@ -9180,9 +8532,19 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 6828, 7828
             ]
 
+            junction Junction25 pe
+            [
+                position = 6604, 7828
+            ]
+
             junction Junction37 pe
             [
                 position = 7060, 8684
+            ]
+
+            junction Junction38 pe
+            [
+                position = 6744, 8684
             ]
 
             junction Junction40 pe
@@ -9195,6 +8557,21 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 7064, 7828
             ]
 
+            junction Junction54 pe
+            [
+                position = 8316, 8520
+            ]
+
+            junction Junction55 pe
+            [
+                position = 8220, 8516
+            ]
+
+            junction Junction59 pe
+            [
+                position = 9308, 8512
+            ]
+
             junction Junction62 pe
             [
                 position = 6984, 8684
@@ -9205,196 +8582,142 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
                 position = 6828, 8684
             ]
 
-            junction Junction68 sp
+            junction Junction64 pe
             [
-                position = 8400, 7700
+                position = 6692, 7828
             ]
 
-            junction Junction87 pe
+            junction Junction66 pe
             [
-                position = 12000, 7888
+                position = 9252, 8516
             ]
 
-            junction Junction88 pe
+            junction Junction67 pe
             [
-                position = 12096, 7984
+                position = 8412, 8516
             ]
 
-            junction Junction89 pe
+            junction Junction69 pe
             [
-                position = 12192, 8080
+                position = 9252, 7940
             ]
 
-            junction Junction93 pe
+            junction Junction70 pe
             [
-                position = 12012, 8612
+                position = 9300, 8044
             ]
 
-            junction Junction94 pe
+            junction Junction71 pe
             [
-                position = 12092, 8464
+                position = 9372, 8136
             ]
 
-            junction Junction95 pe
+            junction Junction72 pe
             [
-                position = 12188, 8464
+                position = 9472, 8032
             ]
 
-            junction Junction96 pe
+            junction Junction73 pe
             [
-                position = 13032, 7984
+                position = 9476, 8036
             ]
 
-            junction Junction97 pe
+            junction Junction74 pe
             [
-                position = 11356, 7888
+                position = 9484, 8036
             ]
 
-            junction Junction98 pe
+            junction Junction75 pe
             [
-                position = 11408, 7984
-            ]
-
-            junction Junction99 pe
-            [
-                position = 11476, 8080
-            ]
-
-            junction Junction100 pe
-            [
-                position = 11820, 8168
-            ]
-
-            junction Junction102 pe
-            [
-                position = 11400, 8332
-            ]
-
-            junction Junction103 pe
-            [
-                position = 11404, 8324
-            ]
-
-            junction Junction104 pe
-            [
-                position = 11408, 8612
-            ]
-
-            junction Junction108 pe
-            [
-                position = 10688, 8404
-            ]
-
-            junction Junction109 pe
-            [
-                position = 10688, 8612
-            ]
-
-            junction Junction110 pe
-            [
-                position = 10640, 7888
-            ]
-
-            junction Junction111 pe
-            [
-                position = 10692, 7980
-            ]
-
-            junction Junction112 pe
-            [
-                position = 10744, 8080
+                position = 9372, 8516
             ]
 
             junction Junction241 sp
             [
-                position = 10492, 7296
-            ]
-
-            junction Junction242 sp
-            [
-                position = 10592, 7312
+                position = 10104, 7128
             ]
 
             junction Junction243 sp
             [
-                position = 10448, 7404
+                position = 10060, 7236
             ]
 
-            junction Junction244 sp
+            junction Junction249 sp
             [
-                position = 10560, 7460
+                position = 10204, 7148
             ]
 
-            junction Junction245 sp
+            junction Junction250 sp
             [
-                position = 10464, 7568
+                position = 10180, 7292
             ]
 
-            junction Junction246 sp
+            junction Junction251 sp
             [
-                position = 10612, 7628
+                position = 10220, 7460
             ]
 
-            junction Junction264 pe
+            junction Junction252 sp
             [
-                position = 6664, 7832
+                position = 8812, 7864
             ]
 
-            junction Junction268 pe
+            junction Junction253 sp
             [
-                position = 9200, 8372
+                position = 8788, 7152
             ]
 
-            junction Junction270 pe
+            junction Junction254 sp
             [
-                position = 8316, 8444
+                position = 8788, 7328
             ]
 
-            junction Junction275 pe
+            junction Junction255 sp
             [
-                position = 10148, 8032
+                position = 8792, 7552
             ]
 
-            junction Junction288 pe
+            junction Junction256 sp
             [
-                position = 8212, 7940
+                position = 10076, 7400
             ]
 
-            junction Junction289 pe
+            junction Junction257 pe
             [
-                position = 8316, 8032
+                position = 9736, 8036
             ]
 
-            junction Junction290 pe
+            junction Junction258 pe
             [
-                position = 8412, 8132
+                position = 9372, 8132
             ]
 
-            junction Junction292 pe
+            junction Junction259 pe
             [
-                position = 9132, 7940
+                position = 9296, 8036
             ]
 
-            junction Junction293 pe
+            junction Junction260 pe
             [
-                position = 9200, 8036
+                position = 9252, 7932
             ]
 
-            junction Junction294 pe
+            connect "Series RLC Branch1.P1_neg" Junction1 as Connection9
+            connect Junction1 "Series RLC Branch2.P1_pos" as Connection10
+            connect "Series RLC Branch3.P3_pos" Junction1 as Connection11
+            connect "Series RLC Branch1.P2_neg" Junction2 as Connection12
             [
-                position = 9268, 8132
+                breakpoints = 7980, 8036; 8316, 8036
             ]
-
-            junction Junction295 pe
+            connect Junction2 "Series RLC Branch2.P2_pos" as Connection13
+            connect "Series RLC Branch3.P2_pos" Junction2 as Connection14
+            connect "Series RLC Branch1.P3_neg" Junction3 as Connection15
             [
-                position = 10148, 8144
+                breakpoints = 7908, 8132; 8100, 8132; 8100, 8140; 8412, 8140
             ]
-
-            junction Junction296 pe
-            [
-                position = 9196, 8512
-            ]
-
+            connect Junction3 "Series RLC Branch2.P3_pos" as Connection16
+            connect "Series RLC Branch3.P1_pos" Junction3 as Connection17
+            connect R1.p_node v_dc.p_node as Connection53
             connect "IGBT Leg1.a_in" "Series RLC Branch1.P1_pos" as Connection88
             [
                 breakpoints = 7276, 7940; 7724, 7940
@@ -9404,8 +8727,17 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect "IGBT Leg2.pos_out" Junction23 as Connection113
             connect Junction24 Junction23 as Connection117
             connect "IGBT Leg1.pos_out" Junction24 as Connection118
+            connect R1.n_node Junction25 as Connection119
+            connect v_h.p_node Junction25 as Connection121
+            connect "Series RLC Branch2.P1_neg" Iag.p_node as Connection137
+            connect "Series RLC Branch2.P2_neg" Ibg.p_node as Connection138
+            connect "Series RLC Branch2.P3_neg" Icg.p_node as Connection139
+            [
+                breakpoints = 9140, 8132
+            ]
             connect Junction37 "IGBT Leg4.neg_out" as Connection164
             connect "IGBT Leg3.neg_out" Junction37 as Connection165
+            connect C2.n_node Junction38 as Connection168
             connect v_dc.n_node Junction40 as Connection172
             connect v_h.n_node Junction40 as Connection174
             connect Junction23 Junction41 as Connection175
@@ -9421,17 +8753,32 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             [
                 breakpoints = 7276, 8508; 7704, 8508
             ]
+            connect "Series RLC Branch3.P2_neg" Junction54 as Connection235
+            connect "Series RLC Branch3.P3_neg" Junction55 as Connection251
+            connect Junction55 Junction54 as Connection252
+            connect "Series RLC Branch4.P1_neg" Junction55 as Connection253
+            connect Vb.n_node Junction59 as Connection265
             connect Junction62 Junction37 as Connection275
             connect "IGBT Leg2.neg_out" Junction62 as Connection276
+            connect Junction38 Junction63 as Connection277
             connect Junction63 Junction62 as Connection278
             connect "IGBT Leg1.neg_out" Junction63 as Connection279
             [
                 breakpoints = 6828, 8676
             ]
-            connect p.in "C function powers.p" as Connection303
-            connect "C function powers.q" q.in as Connection304
-            connect "C function powers.p_f" pf.in as Connection305
-            connect "C function powers.q_f" qf.in as Connection306
+            connect Junction38 Junction40 as Connection281
+            connect Junction25 Junction64 as Connection282
+            connect Junction64 Junction24 as Connection283
+            connect C2.p_node Junction64 as Connection284
+            connect Va.n_node Junction66 as Connection291
+            connect Junction66 Junction59 as Connection292
+            [
+                breakpoints = 9252, 8516
+            ]
+            connect Ing.n_node Junction66 as Connection293
+            connect "Series RLC Branch3.P1_neg" Junction67 as Connection294
+            connect Junction67 Junction54 as Connection295
+            connect Ing.p_node Junction67 as Connection296
             connect Goto3 Icg.out as Connection307
             connect Goto2 Ibg.out as Connection308
             connect Goto1 Iag.out as Connection309
@@ -9444,35 +8791,15 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect From4 "Single Phase Power Meter1.Va" as Connection316
             connect From5 "Single Phase Power Meter2.Va" as Connection317
             connect From6 "Single Phase Power Meter3.Va" as Connection318
-            connect "C function powers.v_a" From10 as Connection319
-            connect "C function powers.v_b" From11 as Connection320
-            connect "C function powers.v_c" From12 as Connection321
-            connect "C function powers.i_a" From7 as Connection322
-            connect "C function powers.i_b" From8 as Connection323
-            connect "C function powers.i_c" From9 as Connection324
             connect "Single Phase Power Meter1.P" p1.in as Connection325
             connect "Single Phase Power Meter1.Q" q1.in as Connection326
             connect "Single Phase Power Meter2.P" p2.in as Connection327
             connect "Single Phase Power Meter2.Q" q2.in as Connection328
             connect "Single Phase Power Meter3.P" p3.in as Connection329
             connect "Single Phase Power Meter3.Q" q3.in as Connection330
-            connect From16 "RMS value1.in" as Connection334
-            connect From17 "RMS value2.in" as Connection335
             connect From13 "RMS value4.in" as Connection336
-            connect From18 "RMS value3.in" as Connection337
-            connect From14 "RMS value5.in" as Connection338
-            connect From15 "RMS value6.in" as Connection339
-            connect "RMS value1.out" va_rms.in as Connection340
-            connect "RMS value2.out" vb_rms.in as Connection341
-            connect "RMS value3.out" vc_rms.in as Connection342
             connect "RMS value4.out" ia_rms.in as Connection343
-            connect "RMS value5.out" ib_rms.in as Connection344
-            connect "RMS value6.out" ic_rms.in as Connection345
-            connect "RMS value7.out" in_rms.in as Connection347
             connect Goto7 Ing.out as Connection348
-            connect From19 Junction68 as Connection349
-            connect Junction68 "RMS value7.in" as Connection350
-            connect in.in Junction68 as Connection351
             connect From21 "Single phase PLL2.In" as Connection352
             connect From22 "Single phase PLL3.In" as Connection353
             connect From20 "Single phase PLL1.In" as Connection354
@@ -9482,284 +8809,116 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             connect Gain3.out w_c.in as Connection358
             connect Gain3.in "Single phase PLL3.f" as Connection359
             connect "Single phase PLL2.f" Gain2.in as Connection360
-            connect "C function1.va" From26 as Connection381
+            connect Iag.n_node Junction69 as Connection430
+            connect Junction69 Va.p_node as Connection431
             [
-                breakpoints = 9184, 7616; 9184, 7508
+                breakpoints = 9252, 7940
             ]
-            connect "C function1.vc" From28 as Connection383
-            connect "C function1.ia" From23 as Connection384
-            connect "C function1.ib" From24 as Connection385
-            connect "C function1.ic" From25 as Connection386
-            connect "C function1.p" pi.in as Connection387
-            connect "C function1.q" qi.in as Connection388
-            connect From27 "C function1.vb" as Connection389
+            connect Vb.p_node Junction70 as Connection433
             [
-                breakpoints = 9168, 7560; 9168, 7632
+                breakpoints = 9300, 8220
             ]
-            connect "Series RLC Branch9.P1_neg" Junction87 as Connection474
-            connect Junction87 "Series RLC Branch10.P1_pos" as Connection475
-            connect "Series RLC Branch11.P3_pos" Junction87 as Connection476
-            connect "Series RLC Branch9.P2_neg" Junction88 as Connection477
+            connect Junction70 Ibg.n_node as Connection434
+            connect Vc.p_node Junction71 as Connection436
             [
-                breakpoints = 11760, 7984; 12096, 7984
+                breakpoints = 9372, 8220
             ]
-            connect Junction88 "Series RLC Branch10.P2_pos" as Connection478
-            connect "Series RLC Branch11.P2_pos" Junction88 as Connection479
-            connect "Series RLC Branch9.P3_neg" Junction89 as Connection480
+            connect Junction71 Icg.n_node as Connection437
+            connect Vsp1.n_node Junction72 as Connection440
+            connect Junction72 Vsp3.n_node as Connection441
+            connect Vsp2.n_node Junction73 as Connection444
+            connect Junction73 Junction72 as Connection445
+            connect Junction74 Junction73 as Connection448
+            connect Vc.n_node Junction75 as Connection449
+            connect Junction75 Junction59 as Connection450
             [
-                breakpoints = 11688, 8080; 11880, 8080; 11880, 8088; 12192, 8088
+                breakpoints = 9372, 8512
             ]
-            connect Junction89 "Series RLC Branch10.P3_pos" as Connection481
-            connect "Series RLC Branch11.P1_pos" Junction89 as Connection482
-            connect Goto10 Icg1.out as Connection483
-            connect Goto9 Ibg1.out as Connection484
-            connect Goto8 Iag1.out as Connection485
-            connect Va1.out Goto11 as Connection486
-            connect Vc1.out Goto13 as Connection487
-            connect Vb1.out Goto12 as Connection488
-            connect "Series RLC Branch11.P3_neg" Junction93 as Connection498
-            connect Junction93 Junction94 as Connection506
-            [
-                breakpoints = 12092, 8612
-            ]
-            connect "Series RLC Branch11.P2_neg" Junction94 as Connection508
-            connect Junction94 Junction95 as Connection509
-            connect Junction95 "Series RLC Branch12.P1_pos" as Connection510
-            connect "Series RLC Branch11.P1_neg" Junction95 as Connection511
-            connect Vsp4.p_node "Series RLC Branch12.P1_neg" as Connection512
-            connect "Series RLC Branch10.P1_neg" Vsp1.p_node as Connection513
-            connect Vsp2.p_node "Series RLC Branch10.P2_neg" as Connection514
-            connect Vsp3.p_node "Series RLC Branch10.P3_neg" as Connection515
-            connect Vsp1.n_node Junction96 as Connection517
-            [
-                breakpoints = 13080, 7888; 13080, 7984
-            ]
-            connect Vsp2.n_node Junction96 as Connection519
-            connect Iag1.n_node Junction97 as Connection520
-            connect Junction97 Va1.p_node as Connection521
-            [
-                breakpoints = 11356, 7888
-            ]
-            connect "Series RLC Branch9.P1_pos" Junction97 as Connection522
-            connect Ibg1.n_node Junction98 as Connection523
-            connect Junction98 Vb1.p_node as Connection524
-            [
-                breakpoints = 11404, 7984; 11404, 8168
-            ]
-            connect "Series RLC Branch9.P2_pos" Junction98 as Connection525
-            connect Vc1.p_node Junction99 as Connection526
-            [
-                breakpoints = 11476, 8168
-            ]
-            connect Junction99 Icg1.n_node as Connection527
-            [
-                breakpoints = 11480, 8080
-            ]
-            connect "Series RLC Branch9.P3_pos" Junction99 as Connection528
-            connect Icg1.p_node "Series RLC Branch6.P3_neg" as Connection529
-            connect Ibg1.p_node "Series RLC Branch6.P2_neg" as Connection530
-            connect Iag1.p_node "Series RLC Branch6.P1_neg" as Connection531
-            connect Junction96 Junction100 as Connection532
-            [
-                breakpoints = 11820, 8068
-            ]
-            connect Junction100 Vsp3.n_node as Connection533
-            [
-                breakpoints = 11820, 8168
-            ]
-            connect Vsp4.n_node Junction100 as Connection534
-            connect From32 "Bus Join1.in" as Connection535
-            connect From33 "Bus Join1.in1" as Connection536
-            connect "Bus Join1.in2" From34 as Connection537
-            connect From29 "Bus Join2.in" as Connection539
-            connect From30 "Bus Join2.in1" as Connection540
-            connect From31 "Bus Join2.in2" as Connection541
-            connect Constant1.out Vsp4.in as Connection543
-            [
-                breakpoints = 12968, 8436
-            ]
-            connect "Bus Split1.in" UPI_CC.vt_abc_ref as Connection544
-            connect "Bus Split1.out" Vsp1.in as Connection545
-            connect "Bus Split1.out1" Vsp2.in as Connection546
-            connect "Bus Split1.out2" Vsp3.in as Connection547
-            connect UPI_CC.i_abc "Rate Transition1.out" as Connection548
-            connect "Rate Transition1.in" "Bus Join2.out" as Connection549
-            connect "Bus Join1.out" "Rate Transition2.in" as Connection550
-            [
-                breakpoints = 12296, 7604
-            ]
-            connect "Rate Transition2.out" UPI_CC.v_abc as Connection551
-            connect Va1.n_node Junction102 as Connection569
-            [
-                breakpoints = 11340, 8332
-            ]
-            connect Junction102 Vc1.n_node as Connection570
-            connect Vb1.n_node Junction103 as Connection572
-            connect Junction103 Junction102 as Connection573
-            connect "Series RLC Branch8.P1_neg" Junction104 as Connection574
-            connect Junction104 Junction93 as Connection575
-            connect Junction103 Junction104 as Connection576
-            connect R2.n_node Junction108 as Connection623
-            [
-                breakpoints = 10632, 8404
-            ]
-            connect Junction108 R3.n_node as Connection624
-            [
-                breakpoints = 10748, 8404
-            ]
-            connect R4.n_node Junction108 as Connection625
-            connect "Series RLC Branch8.P1_pos" Junction109 as Connection626
-            connect Junction108 Junction109 as Connection628
-            connect "Constant Impedance Load1.C" S4.c_in as Connection632
-            connect S4.b_in "Constant Impedance Load1.B" as Connection633
-            connect S4.a_in "Constant Impedance Load1.A" as Connection634
-            connect "Series RLC Branch6.P1_pos" Junction110 as Connection635
-            connect Junction110 R2.p_node as Connection636
-            [
-                breakpoints = 10632, 7888
-            ]
-            connect S4.a_out Junction110 as Connection637
-            connect R4.p_node Junction111 as Connection638
-            connect Junction111 "Series RLC Branch6.P2_pos" as Connection639
-            [
-                breakpoints = 10696, 7984
-            ]
-            connect S4.b_out Junction111 as Connection640
-            [
-                breakpoints = 10428, 7984; 10692, 7984
-            ]
-            connect "Series RLC Branch6.P3_pos" Junction112 as Connection641
-            [
-                breakpoints = 10780, 8080
-            ]
-            connect Junction112 R3.p_node as Connection642
-            [
-                breakpoints = 10756, 8080
-            ]
-            connect S4.c_out Junction112 as Connection643
-            connect Step1.out S4.ctrl_in as Connection644
-            connect "Constant Impedance Load1.N" Junction109 as Connection645
-            [
-                breakpoints = 10428, 8624; 10684, 8624; 10676, 8612
-            ]
+            connect Junction74 Junction75 as Connection451
+            connect From29 Vsp1.in as Connection452
+            connect From30 Vsp2.in as Connection453
+            connect From31 Vsp3.in as Connection454
             connect Gain4.in "Analog Input1.out" as Connection1462
             connect Gain5.in "Analog Input2.out" as Connection1466
             connect Gain6.in "Analog Input3.out" as Connection1470
-            connect From35 Vsp5.in as Connection1477
-            connect From36 Vsp6.in as Connection1478
-            connect From37 Vsp7.in as Connection1479
             connect Gain4.out Junction241 as Connection1511
             [
-                breakpoints = 10452, 7304; 10452, 7296
+                breakpoints = 10064, 7136; 10064, 7128
             ]
             connect Junction241 "Low-Pass Filter3.in" as Connection1512
             [
-                breakpoints = 10492, 7312
+                breakpoints = 10104, 7144
             ]
-            connect va_opal1.in Junction241 as Connection1513
-            connect "Low-Pass Filter3.out" Junction242 as Connection1514
-            connect Junction242 va_opal_fil.in as Connection1515
-            connect Goto19 Junction242 as Connection1516
             connect Gain5.out Junction243 as Connection1519
-            connect Junction243 "Low-Pass Filter2.in" as Connection1520
-            [
-                breakpoints = 10448, 7404; 10448, 7408
-            ]
             connect vb_opal.in Junction243 as Connection1521
-            connect "Low-Pass Filter2.out" Junction244 as Connection1522
-            connect Junction244 vb_opal_fil.in as Connection1523
-            connect Goto18 Junction244 as Connection1524
-            connect Gain6.out Junction245 as Connection1527
+            connect Junction241 va_opal1.in as Connection1553
             [
-                breakpoints = 10460, 7560; 10464, 7560
+                breakpoints = 10104, 7108
             ]
-            connect Junction245 "Low-Pass Filter1.in" as Connection1528
-            connect vc_opal.in Junction245 as Connection1529
-            connect vc_opal_fil.in Junction246 as Connection1530
-            connect Junction246 "Low-Pass Filter1.out" as Connection1531
-            connect Goto17 Junction246 as Connection1532
-            connect v_h.p_node Junction264 as Connection1722
-            connect v_dc.p_node Junction264 as Connection1724
+            connect va_opal_fil.in Junction249 as Connection1554
+            connect Junction249 "Low-Pass Filter3.out" as Connection1555
             [
-                breakpoints = 6500, 7824; 6664, 7824
+                breakpoints = 10204, 7144
             ]
-            connect Vc.n_node Junction268 as Connection1745
+            connect Goto19 Junction249 as Connection1556
+            connect Junction243 "Low-Pass Filter2.in" as Connection1557
             [
-                breakpoints = 9272, 8372
+                breakpoints = 10060, 7240; 10080, 7292
             ]
-            connect Junction268 Va.n_node as Connection1746
+            connect vb_opal_fil.in Junction250 as Connection1558
+            connect Junction250 "Low-Pass Filter2.out" as Connection1559
+            connect Goto20 Junction250 as Connection1560
+            connect vc_opal_fil.in Junction251 as Connection1562
+            connect Junction251 "Low-Pass Filter1.out" as Connection1563
+            connect Goto21 Junction251 as Connection1564
+            connect in_rms.in "RMS value10.out" as Connection1566
+            connect in.in Junction252 as Connection1567
+            connect Junction252 From19 as Connection1568
             [
-                breakpoints = 9128, 8372
+                breakpoints = 8812, 7864
             ]
-            connect Vb.n_node Junction268 as Connection1747
-            connect "Series RLC Branch3.P3_neg" Junction270 as Connection1755
+            connect "RMS value10.in" Junction252 as Connection1569
+            connect "RMS value9.in" From15 as Connection1570
+            connect "RMS value9.out" ic_rms.in as Connection1571
+            connect ib_rms.in "RMS value8.out" as Connection1572
+            connect "RMS value8.in" From14 as Connection1573
+            connect "RMS value7.out" vc_rms.in as Connection1575
+            connect vb_rms.in "RMS value6.out" as Connection1576
+            connect "RMS value5.out" va_rms.in as Connection1579
+            connect From16 Junction253 as Connection1580
+            connect Junction253 "RMS value5.in" as Connection1581
+            connect "Single phase PLL4.In" Junction253 as Connection1582
+            connect "Single phase PLL4.f" omega_a.in as Connection1583
+            connect "Single phase PLL5.f" omega_b.in as Connection1584
+            connect "RMS value6.in" Junction254 as Connection1585
+            connect Junction254 From17 as Connection1586
+            connect "Single phase PLL5.In" Junction254 as Connection1587
+            connect From18 Junction255 as Connection1588
+            connect Junction255 "RMS value7.in" as Connection1589
+            connect "Single phase PLL6.In" Junction255 as Connection1590
+            connect omega_c.in "Single phase PLL6.f" as Connection1591
+            connect Gain6.out Gain7.in as Connection1593
             [
-                breakpoints = 8220, 8444
+                breakpoints = 9984, 7388
             ]
-            connect Junction270 "Series RLC Branch3.P2_neg" as Connection1756
+            connect vc_opal.in Junction256 as Connection1594
+            connect Junction256 "Low-Pass Filter1.in" as Connection1595
             [
-                breakpoints = 8316, 8444
+                breakpoints = 10076, 7400; 10108, 7460
             ]
-            connect "Series RLC Branch3.P1_neg" Junction270 as Connection1757
-            connect Junction40 Junction63 as Connection1777
-            connect Junction264 Junction24 as Connection1776
-            [
-                breakpoints = 6604, 7828
-            ]
-            connect Vsp5.n_node Junction275 as Connection1786
-            connect Vsp6.n_node Junction275 as Connection1788
-            connect "Series RLC Branch1.P1_neg" Junction288 as Connection1870
-            connect Junction288 "Series RLC Branch3.P3_pos" as Connection1871
-            [
-                breakpoints = 8224, 7940; 8220, 7940
-            ]
-            connect "Series RLC Branch13.P1_pos" Junction288 as Connection1872
-            connect "Series RLC Branch3.P2_pos" Junction289 as Connection1873
-            connect Junction289 "Series RLC Branch1.P2_neg" as Connection1874
-            [
-                breakpoints = 8316, 8036; 7980, 8036
-            ]
-            connect "Series RLC Branch13.P2_pos" Junction289 as Connection1875
-            connect "Series RLC Branch3.P1_pos" Junction290 as Connection1876
-            connect Junction290 "Series RLC Branch1.P3_neg" as Connection1877
-            [
-                breakpoints = 8412, 8132
-            ]
-            connect "Series RLC Branch13.P3_pos" Junction290 as Connection1878
-            connect "Series RLC Branch14.P1_neg" Vsp5.p_node as Connection1879
-            connect "Series RLC Branch14.P2_neg" Vsp6.p_node as Connection1880
-            connect Vsp7.p_node "Series RLC Branch14.P3_neg" as Connection1881
-            connect Iag.p_node "Series RLC Branch13.P1_neg" as Connection1887
-            connect "Series RLC Branch13.P2_neg" Ibg.p_node as Connection1888
-            connect "Series RLC Branch13.P3_neg" Icg.p_node as Connection1889
-            connect "Series RLC Branch14.P1_pos" Junction292 as Connection1893
-            connect Junction292 Iag.n_node as Connection1894
-            connect Va.p_node Junction292 as Connection1895
-            connect Ibg.n_node Junction293 as Connection1896
-            connect Junction293 "Series RLC Branch14.P2_pos" as Connection1897
-            connect Vb.p_node Junction293 as Connection1898
-            connect Icg.n_node Junction294 as Connection1899
-            connect Junction294 "Series RLC Branch14.P3_pos" as Connection1900
-            connect Vc.p_node Junction294 as Connection1901
-            connect Junction275 Junction295 as Connection1904
-            connect Junction295 Vsp7.n_node as Connection1905
-            [
-                breakpoints = 10148, 8136
-            ]
-            connect "Series RLC Branch15.P1_neg" Junction295 as Connection1906
-            connect Ing.p_node "Series RLC Branch4.P1_neg" as Connection1907
-            [
-                breakpoints = 8412, 8516; 8220, 8516
-            ]
-            connect "Series RLC Branch15.P1_pos" Junction296 as Connection1908
-            connect Junction296 Ing.n_node as Connection1909
-            connect Junction268 Junction296 as Connection1910
-            connect From38 "Low-Pass Filter4.in" as Connection1911
-            connect "Low-Pass Filter4.out" va_fil.in as Connection1912
-            connect From39 "Low-Pass Filter5.in" as Connection1913
-            connect "Low-Pass Filter5.out" vb_fil.in as Connection1914
-            connect From40 "Low-Pass Filter6.in" as Connection1915
-            connect "Low-Pass Filter6.out" vc_fil.in as Connection1916
+            connect Gain7.out Junction256 as Connection1596
+            connect gnd2.node Junction257 as Connection1597
+            connect Junction257 Junction74 as Connection1598
+            connect Vs1.n_node Junction257 as Connection1599
+            connect Vsp3.p_node Junction258 as Connection1600
+            connect Junction258 Junction71 as Connection1601
+            connect Vs1.c_node Junction258 as Connection1602
+            connect Vsp2.p_node Junction259 as Connection1603
+            connect Junction259 Junction70 as Connection1604
+            connect Vs1.b_node Junction259 as Connection1605
+            connect Vsp1.p_node Junction260 as Connection1606
+            connect Junction260 Junction69 as Connection1607
+            connect Vs1.a_node Junction260 as Connection1608
         }
         [
             position = 8704, 8264
@@ -9767,10 +8926,10 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         ]
 
         component "TI C2000 Toolbox/TI C2000 Setup" "TI C2000 Setup1" {
-            build_and_deploy_action = "True"
+            build_and_deploy_action = "False"
             c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "dq_unb_pi_vsg_acg"
-            ccs_project_path = "C:\Users\iberi\Desktop\Typhoon_USE\Andrei_unb_vsg"
+            ccs_project_path = "C:\workspace\Typhoon_USE\Andrei_unb_vsg"
             ccs_root_path = "C:\ti\ccs1260"
             exp_subsys_name = "dq_unb_pi_vsg"
             scheduling = "ADCA Interrupt"
@@ -9782,149 +8941,13 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
     }
 
     logically_deleted {
-        "Plant.UPI_CC"
-        "Plant.Series RLC Branch6"
-        "Plant.Constant Impedance Load1"
-        "Plant.Series RLC Branch8"
-        "Plant.Vsp1"
-        "Plant.Series RLC Branch9"
-        "Plant.Series RLC Branch10"
-        "Plant.Series RLC Branch11"
-        "Plant.Series RLC Branch12"
-        "Plant.Iag1"
-        "Plant.Va1"
-        "Plant.Ibg1"
-        "Plant.Icg1"
-        "Plant.Vb1"
-        "Plant.Vc1"
-        "Plant.Vsp2"
-        "Plant.Vsp3"
-        "Plant.Vsp4"
-        "Plant.Bus Join1"
-        "Plant.Bus Join2"
-        "Plant.Constant1"
-        "Plant.Bus Split1"
-        "Plant.Rate Transition1"
-        "Plant.Rate Transition2"
-        "Plant.Scoep"
-        "Plant.R2"
-        "Plant.R3"
-        "Plant.R4"
-        "Plant.S4"
-        "Plant.Step1"
-        "Plant.Goto8"
-        "Plant.Goto9"
-        "Plant.Goto10"
-        "Plant.Goto11"
-        "Plant.Goto12"
-        "Plant.Goto13"
-        "Plant.From29"
-        "Plant.From30"
-        "Plant.From31"
-        "Plant.From32"
-        "Plant.From33"
-        "Plant.From34"
-        "Plant.Junction87"
-        "Plant.Junction88"
-        "Plant.Junction89"
-        "Plant.Junction93"
-        "Plant.Junction94"
-        "Plant.Junction95"
-        "Plant.Junction96"
-        "Plant.Junction97"
-        "Plant.Junction98"
-        "Plant.Junction99"
-        "Plant.Junction102"
-        "Plant.Junction103"
-        "Plant.Junction104"
-        "Plant.Junction108"
-        "Plant.Junction109"
-        "Plant.Junction110"
-        "Plant.Junction111"
-        "Plant.Junction112"
-        "Plant.Connection474"
-        "Plant.Connection475"
-        "Plant.Connection476"
-        "Plant.Connection477"
-        "Plant.Connection478"
-        "Plant.Connection479"
-        "Plant.Connection480"
-        "Plant.Connection481"
-        "Plant.Connection482"
-        "Plant.Connection483"
-        "Plant.Connection484"
-        "Plant.Connection485"
-        "Plant.Connection486"
-        "Plant.Connection487"
-        "Plant.Connection488"
-        "Plant.Connection498"
-        "Plant.Connection506"
-        "Plant.Connection508"
-        "Plant.Connection509"
-        "Plant.Connection510"
-        "Plant.Connection511"
-        "Plant.Connection512"
-        "Plant.Connection513"
-        "Plant.Connection514"
-        "Plant.Connection515"
-        "Plant.Connection517"
-        "Plant.Connection519"
-        "Plant.Connection520"
-        "Plant.Connection521"
-        "Plant.Connection522"
-        "Plant.Connection523"
-        "Plant.Connection524"
-        "Plant.Connection525"
-        "Plant.Connection526"
-        "Plant.Connection527"
-        "Plant.Connection528"
-        "Plant.Connection529"
-        "Plant.Connection530"
-        "Plant.Connection531"
-        "Plant.Connection532"
-        "Plant.Connection533"
-        "Plant.Connection534"
-        "Plant.Connection535"
-        "Plant.Connection536"
-        "Plant.Connection537"
-        "Plant.Connection539"
-        "Plant.Connection540"
-        "Plant.Connection541"
-        "Plant.Connection543"
-        "Plant.Connection544"
-        "Plant.Connection545"
-        "Plant.Connection546"
-        "Plant.Connection547"
-        "Plant.Connection548"
-        "Plant.Connection549"
-        "Plant.Connection550"
-        "Plant.Connection551"
-        "Plant.Connection569"
-        "Plant.Connection570"
-        "Plant.Connection572"
-        "Plant.Connection573"
-        "Plant.Connection574"
-        "Plant.Connection575"
-        "Plant.Connection576"
-        "Plant.Connection623"
-        "Plant.Connection624"
-        "Plant.Connection625"
-        "Plant.Connection626"
-        "Plant.Connection628"
-        "Plant.Connection632"
-        "Plant.Connection633"
-        "Plant.Connection634"
-        "Plant.Connection635"
-        "Plant.Connection636"
-        "Plant.Connection637"
-        "Plant.Connection638"
-        "Plant.Connection639"
-        "Plant.Connection640"
-        "Plant.Connection641"
-        "Plant.Connection642"
-        "Plant.Connection643"
-        "Plant.Connection644"
-        "Plant.Connection645"
+        "dq_unb_pi_vsg"
+        "Plant.Vs1"
+        "Plant.Connection1599"
+        "Plant.Connection1602"
+        "Plant.Connection1605"
+        "Plant.Connection1608"
+        "TI C2000 Setup1"
     }
 
     default {
@@ -9982,6 +9005,14 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             refresh = "refresh"
         }
 
+        "core/Capacitor" {
+            signal_access = "inherit"
+            capacitance = "1e-6"
+            initial_voltage = "0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
         "core/Constant" {
             value = "1"
             signal_type = "real"
@@ -10018,12 +9049,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             execution_rate = "inherit"
         }
 
-        "core/Limit" {
-            upper_limit = "[\'inf\']"
-            lower_limit = "[\'-inf\']"
-            execution_rate = "inherit"
-        }
-
         "core/Logical operator" {
             operator = "AND"
             inputs = "2"
@@ -10038,12 +9063,9 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             _tunable = "False"
         }
 
-        "core/Output Settings" {
-            analog_outputs = "[]"
-            digital_outputs = "[]"
-            hil_id = "0"
-            overridable_switches_dict = "{}"
-            signal = ""
+        "core/Mathematical function" {
+            mathematical_fn = "exponential"
+            execution_rate = "inherit"
         }
 
         "core/Probe" {
@@ -10073,21 +9095,9 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             execution_rate = "inherit"
         }
 
-        "core/Ramp" {
-            slope = "1"
-            start_time = "0"
-            initial_output = "0"
-            execution_rate = "100e-6"
-        }
-
         "core/Resistor" {
             resistance = "1"
             param_set = ""
-        }
-
-        "core/Scope" {
-            signals_data = "{}"
-            selected_signals = "[]"
         }
 
         "core/Signal switch" {
@@ -10096,20 +9106,18 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             execution_rate = "inherit"
         }
 
-        "core/Step" {
-            step_time = "1"
-            initial_value = "0"
-            final_value = "1"
-            signal_type = "real"
-            execution_rate = "100e-6"
-        }
-
         "core/Sum" {
             signs = "2"
             execution_rate = "inherit"
         }
 
         "core/Termination" {
+            execution_rate = "inherit"
+        }
+
+        "core/Unit Delay" {
+            init_value = "0"
+            signal_out_type = "inherit"
             execution_rate = "inherit"
         }
 
@@ -10145,35 +9153,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             execution_rate = "100e-6"
             conv_trigger = "Software Only"
             inten = "False"
-        }
-
-        "core/Constant Impedance Load" {
-            fn = "60"
-            conn_type = "Y"
-            enable_neutral = "False"
-            set_balanced = "True"
-            Vn_3ph = "480"
-            Sn_3ph = "1.0e6"
-            pf_mode_3ph = "Unit"
-            pf_3ph = "0.9"
-            VAn = "480/(3**0.5)"
-            VAB = "480"
-            SAn = "1.0e6/3"
-            SAB = "1.0e6/3"
-            pf_modeA = "Unit"
-            pfA = "0.9"
-            VBn = "480/(3**0.5)"
-            VBC = "480"
-            SBn = "1.0e6/3"
-            SBC = "1.0e6/3"
-            pf_modeB = "Unit"
-            pfB = "0.9"
-            VCn = "480/(3**0.5)"
-            VCA = "480"
-            SCn = "1.0e6/3"
-            SCA = "1.0e6/3"
-            pf_modeC = "Unit"
-            pfC = "0.9"
         }
 
         "core/Current Measurement" {
@@ -10272,12 +9251,6 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             dtv_flag_en = "True"
             reserved_parameter1 = "0"
             predictive_diode_turn_off = "False"
-        }
-
-        "core/Rate Transition" {
-            init_value = "0.0"
-            execution_rate = "100e-6"
-            _supported_platforms = "[\'generic\']"
         }
 
         "TI C2000 Toolbox/SCI Receive (Generic)" {
@@ -10395,22 +9368,10 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
             scheduling = "CPU Timer Based Scheduler"
         }
 
-        "core/Triple Pole Single Throw Contactor" {
-            signal_access = "inherit"
-            switches_option = "False"
-            resistance = "1.0"
-            ctrl_src = "Digital input"
-            Sa = "1"
-            Sa_logic = "active high"
-            enable_fb_out = "False"
-            fb_out_type = "real"
-            execution_rate = "inherit"
-            dtsm_switch_name = ""
-            initial_state = "off"
-            on_delay = "0"
-            off_delay = "0"
-            switching = "zero current"
-            hide_int_meas = "False"
+        "core/Three Phase Voltage Source" {
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
         }
 
         "core/Voltage Measurement" {
@@ -10467,11 +9428,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         # To get the model file path, use 'mdl.get_model_file_path()'
         # To print information to the console, use info()
         fc = 50
+        
         omega = 2*np.pi*50
-        R_12_13 = 0.06*4
-        L_12_13 = 0.06275*4/omega
-        R_13_14 = 0.025*4
-        L_13_14 = 0.01575*4/omega
         L_t = 2.5e-3
         C = 1e-6
         L_s = 2.5e-3
@@ -10507,7 +9465,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         
         omega_base_rads = 2*np.pi*50
         
-        #VSG 
+        #VSG
         S_b = 20e3
         U_b = 400
         I_b = S_b/(np.sqrt(3)*U_b)
@@ -10516,11 +9474,11 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         
         # PI-CC
         H = 5.0  # desired virtual inertia 
-        Kp_p = 0.0764  # active power proportinal gain
+        Kp_p = 0.07  #0.07 #0.015 # active power proportinal gain
         Ki_p = 1.0/(2.0*H)  # proportional gain active power control loop
         Kp_q = 0.1
-        Ki_q = 0.1
-        Xv = 0.40
+        Ki_q = 1.0    #1.0  #25
+        Xv =0.50  #0.50  #0.4
         Rv = 0.0
         e_o = 1.0
         omega_base = 1.0
@@ -10530,11 +9488,8 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
         tau_vsg = 2.4e-3
         #tau_vsg = 10e-3
         
-        # PI-OL
-        Kp_p_ol = 0.015
-        Ki_p_ol = Ki_p
-        
         period = 20e-3
+        period_2 = 10e-3
         #dead time
         dt = 0.1e-6
         
