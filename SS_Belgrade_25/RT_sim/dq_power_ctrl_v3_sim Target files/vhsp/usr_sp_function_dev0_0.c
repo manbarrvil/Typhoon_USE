@@ -22,6 +22,8 @@ extern "C" {
 #include <math.h>
 #include <stdint.h>
 #include <complex.h>
+#include <time.h>
+#include <stdarg.h>
 
 // x86 libraries:
 #include "../include/sp_functions_dev0.h"
@@ -438,6 +440,8 @@ void *tunable_params_dev0_cpu0_ptr = &tunable_params;
 
 
 
+// generated using template: \templates\virtual_hil\fmi_custom_logger_fncs.template---------------------------------
+
 
 
 
@@ -630,6 +634,8 @@ void load_fmi_libraries_user_sp_cpu0_dev0(void) {
 void ReInit_sp_scope_user_sp_cpu0_dev0() {
     // initialise SP Scope buffer pointer
 }
+
+
 // generated using template: virtual_hil/common_timer_counter_handler.template-------------------------
 
 /*****************************************************************************************/

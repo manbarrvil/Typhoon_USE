@@ -5,11 +5,11 @@
 *
 * File: dq_unb_pi_vsg.h
 *
-* Code generated from model             : 'dq_unb_pi_vsg_ctrl_v3'.
+* Code generated from model             : 'pi_ol_vs_upi_cc_LINK'.
 * Subsystem selected for code generation: 'dq_unb_pi_vsg'.
 *
 * Schematic Editor version              : 2025.3
-* C source code generated on            : 16-Oct-2025 @ 08:20:25 PM
+* C source code generated on            : 17-Oct-2025 @ 02:26:46 PM
 *
 */
 
