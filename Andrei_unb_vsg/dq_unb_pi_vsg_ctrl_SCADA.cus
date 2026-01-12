@@ -41,10 +41,10 @@ RoCoF = 0.0]]></initialization_code>
                 <description><![CDATA[]]></description>
                 <working_mode>embedded</working_mode>
                 <widget_settings>
-                    <x>616</x>
-                    <y>80</y>
-                    <width>1456</width>
-                    <height>944</height>
+                    <x>632</x>
+                    <y>64</y>
+                    <width>1568</width>
+                    <height>896</height>
                     <hierarchy_position>1</hierarchy_position>
                     <label><![CDATA[]]></label>
                     <use_label>False</use_label>
@@ -285,8 +285,8 @@ RoCoF = 0.0]]></initialization_code>
                             <trigger>
                                 <device>0</device>
                                 <is_force>False</is_force>
-                                <type>Digital</type>
-                                <source>HIL0 digital input 7</source>
+                                <type>Analog</type>
+                                <source>Plant.Iag</source>
                                 <edge>Rising edge</edge>
                                 <treshold>0.0</treshold>
                                 <offset>50.0</offset>
@@ -404,8 +404,8 @@ RoCoF = 0.0]]></initialization_code>
                         <legend>True</legend>
                         <trigger>
                             <mode>Auto</mode>
-                            <type>Digital</type>
-                            <source>HIL0 digital input 7</source>
+                            <type>Analog</type>
+                            <source>Plant.Iag</source>
                             <edge>Rising edge</edge>
                             <treshold>0.0</treshold>
                             <offset>50.0</offset>

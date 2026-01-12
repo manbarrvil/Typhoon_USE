@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.3
+// Saved by sw version: 2025.4
 //
 
 model "dq_unb_pi_vsg_ctrl_v3" {
@@ -21,6 +21,7 @@ model "dq_unb_pi_vsg_ctrl_v3" {
         reset_analog_outputs_on_sim_stop_mode = Offset values
         reset_digital_outputs_on_sim_stop = True
         vhil_adio_loopback = False
+        dma_enable = False
         cpl_stb = False
         enb_dep_sw_detect = False
         code_section = "internal memory"
@@ -351,14 +352,14 @@ model "dq_unb_pi_vsg_ctrl_v3" {
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -380,14 +381,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -446,14 +447,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -475,14 +476,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -541,14 +542,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -570,14 +571,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -636,14 +637,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -665,14 +666,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -731,14 +732,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -760,14 +761,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -826,14 +827,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -855,14 +856,14 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
                         init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                        input_terminals_dimensions = "1"
+                        input_terminals_dimensions = "(1,)"
                         input_terminals_feedthrough = "True"
                         input_terminals_show_labels = "True"
                         output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                         output_terminals = "real out_fil;"
-                        output_terminals_dimensions = "1"
+                        output_terminals_dimensions = "(1,)"
                         output_terminals_feedthrough = "True"
                         output_terminals_show_labels = "True"
                         parameters = "real period;real Ts_Control;"
@@ -1248,7 +1249,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(period)*(in - x_out);
 /*End code section*/"
                     execution_rate = "Ts_Control"
                     input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
+                    input_terminals_dimensions = "(3,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -1256,7 +1257,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                     output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
+                    output_terminals_dimensions = "(1,);(1,)"
                     output_terminals_feedthrough = "True;True"
                     output_terminals_show_labels = "True;True"
                 }
@@ -1279,7 +1280,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
 /*End code section*/"
                     execution_rate = "Ts_Control"
                     input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
+                    input_terminals_dimensions = "(3,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -1287,7 +1288,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                     output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
+                    output_terminals_dimensions = "(1,);(1,)"
                     output_terminals_feedthrough = "True;True"
                     output_terminals_show_labels = "True;True"
                 }
@@ -1302,7 +1303,7 @@ q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta 
 /*End code section*/"
                     execution_rate = "Ts_Control"
                     input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
+                    input_terminals_dimensions = "(3,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -1310,7 +1311,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                     output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
+                    output_terminals_dimensions = "(1,);(1,)"
                     output_terminals_feedthrough = "True;True"
                     output_terminals_show_labels = "True;True"
                 }
@@ -1534,7 +1535,7 @@ y_d = 0;
 theta = 0;
 /*End code section*/"
                     input_terminals = "real abc;"
-                    input_terminals_dimensions = "3"
+                    input_terminals_dimensions = "(3,)"
                     input_terminals_feedthrough = "True"
                     input_terminals_show_labels = "False"
                     output_fnc = "/*Begin code section*/
@@ -1552,7 +1553,7 @@ omega_pll = K_p_pll*e_d + y_d;
 theta_pll = theta;
 /*End code section*/"
                     output_terminals = "real d;real q;real theta_pll;real omega_pll;real e_q;real e_d;"
-                    output_terminals_dimensions = "1;1;1;1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True;True;True;True"
                     output_terminals_show_labels = "False;False;True;True;True;True"
                     parameters = "real K_p_pll;real K_i_pll;real Ts_Control;"
@@ -1755,14 +1756,14 @@ if (rst > 0.5){
                     init_fnc = "/*Begin code section*/
 x_out = 0.0;
 /*End code section*/"
-                    input_terminals_dimensions = "1"
+                    input_terminals_dimensions = "(1,)"
                     input_terminals_feedthrough = "True"
                     input_terminals_show_labels = "True"
                     output_fnc = "/*Begin code section*/
 out_fil = x_out;
 /*End code section*/"
                     output_terminals = "real out_fil;"
-                    output_terminals_dimensions = "1"
+                    output_terminals_dimensions = "(1,)"
                     output_terminals_feedthrough = "True"
                     output_terminals_show_labels = "True"
                     parameters = "real period;real Ts_Control;"
@@ -2688,7 +2689,7 @@ x_out = x_out + Ts_Control*2*M_PI*1/(10e-3)*(in - x_out);
 
 /*End code section*/"
                 input_terminals = "real dq;real theta;"
-                input_terminals_dimensions = "2;1"
+                input_terminals_dimensions = "(2,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -2697,7 +2698,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 output_terminals = "real a;real b;real c;"
-                output_terminals_dimensions = "1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True"
                 output_terminals_show_labels = "True;True;True"
                 update_fnc = "/*Begin code section*/
@@ -2867,7 +2868,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 
 /*End code section*/"
                     input_terminals = "real dq;real theta;"
-                    input_terminals_dimensions = "2;1"
+                    input_terminals_dimensions = "(2,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -2876,7 +2877,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                     output_terminals = "real a;real b;real c;"
-                    output_terminals_dimensions = "1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True"
                     output_terminals_show_labels = "True;True;True"
                     update_fnc = "/*Begin code section*/
@@ -2897,7 +2898,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 
 /*End code section*/"
                     input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
+                    input_terminals_dimensions = "(3,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -2905,7 +2906,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                     output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
+                    output_terminals_dimensions = "(1,);(1,)"
                     output_terminals_feedthrough = "True;True"
                     output_terminals_show_labels = "True;True"
                     update_fnc = "/*Begin code section*/
@@ -2986,7 +2987,7 @@ x_ps = 0.0;
 x_qs = 0.0;
 /*End code section*/"
                     input_terminals = "real p_m_ref;real q_s_ref;real is_albe;real vs_albe;real omega_base;real on_vsg;real theta_pll;real reset_int;"
-                    input_terminals_dimensions = "1;1;2;2;1;1;1;1"
+                    input_terminals_dimensions = "(1,);(1,);(2,);(2,);(1,);(1,);(1,);(1,)"
                     input_terminals_feedthrough = "True;True;True;True;True;True;True;True"
                     input_terminals_show_labels = "True;True;True;True;True;True;True;True"
                     output_fnc = "/*Begin code section*/
@@ -3042,7 +3043,7 @@ if (on_vsg<0.5){
 }
 /*End code section*/"
                     output_terminals = "real is_dq_ref;real omega_vsg;real theta_vsg;real e;real p_s;real q_s;real is_dq_ref_fil;inherit is_d;inherit is_q;inherit vs_d;inherit vs_q;real p_s_fil;real q_s_fil;"
-                    output_terminals_dimensions = "2;1;1;1;1;1;2;1;1;1;1;1;1"
+                    output_terminals_dimensions = "(2,);(1,);(1,);(1,);(1,);(1,);(2,);(1,);(1,);(1,);(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True"
                     output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True;True;True"
                     parameters = "real Kp_p;real Ki_p;real Kp_q;real Ki_q;real Xv;real Rv;real I_bdq;real e_o;real U_bdq;real Ts_Control;real tau_vsg;real T_on_contactor;"
@@ -3642,7 +3643,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
 
 /*End code section*/"
                     input_terminals = "real dq;real theta;"
-                    input_terminals_dimensions = "2;1"
+                    input_terminals_dimensions = "(2,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -3651,7 +3652,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                     output_terminals = "real a;real b;real c;"
-                    output_terminals_dimensions = "1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True"
                     output_terminals_show_labels = "True;True;True"
                     update_fnc = "/*Begin code section*/
@@ -3669,7 +3670,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                     execution_rate = "Ts_Control"
                     input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
+                    input_terminals_dimensions = "(3,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -3677,7 +3678,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                     output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
+                    output_terminals_dimensions = "(1,);(1,)"
                     output_terminals_feedthrough = "True;True"
                     output_terminals_show_labels = "True;True"
                 }
@@ -3736,7 +3737,7 @@ y_d = 0;
 theta = 0;
 /*End code section*/"
                     input_terminals = "real abc;"
-                    input_terminals_dimensions = "3"
+                    input_terminals_dimensions = "(3,)"
                     input_terminals_feedthrough = "True"
                     input_terminals_show_labels = "True"
                     output_fnc = "/*Begin code section*/
@@ -3754,7 +3755,7 @@ omega_pll = K_p_pll*e_d + y_d;
 theta_pll = theta;
 /*End code section*/"
                     output_terminals = "real d;real q;real theta_pll;real omega_pll;real e_q;real e_d;"
-                    output_terminals_dimensions = "1;1;1;1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True;True;True;True"
                     output_terminals_show_labels = "False;False;True;True;True;True"
                     parameters = "real K_p_pll;real K_i_pll;real Ts_Control;"
@@ -3787,7 +3788,7 @@ if (theta<0.0){
 
 /*End code section*/"
                     input_terminals = "real dq;real theta;"
-                    input_terminals_dimensions = "2;1"
+                    input_terminals_dimensions = "(2,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -3796,7 +3797,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                     output_terminals = "real a;real b;real c;"
-                    output_terminals_dimensions = "1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True"
                     output_terminals_show_labels = "True;True;True"
                     update_fnc = "/*Begin code section*/
@@ -3891,7 +3892,7 @@ x_ps = 0.0;
 x_qs = 0.0;
 /*End code section*/"
                     input_terminals = "real p_m_ref;real q_s_ref;real is_albe;real vs_albe;real omega_base;real on_vsg;real theta_pll;real reset_int;"
-                    input_terminals_dimensions = "1;1;2;2;1;1;1;1"
+                    input_terminals_dimensions = "(1,);(1,);(2,);(2,);(1,);(1,);(1,);(1,)"
                     input_terminals_feedthrough = "True;True;True;True;True;True;True;True"
                     input_terminals_show_labels = "True;True;True;True;True;True;True;True"
                     output_fnc = "/*Begin code section*/
@@ -3947,7 +3948,7 @@ if (on_vsg<0.5){
 }
 /*End code section*/"
                     output_terminals = "real is_dq_ref;real omega_vsg;real theta_vsg;real e;real p_s;real q_s;real is_dq_ref_fil;inherit is_d;inherit is_q;inherit vs_d;inherit vs_q;real p_s_fil;real q_s_fil;"
-                    output_terminals_dimensions = "2;1;1;1;1;1;2;1;1;1;1;1;1"
+                    output_terminals_dimensions = "(2,);(1,);(1,);(1,);(1,);(1,);(2,);(1,);(1,);(1,);(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True"
                     output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True;True;True"
                     parameters = "real Kp_p;real Ki_p;real Kp_q;real Ki_q;real Xv;real Rv;real I_bdq;real e_o;real U_bdq;real Ts_Control;real tau_vsg;real T_on_contactor;"
@@ -4469,7 +4470,7 @@ x_qs = x_qs + Ts_Control*2*M_PI*1/(tau_vsg)*(q_s - x_qs);
 
 /*End code section*/"
                     input_terminals = "real dq;real theta;"
-                    input_terminals_dimensions = "2;1"
+                    input_terminals_dimensions = "(2,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -4478,7 +4479,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                     output_terminals = "real a;real b;real c;"
-                    output_terminals_dimensions = "1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True"
                     output_terminals_show_labels = "True;True;True"
                     update_fnc = "/*Begin code section*/
@@ -4496,7 +4497,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                     execution_rate = "Ts_Control"
                     input_terminals = "real abc;real theta;"
-                    input_terminals_dimensions = "3;1"
+                    input_terminals_dimensions = "(3,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -4504,7 +4505,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                     output_terminals = "real d;real q;"
-                    output_terminals_dimensions = "1;1"
+                    output_terminals_dimensions = "(1,);(1,)"
                     output_terminals_feedthrough = "True;True"
                     output_terminals_show_labels = "True;True"
                 }
@@ -4563,7 +4564,7 @@ y_d = 0;
 theta = 0;
 /*End code section*/"
                     input_terminals = "real abc;"
-                    input_terminals_dimensions = "3"
+                    input_terminals_dimensions = "(3,)"
                     input_terminals_feedthrough = "True"
                     input_terminals_show_labels = "True"
                     output_fnc = "/*Begin code section*/
@@ -4581,7 +4582,7 @@ omega_pll = K_p_pll*e_d + y_d;
 theta_pll = theta;
 /*End code section*/"
                     output_terminals = "real d;real q;real theta_pll;real omega_pll;real e_q;real e_d;"
-                    output_terminals_dimensions = "1;1;1;1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True;True;True;True"
                     output_terminals_show_labels = "False;False;True;True;True;True"
                     parameters = "real K_p_pll;real K_i_pll;real Ts_Control;"
@@ -4614,7 +4615,7 @@ if (theta<0.0){
 
 /*End code section*/"
                     input_terminals = "real dq;real theta;"
-                    input_terminals_dimensions = "2;1"
+                    input_terminals_dimensions = "(2,);(1,)"
                     input_terminals_feedthrough = "True;True"
                     input_terminals_show_labels = "True;True"
                     output_fnc = "/*Begin code section*/
@@ -4623,7 +4624,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                     output_terminals = "real a;real b;real c;"
-                    output_terminals_dimensions = "1;1;1"
+                    output_terminals_dimensions = "(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True"
                     output_terminals_show_labels = "True;True;True"
                     update_fnc = "/*Begin code section*/
@@ -4718,7 +4719,7 @@ x_ps = 0.0;
 x_qs = 0.0;
 /*End code section*/"
                     input_terminals = "real p_m_ref;real q_s_ref;real is_albe;real vs_albe;real omega_base;real on_vsg;real theta_pll;real reset_int;"
-                    input_terminals_dimensions = "1;1;2;2;1;1;1;1"
+                    input_terminals_dimensions = "(1,);(1,);(2,);(2,);(1,);(1,);(1,);(1,)"
                     input_terminals_feedthrough = "True;True;True;True;True;True;True;True"
                     input_terminals_show_labels = "True;True;True;True;True;True;True;True"
                     output_fnc = "/*Begin code section*/
@@ -4774,7 +4775,7 @@ if (on_vsg<0.5){
 }
 /*End code section*/"
                     output_terminals = "real is_dq_ref;real omega_vsg;real theta_vsg;real e;real p_s;real q_s;real is_dq_ref_fil;inherit is_d;inherit is_q;inherit vs_d;inherit vs_q;real p_s_fil;real q_s_fil;"
-                    output_terminals_dimensions = "2;1;1;1;1;1;2;1;1;1;1;1;1"
+                    output_terminals_dimensions = "(2,);(1,);(1,);(1,);(1,);(1,);(2,);(1,);(1,);(1,);(1,);(1,);(1,)"
                     output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True;True"
                     output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True;True;True"
                     parameters = "real Kp_p;real Ki_p;real Kp_q;real Ki_q;real Xv;real Rv;real I_bdq;real e_o;real U_bdq;real Ts_Control;real tau_vsg;real T_on_contactor;"
@@ -7979,7 +7980,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "dq_unb_pi_vsg_acg"
             ccs_project_path = "C:\workspace\Typhoon_USE\Andrei_unb_vsg"
-            ccs_root_path = "C:\ti\ccs1260"
+            ccs_root_path = "C:\ti\ccs1271"
             exp_subsys_name = "dq_unb_pi_vsg"
             scheduling = "ADCA Interrupt"
         }
@@ -8062,12 +8063,14 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             max_delay_length = "20"
             init_value = "0"
             signal_out_type = "inherit"
+            tml_file = "gen_delay"
             execution_rate = "inherit"
         }
 
         "core/Gain" {
             gain = "1"
             multiplication = "Element-wise(K.*u)"
+            tml_file = "gen_gain"
             _tunable = "False"
             execution_rate = "inherit"
         }
@@ -8231,8 +8234,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
             S_top_I = "False"
             S_bot_I = "False"
             _control_property = "all high"
-            _overridable_switches = "[\'S_top\', \'S_bot\']"
-            switches_names_at_mask = "[]"
+            switches_names_at_mask = "[\'S_top\', \'S_bot\']"
             pwm_enabling = "False"
             pwm_enable_di = "13"
             pwm_enable_inv = "active high"
@@ -8508,7 +8510,7 @@ q = (ia*(vb-vc) + ib*(vc-va) + ic*(va-vb))/sqrt(3);
         tau_vsg = 2.4e-3
         #tau_vsg = 10e-3
         
-        period = 20e-3;
+        period = 20e-3
         #dead time
         dt = 0.1e-6
         
