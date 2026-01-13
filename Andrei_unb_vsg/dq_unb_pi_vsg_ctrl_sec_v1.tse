@@ -1474,7 +1474,7 @@ if (rst > 0.5){
                 value = "0"
             }
             [
-                position = 7384, 8076
+                position = 7380, 8076
             ]
 
             component "core/Bus Join" "Bus Join21" {
@@ -3577,7 +3577,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7884, 8364
+                position = 7884, 8348
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -3765,7 +3765,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7376, 8020
+                position = 7376, 8024
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -3779,7 +3779,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7380, 8124
+                position = 7364, 8128
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -4879,7 +4879,7 @@ if (theta<0.0){
                 step_time = "0.5"
             }
             [
-                position = 9820, 7668
+                position = 9820, 7656
             ]
 
             port eta_abc {
