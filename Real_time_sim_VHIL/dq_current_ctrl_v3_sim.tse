@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.1 SP1
+// Saved by sw version: 2025.4
 //
 
 model "dq_current_ctrl_v3_sim" {
@@ -21,6 +21,7 @@ model "dq_current_ctrl_v3_sim" {
         reset_analog_outputs_on_sim_stop_mode = Offset values
         reset_digital_outputs_on_sim_stop = True
         vhil_adio_loopback = False
+        dma_enable = False
         cpl_stb = False
         enb_dep_sw_detect = False
         code_section = "internal memory"
@@ -85,7 +86,7 @@ model "dq_current_ctrl_v3_sim" {
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real abc;real theta;"
-                input_terminals_dimensions = "3;1"
+                input_terminals_dimensions = "(3,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -93,7 +94,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                 output_terminals = "real d;real q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
             }
@@ -121,7 +122,7 @@ y_q = 0;
 theta = 0;
 /*End code section*/"
                 input_terminals = "real abc;"
-                input_terminals_dimensions = "3"
+                input_terminals_dimensions = "(3,)"
                 input_terminals_feedthrough = "True"
                 input_terminals_show_labels = "True"
                 output_fnc = "/*Begin code section*/
@@ -138,7 +139,7 @@ omega_pll = K_p_pll*e_q + y_q;
 theta_pll = theta;
 /*End code section*/"
                 output_terminals = "real d;real q;real theta_pll;real omega_pll;real e_q;"
-                output_terminals_dimensions = "1;1;1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True"
                 parameters = "real K_p_pll;real K_i_pll;real Ts_Control;"
@@ -194,7 +195,7 @@ y_d = 0.0;
 y_q = 0.0;
 /*End code section*/"
                 input_terminals = "real is_dq_ref;real is_dq;real vs_dq;real omega_pll;real v_dc;uint startAC;"
-                input_terminals_dimensions = "2;2;2;1;1;inherit"
+                input_terminals_dimensions = "(2,);(2,);(2,);(1,);(1,);inherit"
                 input_terminals_feedthrough = "True;True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -203,7 +204,7 @@ eta_d = (2/v_dc) * (Kp_i*e_d + y_d -   L*omega_pll*is_dq[1] + vs_dq[0]);
 eta_q = (2/v_dc )* (Kp_i*e_q + y_q +  L*omega_pll*is_dq[0] + vs_dq[1]);
 /*End code section*/"
                 output_terminals = "real eta_d;real eta_q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
                 parameters = "real Kp_i;real Ki_i;real Ts_Control;real L;real T_on_contactor;"
@@ -245,7 +246,7 @@ if (startAC<0.5){
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real dq;real theta;"
-                input_terminals_dimensions = "2;1"
+                input_terminals_dimensions = "(2,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -254,7 +255,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 output_terminals = "real a;real b;real c;"
-                output_terminals_dimensions = "1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True"
                 output_terminals_show_labels = "True;True;True"
             }
@@ -629,7 +630,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7976, 7500
+                position = 7976, 7516
                 hide_name = True
                 size = 60, 20
             ]
@@ -653,7 +654,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7972, 7548
+                position = 7976, 7568
                 hide_name = True
                 size = 60, 20
             ]
@@ -665,7 +666,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7980, 7596
+                position = 7976, 7624
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -679,7 +680,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7980, 7644
+                position = 7980, 7680
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -997,7 +998,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 7980, 7740
+                position = 7984, 7732
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -2479,19 +2480,6 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 8672, 8604
             ]
 
-            component "core/SCADA Input" wires {
-                execution_rate = "10e-3"
-                format = "uint"
-                max = "1"
-                min = "0"
-                signal_access = "Inherit"
-                signal_type = "uint"
-                unit = ""
-            }
-            [
-                position = 8504, 8764
-            ]
-
             component "core/RMS value" "RMS value7" {
                 filter_en = "True"
                 lpf_cutoff = "1000"
@@ -2512,19 +2500,6 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             }
             [
                 position = 8680, 8740
-            ]
-
-            component "core/SCADA Input" interruptor_STATCOM {
-                execution_rate = "10e-3"
-                format = "uint"
-                max = "1"
-                min = "0"
-                signal_access = "Inherit"
-                signal_type = "uint"
-                unit = ""
-            }
-            [
-                position = 8504, 8828
             ]
 
             port vs_a {
@@ -2974,7 +2949,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 direction = out
             }
             [
-                position = 7384, 8296
+                position = 7384, 8276
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -3266,7 +3241,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             execution_rate = "Ts_SCADA"
         }
         [
-            position = 9000, 8512
+            position = 8984, 8512
             size = 32, 32
         ]
 
@@ -3421,7 +3396,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8940, 8512
+            position = 8904, 8512
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3507,7 +3482,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8360, 8412
+            position = 8360, 8436
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3521,7 +3496,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8364, 8460
+            position = 8360, 8484
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3535,7 +3510,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8364, 8508
+            position = 8364, 8532
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3549,7 +3524,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8356, 8268
+            position = 8356, 8292
             hide_name = True
             size = 60, 20
         ]
@@ -3561,7 +3536,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8356, 8316
+            position = 8356, 8340
             hide_name = True
             size = 60, 20
         ]
@@ -3573,7 +3548,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8356, 8364
+            position = 8360, 8388
             hide_name = True
             size = 60, 20
         ]
@@ -3693,7 +3668,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8368, 8604
+            position = 8372, 8628
             hide_name = True
             size = 60, 20
         ]
@@ -3759,7 +3734,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8364, 8556
+            position = 8368, 8580
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3833,7 +3808,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8360, 8700
+            position = 8364, 8676
             hide_name = True
             size = 60, 20
         ]
@@ -3995,6 +3970,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
         "core/Gain" {
             gain = "1"
             multiplication = "Element-wise(K.*u)"
+            tml_file = "gen_gain"
             _tunable = "False"
             execution_rate = "inherit"
         }
@@ -4109,6 +4085,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
 
         "core/Three Phase Inverter" {
             signal_access = "inherit"
+            switches_names_at_mask = "[\'Sa_top\', \'Sa_bot\', \'Sb_top\', \'Sb_bot\', \'Sc_top\', \'Sc_bot\']"
             ctrl_src = "Digital input per switch"
             op_mode = "Fixed carrier frequency"
             carrier_freq = "10000.0"
@@ -4129,6 +4106,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             Sc_top_logic = "active high"
             Sc_bot = "6"
             Sc_bot_logic = "active high"
+            _overridable_switches = "[\'Sa_top\', \'Sa_bot\', \'Sb_top\', \'Sb_bot\', \'Sc_top\', \'Sc_bot\']"
             delay_enabled = "False"
             fixed_delay = "1e-6"
             var_delay_lut = "[-10.0, 1e-6, 10.0, 1e-6]"
