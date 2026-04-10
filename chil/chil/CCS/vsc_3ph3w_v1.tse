@@ -1,0 +1,553 @@
+version = 4.2
+
+//
+// Saved by sw version: 2024.2 SP1
+//
+
+model "vsc_3ph3w_v1" {
+    configuration {
+        hil_device = "HIL402"
+        hil_configuration_id = 4
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = False
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        dae_solver = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.2
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = warning
+    }
+
+    component Subsystem Root {
+        component "core/Three Phase Voltage Source" Vs1 {
+        }
+        [
+            position = 9760, 8236
+            rotation = down
+            scale = 1, -1
+            size = 62, 256
+        ]
+
+        component "core/Series RLC Branch" "VSC side inductor_Rt_Lt" {
+            branch_type = "RL"
+            inductance = "2.5e-3"
+            num_phases = "Three-Phase"
+            resistance = "0.1"
+        }
+        [
+            position = 8312, 8232
+            size = 128, 256
+        ]
+
+        component "core/Series RLC Branch" "Grid side inductor_Rs_Ls" {
+            branch_type = "RL"
+            inductance = "2.5e-3"
+            num_phases = "Three-Phase"
+            resistance = "0.1"
+        }
+        [
+            position = 9400, 8240
+            size = 128, 256
+        ]
+
+        component "core/Series RLC Branch" "Capacitor and damping resistor" {
+            capacitance = "1e-6"
+            inductance = "0.0000001"
+            num_phases = "Three-Phase"
+            resistance = "27"
+        }
+        [
+            position = 8824, 8520
+            rotation = right
+            size = 128, 256
+        ]
+
+        component "core/Voltage Source" Vdc_link {
+        }
+        [
+            position = 7344, 8224
+            rotation = right
+        ]
+
+        component "core/Current Measurement" is_a {
+        }
+        [
+            position = 9156, 8144
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" vs_a {
+        }
+        [
+            position = 9572, 8464
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" is_b {
+        }
+        [
+            position = 9152, 8240
+            size = 64, 32
+        ]
+
+        component "core/Current Measurement" is_c {
+        }
+        [
+            position = 9164, 8336
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" vs_b {
+        }
+        [
+            position = 9640, 8460
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Voltage Measurement" vs_c {
+        }
+        [
+            position = 9704, 8460
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Ground" gnd1 {
+        }
+        [
+            position = 9640, 8556
+        ]
+
+        component "core/Ground" gnd2 {
+        }
+        [
+            position = 9880, 8340
+        ]
+
+        component "core/Ground" gnd3 {
+        }
+        [
+            position = 8816, 8728
+        ]
+
+        component "core/Resistor" Rdc {
+            resistance = "50e-3"
+        }
+        [
+            position = 7428, 8136
+        ]
+
+        component "core/Voltage Measurement" VDC {
+        }
+        [
+            position = 7644, 8240
+            rotation = right
+            size = 64, 32
+        ]
+
+        component "core/Three Phase Inverter" "Three Phase Inverter1" {
+            Sa_bot = "9"
+            Sa_top = "3"
+            Sb_bot = "10"
+            Sb_top = "4"
+            Sc_bot = "7"
+            Sc_top = "1"
+            fvd_def_method = "LUT"
+            pwm_enable_di = "12"
+            pwm_enabling = "True"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7900, 8228
+            size = 127, 256
+        ]
+
+        component "core/Capacitor" Cdc {
+            capacitance = "2e-3"
+            initial_voltage = "365"
+            signal_access = "Inherit"
+        }
+        [
+            position = 7528, 8240
+            rotation = right
+        ]
+
+        junction Junction4 pe
+        [
+            position = 8824, 8648
+        ]
+
+        junction Junction8 pe
+        [
+            position = 9640, 8500
+        ]
+
+        junction Junction9 pe
+        [
+            position = 8824, 8648
+        ]
+
+        junction Junction11 pe
+        [
+            position = 7528, 8324
+        ]
+
+        junction Junction14 pe
+        [
+            position = 7528, 8136
+        ]
+
+        junction Junction15 pe
+        [
+            position = 7644, 8324
+        ]
+
+        junction Junction16 pe
+        [
+            position = 7644, 8136
+        ]
+
+        junction Junction17 pe
+        [
+            position = 9576, 8140
+        ]
+
+        junction Junction18 pe
+        [
+            position = 9632, 8236
+        ]
+
+        junction Junction19 pe
+        [
+            position = 9708, 8332
+        ]
+
+        junction Junction20 pe
+        [
+            position = 8920, 8340
+        ]
+
+        junction Junction21 pe
+        [
+            position = 8824, 8232
+        ]
+
+        junction Junction22 pe
+        [
+            position = 8728, 8140
+        ]
+
+        connect "Capacitor and damping resistor.P3_neg" Junction4 as Connection19
+        [
+            breakpoints = 8736, 8648
+        ]
+        connect Junction4 "Capacitor and damping resistor.P2_neg" as Connection20
+        connect vs_c.n_node vs_b.n_node as Connection40
+        connect vs_a.n_node Junction8 as Connection42
+        connect Junction8 vs_b.n_node as Connection43
+        connect gnd1.node Junction8 as Connection44
+        connect gnd2.node Vs1.n_node as Connection45
+        connect "Capacitor and damping resistor.P1_neg" Junction9 as Connection46
+        connect Junction9 Junction4 as Connection47
+        connect gnd3.node Junction9 as Connection48
+        connect Rdc.p_node Vdc_link.p_node as Connection53
+        connect "Three Phase Inverter1.b_in" "VSC side inductor_Rt_Lt.P2_pos" as Connection146
+        connect "Three Phase Inverter1.c_in" "VSC side inductor_Rt_Lt.P3_pos" as Connection147
+        connect "VSC side inductor_Rt_Lt.P1_pos" "Three Phase Inverter1.a_in" as Connection148
+        connect Vdc_link.n_node Junction11 as Connection156
+        [
+            breakpoints = 7344, 8324
+        ]
+        connect Cdc.n_node Junction11 as Connection158
+        connect Rdc.n_node Junction14 as Connection166
+        connect Cdc.p_node Junction14 as Connection168
+        connect Junction11 Junction15 as Connection174
+        [
+            breakpoints = 7560, 8324; 7560, 8324
+        ]
+        connect Junction15 VDC.n_node as Connection175
+        connect "Three Phase Inverter1.neg_out" Junction15 as Connection176
+        connect Junction14 Junction16 as Connection177
+        connect Junction16 VDC.p_node as Connection178
+        connect "Three Phase Inverter1.pos_out" Junction16 as Connection179
+        connect Vs1.a_node Junction17 as Connection186
+        connect Junction17 vs_a.p_node as Connection187
+        connect "Grid side inductor_Rs_Ls.P1_neg" Junction17 as Connection188
+        connect Vs1.b_node Junction18 as Connection189
+        connect Junction18 vs_b.p_node as Connection190
+        [
+            breakpoints = 9632, 8236; 9632, 8420
+        ]
+        connect "Grid side inductor_Rs_Ls.P2_neg" Junction18 as Connection191
+        connect Vs1.c_node Junction19 as Connection192
+        connect Junction19 vs_c.p_node as Connection193
+        [
+            breakpoints = 9704, 8420
+        ]
+        connect "Grid side inductor_Rs_Ls.P3_neg" Junction19 as Connection194
+        connect is_c.n_node "Grid side inductor_Rs_Ls.P3_pos" as Connection195
+        connect "Grid side inductor_Rs_Ls.P2_pos" is_b.n_node as Connection196
+        connect is_a.n_node "Grid side inductor_Rs_Ls.P1_pos" as Connection197
+        connect "Capacitor and damping resistor.P1_pos" Junction20 as Connection198
+        connect Junction20 "VSC side inductor_Rt_Lt.P3_neg" as Connection199
+        [
+            breakpoints = 8920, 8336; 8608, 8336; 8608, 8328; 8416, 8328
+        ]
+        connect is_c.p_node Junction20 as Connection200
+        connect "VSC side inductor_Rt_Lt.P2_neg" Junction21 as Connection201
+        [
+            breakpoints = 8488, 8232
+        ]
+        connect Junction21 "Capacitor and damping resistor.P2_pos" as Connection202
+        connect is_b.p_node Junction21 as Connection203
+        connect "Capacitor and damping resistor.P3_pos" Junction22 as Connection204
+        connect Junction22 "VSC side inductor_Rt_Lt.P1_neg" as Connection205
+        connect is_a.p_node Junction22 as Connection206
+    }
+
+    default {
+        "core/Capacitor" {
+            signal_access = "inherit"
+            capacitance = "1e-6"
+            initial_voltage = "0"
+            pole_shift_ignore = "False"
+            visible = "True"
+        }
+
+        "core/Resistor" {
+            resistance = "1"
+            param_set = ""
+        }
+
+        "core/Voltage Source" {
+            sig_input = "False"
+            type = "signal generator"
+            param_set = "1phase"
+            parent_label = ""
+            addr = "0"
+            spc_nb = "0"
+            execution_rate = "100e-6"
+            cpd_visible = "True"
+            enable_snb = "False"
+            snb_type = "R2"
+            R2 = "0.0"
+            L1 = "0.1"
+            override_signal_name = "False"
+            signal_name = ""
+            init_source_nature = "Constant"
+            init_const_value = "0.0"
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Current Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+
+        "core/Series RLC Branch" {
+            num_phases = "Single-Phase"
+            branch_type = "RLC"
+            resistance = "10"
+            inductance = "10e-3"
+            initial_current = "0"
+            capacitance = "10e-6"
+            initial_voltage = "0"
+        }
+
+        "core/Three Phase Inverter" {
+            signal_access = "inherit"
+            ctrl_src = "Digital input per switch"
+            op_mode = "Fixed carrier frequency"
+            carrier_freq = "10000.0"
+            carr_ph_offset = "0.0"
+            d_time = "5e-6"
+            ref_sig_min_max = "[-1.0, 1.0]"
+            load_mode = "on min"
+            execution_rate = "inherit"
+            Sa_top = "1"
+            Sa_top_logic = "active high"
+            Sa_bot = "2"
+            Sa_bot_logic = "active high"
+            Sb_top = "3"
+            Sb_top_logic = "active high"
+            Sb_bot = "4"
+            Sb_bot_logic = "active high"
+            Sc_top = "5"
+            Sc_top_logic = "active high"
+            Sc_bot = "6"
+            Sc_bot_logic = "active high"
+            delay_enabled = "False"
+            fixed_delay = "1e-6"
+            var_delay_lut = "[-10.0, 1e-6, 10.0, 1e-6]"
+            preview_var_delay = "Preview"
+            Sa_top_I = "False"
+            Sa_bot_I = "False"
+            Sb_top_I = "False"
+            Sb_bot_I = "False"
+            Sc_top_I = "False"
+            Sc_bot_I = "False"
+            fvd = "False"
+            losses_estimation = "False"
+            fvd_def_method = "Voltage and Resistance"
+            Import_igbt_xml = "not selected"
+            Import_diode_xml = "not selected"
+            Switch_type = "IGBT"
+            Vce = "1.3"
+            Rce = "0"
+            Vd = "1.2"
+            Rd = "0"
+            i_sw = "[0.0, 6.0, 12.0, 18.0, 24.0]"
+            v_sw = "[0.0, 600.0]"
+            temp_sw = "[25.0, 50.0, 75.0, 100.0, 125.0]"
+            vce_table_out = "[1.3, 1.3, 1.3, 1.3, 1.3]"
+            vd_table_out = "[1.2, 1.2, 1.2, 1.2, 1.2]"
+            et_on_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*3.8e-3, 0.4*3.8e-3, 0.8*3.8e-3, 0.68*3.8e-3, 0.9*3.8e-3], [0.65*3.8e-3, 0.9*3.8e-3, 1.2*3.8e-3, 1.5*3.8e-3, 1.7*3.8e-3], [0.9*3.8e-3, 1.3*3.8e-3, 1.7*3.8e-3, 1.9*3.8e-3, 2.25*3.8e-3], [1.1*3.8e-3, 1.7*3.8e-3, 2.1*3.8e-3, 2.3*3.8e-3, 2.5*3.8e-3]]"
+            et_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.1e-3, 0.4*2.1e-3, 0.8*2.1e-3, 0.68*2.1e-3, 0.9*2.1e-3], [0.65*2.1e-3, 0.9*2.1e-3, 1.2*2.1e-3, 1.5*2.1e-3, 1.7*2.1e-3], [0.9*2.1e-3, 1.3*2.1e-3, 1.7*2.1e-3, 1.9*2.1e-3, 2.25*2.1e-3], [1.1*2.1e-3, 1.7*2.1e-3, 2.1*2.1e-3, 2.3*2.1e-3, 2.5*2.1e-3]]"
+            ed_off_table_out = "[[0.0, 0.0275e-3, 0.15e-3, 0.275e-3, 0.3e-3], [0.35*2.2e-3, 0.4*2.2e-3, 0.8*2.2e-3, 0.68*2.2e-3, 0.9*2.2e-3], [0.65*2.2e-3, 0.9*2.2e-3, 1.2*2.2e-3, 1.5*2.2e-3, 1.7*2.2e-3], [0.9*2.2e-3, 1.3*2.2e-3, 1.7*2.2e-3, 1.9*2.2e-3, 2.25*2.2e-3], [1.1*2.2e-3, 1.7*2.2e-3, 2.1*2.2e-3, 2.3*2.2e-3, 2.5*2.2e-3]]"
+            temp_estimation = "False"
+            thermal_networks_type = "Foster"
+            switch_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            switch_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            switch_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            diode_Rth = "[0.159, 0.133, 0.120, 0.038]"
+            diode_Tth = "[1.1e-1, 1.56e-2, 1.35e-3, 1.51e-4]"
+            diode_Cth = "[0.0029, 0.0097, 0.1068, 0.8500]"
+            loss_exec_rate = "100e-6"
+            visualize_luts = "Visualize Lookup Tables"
+            vout_cmp_pullup_mode = "False"
+            vout_cmp_timeout = "5e-6"
+            PESB_Optimization = "True"
+            show_cnt_out = "False"
+            show_monitoring = "False"
+            _control_property = "all high"
+            pwm_enabling = "False"
+            pwm_enable_di = "13"
+            pwm_enable_inv = "active high"
+            dtv_flag_en = "True"
+        }
+
+        "core/Three Phase Voltage Source" {
+            init_rms_value = "0.0"
+            init_frequency = "50.0"
+            init_phase = "0.0"
+        }
+
+        "core/Voltage Measurement" {
+            signal_access = "inherit"
+            bw_limit = "False"
+            frequency = "10e3"
+            comparator_enable = "False"
+            operator = "greater"
+            threshold = "0"
+            cmp_abs_value = "False"
+            feed_forward = "false"
+            sig_output = "False"
+            sig_output_filt_and_full_bw = "False"
+            execution_rate = "100e-6"
+            addr = "0"
+            nd_msr_estimation = "false"
+            dev_cpl_msr = "false"
+            host_device = "0"
+            output_to_device = "0"
+            dev_cpl_index = "0"
+            dev_cpl_var_nb = "0"
+            visible = "True"
+            override_signal_name = "False"
+            signal_name = ""
+        }
+    }
+
+    CODE model_init
+        # Numpy module is imported as 'np'
+        # Scipy module is imported as 'sp'
+        # The Schematic API is imported as 'mdl'
+        # To get the model file path, use 'mdl.get_model_file_path()'
+        # To print information to the console, use info()
+        
+        omega = 2*np.pi*50
+        Lt = 2.5e-3
+        C = 1e-6
+        Ls = 2.5e-3
+        Rd = 27
+        Rt = omega*Lt/10
+        Rs = omega*Ls/10
+    ENDCODE
+}

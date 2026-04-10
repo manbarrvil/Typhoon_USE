@@ -1,0 +1,672 @@
+<ui_settings>
+    <version>2.8</version>
+    <model_locked>False</model_locked>
+    <canvas_bg_color>#ffffff</canvas_bg_color>
+    <initialization_code><![CDATA[logger = {1: 0, 2: 0, 3: 0, 4: 0}
+sci_read_present = False
+# NOTE: Variables and functions defined here will be
+# available for use in all Macro and Expression scripts.
+# NOTE: This code is always executed prior to simulation start.
+
+# The variable 'SETTINGS_DIR' holds the directory where the loaded Panel .cus file is located.
+# Also you can call the 'get_settings_dir_path()' function in any
+# Macro and Expression script to get the same directory.
+SETTINGS_DIR = get_settings_dir_path()
+
+# The 'add_to_python_path(folder)' function can be used to add a custom folder
+# with Python files and packages to the PYTHONPATH. After a folder is added, all Python
+# files and Python packages from it can be imported into the SCADA Namespace.
+
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# Numpy module is imported as 'np'
+# Scipy module is imported as 'sp'
+# Schematic Editor model namespace is imported as 'scm'
+# Function for printing to the HIL SCADA Message log is imported as 'printf'.
+
+]]></initialization_code>
+    <components>
+        <component_data>
+                <id>b501d5c6668b11eeb3a6c0b883027eba</id>
+                <name><![CDATA[Capture/Scope]]></name>
+                <type>Capture/Scope</type>
+                <description><![CDATA[]]></description>
+                <working_mode>windowed</working_mode>
+                <widget_settings>
+                    <x>816</x>
+                    <y>64</y>
+                    <width>120</width>
+                    <height>120</height>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <state>Scope</state>
+                    <layout>None</layout>
+                    <virtual_signals_definitions>
+                    </virtual_signals_definitions>
+                    <presets>
+                        <active_capture_preset><![CDATA[Default]]></active_capture_preset>
+                        <active_scope_preset><![CDATA[Default]]></active_scope_preset>
+                        <capture name="Default">
+                            <time_interval>0.2</time_interval>
+                            <sample_rate>1000000.0</sample_rate>
+                            <background_color>white</background_color>
+                            <layout>Vertical</layout>
+                            <legend>True</legend>
+                            <analog_signals>
+                            </analog_signals>
+                            <digital_signals>
+                            </digital_signals>
+                            <virtual_signals>
+                            </virtual_signals>
+                            <trigger>
+                                <device>-1</device>
+                                <is_force>False</is_force>
+                                <type>Analog</type>
+                                <source><![CDATA[None]]></source>
+                                <edge>Rising edge</edge>
+                                <treshold>0.0</treshold>
+                                <offset>0.0</offset>
+                                <useFirstTrigger>False</useFirstTrigger>
+                            </trigger>
+                            <plotting_options in_use="False">
+                                <subplots>
+                                    </subplots>
+                            </plotting_options>
+                        </capture>
+                        <scope name="Default">
+                            <background_color>white</background_color>
+                            <layout>Vertical</layout>
+                            <legend>True</legend>
+                            <show_viewports>2</show_viewports>
+                            <decimation>11.0</decimation>
+                            <time_base>0.01</time_base>
+                            <analog_signals>
+                                <analog>
+                                    <channel>0</channel>
+                                    <name><![CDATA[Plant.Vb]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>1</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>1</channel>
+                                    <name><![CDATA[Plant.Iag]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>3</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>2</channel>
+                                    <name><![CDATA[Plant.Ibg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>4</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>3</channel>
+                                    <name><![CDATA[Plant.Icg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>5</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>4</channel>
+                                    <name><![CDATA[Plant.Va]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>0</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                                <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.Vc]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>2</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            </analog_signals>
+                            <digital_signals>
+                                <digital>
+                                    <channel>0</channel>
+                                    <name><![CDATA[HIL0 digital input 2]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <row>7</row>
+                                    <viewports>
+                                        
+                                   </viewports>
+                                </digital>
+                                <digital>
+                                    <channel>1</channel>
+                                    <name><![CDATA[HIL0 digital input 7]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <row>6</row>
+                                    <viewports>
+                                        
+                                   </viewports>
+                                </digital>
+                            </digital_signals>
+                            <trigger>
+                                <device>0</device>
+                                <is_force>False</is_force>
+                                <type>Digital</type>
+                                <source>HIL0 digital input 7</source>
+                                <edge>Rising edge</edge>
+                                <treshold>0.0</treshold>
+                                <offset>50.0</offset>
+                                <useFirstTrigger>False</useFirstTrigger>
+                            </trigger>
+                        </scope>
+                        </presets>
+                    <capture>
+                        <time_interval>0.2</time_interval>
+                        <sample_rate>1000000.0</sample_rate>
+                        <background_color>white</background_color>
+                        <layout>Vertical</layout>
+                        <legend>True</legend>
+                        <trigger>
+                            <type>Analog</type>
+                            <source>None</source>
+                            <edge>Rising edge</edge>
+                            <treshold>0.0</treshold>
+                            <offset>0.0</offset>
+                            <useFirstTrigger>False</useFirstTrigger>
+                        </trigger>
+                        <analog_signals>
+                        </analog_signals>
+                         <digital_signals>
+                         </digital_signals>
+                    </capture>
+                    <scope>
+                        <time_base>0.01 </time_base>
+                        <background_color>white</background_color>
+                        <layout>Vertical</layout>
+                        <legend>True</legend>
+                        <trigger>
+                            <mode>Auto</mode>
+                            <type>Digital</type>
+                            <source>HIL0 digital input 7</source>
+                            <edge>Rising edge</edge>
+                            <treshold>0.0</treshold>
+                            <offset>50.0</offset>
+                        </trigger>
+                         <analog_signals>
+                            <analog>
+                                    <channel>0</channel>
+                                    <name><![CDATA[Plant.Vb]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>1</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>1</channel>
+                                    <name><![CDATA[Plant.Iag]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>3</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>2</channel>
+                                    <name><![CDATA[Plant.Ibg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>4</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>3</channel>
+                                    <name><![CDATA[Plant.Icg]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>5</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>5</row>
+                                    <viewports>
+                                        <num_viewport>2</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>4</channel>
+                                    <name><![CDATA[Plant.Va]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>0</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                            <analog>
+                                    <channel>5</channel>
+                                    <name><![CDATA[Plant.Vc]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <coupling>False</coupling>
+                                    <row>2</row>
+                                    <viewports>
+                                        <num_viewport>1</num_viewport>
+                                   </viewports>
+                               </analog>
+                        </analog_signals>
+                        <digital_signals>
+                            <digital>
+                                    <channel>0</channel>
+                                    <name><![CDATA[HIL0 digital input 2]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <row>7</row>
+                                    <viewports>
+                                        
+                                   </viewports>
+                                </digital>
+                            <digital>
+                                    <channel>1</channel>
+                                    <name><![CDATA[HIL0 digital input 7]]></name>
+                                    <is_locked>False</is_locked>
+                                    <vertical_offset>0.0</vertical_offset>
+                                    <row>6</row>
+                                    <viewports>
+                                        
+                                   </viewports>
+                                </digital>
+                        </digital_signals>
+                    </scope>
+                    <plotting_options in_use="False">
+                    
+                        <subplots>
+                            </subplots>
+                    </plotting_options>
+                </widget_settings>
+
+            </component_data>
+        <component_data>
+                <id>806f7091136111efb3e04ccc6a8f7014</id>
+                <name><![CDATA[VDC]]></name>
+                <type>DigitalDisplay</type>
+                <description><![CDATA[]]></description>
+                <data_type>Analog signal</data_type>
+                <code><![CDATA[# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# mandatory variable used for storing value that will be displayed
+displayValue = 0.0
+
+]]></code>
+                <signal_name><![CDATA[Plant.v_dc]]></signal_name>
+                <unit><![CDATA[V]]></unit>
+                <automatic_unit>True</automatic_unit>
+                <decimals><![CDATA[2]]></decimals>
+                <updateRate>500</updateRate>
+                <scaling_factor>1.0</scaling_factor>
+                <widget_settings>
+                    <x>784</x>
+                    <y>232</y>
+                    <width>144</width>
+                    <height>56</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+                <advance_widget_settings>
+                    <color_range>False</color_range>
+                    <green_range>(0, 0, 0, 0)</green_range>
+                    <orange_range>(0, 0, 0, 0)</orange_range>
+                    <red_range>(0, 0, 0, 0)</red_range>
+                </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>070c04ca365b11f0961800090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Setup]]></name>
+                <description><![CDATA[SCI Setup widget is used for configuring parameters required for serial communication with a TI MCU. Specify COM port, baud rate, parity, stop bits and timeout. Widget parameters must be the same as the ones implemented in generated MCU code.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Setup]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>56</x>
+                    <y>32</y>
+                    <width>320</width>
+                    <height>88</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[SCI Setup]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Baudrate]]></relative_fqn>
+                        <value><![CDATA[460800]]></value>
+                    </child_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Parity]]></relative_fqn>
+                        <value><![CDATA[None]]></value>
+                    </child_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Stop bits]]></relative_fqn>
+                        <value><![CDATA[1]]></value>
+                    </child_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Timeout]]></relative_fqn>
+                        <value><![CDATA[0.1]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>1e05baf1365b11f081ef00090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Write]]></name>
+                <description><![CDATA[Widget for sending data to TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Receive' Schematic Editor component, widgets (variables) are indexed in order matching the component outputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Write]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>32</x>
+                    <y>128</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[p_ref]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
+                        <value><![CDATA[0.0]]></value>
+                    </child_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[1]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>5f7ffbc2365b11f0a98f00090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Write1]]></name>
+                <description><![CDATA[Widget for sending data to TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Receive' Schematic Editor component, widgets (variables) are indexed in order matching the component outputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Write]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>32</x>
+                    <y>264</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[q_ref]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
+                        <value><![CDATA[0.0]]></value>
+                    </child_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[2]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>68a28bec365b11f0ba1000090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Write2]]></name>
+                <description><![CDATA[Widget for sending data to TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Receive' Schematic Editor component, widgets (variables) are indexed in order matching the component outputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Write]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>32</x>
+                    <y>408</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[init_PLL]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
+                        <value><![CDATA[0.0]]></value>
+                    </child_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[3]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>21fa6ffb365c11f091ff00090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Write3]]></name>
+                <description><![CDATA[Widget for sending data to TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Receive' Schematic Editor component, widgets (variables) are indexed in order matching the component outputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Write]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>32</x>
+                    <y>544</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[reset_int]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Variable 1]]></relative_fqn>
+                        <value><![CDATA[0.0]]></value>
+                    </child_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[4]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>4415384b365c11f0a8eb00090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Read]]></name>
+                <description><![CDATA[Widget for receiving data from TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Send' Schematic Editor component, widgets (variables) are indexed in order matching the component inputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Read]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>232</x>
+                    <y>128</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[p_fil]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[1]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>034de9ee366111f0acc600090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Read1]]></name>
+                <description><![CDATA[Widget for receiving data from TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Send' Schematic Editor component, widgets (variables) are indexed in order matching the component inputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Read]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>232</x>
+                    <y>272</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[q_fil]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[2]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>0ab83e7c366111f0922100090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Read2]]></name>
+                <description><![CDATA[Widget for receiving data from TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Send' Schematic Editor component, widgets (variables) are indexed in order matching the component inputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Read]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>224</x>
+                    <y>416</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[omega]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[3]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        <component_data>
+                <id>0eb4543f366111f0b60f00090faa0001</id>
+                <type>Group</type>
+                <name><![CDATA[SCI Read3]]></name>
+                <description><![CDATA[Widget for receiving data from TI MCU via Serial Communication Interface. One widget should be used for each active variable that is connected to 'SCI Send' Schematic Editor component, widgets (variables) are indexed in order matching the component inputs.]]></description>
+                <collapsed>False</collapsed>
+                <library_settings>
+                    <library_name><![CDATA[TI C2000 Toolbox]]></library_name>
+                    <library_widget_name><![CDATA[SCI Read]]></library_widget_name>
+                    <linked_model_components>
+                        </linked_model_components>
+                </library_settings>
+                <widget_settings>
+                    <x>224</x>
+                    <y>552</y>
+                    <width>184</width>
+                    <height>136</height>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position><![CDATA[1]]></hierarchy_position>
+                    <is_background><![CDATA[False]]></is_background>
+                    <label><![CDATA[vs_d]]></label>
+                    <use_label>True</use_label>
+                </widget_settings>
+                <child_components_data>
+                    <child_data>
+                        <relative_fqn><![CDATA[Index]]></relative_fqn>
+                        <value><![CDATA[4]]></value>
+                    </child_data>
+                </child_components_data>
+            </component_data>
+        </components>
+</ui_settings>

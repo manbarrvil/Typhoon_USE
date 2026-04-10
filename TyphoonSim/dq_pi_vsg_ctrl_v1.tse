@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.1 SP1
+// Saved by sw version: 2025.4
 //
 
 model "dq_pi_vsg_ctrl_v1" {
@@ -21,6 +21,7 @@ model "dq_pi_vsg_ctrl_v1" {
         reset_analog_outputs_on_sim_stop_mode = Offset values
         reset_digital_outputs_on_sim_stop = True
         vhil_adio_loopback = False
+        dma_enable = False
         cpl_stb = False
         enb_dep_sw_detect = False
         code_section = "internal memory"
@@ -174,7 +175,7 @@ y_d = 0.0;
 y_q = 0.0;
 /*End code section*/"
                 input_terminals = "real is_dq_ref;real is_dq;real vs_dq;real omega_pll;real v_dc;real time;"
-                input_terminals_dimensions = "2;2;2;1;1;1"
+                input_terminals_dimensions = "(2,);(2,);(2,);(1,);(1,);(1,)"
                 input_terminals_feedthrough = "True;True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -183,7 +184,7 @@ eta_d = (2/v_dc) * (Kp_i*e_d + y_d -   L*2*M_PI*50*is_dq[1] + vs_dq[0]);
 eta_q = (2/v_dc )* (Kp_i*e_q + y_q +  L*2*M_PI*50*is_dq[0] + vs_dq[1]);
 /*End code section*/"
                 output_terminals = "real eta_d;real eta_q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
                 parameters = "real Kp_i;real Ki_i;real Ts_Control;real L;real T_on_contactor;"
@@ -236,7 +237,7 @@ if (time<T_on_contactor){
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real dq;real theta;"
-                input_terminals_dimensions = "2;1"
+                input_terminals_dimensions = "(2,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -245,7 +246,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 output_terminals = "real a;real b;real c;"
-                output_terminals_dimensions = "1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True"
                 output_terminals_show_labels = "True;True;True"
             }
@@ -313,7 +314,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 step_time = "0.5"
             }
             [
-                position = 7572, 7324
+                position = 7388, 7352
             ]
 
             component "core/Step" qref {
@@ -347,7 +348,7 @@ e_p = 0.0;
 e_q = 0.0;
 /*End code section*/"
                 input_terminals = "real p_m_ref;real q_s_ref;real time;real is_abc;real vs_abc;"
-                input_terminals_dimensions = "1;1;1;3;3"
+                input_terminals_dimensions = "(1,);(1,);(1,);(3,);(3,)"
                 input_terminals_feedthrough = "True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -380,7 +381,7 @@ is_dq_ref_fil[0] = x_isd;
 is_dq_ref_fil[1] = x_isq;
 /*End code section*/"
                 output_terminals = "real is_dq_ref;real omega_vsg;real theta_vsg;real e;real p_s;real q_s;real vs_d;real vs_q;real is_d;real is_q;real is_dq_ref_fil;"
-                output_terminals_dimensions = "2;1;1;1;1;1;1;1;1;1;2"
+                output_terminals_dimensions = "(2,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(2,)"
                 output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True"
                 parameters = "real Kp_p;real Ki_p;real omega_base;real Kp_q;real Ki_q;real Xv;real Rv;real I_bdq;real e_o;real U_bdq;real Ts_Control;real tau_vsg;"
@@ -418,7 +419,7 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
                 signal_name = "q"
             }
             [
-                position = 7764, 8340
+                position = 7848, 8116
             ]
 
             component "core/Probe" theta_vsg {
@@ -427,7 +428,7 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
                 signal_name = "q"
             }
             [
-                position = 7760, 8420
+                position = 7844, 8196
             ]
 
             component "core/Probe" p_s {
@@ -449,8 +450,8 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
             ]
 
             component "core/Scope" "Power Reference Tracking pu" {
-                selected_signals = "[\"Controller.p_s\", \"Controller.p_ref\", \"Controller.q_s\", \"Controller.q_ref\"]"
-                signals_data = "{\"signals\": {\"Controller.p_s\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Controller.p_ref\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"Controller.q_s\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"Controller.q_ref\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
+                selected_signals = "[\'Controller.p_s\', \'Controller.p_ref\', \'Controller.q_s\', \'Controller.q_ref\']"
+                signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"Controller.p_s\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Controller.p_ref\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"Controller.q_s\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"Controller.q_ref\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
             }
             [
                 position = 8504, 7872
@@ -458,7 +459,7 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
 
             component "core/Scope" omega_theta_vsg {
                 selected_signals = "[\'Controller.omega_vsg\', \'Controller.theta_vsg\']"
-                signals_data = "{\"signals\": {\"Controller.omega_vsg\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Controller.theta_vsg\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
+                signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"Controller.omega_vsg\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"Controller.theta_vsg\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
             }
             [
                 position = 7880, 7624
@@ -561,6 +562,65 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
             }
             [
                 position = 7988, 7704
+            ]
+
+            component "core/Sum" Sum1 {
+                execution_rate = "Ts_Control"
+            }
+            [
+                position = 7532, 7312
+            ]
+
+            component "core/Sum" Sum2 {
+                execution_rate = "Ts_Control"
+                signs = "+-"
+            }
+            [
+                position = 7156, 7256
+            ]
+
+            component "core/Constant" omega_ref {
+                execution_rate = "Ts_Control"
+            }
+            [
+                position = 7028, 7216
+            ]
+
+            component "core/Gain" Gain1 {
+                execution_rate = "Ts_Control"
+                gain = "1/R_pfr"
+            }
+            [
+                position = 7244, 7252
+            ]
+
+            component "core/Gain" Gain2 {
+                execution_rate = "Ts_Control"
+                gain = "1/omega_ref"
+            }
+            [
+                position = 7044, 7288
+            ]
+
+            component "core/Product" Product1 {
+                execution_rate = "Ts_Control"
+            }
+            [
+                position = 7416, 7260
+            ]
+
+            component "core/Step" pref1 {
+                execution_rate = "Ts_Control"
+                step_time = "1.4"
+            }
+            [
+                position = 7232, 7316
+            ]
+
+            component "core/Delay" Delay1 {
+            }
+            [
+                position = 7324, 7252
             ]
 
             tag Goto2 {
@@ -846,7 +906,7 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
                 direction = out
             }
             [
-                position = 7624, 8340
+                position = 7708, 8116
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -860,7 +920,7 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
                 direction = out
             }
             [
-                position = 7616, 8420
+                position = 7700, 8196
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -1149,6 +1209,20 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
                 size = 60, 20
             ]
 
+            tag From113 {
+                value = "omega_vsg"
+                scope = global
+                kind = sp
+                direction = out
+            }
+            [
+                position = 6932, 7288
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 92, 20
+            ]
+
             junction Junction196 sp
             [
                 position = 9296, 7516
@@ -1174,11 +1248,6 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
                 position = 8620, 7696
             ]
 
-            junction Junction209 sp
-            [
-                position = 7604, 7324
-            ]
-
             junction Junction210 sp
             [
                 position = 7604, 7404
@@ -1202,6 +1271,11 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
             junction Junction214 sp
             [
                 position = 7952, 8036
+            ]
+
+            junction Junction215 sp
+            [
+                position = 7604, 7316
             ]
 
             comment Comment6 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">dq PI controller with feedforward voltages and cross-coupling terms cancellation</p></body></html> ENDCOMMENT 
@@ -1243,9 +1317,6 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
             connect Goto2 From74 as Connection713
             connect Clock2.out Goto44 as Connection759
             connect From82 "C function PI current controller.time" as Connection767
-            connect p_ref.in Junction209 as Connection770
-            connect Junction209 pref.out as Connection771
-            connect Goto39 Junction209 as Connection772
             connect q_ref.in Junction210 as Connection773
             connect Junction210 qref.out as Connection774
             connect Goto45 Junction210 as Connection775
@@ -1296,6 +1367,21 @@ x_isq = x_isq + Ts_Control*2*M_PI*1/(tau_vsg)*(is_dq_ref[1] - x_isq);
             connect Junction214 "Bus Join14.in1" as Connection891
             connect is_q.in Junction214 as Connection892
             connect From112 e.in as Connection893
+            connect pref.out Sum1.in1 as Connection895
+            connect p_ref.in Junction215 as Connection896
+            connect Junction215 Goto39 as Connection897
+            [
+                breakpoints = 7604, 7324
+            ]
+            connect Sum1.out Junction215 as Connection898
+            connect omega_ref.out Sum2.in as Connection900
+            connect Gain1.in Sum2.out as Connection902
+            connect Gain2.in From113 as Connection904
+            connect Gain2.out Sum2.in1 as Connection905
+            connect Product1.out Sum1.in as Connection907
+            connect pref1.out Product1.in1 as Connection908
+            connect Gain1.out Delay1.in as Connection909
+            connect Delay1.out Product1.in as Connection910
         }
         [
             position = 8748, 8308
@@ -1618,7 +1704,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
 theta = 0.0;
 /*End code section*/"
                 input_terminals = "real t;"
-                input_terminals_dimensions = "1"
+                input_terminals_dimensions = "(1,)"
                 input_terminals_feedthrough = "True"
                 input_terminals_show_labels = "True"
                 output_fnc = "/*Begin code section*/
@@ -1644,7 +1730,7 @@ vgb =326.5*sin(theta - 2.0*M_PI/3.0);
 vgc = 326.5*sin(theta+ 2.0*M_PI/3.0);
 /*End code section*/"
                 output_terminals = "real vga;real vgb;real vgc;real delta_t;real omega;real f;"
-                output_terminals_dimensions = "1;1;1;1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True;True"
                 parameters = "real Ts_Control;"
@@ -2409,6 +2495,24 @@ if (theta<0.0){
             _tunable = "False"
         }
 
+        "core/Delay" {
+            delay_type = "Fixed delay"
+            del_length = "2"
+            max_delay_length = "20"
+            init_value = "0"
+            signal_out_type = "inherit"
+            tml_file = "gen_delay"
+            execution_rate = "inherit"
+        }
+
+        "core/Gain" {
+            gain = "1"
+            multiplication = "Element-wise(K.*u)"
+            tml_file = "gen_gain"
+            _tunable = "False"
+            execution_rate = "inherit"
+        }
+
         "core/Probe" {
             signal_access = "inherit"
             addr = "0"
@@ -2417,6 +2521,11 @@ if (theta<0.0){
             signal_type = "generic"
             streaming_en = "False"
             streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Product" {
+            signs = "2"
             execution_rate = "inherit"
         }
 
@@ -2436,6 +2545,11 @@ if (theta<0.0){
             final_value = "1"
             signal_type = "real"
             execution_rate = "100e-6"
+        }
+
+        "core/Sum" {
+            signs = "2"
+            execution_rate = "inherit"
         }
 
         "core/Termination" {
@@ -2505,6 +2619,7 @@ if (theta<0.0){
 
         "core/Three Phase Inverter" {
             signal_access = "inherit"
+            switches_names_at_mask = "[\'Sa_top\', \'Sa_bot\', \'Sb_top\', \'Sb_bot\', \'Sc_top\', \'Sc_bot\']"
             ctrl_src = "Digital input per switch"
             op_mode = "Fixed carrier frequency"
             carrier_freq = "10000.0"
@@ -2525,6 +2640,7 @@ if (theta<0.0){
             Sc_top_logic = "active high"
             Sc_bot = "6"
             Sc_bot_logic = "active high"
+            _overridable_switches = "[\'Sa_top\', \'Sa_bot\', \'Sb_top\', \'Sb_bot\', \'Sc_top\', \'Sc_bot\']"
             delay_enabled = "False"
             fixed_delay = "1e-6"
             var_delay_lut = "[-10.0, 1e-6, 10.0, 1e-6]"
@@ -2667,5 +2783,9 @@ if (theta<0.0){
         
         #LPF VSG
         tau_vsg = 2.4e-3
+        
+        #PFR
+        R_pfr = 0.05
+        omega_ref = 2*np.pi*50
     ENDCODE
 }
