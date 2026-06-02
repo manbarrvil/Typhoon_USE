@@ -1,6 +1,6 @@
 
 <model_description>
-    <sw_version>2025.4</sw_version>
+    <sw_version>2026.2</sw_version>
     <hw_properties>
         <revision>3</revision>
         <product_id>HIL404</product_id>
@@ -8,7 +8,7 @@
         <device_ao_limit_enable>False</device_ao_limit_enable>
         <device_id>0</device_id>
         <spc_out_mem_size>512</spc_out_mem_size>
-        <fw_support_limit>132712982</fw_support_limit>
+        <fw_support_limit>132776977</fw_support_limit>
         <vhil_adio_loopback>False</vhil_adio_loopback>
     </hw_properties>
     <sim_setup>
@@ -23,43 +23,49 @@
             <switches_override_settings>False</switches_override_settings>
             <switches>
                 <cell>
-                    <name>Sa_top</name>
+                    <name>Phase A.S1</name>
                     <weights>[1]</weights>
+                    <previous_name>Sa_top</previous_name>
                     <init_sw_override>False</init_sw_override>
                     <init_sw_override_value>0</init_sw_override_value>
 
                 </cell>
                 <cell>
-                    <name>Sa_bot</name>
+                    <name>Phase A.S2</name>
                     <weights>[0]</weights>
+                    <previous_name>Sa_bot</previous_name>
                     <init_sw_override>False</init_sw_override>
                     <init_sw_override_value>0</init_sw_override_value>
 
                 </cell>
                 <cell>
-                    <name>Sb_top</name>
+                    <name>Phase B.S1</name>
                     <weights>[7]</weights>
+                    <previous_name>Sb_top</previous_name>
                     <init_sw_override>False</init_sw_override>
                     <init_sw_override_value>0</init_sw_override_value>
 
                 </cell>
                 <cell>
-                    <name>Sb_bot</name>
+                    <name>Phase B.S2</name>
                     <weights>[6]</weights>
+                    <previous_name>Sb_bot</previous_name>
                     <init_sw_override>False</init_sw_override>
                     <init_sw_override_value>0</init_sw_override_value>
 
                 </cell>
                 <cell>
-                    <name>Sc_top</name>
+                    <name>Phase C.S1</name>
                     <weights>[13]</weights>
+                    <previous_name>Sc_top</previous_name>
                     <init_sw_override>False</init_sw_override>
                     <init_sw_override_value>0</init_sw_override_value>
 
                 </cell>
                 <cell>
-                    <name>Sc_bot</name>
+                    <name>Phase C.S2</name>
                     <weights>[12]</weights>
+                    <previous_name>Sc_bot</previous_name>
                     <init_sw_override>False</init_sw_override>
                     <init_sw_override_value>0</init_sw_override_value>
 
@@ -76,6 +82,13 @@
             <visible>True</visible>
             <previous_names>
             </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.VSC side inductor_Rt_Lt.L2</name>
+            <address>6</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
         </cell>
         <cell>
             <name>Plant.is_a</name>
@@ -96,26 +109,8 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.Idc_link</name>
-            <address>15</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.it_c</name>
-            <address>21</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.vt_a</name>
-            <address>12</address>
+            <name>Plant.vs_b</name>
+            <address>10</address>
             <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
@@ -130,52 +125,9 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Cdc</name>
-            <address>3</address>
-            <type>voltage</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.is_b</name>
-            <address>17</address>
+            <name>Plant.Idc_link</name>
+            <address>15</address>
             <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.vs_a</name>
-            <address>9</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.vs_b</name>
-            <address>10</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.it_b</name>
-            <address>20</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>Plant.vs_c</name>
-            <address>11</address>
-            <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
             <previous_names>
@@ -191,16 +143,82 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.VSC side inductor_Rt_Lt.L2</name>
-            <address>6</address>
+            <name>Plant.Grid side inductor_Rs_Ls.L3</name>
+            <address>5</address>
             <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
+            <name>Plant.is_b</name>
+            <address>17</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
             <name>Plant.vt_c</name>
             <address>14</address>
             <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Cdc</name>
+            <address>3</address>
+            <type>voltage</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.vs_a</name>
+            <address>9</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.vt_a</name>
+            <address>12</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.Grid side inductor_Rs_Ls.L2</name>
+            <address>4</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.it_b</name>
+            <address>20</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>Plant.VSC side inductor_Rt_Lt.L3</name>
+            <address>7</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Plant.it_c</name>
+            <address>21</address>
+            <type>current</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
             <previous_names>
@@ -216,13 +234,6 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Plant.Grid side inductor_Rs_Ls.L2</name>
-            <address>4</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
             <name>Plant.Capacitor and dampin resistor.C1</name>
             <address>0</address>
             <type>voltage</type>
@@ -230,23 +241,18 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Plant.Grid side inductor_Rs_Ls.L3</name>
-            <address>5</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
+            <name>Plant.vs_c</name>
+            <address>11</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
             <visible>True</visible>
+            <previous_names>
+            </previous_names>
         </cell>
         <cell>
             <name>Plant.Capacitor and dampin resistor.C2</name>
             <address>1</address>
             <type>voltage</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Plant.VSC side inductor_Rt_Lt.L3</name>
-            <address>7</address>
-            <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
         </cell>
@@ -671,28 +677,6 @@
                     </previous_names>
             </cell>
         <cell>
-            <name>Plant.Three Phase Inverter.Phase B.PWM_Modulator.TOP_1</name>
-            <address>514</address>
-                <previous_names>
-                        <previous_name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_TOP_1</previous_name>
-                    </previous_names>
-            </cell>
-        <cell>
-            <name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_TOP_1</name>
-            <address>514</address>
-            </cell>
-        <cell>
-            <name>Plant.Three Phase Inverter.Phase B.PWM_Modulator.BOT_1</name>
-            <address>515</address>
-                <previous_names>
-                        <previous_name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_BOT_1</previous_name>
-                    </previous_names>
-            </cell>
-        <cell>
-            <name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_BOT_1</name>
-            <address>515</address>
-            </cell>
-        <cell>
             <name>Plant.Three Phase Inverter.Phase A.PWM_Modulator.TOP_1</name>
             <address>512</address>
                 <previous_names>
@@ -735,6 +719,28 @@
         <cell>
             <name>Plant.Three Phase Inverter.IGBT Leg3.PWM_Modulator_BOT_1</name>
             <address>517</address>
+            </cell>
+        <cell>
+            <name>Plant.Three Phase Inverter.Phase B.PWM_Modulator.TOP_1</name>
+            <address>514</address>
+                <previous_names>
+                        <previous_name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_TOP_1</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_TOP_1</name>
+            <address>514</address>
+            </cell>
+        <cell>
+            <name>Plant.Three Phase Inverter.Phase B.PWM_Modulator.BOT_1</name>
+            <address>515</address>
+                <previous_names>
+                        <previous_name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_BOT_1</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Plant.Three Phase Inverter.IGBT Leg2.PWM_Modulator_BOT_1</name>
+            <address>515</address>
             </cell>
         <cell>
             <name>Plant.Three Phase Inverter.Phase A.vout_cmp</name>
@@ -877,73 +883,9 @@
         <sys_real_type_precision>double</sys_real_type_precision>
         <user_real_type_precision>double</user_real_type_precision>
         <sig_stim>off</sig_stim>
-        <update_device_time>True</update_device_time>
     </model_properties>
 
     <analog_variables>
-        <cell>
-            <name>SCADA.Fault_type</name>
-            <type>generic</type>
-            <address>16385</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.sAC</name>
-            <type>generic</type>
-            <address>16410</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.eta_d</name>
-            <type>generic</type>
-            <address>16394</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.vbrms</name>
-            <type>generic</type>
-            <address>16413</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.omega_SCADA</name>
-            <type>generic</type>
-            <address>16407</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.vd</name>
-            <type>generic</type>
-            <address>16415</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.eta_a</name>
-            <type>generic</type>
-            <address>16391</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.P3f</name>
-            <type>generic</type>
-            <address>16386</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.eta_q</name>
-            <type>generic</type>
-            <address>16395</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
         <cell>
             <name>SCADA.varms</name>
             <type>generic</type>
@@ -952,16 +894,9 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>SCADA.is_c_SCADA</name>
+            <name>SCADA.eta_c</name>
             <type>generic</type>
-            <address>16404</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.Q3f</name>
-            <type>generic</type>
-            <address>16387</address>
+            <address>16393</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
@@ -980,16 +915,9 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>SCADA.p_fil</name>
+            <name>SCADA.is_q_ref</name>
             <type>generic</type>
-            <address>16408</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.V_h</name>
-            <type>generic</type>
-            <address>16388</address>
+            <address>16406</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
@@ -1001,93 +929,9 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>SCADA.id</name>
+            <name>SCADA.is_c_SCADA</name>
             <type>generic</type>
-            <address>16400</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.CTRL</name>
-            <type>generic</type>
-            <address>16384</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.ibrms</name>
-            <type>generic</type>
-            <address>16398</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.is_a_SCADA</name>
-            <type>generic</type>
-            <address>16402</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.breaker</name>
-            <type>generic</type>
-            <address>16389</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.icrms</name>
-            <type>generic</type>
-            <address>16399</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.is_q_ref</name>
-            <type>generic</type>
-            <address>16406</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.is_d_ref</name>
-            <type>generic</type>
-            <address>16405</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.theta_SCADA</name>
-            <type>generic</type>
-            <address>16411</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.eta_c</name>
-            <type>generic</type>
-            <address>16393</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.vq</name>
-            <type>generic</type>
-            <address>16416</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.q_fil</name>
-            <type>generic</type>
-            <address>16409</address>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>SCADA.vcrms</name>
-            <type>generic</type>
-            <address>16414</address>
+            <address>16404</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
@@ -1099,6 +943,104 @@
             <visible>True</visible>
         </cell>
         <cell>
+            <name>SCADA.vd</name>
+            <type>generic</type>
+            <address>16415</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.is_d_ref</name>
+            <type>generic</type>
+            <address>16405</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.V_h</name>
+            <type>generic</type>
+            <address>16388</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.eta_a</name>
+            <type>generic</type>
+            <address>16391</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.vbrms</name>
+            <type>generic</type>
+            <address>16413</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.Q3f</name>
+            <type>generic</type>
+            <address>16387</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.omega_SCADA</name>
+            <type>generic</type>
+            <address>16407</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.breaker</name>
+            <type>generic</type>
+            <address>16389</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.p_fil</name>
+            <type>generic</type>
+            <address>16408</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.vq</name>
+            <type>generic</type>
+            <address>16416</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.is_a_SCADA</name>
+            <type>generic</type>
+            <address>16402</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.P3f</name>
+            <type>generic</type>
+            <address>16386</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.id</name>
+            <type>generic</type>
+            <address>16400</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.Fault_type</name>
+            <type>generic</type>
+            <address>16385</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
             <name>SCADA.is_b_SCADA</name>
             <type>generic</type>
             <address>16403</address>
@@ -1106,9 +1048,72 @@
             <visible>True</visible>
         </cell>
         <cell>
+            <name>SCADA.eta_d</name>
+            <type>generic</type>
+            <address>16394</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.icrms</name>
+            <type>generic</type>
+            <address>16399</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.sAC</name>
+            <type>generic</type>
+            <address>16410</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.q_fil</name>
+            <type>generic</type>
+            <address>16409</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.eta_q</name>
+            <type>generic</type>
+            <address>16395</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.CTRL</name>
+            <type>generic</type>
+            <address>16384</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.vcrms</name>
+            <type>generic</type>
+            <address>16414</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.theta_SCADA</name>
+            <type>generic</type>
+            <address>16411</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
             <name>SCADA.eta_b</name>
             <type>generic</type>
             <address>16392</address>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>SCADA.ibrms</name>
+            <type>generic</type>
+            <address>16398</address>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
@@ -1225,9 +1230,9 @@
     <adv_c_ext_src>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_c_function_pi_current_controller</identifier_name>
-            <fqn>_controller_c_function_pi_current_controller</fqn>
-            <fqn_original>Controller.C function PI current controller</fqn_original>
+            <identifier_name>_scada_c_function_powers</identifier_name>
+            <fqn>_scada_c_function_powers</fqn>
+            <fqn_original>SCADA.C function powers</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -1275,9 +1280,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_scada_c_function_powers</identifier_name>
-            <fqn>_scada_c_function_powers</fqn>
-            <fqn_original>SCADA.C function powers</fqn_original>
+            <identifier_name>_controller_c_function_dq_to_abc</identifier_name>
+            <fqn>_controller_c_function_dq_to_abc</fqn>
+            <fqn_original>Controller.C function dq to abc</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -1375,9 +1380,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_c_function_pll</identifier_name>
-            <fqn>_controller_c_function_pll</fqn>
-            <fqn_original>Controller.C function PLL</fqn_original>
+            <identifier_name>_controller_c_function_pi_current_controller</identifier_name>
+            <fqn>_controller_c_function_pi_current_controller</fqn>
+            <fqn_original>Controller.C function PI current controller</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>
@@ -1425,9 +1430,9 @@
         </component>
         <component>
             <is_fmi>False</is_fmi>
-            <identifier_name>_controller_c_function_dq_to_abc</identifier_name>
-            <fqn>_controller_c_function_dq_to_abc</fqn>
-            <fqn_original>Controller.C function dq to abc</fqn_original>
+            <identifier_name>_controller_c_function_pll</identifier_name>
+            <fqn>_controller_c_function_pll</fqn>
+            <fqn_original>Controller.C function PLL</fqn_original>
             <include_imports>True</include_imports>
             <library_load_type>Compile-time load</library_load_type>
             <macros></macros>

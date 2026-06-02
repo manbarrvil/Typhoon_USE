@@ -1,98 +1,208 @@
 MAwLUDRFElt2ljgILBDyJBCcqnbbrCNaqPhB4kOkEaXXgmMLPDOCWUVnRMEMBGdUDKOJvfC4mkWcV9sH8h/5vQ==
 {
-  "compilation_timestamp": "2026-04-10 17:04:41",
-  "sw_version": "2025.4",
+  "compilation_timestamp": "2026-05-26 12:12:27",
+  "sw_version": "2026.2",
   "devices": [
     {
-      "device_type": "HIL402",
-      "hw_id": "6245008a45a00915bbda137110a47a26fdf21b5e46a97168fa9ad007bf728531",
-      "serial_no": "00402-01-00003",
-      "license_expiry": "2111-08-10",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL402",
+      "hardware_id": "6245008a45a00915bbda137110a47a26fdf21b5e46a97168fa9ad007bf728531",
+      "serial_number": "00402-01-00003",
+      "activation_key": "0KT21-WGP4Y-JRVIX-LHF69-13DA4",
+      "end_date": "2111-08-10",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2114-12-11",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     },
     {
-      "device_type": "HIL402",
-      "hw_id": "8768b7cd28611d35b908e7f1329820beb4328051b54f2ed29d6631c5557b95fe",
-      "serial_no": "00402-01-00005",
-      "license_expiry": "2111-08-10",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL402",
+      "hardware_id": "8768b7cd28611d35b908e7f1329820beb4328051b54f2ed29d6631c5557b95fe",
+      "serial_number": "00402-01-00005",
+      "activation_key": "VI7XF-G3160-HPJBK-ALT2Q-5816D",
+      "end_date": "2111-08-10",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2115-02-25",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     },
     {
-      "device_type": "HIL404",
-      "hw_id": "0e971ad47ef0e813d02e50e6bf510a3764faf35145a59e2471d1483e1914ee9d",
-      "serial_no": "00404-08-00373",
-      "license_expiry": "2111-08-10",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL404",
+      "hardware_id": "0e971ad47ef0e813d02e50e6bf510a3764faf35145a59e2471d1483e1914ee9d",
+      "serial_number": "00404-08-00373",
+      "activation_key": "ZCFUE-07YM9-JN34K-A86DH-B7A6E",
+      "end_date": "2111-08-10",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2122-10-05",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     },
     {
-      "device_type": "HIL101",
-      "hw_id": "a2cfd19c9284a7cecb0e64576c720f3efa78a2ecc96e7d0cb77c8a82af0a56dd",
-      "serial_no": "00101-00-00072",
-      "license_expiry": "2027-03-24",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL101",
+      "hardware_id": "a2cfd19c9284a7cecb0e64576c720f3efa78a2ecc96e7d0cb77c8a82af0a56dd",
+      "serial_number": "00101-00-00072",
+      "activation_key": "GRP4Z-TV7CW-ASKB9-U63I1-773C0",
+      "end_date": "2027-03-24",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2027-03-24",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     },
     {
-      "device_type": "HIL101",
-      "hw_id": "6dd380bda4cc008ecb1e8673a3379768ae36ca8dce1f24b84c84c52387d65cb3",
-      "serial_no": "00101-00-00073",
-      "license_expiry": "2027-03-24",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL101",
+      "hardware_id": "6dd380bda4cc008ecb1e8673a3379768ae36ca8dce1f24b84c84c52387d65cb3",
+      "serial_number": "00101-00-00073",
+      "activation_key": "SZU07-GDHNJ-FE54C-R3B8I-C28B6",
+      "end_date": "2027-03-24",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2027-03-24",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     },
     {
-      "device_type": "HIL101",
-      "hw_id": "7b5393682bcdcf5a879850dc2f5054df376b5b82723907a1104d337b1be01bbc",
-      "serial_no": "00101-00-00074",
-      "license_expiry": "2027-03-24",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL101",
+      "hardware_id": "7b5393682bcdcf5a879850dc2f5054df376b5b82723907a1104d337b1be01bbc",
+      "serial_number": "00101-00-00074",
+      "activation_key": "NWHQ5-YMLJZ-0V14D-RU2ES-B494B",
+      "end_date": "2027-03-24",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2027-03-24",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     },
     {
-      "device_type": "HIL101",
-      "hw_id": "6adff57cee06cbf12ea6f7f2e70fda171b58a9450a6ef13d5d8400ae8efc6f20",
-      "serial_no": "00101-00-00075",
-      "license_expiry": "2027-03-24",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL101",
+      "hardware_id": "6adff57cee06cbf12ea6f7f2e70fda171b58a9450a6ef13d5d8400ae8efc6f20",
+      "serial_number": "00101-00-00075",
+      "activation_key": "018SN-WVAQ7-KHL2C-Y5RZX-86CA4",
+      "end_date": "2027-03-24",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2027-03-24",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     },
     {
-      "device_type": "HIL101",
-      "hw_id": "d88dd2ba2ea427f3e7cab1258be3fda03cd3723db8fa031547ea2e92f8c6833c",
-      "serial_no": "00101-00-00076",
-      "license_expiry": "2027-03-24",
-      "maintenance_expiry": null,
-      "access_type": "Full",
-      "paralleling": "Master",
+      "model": "HIL101",
+      "hardware_id": "d88dd2ba2ea427f3e7cab1258be3fda03cd3723db8fa031547ea2e92f8c6833c",
+      "serial_number": "00101-00-00076",
+      "activation_key": "XR0BK-F6EPI-WL3JT-N5HDS-45C86",
+      "end_date": "2027-03-24",
+      "maintenance_end_date": null,
       "not_supported": null,
-      "toolboxes": []
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2027-03-24",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
+    },
+    {
+      "model": "HIL101",
+      "hardware_id": "b6a5cf75778d0b4cef7335608d612a26ad4e5207f0b2a7080c88787215e9688f",
+      "serial_number": "00101-00-00225",
+      "activation_key": "QSH61-LBJKW-FCZT3-V54RG-08D39",
+      "end_date": null,
+      "maintenance_end_date": null,
+      "not_supported": null,
+      "licenses": [
+        {
+          "license_product_name": "HILCore",
+          "license_type_name": "HILCore Pro",
+          "licensee": null,
+          "attributes": {
+            "tier": "pro"
+          },
+          "end_date": "2028-04-17",
+          "maintenance_end_date": null,
+          "not_supported": null
+        }
+      ]
     }
   ]
 }
 -----BEGIN SIGNATURE-----
-B40HDQZ4OWi+LVeOUhUC3jVImlSlFRpuc3Zz/s9AHm/sx9x1Rql+jJk6vZwhAb2Y0rXYftTa8ClWEUkYUjZZ9M/LtN23XL6oe9vV5CQtDw2x96wA7IaWpAVYl6CAF4YvwUVEs3UF01a+fiTwx9eSGPT1EvYjXpBOwWur5mm6YD9beowhYHuhMFsqfW9oGF85vEV96RoWJFJOGtIy9zaICv8YrbERpxENa/IOtlU/fGkoqQ4vET+gFLX/jogtP4G3EKw+ffR1J4IW9p8syTpWe/TDAytbOUfdHWhaA5T05f8RZzCJXaTwZIpZw06TwnUTKMOk6MvVFSSpVK1RtueHlQ==
+aYiFARHDvChsLR684nnFaXJZe2lITlk3YkPDQy5WLZbQFLFT2piCUJF+9drzKgzzrfNM63eA/ABF6w1zhprVce4pwWokmkiBzAswGEETjT0mypk0osupH69DJ3edXT5XqrLE2Ymj8DkGhyOVweKK1CYTTuAuOyQMaUIg5mTYPCSZpWnAfXNPMttD1qPn8nSVd73c/O/9dWB3SXPdXxpb8DvPfekDkah8uOP8V9VtQO4IsuFrm733IsV8VbEreMpWtXUmwe7hbiObfM/nX4DckZLbrWwmqBO5hHGEcpoU9GgRujHjKtZK1K4D9FNiQ4dsWOq3uLR9Q3b11Q7cyi+PYA==
 -----END SIGNATURE-----

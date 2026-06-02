@@ -21,7 +21,7 @@ rtds_write 0x00000030 0x00000000
 REM Fast SFP Send
 
 
-REM Converter solvers setup
+REM UltraCore setup
 
 
 REM Reset analog and digital outputs on simulation stop
