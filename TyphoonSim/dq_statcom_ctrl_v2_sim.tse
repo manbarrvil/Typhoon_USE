@@ -1346,14 +1346,14 @@ if (time<T_on_contactor){
                 position = 9044, 7136
             ]
 
-            comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Current references</p></body></html> ENDCOMMENT 
+            comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Current references computation</p></body></html> ENDCOMMENT 
             [
-                position = 7620, 7168
+                position = 7560, 7572
             ]
 
-            comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">PQ references and current references computation</p></body></html> ENDCOMMENT 
+            comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">P references computation </p></body></html> ENDCOMMENT 
             [
-                position = 7436, 7136
+                position = 7592, 7136
             ]
 
             connect Clock1.out "C function PI current controller.time" as Connection753
@@ -1478,7 +1478,7 @@ if (time<T_on_contactor){
             connect Goto64 q_ref as Connection843
         }
         [
-            position = 8592, 8496
+            position = 8576, 8496
             size = 256, 488
         ]
 
@@ -2345,14 +2345,6 @@ if (time<T_on_contactor){
 
         component Subsystem SCADA {
             layout = dynamic
-            component "core/Scope" Powers {
-                selected_signals = "[\"p\", \"q\", \"p_fil\", \"q_fil\"]"
-                signals_data = "{\"signals\": {\"p\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"p_fil\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"q_fil\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
-            }
-            [
-                position = 8184, 8120
-            ]
-
             component "core/Probe" p {
                 execution_rate = "Ts_Control"
                 signal_access = "Inherit"
@@ -2495,7 +2487,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 7396, 8596
             ]
 
-            component "core/Scope" "Reference Tracking" {
+            component "core/Scope" "Current Reference Tracking" {
                 selected_signals = "[\'SCADA.is_d_ref\', \'SCADA.is_d\', \'SCADA.is_q_ref\', \'SCADA.is_q\']"
                 signals_data = "{\"signals\": {\"SCADA.is_d_ref\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.is_d\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.is_q_ref\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.is_q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
             }
@@ -2667,7 +2659,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signals_data = "{\"signals\": {\"SCADA.omega_SCADA\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.theta_SCADA\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
             }
             [
-                position = 7576, 8796
+                position = 7380, 9020
             ]
 
             component "core/Probe" p_ref_SCADA {
@@ -2688,12 +2680,12 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 8548, 8628
             ]
 
-            component "core/Scope" "Reference Tracking1" {
-                selected_signals = "[\'SCADA.p\', \'SCADA.p_fil\', \'SCADA.q\', \'SCADA.q_fil\']"
-                signals_data = "{\"signals\": {\"SCADA.p\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.p_fil\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.q_fil\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
+            component "core/Scope" "Power Reference Tracking" {
+                selected_signals = "[\'SCADA.p\', \'SCADA.p_fil\', \'SCADA.q\', \'SCADA.q_fil\', \'SCADA.q_ref_SCADA\', \'SCADA.p_ref_SCADA\']"
+                signals_data = "{\"signals\": {\"SCADA.p\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.p_fil\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.p_ref_SCADA\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.q_fil\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.q_ref_SCADA\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
             }
             [
-                position = 7508, 9188
+                position = 8676, 8616
             ]
 
             component "core/Probe" v_dc_ref_SCADA {
@@ -2705,7 +2697,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 8744, 8392
             ]
 
-            component "core/Scope" "Reference Tracking2" {
+            component "core/Scope" "DC voltage Reference Tracking" {
                 selected_signals = "[\'SCADA.v_dc_ref_SCADA\', \'SCADA.v_dc_SCADA\']"
                 signals_data = "{\"signals\": {\"SCADA.v_dc_ref_SCADA\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.v_dc_SCADA\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
             }
@@ -2719,7 +2711,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7244, 9332
+                position = 7292, 9236
             ]
 
             component "core/Clock" Clock1 {
@@ -2957,7 +2949,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7152, 9328
+                position = 7200, 9232
             ]
 
             port time {
@@ -3091,7 +3083,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 direction = in
             }
             [
-                position = 7748, 8016
+                position = 7748, 8020
                 hide_name = True
                 size = 60, 20
             ]
@@ -3103,7 +3095,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 direction = in
             }
             [
-                position = 7748, 8104
+                position = 7748, 8108
                 hide_name = True
                 size = 60, 20
             ]
@@ -3115,7 +3107,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 direction = in
             }
             [
-                position = 7748, 8192
+                position = 7748, 8196
                 hide_name = True
                 size = 60, 20
             ]
@@ -3127,7 +3119,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 direction = in
             }
             [
-                position = 7748, 8280
+                position = 7748, 8284
                 hide_name = True
                 size = 60, 20
             ]
@@ -3265,7 +3257,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 direction = out
             }
             [
-                position = 7228, 8008
+                position = 7236, 8012
                 hide_name = True
                 size = 60, 20
             ]
@@ -3370,7 +3362,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             connect q_ref_SCADA.in Junction2 as Connection840
         }
         [
-            position = 9160, 8516
+            position = 9164, 8516
             size = 248, 704
         ]
 
@@ -3609,7 +3601,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8784, 8268
+            position = 8784, 8272
             hide_name = True
             size = 60, 20
         ]
@@ -3633,7 +3625,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8784, 8324
+            position = 8784, 8336
             hide_name = True
             size = 60, 20
         ]
@@ -3657,7 +3649,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8780, 8596
+            position = 8780, 8592
             hide_name = True
             size = 60, 20
         ]
@@ -3681,7 +3673,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8784, 8404
+            position = 8784, 8400
             hide_name = True
             size = 60, 20
         ]
@@ -3693,7 +3685,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8780, 8532
+            position = 8780, 8528
             hide_name = True
             size = 60, 20
         ]

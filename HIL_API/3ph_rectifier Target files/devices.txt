@@ -1,0 +1,109 @@
+pPhIlT1gvWuN0Ev/jeM8OTpo3gnihGsMlmFO7NUchDWhtqEbgobycMDAckIG79vtTL9A8ZPrYwrioluvYhRcmg==
+{
+  "compilation_timestamp": "2026-06-09 19:00:48",
+  "sw_version": "2025.4",
+  "devices": [
+    {
+      "device_type": "HIL402",
+      "hw_id": "6245008a45a00915bbda137110a47a26fdf21b5e46a97168fa9ad007bf728531",
+      "serial_no": "00402-01-00003",
+      "license_expiry": "2111-08-10",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL402",
+      "hw_id": "8768b7cd28611d35b908e7f1329820beb4328051b54f2ed29d6631c5557b95fe",
+      "serial_no": "00402-01-00005",
+      "license_expiry": "2111-08-10",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL404",
+      "hw_id": "0e971ad47ef0e813d02e50e6bf510a3764faf35145a59e2471d1483e1914ee9d",
+      "serial_no": "00404-08-00373",
+      "license_expiry": "2111-08-10",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "a2cfd19c9284a7cecb0e64576c720f3efa78a2ecc96e7d0cb77c8a82af0a56dd",
+      "serial_no": "00101-00-00072",
+      "license_expiry": "2027-03-24",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "6dd380bda4cc008ecb1e8673a3379768ae36ca8dce1f24b84c84c52387d65cb3",
+      "serial_no": "00101-00-00073",
+      "license_expiry": "2027-03-24",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "7b5393682bcdcf5a879850dc2f5054df376b5b82723907a1104d337b1be01bbc",
+      "serial_no": "00101-00-00074",
+      "license_expiry": "2027-03-24",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "6adff57cee06cbf12ea6f7f2e70fda171b58a9450a6ef13d5d8400ae8efc6f20",
+      "serial_no": "00101-00-00075",
+      "license_expiry": "2027-03-24",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "d88dd2ba2ea427f3e7cab1258be3fda03cd3723db8fa031547ea2e92f8c6833c",
+      "serial_no": "00101-00-00076",
+      "license_expiry": "2027-03-24",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "b6a5cf75778d0b4cef7335608d612a26ad4e5207f0b2a7080c88787215e9688f",
+      "serial_no": "00101-00-00225",
+      "license_expiry": "2030-01-01",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    }
+  ]
+}
+-----BEGIN SIGNATURE-----
+daTeNuUB9r03f3A//hl7InxoVzebjy+c+4gkoRZ2hc5ddWiYsYxY4dSJ5mxm0pz7wmMSQSP9GuaE9rl0q18CgG+trp3Ua003fcVmbFc+ZydWkS+EeJQZzF6SMmJNuAE5rAUBGce/L68E7yT7N7xXfeec3X0I2Rki4cXy2zgr+6p7n5uwHnSNTtWJCa67u9rijzL5MlkYJoAKKqsEUbOkUnyFsomXz7Y9+fDJJYixgQq74s2Z0C7FnPMdljzbBHIfq/YlZ9gOodDd3IbnGTlfYt/hCEibNCHSOK0iXm7vMYjv92xPxs3Odq+03oCQ34GA7Hvr86taGWKgxVRDH9RDCQ==
+-----END SIGNATURE-----

@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.1 SP1
+// Saved by sw version: 2025.4
 //
 
 model "dq_current_ctrl_v2" {
@@ -21,6 +21,7 @@ model "dq_current_ctrl_v2" {
         reset_analog_outputs_on_sim_stop_mode = Offset values
         reset_digital_outputs_on_sim_stop = True
         vhil_adio_loopback = False
+        dma_enable = False
         cpl_stb = False
         enb_dep_sw_detect = False
         code_section = "internal memory"
@@ -85,7 +86,7 @@ model "dq_current_ctrl_v2" {
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real abc;real theta;"
-                input_terminals_dimensions = "3;1"
+                input_terminals_dimensions = "(3,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -93,7 +94,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                 output_terminals = "real d;real q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
             }
@@ -121,7 +122,7 @@ y_q = 0;
 theta = 0;
 /*End code section*/"
                 input_terminals = "real abc;inherit init_pll;"
-                input_terminals_dimensions = "3;inherit"
+                input_terminals_dimensions = "(3,);inherit"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -138,7 +139,7 @@ omega_pll = K_p_pll*e_q + y_q;
 theta_pll = theta;
 /*End code section*/"
                 output_terminals = "real d;real q;real theta_pll;real omega_pll;real e_q;"
-                output_terminals_dimensions = "1;1;1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True"
                 parameters = "real K_p_pll;real K_i_pll;real Ts_Control;"
@@ -199,7 +200,7 @@ y_d = 0.0;
 y_q = 0.0;
 /*End code section*/"
                 input_terminals = "real is_dq_ref;real is_dq;real vs_dq;real omega_pll;real v_dc;real reset_int;"
-                input_terminals_dimensions = "2;2;2;1;1;1"
+                input_terminals_dimensions = "(2,);(2,);(2,);(1,);(1,);(1,)"
                 input_terminals_feedthrough = "True;True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -208,7 +209,7 @@ eta_d = (2/v_dc) * (Kp_i*e_d + y_d -   L*omega_pll*is_dq[1] + vs_dq[0]);
 eta_q = (2/v_dc )* (Kp_i*e_q + y_q +  L*omega_pll*is_dq[0] + vs_dq[1]);
 /*End code section*/"
                 output_terminals = "real eta_d;real eta_q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
                 parameters = "real Kp_i;real Ki_i;real Ts_Control;real L;real T_on_contactor;"
@@ -250,7 +251,7 @@ if (reset_int<0.5){
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real dq;real theta;"
-                input_terminals_dimensions = "2;1"
+                input_terminals_dimensions = "(2,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -259,7 +260,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 output_terminals = "real a;real b;real c;"
-                output_terminals_dimensions = "1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True"
                 output_terminals_show_labels = "True;True;True"
             }
@@ -798,7 +799,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = in
             }
             [
-                position = 6220, 7284
+                position = 6216, 7284
                 hide_name = True
                 size = 60, 20
             ]
@@ -970,7 +971,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 direction = out
             }
             [
-                position = 6728, 7616
+                position = 6724, 7612
                 rotation = down
                 hide_name = True
                 scale = -1, 1
@@ -1660,7 +1661,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             build_and_deploy_action = "False"
             c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "dq_current_ctrl_acg"
-            ccs_project_path = "C:/workspace/Typhoon_USE/chil/chil"
+            ccs_project_path = "C:\workspace\Typhoon_USE\chil_Auto_code_gen\VSC_USE\updated"
             ccs_root_path = "C:\ti\ccs1210"
             exp_subsys_name = "dq_current_ctrl"
         }
@@ -1744,12 +1745,14 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             max_delay_length = "20"
             init_value = "0"
             signal_out_type = "inherit"
+            tml_file = "gen_delay"
             execution_rate = "inherit"
         }
 
         "core/Gain" {
             gain = "1"
             multiplication = "Element-wise(K.*u)"
+            tml_file = "gen_gain"
             _tunable = "False"
             execution_rate = "inherit"
         }
@@ -1853,7 +1856,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             S_top_I = "False"
             S_bot_I = "False"
             _control_property = "all high"
-            switches_names_at_mask = "[]"
+            switches_names_at_mask = "[\'S_top\', \'S_bot\']"
             pwm_enabling = "False"
             pwm_enable_di = "13"
             pwm_enable_inv = "active high"
@@ -2051,7 +2054,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
         R_s = omega*L_s/10
         Ts = 50e-6
         AO_offset = 1.5
-        I_scale = 90/3 #105 max volta - (-150) min voltage. 3 max voltage DSP
+        I_scale = 90/3 #45 max volta - (-45) min voltage. 3 max voltage DSP
         V_scale = 720/3 #360 max volta - (-360) min voltage. 3 max voltage DSP
         Tslow = 1e-3
         Ts_Control = 50e-6

@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.1 SP1
+// Saved by sw version: 2025.4
 //
 
 model "dq_power_ctrl_v2_sim" {
@@ -21,6 +21,7 @@ model "dq_power_ctrl_v2_sim" {
         reset_analog_outputs_on_sim_stop_mode = Offset values
         reset_digital_outputs_on_sim_stop = True
         vhil_adio_loopback = False
+        dma_enable = False
         cpl_stb = False
         enb_dep_sw_detect = False
         code_section = "internal memory"
@@ -85,7 +86,7 @@ model "dq_power_ctrl_v2_sim" {
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real abc;real theta;"
-                input_terminals_dimensions = "3;1"
+                input_terminals_dimensions = "(3,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -93,7 +94,7 @@ d= 2.0/3.0*(cos(theta)*abc[0] + cos(theta - 2.0/3.0*M_PI)*abc[1]  + cos(theta + 
 q = 2.0/3.0*(-sin(theta)*abc[0] - sin(theta - 2.0/3.0*M_PI)*abc[1]  - sin(theta + 2.0/3.0*M_PI)*abc[2] );
 /*End code section*/"
                 output_terminals = "real d;real q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
             }
@@ -121,7 +122,7 @@ y_q = 0;
 theta = 0;
 /*End code section*/"
                 input_terminals = "real abc;"
-                input_terminals_dimensions = "3"
+                input_terminals_dimensions = "(3,)"
                 input_terminals_feedthrough = "True"
                 input_terminals_show_labels = "True"
                 output_fnc = "/*Begin code section*/
@@ -138,7 +139,7 @@ omega_pll = K_p_pll*e_q + y_q;
 theta_pll = theta;
 /*End code section*/"
                 output_terminals = "real d;real q;real theta_pll;real omega_pll;real e_q;"
-                output_terminals_dimensions = "1;1;1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True"
                 parameters = "real K_p_pll;real K_i_pll;real Ts_Control;"
@@ -194,7 +195,7 @@ y_d = 0.0;
 y_q = 0.0;
 /*End code section*/"
                 input_terminals = "real is_dq_ref;real is_dq;real vs_dq;real omega_pll;real v_dc;real time;"
-                input_terminals_dimensions = "2;2;2;1;1;1"
+                input_terminals_dimensions = "(2,);(2,);(2,);(1,);(1,);(1,)"
                 input_terminals_feedthrough = "True;True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -203,7 +204,7 @@ eta_d = (2/v_dc) * (Kp_i*e_d + y_d -   L*omega_pll*is_dq[1] + vs_dq[0]);
 eta_q = (2/v_dc )* (Kp_i*e_q + y_q +  L*omega_pll*is_dq[0] + vs_dq[1]);
 /*End code section*/"
                 output_terminals = "real eta_d;real eta_q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
                 parameters = "real Kp_i;real Ki_i;real Ts_Control;real L;real T_on_contactor;"
@@ -245,7 +246,7 @@ if (time<T_on_contactor){
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real dq;real theta;"
-                input_terminals_dimensions = "2;1"
+                input_terminals_dimensions = "(2,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -254,7 +255,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 output_terminals = "real a;real b;real c;"
-                output_terminals_dimensions = "1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True"
                 output_terminals_show_labels = "True;True;True"
             }
@@ -307,7 +308,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real pq_ref;real vs_dq;real time;"
-                input_terminals_dimensions = "2;2;1"
+                input_terminals_dimensions = "(2,);(2,);(1,)"
                 input_terminals_feedthrough = "True;True;True"
                 input_terminals_show_labels = "True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -320,7 +321,7 @@ if (time>0.001){
 }
 /*End code section*/"
                 output_terminals = "real is_d_ref;real is_q_ref;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
             }
@@ -1164,14 +1165,9 @@ if (time>0.001){
                 position = 9044, 7136
             ]
 
-            comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Current references</p></body></html> ENDCOMMENT 
+            comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Current references computation </p></body></html> ENDCOMMENT 
             [
-                position = 7620, 7168
-            ]
-
-            comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">PQ references and current references computation</p></body></html> ENDCOMMENT 
-            [
-                position = 7436, 7136
+                position = 7572, 7136
             ]
 
             connect Clock1.out "C function PI current controller.time" as Connection753
@@ -2166,14 +2162,6 @@ if (time>0.001){
 
         component Subsystem SCADA {
             layout = dynamic
-            component "core/Scope" Powers {
-                selected_signals = "[\"p\", \"q\", \"p_fil\", \"q_fil\"]"
-                signals_data = "{\"signals\": {\"p\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"p_fil\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"q_fil\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
-            }
-            [
-                position = 8184, 8120
-            ]
-
             component "core/Probe" p {
                 execution_rate = "Ts_Control"
                 signal_access = "Inherit"
@@ -2304,7 +2292,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7388, 8540
+                position = 7096, 8476
             ]
 
             component "core/Probe" is_q_ref {
@@ -2313,15 +2301,15 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7396, 8596
+                position = 7104, 8532
             ]
 
-            component "core/Scope" "Reference Tracking" {
+            component "core/Scope" "Current Reference Tracking" {
                 selected_signals = "[\'SCADA.is_d_ref\', \'SCADA.is_d\', \'SCADA.is_q_ref\', \'SCADA.is_q\']"
-                signals_data = "{\"signals\": {\"SCADA.is_d_ref\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.is_d\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.is_q_ref\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.is_q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
+                signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}, \"signals\": {\"SCADA.is_d_ref\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.is_d\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.is_q_ref\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.is_q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
             }
             [
-                position = 7548, 8580
+                position = 7228, 8504
             ]
 
             component "core/Probe" is_d {
@@ -2330,7 +2318,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7436, 8760
+                position = 7144, 8696
             ]
 
             component "core/Probe" is_q {
@@ -2339,7 +2327,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7440, 8816
+                position = 7148, 8752
             ]
 
             component "core/Probe" eta_a {
@@ -2348,7 +2336,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7424, 8372
+                position = 7132, 8308
             ]
 
             component "core/Probe" eta_b {
@@ -2357,7 +2345,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7424, 8424
+                position = 7132, 8360
             ]
 
             component "core/Probe" eta_c {
@@ -2366,7 +2354,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7424, 8492
+                position = 7132, 8428
             ]
 
             component "core/Probe" eta_d {
@@ -2375,7 +2363,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7396, 8864
+                position = 7104, 8800
             ]
 
             component "core/Probe" eta_q {
@@ -2384,7 +2372,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7396, 8920
+                position = 7104, 8856
             ]
 
             component "core/Probe" v_d {
@@ -2393,7 +2381,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7392, 8656
+                position = 7100, 8592
             ]
 
             component "core/Probe" v_q {
@@ -2402,7 +2390,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7392, 8716
+                position = 7100, 8652
             ]
 
             component "core/Bus Split" "Bus Split1" {
@@ -2410,35 +2398,35 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 outputs = "3"
             }
             [
-                position = 7308, 8424
+                position = 7016, 8360
             ]
 
             component "core/Bus Split" "Bus Split2" {
                 execution_rate = "Ts_Control"
             }
             [
-                position = 7308, 8548
+                position = 7016, 8484
             ]
 
             component "core/Bus Split" "Bus Split3" {
                 execution_rate = "Ts_Control"
             }
             [
-                position = 7288, 8672
+                position = 6996, 8608
             ]
 
             component "core/Bus Split" "Bus Split4" {
                 execution_rate = "Ts_Control"
             }
             [
-                position = 7288, 8776
+                position = 6996, 8712
             ]
 
             component "core/Bus Split" "Bus Split5" {
                 execution_rate = "Ts_Control"
             }
             [
-                position = 7292, 8880
+                position = 7000, 8816
             ]
 
             component "core/Probe" omega_SCADA {
@@ -2447,7 +2435,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7268, 8968
+                position = 6976, 8904
             ]
 
             component "core/Probe" theta_SCADA {
@@ -2456,7 +2444,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signal_name = "q"
             }
             [
-                position = 7276, 9056
+                position = 6984, 8992
             ]
 
             component "core/Probe" is_a_SCADA {
@@ -2488,10 +2476,10 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 signals_data = "{\"signals\": {\"SCADA.omega_SCADA\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.theta_SCADA\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
             }
             [
-                position = 7576, 8796
+                position = 7100, 8940
             ]
 
-            component "core/Scope" "Reference Tracking1" {
+            component "core/Scope" "Power Reference Tracking" {
                 selected_signals = "[\'SCADA.p_ref\', \'SCADA.p\', \'SCADA.p_fil\', \'SCADA.q_ref\', \'SCADA.q\', \'SCADA.q_fil\']"
                 signals_data = "{\"signals\": {\"SCADA.p_ref\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.p\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.p_fil\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}}, \"SCADA.q_ref\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}}, \"SCADA.q_fil\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}, \"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true}}"
             }
@@ -2512,7 +2500,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 step_time = "0.3"
             }
             [
-                position = 8340, 8252
+                position = 8324, 8200
             ]
 
             component "core/Step" qref {
@@ -2521,7 +2509,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 step_time = "0.5"
             }
             [
-                position = 8340, 8328
+                position = 8308, 8352
             ]
 
             component "core/Probe" p_ref {
@@ -2645,7 +2633,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7200, 8424
+                position = 6908, 8360
             ]
 
             port omega {
@@ -2658,7 +2646,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7176, 8976
+                position = 6884, 8912
             ]
 
             port is_dq_ref {
@@ -2671,7 +2659,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7204, 8548
+                position = 6912, 8484
             ]
 
             port is_dq {
@@ -2684,7 +2672,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7200, 8776
+                position = 6908, 8712
             ]
 
             port eta_dq {
@@ -2697,7 +2685,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7176, 8880
+                position = 6884, 8816
             ]
 
             port vs_dq {
@@ -2710,7 +2698,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7208, 8672
+                position = 6916, 8608
             ]
 
             port theta {
@@ -2723,7 +2711,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 }
             }
             [
-                position = 7176, 9052
+                position = 6884, 8988
             ]
 
             port time {
@@ -3055,6 +3043,11 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             junction Junction2 sp
             [
                 position = 8428, 8328
+            ]
+
+            comment Comment8 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><meta charset="utf-8" /><style type="text/css">p, li { white-space: pre-wrap; }hr { height: 1px; border-width: 0; }li.unchecked::marker { content: "\2610"; }li.checked::marker { content: "\2612"; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">PQ references </p></body></html> ENDCOMMENT 
+            [
+                position = 8252, 8272
             ]
 
             connect p.in From50 as Connection451
@@ -3861,6 +3854,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
 
         "core/Three Phase Inverter" {
             signal_access = "inherit"
+            switches_names_at_mask = "[\'Sa_top\', \'Sa_bot\', \'Sb_top\', \'Sb_bot\', \'Sc_top\', \'Sc_bot\']"
             ctrl_src = "Digital input per switch"
             op_mode = "Fixed carrier frequency"
             carrier_freq = "10000.0"
@@ -3881,6 +3875,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             Sc_top_logic = "active high"
             Sc_bot = "6"
             Sc_bot_logic = "active high"
+            _overridable_switches = "[\'Sa_top\', \'Sa_bot\', \'Sb_top\', \'Sb_bot\', \'Sc_top\', \'Sc_bot\']"
             delay_enabled = "False"
             fixed_delay = "1e-6"
             var_delay_lut = "[-10.0, 1e-6, 10.0, 1e-6]"
