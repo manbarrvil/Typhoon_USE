@@ -1,7 +1,7 @@
 version = 4.2
 
 //
-// Saved by sw version: 2025.1 SP1
+// Saved by sw version: 2025.4
 //
 
 model "dq_pivsg_ctrl_v2" {
@@ -21,6 +21,7 @@ model "dq_pivsg_ctrl_v2" {
         reset_analog_outputs_on_sim_stop_mode = Offset values
         reset_digital_outputs_on_sim_stop = True
         vhil_adio_loopback = False
+        dma_enable = False
         cpl_stb = False
         enb_dep_sw_detect = False
         code_section = "internal memory"
@@ -90,7 +91,7 @@ y_d = 0;
 theta = 0;
 /*End code section*/"
                 input_terminals = "real abc;inherit init_pll;"
-                input_terminals_dimensions = "3;inherit"
+                input_terminals_dimensions = "(3,);inherit"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -107,7 +108,7 @@ omega_pll = K_p_pll*e_d + y_d;
 theta_pll = theta;
 /*End code section*/"
                 output_terminals = "real d;real q;real theta_pll;real omega_pll;real e_d;"
-                output_terminals_dimensions = "1;1;1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True"
                 parameters = "real K_p_pll;real K_i_pll;real Ts_Control;"
@@ -146,7 +147,7 @@ if (theta<0.0){
 /*End code section*/"
                 execution_rate = "Ts_Control"
                 input_terminals = "real dq;real theta;"
-                input_terminals_dimensions = "2;1"
+                input_terminals_dimensions = "(2,);(1,)"
                 input_terminals_feedthrough = "True;True"
                 input_terminals_show_labels = "True;True"
                 output_fnc = "/*Begin code section*/
@@ -155,7 +156,7 @@ b= cos(theta -2.0/3.0*M_PI)*dq[0]  - sin(theta-2.0/3.0*M_PI)*dq[1];
 c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
 /*End code section*/"
                 output_terminals = "real a;real b;real c;"
-                output_terminals_dimensions = "1;1;1"
+                output_terminals_dimensions = "(1,);(1,);(1,)"
                 output_terminals_feedthrough = "True;True;True"
                 output_terminals_show_labels = "True;True;True"
             }
@@ -438,7 +439,7 @@ e_p = 0.0;
 e_q = 0.0;
 /*End code section*/"
                 input_terminals = "real p_m_ref;real q_s_ref;real reset_int;real is_abc;real vs_abc;real omega_base;real vsg_on;"
-                input_terminals_dimensions = "1;1;1;3;3;1;1"
+                input_terminals_dimensions = "(1,);(1,);(1,);(3,);(3,);(1,);(1,)"
                 input_terminals_feedthrough = "True;True;True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -480,7 +481,7 @@ if (vsg_on<0.5){
 }
 /*End code section*/"
                 output_terminals = "real is_dq_ref;real omega_vsg;real theta_vsg;real e;real p_s;real q_s;real vs_d;real vs_q;real is_d;real is_q;real is_dq_ref_fil;"
-                output_terminals_dimensions = "2;1;1;1;1;1;1;1;1;1;2"
+                output_terminals_dimensions = "(2,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(2,)"
                 output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True"
                 parameters = "real Kp_p;real Ki_p;real Kp_q;real Ki_q;real Xv;real Rv;real I_bdq;real e_o;real U_bdq;real Ts_Control;real tau_vsg;"
@@ -562,7 +563,7 @@ y_d = 0.0;
 y_q = 0.0;
 /*End code section*/"
                 input_terminals = "real is_dq_ref;real is_dq;real vs_dq;real omega_pll;real v_dc;real reset_int;"
-                input_terminals_dimensions = "2;2;2;1;1;1"
+                input_terminals_dimensions = "(2,);(2,);(2,);(1,);(1,);(1,)"
                 input_terminals_feedthrough = "True;True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -571,7 +572,7 @@ eta_d = (2/v_dc) * (Kp_i*e_d + y_d -   L*2*M_PI*50*is_dq[1] + vs_dq[0]);
 eta_q = (2/v_dc )* (Kp_i*e_q + y_q +  L*2*M_PI*50*is_dq[0] + vs_dq[1]);
 /*End code section*/"
                 output_terminals = "real eta_d;real eta_q;"
-                output_terminals_dimensions = "1;1"
+                output_terminals_dimensions = "(1,);(1,)"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
                 parameters = "real Kp_i;real Ki_i;real Ts_Control;real L;real T_on_contactor;"
@@ -624,21 +625,21 @@ if (reset_int<0.5){
             component "core/Signal switch" "Signal switch1" {
             }
             [
-                position = 6840, 7744
+                position = 6840, 7748
             ]
 
             component "core/Constant" Constant7 {
                 execution_rate = "Ts_Control"
             }
             [
-                position = 6684, 7728
+                position = 6684, 7732
             ]
 
             component "core/Gain" Gain2 {
                 gain = "1/omega"
             }
             [
-                position = 6748, 7792
+                position = 6748, 7796
             ]
 
             component "core/Gain" Gain3 {
@@ -1444,7 +1445,7 @@ if (reset_int<0.5){
                 direction = out
             }
             [
-                position = 6672, 7792
+                position = 6672, 7796
                 hide_name = True
                 size = 60, 20
             ]
@@ -1456,7 +1457,7 @@ if (reset_int<0.5){
                 direction = out
             }
             [
-                position = 6708, 7680
+                position = 6708, 7684
                 hide_name = True
                 size = 60, 20
             ]
@@ -1504,7 +1505,7 @@ if (reset_int<0.5){
                 direction = out
             }
             [
-                position = 6812, 7840
+                position = 6812, 7844
                 hide_name = True
                 size = 60, 20
             ]
@@ -2154,7 +2155,7 @@ if (reset_int<0.5){
             build_and_deploy_action = "False"
             c2000ware_root_path = "C:\ti\c2000\C2000Ware_5_04_00_00"
             ccs_project_name = "dq_pivsg_ctrl_acg"
-            ccs_project_path = "C:/workspace/Typhoon_USE/chil/chil"
+            ccs_project_path = "C:\workspace\Typhoon_USE\chil_Auto_code_gen\VSC_USE\updated"
             ccs_root_path = "C:\ti\ccs1210"
             exp_subsys_name = "dq_pivsg_ctrl"
         }
@@ -2233,12 +2234,14 @@ if (reset_int<0.5){
             max_delay_length = "20"
             init_value = "0"
             signal_out_type = "inherit"
+            tml_file = "gen_delay"
             execution_rate = "inherit"
         }
 
         "core/Gain" {
             gain = "1"
             multiplication = "Element-wise(K.*u)"
+            tml_file = "gen_gain"
             _tunable = "False"
             execution_rate = "inherit"
         }
@@ -2348,7 +2351,7 @@ if (reset_int<0.5){
             S_top_I = "False"
             S_bot_I = "False"
             _control_property = "all high"
-            switches_names_at_mask = "[]"
+            switches_names_at_mask = "[\'S_top\', \'S_bot\']"
             pwm_enabling = "False"
             pwm_enable_di = "13"
             pwm_enable_inv = "active high"
