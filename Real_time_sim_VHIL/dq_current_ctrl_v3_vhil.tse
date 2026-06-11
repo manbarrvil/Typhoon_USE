@@ -2370,7 +2370,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 unit = ""
             }
             [
-                position = 8536, 8300
+                position = 8504, 8232
             ]
 
             component "core/SCADA Input" i_q_ref {
@@ -2379,7 +2379,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 unit = ""
             }
             [
-                position = 8536, 8364
+                position = 8484, 8440
             ]
 
             component "core/SCADA Input" startFSM {
@@ -2405,7 +2405,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 unit = ""
             }
             [
-                position = 8504, 8668
+                position = 8500, 8668
             ]
 
             component "core/Rate Transition" "Rate Transition7" {
@@ -2500,6 +2500,14 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             }
             [
                 position = 8680, 8740
+            ]
+
+            component "core/Constant" startAC_API {
+                execution_rate = "10e-3"
+                value = "0"
+            }
+            [
+                position = 8412, 8784
             ]
 
             port vs_a {
@@ -3165,7 +3173,6 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             connect "Bus Join10.in" Junction6 as Connection824
             connect is_d_ref.in Junction6 as Connection826
             connect startFSM.out "Rate Transition7.in" as Connection829
-            connect startAC.out "Rate Transition8.in" as Connection831
             connect i_q_ref.out "Rate Transition9.in" as Connection833
             connect "Rate Transition9.out" Junction5 as Connection834
             connect Junction6 "Rate Transition10.out" as Connection835
@@ -3191,6 +3198,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             connect "Rate Transition8.out" Junction9 as Connection859
             connect Junction9 start_AC as Connection860
             connect sAC.in Junction9 as Connection861
+            connect startAC.out "Rate Transition8.in" as Connection862
         }
         [
             position = 9164, 8560
@@ -3902,6 +3910,10 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
         connect "Rate Transition22.out" Goto54 as Connection871
         connect Goto53 "Rate Transition23.out" as Connection872
         connect "Rate Transition23.in" SCADA.is_dq_ref as Connection873
+    }
+
+    logically_deleted {
+        "SCADA.startAC_API"
     }
 
     default {
