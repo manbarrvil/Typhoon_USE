@@ -108,7 +108,14 @@ typedef double real;
 
 
 
+
+
+
+
     
+
+
+
 
 
 
@@ -183,6 +190,12 @@ typedef double real;
 
 
 // const variables
+    
+static const real _controller_constant1__p_value=0.005;
+
+    
+static const real _controller_constant2__p_value=0.2;
+
     static const int _plant_vdc_va1__n_rd_as=13107200;
 static const unsigned int _plant_vdc_va1__p_addr=8;static const char* _plant_vdc_va1__p_sig_output="True";
 
@@ -223,19 +236,22 @@ static const unsigned int _plant_vt_b_va1__p_addr=13;static const char* _plant_v
 static const unsigned int _plant_vt_c_va1__p_addr=14;static const char* _plant_vt_c_va1__p_sig_output="True";
 
     
+static const unsigned int _rate_transition24_output__p_addr=792723456;static const unsigned char _rate_transition24_output__p_rate_transition_as_cpu_transition=0;
+
+    
 static const real _scada_constant1__p_value=0.0;
 
     
-static const unsigned int _scada_rate_transition10_output__p_addr=792723456;static const unsigned char _scada_rate_transition10_output__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition10_output__p_addr=792723460;static const unsigned char _scada_rate_transition10_output__p_rate_transition_as_cpu_transition=0;
 
     
-static const unsigned int _scada_rate_transition7_output__p_addr=792723460;static const unsigned char _scada_rate_transition7_output__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition7_output__p_addr=792723464;static const unsigned char _scada_rate_transition7_output__p_rate_transition_as_cpu_transition=0;
 
     
-static const unsigned int _scada_rate_transition8_output__p_addr=792723464;static const unsigned char _scada_rate_transition8_output__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition8_output__p_addr=792723468;static const unsigned char _scada_rate_transition8_output__p_rate_transition_as_cpu_transition=0;
 
     
-static const unsigned int _scada_rate_transition9_output__p_addr=792723468;static const unsigned char _scada_rate_transition9_output__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition9_output__p_addr=792723472;static const unsigned char _scada_rate_transition9_output__p_rate_transition_as_cpu_transition=0;
 
     static const int _scada_v_h__n_out_size=1;
 static const unsigned int _scada_v_h__p_addr=16388;
@@ -272,6 +288,12 @@ static const real _scada_rms_value8__p_execution_rate=5e-05;static const char* _
 
     static const real _scada_rms_value6__n_a[1]={0.3141592653589793};static const real _scada_rms_value6__n_b[1]={0.6858407346410207};static const int _scada_rms_value6__n_filt_en=1;static const int _scada_rms_value6__n_out_size=1;static const real _scada_rms_value6__n_period_deadband[1]={0.0};static const int _scada_rms_value6__n_timeout[1]={10000};static const real _scada_rms_value6__n_wt_increment[1]={0.015707963267948967};
 static const real _scada_rms_value6__p_execution_rate=5e-05;static const char* _scada_rms_value6__p_frequency_src="Internal";static const char* _scada_rms_value6__p_op_mode="PLL based";
+
+    static const int _controller_product1__n_in_size=1;static const int _controller_product1__n_num_of_terminals=2;static const unsigned char _controller_product1__n_signs_bool[2]={1, 0};
+
+
+    static const int _controller_product2__n_in_size=1;static const int _controller_product2__n_num_of_terminals=2;static const unsigned char _controller_product2__n_signs_bool[2]={1, 0};
+
 
     static const int _scada_fault_type__n_out_size=1;
 static const unsigned int _scada_fault_type__p_addr=16385;
@@ -310,16 +332,19 @@ static const unsigned int _scada_sac__p_addr=16410;
 static const unsigned int _scada_is_q_ref__p_addr=16406;
 
     
-static const unsigned int _scada_rate_transition10_input__p_addr=792723456;static const real _scada_rate_transition10_input__p_init_value=0.0;static const unsigned char _scada_rate_transition10_input__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition10_input__p_addr=792723460;static const real _scada_rate_transition10_input__p_init_value=0.0;static const unsigned char _scada_rate_transition10_input__p_rate_transition_as_cpu_transition=0;
 
     
-static const unsigned int _scada_rate_transition9_input__p_addr=792723468;static const real _scada_rate_transition9_input__p_init_value=0.0;static const unsigned char _scada_rate_transition9_input__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition9_input__p_addr=792723472;static const real _scada_rate_transition9_input__p_init_value=0.0;static const unsigned char _scada_rate_transition9_input__p_rate_transition_as_cpu_transition=0;
 
     
-static const unsigned int _scada_rate_transition8_input__p_addr=792723464;static const real _scada_rate_transition8_input__p_init_value=0.0;static const unsigned char _scada_rate_transition8_input__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition8_input__p_addr=792723468;static const real _scada_rate_transition8_input__p_init_value=0.0;static const unsigned char _scada_rate_transition8_input__p_rate_transition_as_cpu_transition=0;
 
     
-static const unsigned int _scada_rate_transition7_input__p_addr=792723460;static const real _scada_rate_transition7_input__p_init_value=0.0;static const unsigned char _scada_rate_transition7_input__p_rate_transition_as_cpu_transition=0;
+static const unsigned int _scada_rate_transition7_input__p_addr=792723464;static const real _scada_rate_transition7_input__p_init_value=0.0;static const unsigned char _scada_rate_transition7_input__p_rate_transition_as_cpu_transition=0;
+
+    
+static const unsigned int _rate_transition24_input__p_addr=792723456;static const real _rate_transition24_input__p_init_value=0.0;static const unsigned char _rate_transition24_input__p_rate_transition_as_cpu_transition=0;
 
     static const int _scada_iarms__n_out_size=1;
 static const unsigned int _scada_iarms__p_addr=16397;
@@ -423,6 +448,8 @@ static const unsigned int _scada_eta_c__p_addr=16393;
 
 //@cmp.var.start
 // variables
+    static real _controller_constant1__out;
+    static real _controller_constant2__out;
     real _plant_vdc_va1__out;
     real _plant_is_a_ia1__out;
     real _plant_is_b_ia1__out;
@@ -436,6 +463,7 @@ static const unsigned int _scada_eta_c__p_addr=16393;
     real _plant_vt_a_va1__out;
     real _plant_vt_b_va1__out;
     real _plant_vt_c_va1__out;
+    real _rate_transition24_output__out;
     static real _scada_constant1__out;
     double _scada_control__out;
     real _scada_rate_transition10_output__out;
@@ -446,6 +474,7 @@ static const unsigned int _scada_eta_c__p_addr=16393;
     double _scada_i_q_ref__out;
     X_UnInt32 _scada_startac__out;
     X_UnInt32 _scada_startfsm__out;
+    double _scada_tau_c__out;
   
 
   
@@ -478,6 +507,8 @@ static const unsigned int _scada_eta_c__p_addr=16393;
                     double _scada_c_function_powers__q_f;
 
     static real _scada_rms_value6__out;
+    static real _controller_product1__out;
+    static real _controller_product2__out;
   
 
   
@@ -504,6 +535,7 @@ static const unsigned int _scada_eta_c__p_addr=16393;
   
 
   
+    
     
     
     
@@ -572,6 +604,8 @@ static const unsigned int _scada_eta_c__p_addr=16393;
   
 
   
+                double _controller_c_function_pi_current_controller__Ki_i;
+                double _controller_c_function_pi_current_controller__Kp_i;
                 double _controller_c_function_pi_current_controller__is_dq[2];
                 double _controller_c_function_pi_current_controller__is_dq_ref[2];
                 double _controller_c_function_pi_current_controller__omega_pll;
@@ -686,6 +720,15 @@ static const unsigned int _scada_eta_c__p_addr=16393;
     
 
 
+    
+
+
+    
+
+
+    
+
+
     real _scada_rms_value1__square_sum[1];real _scada_rms_value1__sample_cnt[1];real _scada_rms_value1__period_cnt[1];real _scada_rms_value1__previous_filtered_value[1];real _scada_rms_value1__previous_correction[1];real _scada_rms_value1__correction[1];real _scada_rms_value1__previous_value[1];real _scada_rms_value1__out_state[1];unsigned char _scada_rms_value1__zc[1];real _scada_rms_value1__filtered_value[1];real _scada_rms_value1__db_timer[1];
 
 
@@ -724,6 +767,15 @@ static const unsigned int _scada_eta_c__p_addr=16393;
     
 
     real _scada_rms_value6__square_sum[1];real _scada_rms_value6__sample_cnt[1];real _scada_rms_value6__period_cnt[1];real _scada_rms_value6__previous_filtered_value[1];real _scada_rms_value6__previous_correction[1];real _scada_rms_value6__correction[1];real _scada_rms_value6__previous_value[1];real _scada_rms_value6__out_state[1];unsigned char _scada_rms_value6__zc[1];real _scada_rms_value6__filtered_value[1];real _scada_rms_value6__db_timer[1];
+
+
+    
+
+
+    
+
+
+    
 
 
     
@@ -904,6 +956,7 @@ static const unsigned int _scada_eta_c__p_addr=16393;
         volatile float shared__scada_rate_transition9_0;
         volatile unsigned int shared__scada_rate_transition8_0;
         volatile unsigned int shared__scada_rate_transition7_0;
+        volatile float shared__rate_transition24_0;
 
 //
 // Tunable parameters
@@ -967,35 +1020,6 @@ void *tunable_params_dev0_cpu0_ptr = &tunable_params;
 
         
 
-    
-        
-
-        
-
-        
-
-        
-
-    
-    
-    
-    
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
         
 
         
@@ -1011,20 +1035,11 @@ void *tunable_params_dev0_cpu0_ptr = &tunable_params;
 
         
 
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
+    
+    
+    
+    
+    
         
 
         
@@ -1060,50 +1075,10 @@ void *tunable_params_dev0_cpu0_ptr = &tunable_params;
 
         
 
-    
         
 
         
 
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-    
-        
-
-        
-
-        
-
-        
-
-    
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-    
-    
-    
         
 
         
@@ -1147,14 +1122,11 @@ void *tunable_params_dev0_cpu0_ptr = &tunable_params;
 
         
 
-    
-    
-    
-    
         
 
         
 
+    
         
 
         
@@ -1174,6 +1146,113 @@ void *tunable_params_dev0_cpu0_ptr = &tunable_params;
         
 
     
+        
+
+        
+
+        
+
+        
+
+    
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    
+    
+    
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    
+        
+
+        
+
+        
+
+        
+
+    
+    
+    
+    
+    
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+        
+
+    
+        
+
+        
+
+        
+
         
 
         
@@ -1319,6 +1398,12 @@ void ReInit_user_sp_cpu0_dev0(){
 
         
 
+        
+
+        
+
+        
+
     
         
 
@@ -1328,6 +1413,7 @@ void ReInit_user_sp_cpu0_dev0(){
 
         
 
+    
     
     
     
@@ -1387,6 +1473,10 @@ _scada_rms_value8__square_sum[0]=0.0;_scada_rms_value8__sample_cnt[0]=0.0;_scada
         {
 _scada_rms_value6__square_sum[0]=0.0;_scada_rms_value6__sample_cnt[0]=0.0;_scada_rms_value6__period_cnt[0]=0.0;_scada_rms_value6__previous_filtered_value[0]=0.0;_scada_rms_value6__previous_correction[0]=0.0;_scada_rms_value6__correction[0]=0.0;_scada_rms_value6__previous_value[0]=0.0;_scada_rms_value6__out_state[0]=0.0;_scada_rms_value6__zc[0]=1;_scada_rms_value6__filtered_value[0]=0.0;_scada_rms_value6__db_timer[0]=0.0;
 }
+
+        
+
+        
 
       
 {
@@ -1452,6 +1542,9 @@ unsigned int tac_tmp1;tac_tmp1=((_scada_rate_transition8_input__p_init_value) < 
         
 {
 unsigned int tac_tmp1;tac_tmp1=((_scada_rate_transition7_input__p_init_value) < 0 ? 0 : ((unsigned int) (_scada_rate_transition7_input__p_init_value)));shared__scada_rate_transition7_0=tac_tmp1;}
+        
+{
+shared__rate_transition24_0=_rate_transition24_input__p_init_value;}
       
 {
 HIL_OutAO(0x400d, 0);}
@@ -1711,6 +1804,14 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     // Output block
     //////////////////////////////////////////////////////////////////////////
     //@cmp.out.block.start
+         // Generated from the component: Controller.Constant1
+            {
+_controller_constant1__out=_controller_constant1__p_value;}
+
+         // Generated from the component: Controller.Constant2
+            {
+_controller_constant2__out=_controller_constant2__p_value;}
+
          // Generated from the component: Plant.VDC.Va1
             {
 real tac_tmp1;tac_tmp1=HIL_InFloat(0xc80008);_plant_vdc_va1__out=tac_tmp1;}
@@ -1762,6 +1863,10 @@ real tac_tmp1;tac_tmp1=HIL_InFloat(0xc8000d);_plant_vt_b_va1__out=tac_tmp1;}
          // Generated from the component: Plant.vt_c.Va1
             {
 real tac_tmp1;tac_tmp1=HIL_InFloat(0xc8000e);_plant_vt_c_va1__out=tac_tmp1;}
+
+         // Generated from the component: Rate Transition24.Output
+            {
+_rate_transition24_output__out=shared__rate_transition24_0;}
 
          // Generated from the component: SCADA.Constant1
             {
@@ -1850,6 +1955,14 @@ if((1)){_scada_rms_value8__previous_filtered_value[0]=_scada_rms_value8__filtere
          // Generated from the component: SCADA.RMS value6
             {
 if((1)){_scada_rms_value6__previous_filtered_value[0]=_scada_rms_value6__filtered_value[0];if((_scada_rms_value6__n_filt_en > 0)){_scada_rms_value6__filtered_value[0]=((_scada_rms_value6__previous_filtered_value[0] * _scada_rms_value6__n_b[0]) + (_plant_vs_c_va1__out * _scada_rms_value6__n_a[0]));}else{_scada_rms_value6__filtered_value[0]=((_scada_rms_value6__previous_filtered_value[0] * 0.1) + (_plant_vs_c_va1__out * 0.9));}_scada_rms_value6__db_timer[0]+=_scada_rms_value6__p_execution_rate;{if((((((_scada_rms_value6__filtered_value[0] >= 0.0)) && ((_scada_rms_value6__previous_filtered_value[0] < 0.0))) && ((_scada_rms_value6__db_timer[0] >= _scada_rms_value6__n_period_deadband[0]))))){_scada_rms_value6__zc[0]=1;_scada_rms_value6__db_timer[0]=0.0;}else{_scada_rms_value6__zc[0]=0;}}}else{{if(((_scada_rms_value6__period_cnt[0] >= (2 * M_PI)))){_scada_rms_value6__out_state[0]=sqrt((_scada_rms_value6__square_sum[0] / ((2 * M_PI))));_scada_rms_value6__square_sum[0]=0.0;_scada_rms_value6__period_cnt[0]=fmod(_scada_rms_value6__period_cnt[0], ((2 * M_PI)));}}}_scada_rms_value6__out=_scada_rms_value6__out_state[0];}
+
+         // Generated from the component: Controller.Product1
+            {
+_controller_product1__out=1;_controller_product1__out*=_controller_constant1__out;_controller_product1__out/=_rate_transition24_output__out;}
+
+         // Generated from the component: Controller.Product2
+            {
+_controller_product2__out=1;_controller_product2__out*=_controller_constant2__out;_controller_product2__out/=_rate_transition24_output__out;}
 
          // Generated from the component: SCADA.Fault_type
           {
@@ -2033,7 +2146,9 @@ HIL_OutAO(0x4020, _scada_bus_split3__out1);}
   
 
          // Generated from the component: Controller.C function PI current controller
-                    int _controller_c_function_pi_current_controller__is_dq_i;
+                    _controller_c_function_pi_current_controller__Ki_i = _controller_product2__out;
+            _controller_c_function_pi_current_controller__Kp_i = _controller_product1__out;
+            int _controller_c_function_pi_current_controller__is_dq_i;
             for (_controller_c_function_pi_current_controller__is_dq_i = 0; _controller_c_function_pi_current_controller__is_dq_i < 2; _controller_c_function_pi_current_controller__is_dq_i++) {
                 _controller_c_function_pi_current_controller__is_dq[_controller_c_function_pi_current_controller__is_dq_i] = _controller_bus_join5__out[_controller_c_function_pi_current_controller__is_dq_i];
             }
@@ -2050,7 +2165,7 @@ HIL_OutAO(0x4020, _scada_bus_split3__out1);}
             }
 
     {
-    _controller_c_function_pi_current_controller__eta_d = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( 5.0 * _controller_c_function_pi_current_controller__e_d + _controller_c_function_pi_current_controller__y_d - 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 1 ] + _controller_c_function_pi_current_controller__vs_dq [ 0 ] ) ; _controller_c_function_pi_current_controller__eta_q = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( 5.0 * _controller_c_function_pi_current_controller__e_q + _controller_c_function_pi_current_controller__y_q + 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 0 ] + _controller_c_function_pi_current_controller__vs_dq [ 1 ] ) ;
+    _controller_c_function_pi_current_controller__eta_d = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( _controller_c_function_pi_current_controller__Kp_i * _controller_c_function_pi_current_controller__e_d + _controller_c_function_pi_current_controller__y_d - 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 1 ] + _controller_c_function_pi_current_controller__vs_dq [ 0 ] ) ; _controller_c_function_pi_current_controller__eta_q = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( _controller_c_function_pi_current_controller__Kp_i * _controller_c_function_pi_current_controller__e_q + _controller_c_function_pi_current_controller__y_q + 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 0 ] + _controller_c_function_pi_current_controller__vs_dq [ 1 ] ) ;
 }
 
          // Generated from the component: SCADA.Bus Split4
@@ -2197,6 +2312,10 @@ HIL_OutAO(0x4009, _scada_bus_split1__out2);}
     // Update block
     //////////////////////////////////////////////////////////////////////////
     //@cmp.update.block.start
+         // Generated from the component: Controller.Constant1
+            
+         // Generated from the component: Controller.Constant2
+            
          // Generated from the component: Plant.VDC.Va1
             
          // Generated from the component: Plant.is_a.Ia1
@@ -2222,6 +2341,8 @@ HIL_OutAO(0x4009, _scada_bus_split1__out2);}
          // Generated from the component: Plant.vt_b.Va1
             
          // Generated from the component: Plant.vt_c.Va1
+            
+         // Generated from the component: Rate Transition24.Output
             
          // Generated from the component: SCADA.Constant1
             
@@ -2269,6 +2390,10 @@ if((1)){{if((_scada_rms_value8__zc[0])){if((_plant_vs_b_va1__out != _scada_rms_v
          // Generated from the component: SCADA.RMS value6
             {
 if((1)){{if((_scada_rms_value6__zc[0])){if((_plant_vs_c_va1__out != _scada_rms_value6__previous_value[0])){_scada_rms_value6__correction[0]=((- _scada_rms_value6__previous_value[0]) / ((_plant_vs_c_va1__out - _scada_rms_value6__previous_value[0])));if(((_scada_rms_value6__correction[0] < 0.0))){_scada_rms_value6__correction[0]=0.0;}}else{_scada_rms_value6__correction[0]=0.0;}_scada_rms_value6__sample_cnt[0]+=(_scada_rms_value6__correction[0] - _scada_rms_value6__previous_correction[0]);_scada_rms_value6__out_state[0]=sqrt((_scada_rms_value6__square_sum[0] / _scada_rms_value6__sample_cnt[0]));_scada_rms_value6__sample_cnt[0]=0.0;_scada_rms_value6__previous_correction[0]=_scada_rms_value6__correction[0];_scada_rms_value6__square_sum[0]=0.0;}else{if((_scada_rms_value6__sample_cnt[0] >= _scada_rms_value6__n_timeout[0])){_scada_rms_value6__out_state[0]=sqrt((_scada_rms_value6__square_sum[0] / _scada_rms_value6__sample_cnt[0]));_scada_rms_value6__sample_cnt[0]=0.0;_scada_rms_value6__square_sum[0]=0.0;}}}_scada_rms_value6__previous_value[0]=_plant_vs_c_va1__out;_scada_rms_value6__square_sum[0]+=(_plant_vs_c_va1__out * _plant_vs_c_va1__out);_scada_rms_value6__sample_cnt[0]+=1.0;}else{{if((_scada_rms_value6__period_cnt[0] >= (2 * M_PI))){_scada_rms_value6__period_cnt[0]=fmod(_scada_rms_value6__period_cnt[0], ((2 * M_PI)));}}if((0)){_scada_rms_value6__period_cnt[0]+=_scada_rms_value6__n_wt_increment[0];_scada_rms_value6__square_sum[0]+=((_plant_vs_c_va1__out * _plant_vs_c_va1__out) * _scada_rms_value6__n_wt_increment[0]);}else{_scada_rms_value6__period_cnt[0]+=0.01;_scada_rms_value6__square_sum[0]+=((_plant_vs_c_va1__out * _plant_vs_c_va1__out) * 0.01);}}}
+         // Generated from the component: Controller.Product1
+            
+         // Generated from the component: Controller.Product2
+            
          // Generated from the component: SCADA.Fault_type
             
          // Generated from the component: SCADA.is_d_ref
@@ -2349,7 +2474,7 @@ if((1)){{if((_scada_rms_value6__zc[0])){if((_plant_vs_c_va1__out != _scada_rms_v
          // Generated from the component: Controller.C function PI current controller
         
     {
-    _controller_c_function_pi_current_controller__e_d = _controller_c_function_pi_current_controller__is_dq_ref [ 0 ] - _controller_c_function_pi_current_controller__is_dq [ 0 ] ; _controller_c_function_pi_current_controller__e_q = _controller_c_function_pi_current_controller__is_dq_ref [ 1 ] - _controller_c_function_pi_current_controller__is_dq [ 1 ] ; _controller_c_function_pi_current_controller__y_d = _controller_c_function_pi_current_controller__y_d + 200.0 * 5e-05 * _controller_c_function_pi_current_controller__e_d ; _controller_c_function_pi_current_controller__y_q = _controller_c_function_pi_current_controller__y_q + 200.0 * 5e-05 * _controller_c_function_pi_current_controller__e_q ; if ( _controller_c_function_pi_current_controller__startAC < 0.5 )     {
+    _controller_c_function_pi_current_controller__e_d = _controller_c_function_pi_current_controller__is_dq_ref [ 0 ] - _controller_c_function_pi_current_controller__is_dq [ 0 ] ; _controller_c_function_pi_current_controller__e_q = _controller_c_function_pi_current_controller__is_dq_ref [ 1 ] - _controller_c_function_pi_current_controller__is_dq [ 1 ] ; _controller_c_function_pi_current_controller__y_d = _controller_c_function_pi_current_controller__y_d + _controller_c_function_pi_current_controller__Ki_i * 5e-05 * _controller_c_function_pi_current_controller__e_d ; _controller_c_function_pi_current_controller__y_q = _controller_c_function_pi_current_controller__y_q + _controller_c_function_pi_current_controller__Ki_i * 5e-05 * _controller_c_function_pi_current_controller__e_q ; if ( _controller_c_function_pi_current_controller__startAC < 0.5 )     {
         _controller_c_function_pi_current_controller__y_d = 0 ; _controller_c_function_pi_current_controller__y_q = 0 ;
 }
 
@@ -2413,6 +2538,9 @@ void TimerCounterHandler_1_user_sp_cpu0_dev0() {
          // Generated from the component: SCADA.startFSM
                     _scada_startfsm__out = XIo_InInt32(0x2f800010);
 
+         // Generated from the component: SCADA.tau_c
+                    _scada_tau_c__out = XIo_InFloat(0x2f800014);
+
          // Generated from the component: SCADA.CTRL
           {
 HIL_OutAO(0x4000, _scada_control__out);}
@@ -2441,6 +2569,10 @@ shared__scada_rate_transition8_0=_scada_startac__out;}
             {
 shared__scada_rate_transition7_0=_scada_startfsm__out;}
 
+         // Generated from the component: Rate Transition24.Input
+            {
+shared__rate_transition24_0=_scada_tau_c__out;}
+
 //@cmp.out.block.end
 
 
@@ -2459,6 +2591,8 @@ shared__scada_rate_transition7_0=_scada_startfsm__out;}
          // Generated from the component: SCADA.Rate Transition8.Input
             
          // Generated from the component: SCADA.Rate Transition7.Input
+            
+         // Generated from the component: Rate Transition24.Input
             
     //@cmp.update.block.end
 }
