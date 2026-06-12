@@ -171,6 +171,13 @@ typedef double real;
 
 
 
+
+
+
+
+
+
+
 //@cmp.def.end
 
 
@@ -883,6 +890,8 @@ static const unsigned int _scada_eta_c__p_streaming_er_idx = 0;
 
 //@cmp.var.start
 // variables
+double _controller_constant1__out = 0.005;
+double _controller_constant2__out = 0.2;
 static real _plant_vdc_va1__out;
 static real _plant_is_a_ia1__out;
 static real _plant_is_b_ia1__out;
@@ -896,6 +905,7 @@ static real _plant_vs_c_va1__out;
 static real _plant_vt_a_va1__out;
 static real _plant_vt_b_va1__out;
 static real _plant_vt_c_va1__out;
+double _rate_transition24_output__out;
 double _scada_constant1__out = 0.0;
 double _scada_control__out;
 
@@ -909,6 +919,7 @@ double _scada_i_d_ref__out;
 double _scada_i_q_ref__out;
 X_UnInt32 _scada_startac__out;
 X_UnInt32 _scada_startfsm__out;
+double _scada_tau_c__out;
 
 
 
@@ -947,6 +958,8 @@ double _scada_c_function_powers__q_f;
 
 double _scada_rms_value6__out;
 X_UnInt32 _scada_rms_value6__zc;
+double _controller_product1__out;
+double _controller_product2__out;
 
 
 
@@ -1030,6 +1043,8 @@ double _controller_bus_join5__out[2];
 
 
 
+double _controller_c_function_pi_current_controller__Ki_i;
+double _controller_c_function_pi_current_controller__Kp_i;
 double _controller_c_function_pi_current_controller__is_dq[2];
 double _controller_c_function_pi_current_controller__is_dq_ref[2];
 double _controller_c_function_pi_current_controller__omega_pll;
@@ -1132,6 +1147,7 @@ double _plant_three_phase_inverter_phase_c_pwm_modulator__limited_in[1];
 
 
 
+double volatile _rate_transition24_output__state;
 
 
 
@@ -1360,6 +1376,8 @@ void *tunable_params_dev0_cpu0_ptr = &tunable_params;
 
 
 
+
+
 static inline __attribute__((always_inline)) void _plant_vdc_va1__output_fnc();
 static inline __attribute__((always_inline)) void _plant_vdc_va1__init_fnc();
 
@@ -1401,8 +1419,10 @@ static inline __attribute__((always_inline)) void _plant_vt_c_va1__init_fnc();
 
 
 
+
 static inline __attribute__((always_inline)) void _scada_fault_type__output_fnc();
 static inline __attribute__((always_inline)) void _scada_fault_type__init_fnc();
+
 
 
 
@@ -1433,6 +1453,8 @@ static inline __attribute__((always_inline)) void _scada_is_c_scada__init_fnc();
 
 
 
+
+
 static inline __attribute__((always_inline)) void _scada_ctrl__output_fnc();
 static inline __attribute__((always_inline)) void _scada_ctrl__init_fnc();
 
@@ -1457,6 +1479,7 @@ static inline __attribute__((always_inline)) void _scada_sac__init_fnc();
 
 static inline __attribute__((always_inline)) void _scada_is_q_ref__output_fnc();
 static inline __attribute__((always_inline)) void _scada_is_q_ref__init_fnc();
+
 
 
 
@@ -1545,6 +1568,8 @@ static inline __attribute__((always_inline)) void _scada_eta_b__init_fnc();
 
 static inline __attribute__((always_inline)) void _scada_eta_c__output_fnc();
 static inline __attribute__((always_inline)) void _scada_eta_c__init_fnc();
+
+
 
 static inline __attribute__((always_inline)) void _plant_vdc_va1__init_fnc() {}
 
@@ -1718,12 +1743,14 @@ static inline __attribute__((always_inline)) void _plant_vt_c_va1__output_fnc() 
 
 
 
+
 static inline __attribute__((always_inline)) void _scada_fault_type__output_fnc() {
     HIL_OutAO(0x4001, _scada_constant1__out);
 }
 static inline __attribute__((always_inline)) void _scada_fault_type__init_fnc() {
     HIL_OutAO(0x4001, 0);
 }
+
 
 
 
@@ -1768,6 +1795,8 @@ static inline __attribute__((always_inline)) void _scada_is_c_scada__output_fnc(
 static inline __attribute__((always_inline)) void _scada_is_c_scada__init_fnc() {
     HIL_OutAO(0x4014, 0);
 }
+
+
 
 
 
@@ -1841,6 +1870,7 @@ static inline __attribute__((always_inline)) void _scada_is_q_ref__output_fnc() 
 static inline __attribute__((always_inline)) void _scada_is_q_ref__init_fnc() {
     HIL_OutAO(0x4016, 0);
 }
+
 
 
 
@@ -2060,6 +2090,7 @@ void ReInit_user_sp_cpu0_dev0() {
     _plant_vt_a_va1__init_fnc();
     _plant_vt_b_va1__init_fnc();
     _plant_vt_c_va1__init_fnc();
+    _rate_transition24_output__state =  0.0;
     _scada_fault_type__init_fnc();
     _scada_rate_transition10_output__state =  0.0;
     _scada_rate_transition7_output__state = (X_UnInt32) 0.0;
@@ -2294,6 +2325,8 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _plant_vt_b_va1__output_fnc();
     // Generated from the component: Plant.vt_c.Va1
     _plant_vt_c_va1__output_fnc();
+    // Generated from the component: Rate Transition24.Output
+    _rate_transition24_output__out = _rate_transition24_output__state;
     // Generated from the component: SCADA.Fault_type
     _scada_fault_type__output_fnc();
     // Generated from the component: SCADA.Rate Transition10.Output
@@ -2411,6 +2444,10 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     } else
         _scada_rms_value6__zc = 0;
     _scada_rms_value6__out = _scada_rms_value6__out_state;
+    // Generated from the component: Controller.Product1
+    _controller_product1__out = (_controller_constant1__out) * 1.0 / (_rate_transition24_output__out);
+    // Generated from the component: Controller.Product2
+    _controller_product2__out = (_controller_constant2__out) * 1.0 / (_rate_transition24_output__out);
     // Generated from the component: SCADA.is_d_ref
     _scada_is_d_ref__output_fnc();
     // Generated from the component: Plant.S1.Triple S1 ideal.CTC_Wrapper
@@ -2490,6 +2527,8 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     // Generated from the component: SCADA.vq
     _scada_vq__output_fnc();
     // Generated from the component: Controller.C function PI current controller
+    _controller_c_function_pi_current_controller__Ki_i = _controller_product2__out;
+    _controller_c_function_pi_current_controller__Kp_i = _controller_product1__out;
     _controller_c_function_pi_current_controller__is_dq[0] = _controller_bus_join5__out[0];
     _controller_c_function_pi_current_controller__is_dq[1] = _controller_bus_join5__out[1];
     _controller_c_function_pi_current_controller__is_dq_ref[0] = _scada_bus_join10__out[0];
@@ -2500,8 +2539,8 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     _controller_c_function_pi_current_controller__vs_dq[0] = _controller_bus_join6__out[0];
     _controller_c_function_pi_current_controller__vs_dq[1] = _controller_bus_join6__out[1];
     {
-        _controller_c_function_pi_current_controller__eta_d = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( 5.0 * _controller_c_function_pi_current_controller__e_d + _controller_c_function_pi_current_controller__y_d - 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 1 ] + _controller_c_function_pi_current_controller__vs_dq [ 0 ] ) ;
-        _controller_c_function_pi_current_controller__eta_q = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( 5.0 * _controller_c_function_pi_current_controller__e_q + _controller_c_function_pi_current_controller__y_q + 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 0 ] + _controller_c_function_pi_current_controller__vs_dq [ 1 ] ) ;
+        _controller_c_function_pi_current_controller__eta_d = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( _controller_c_function_pi_current_controller__Kp_i * _controller_c_function_pi_current_controller__e_d + _controller_c_function_pi_current_controller__y_d - 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 1 ] + _controller_c_function_pi_current_controller__vs_dq [ 0 ] ) ;
+        _controller_c_function_pi_current_controller__eta_q = ( 2 / _controller_c_function_pi_current_controller__v_dc ) * ( _controller_c_function_pi_current_controller__Kp_i * _controller_c_function_pi_current_controller__e_q + _controller_c_function_pi_current_controller__y_q + 0.005 * _controller_c_function_pi_current_controller__omega_pll * _controller_c_function_pi_current_controller__is_dq [ 0 ] + _controller_c_function_pi_current_controller__vs_dq [ 1 ] ) ;
     }
     // Generated from the component: SCADA.Bus Split4
     _scada_bus_split4__out = _controller_bus_join5__out[0];
@@ -2778,8 +2817,8 @@ void TimerCounterHandler_0_user_sp_cpu0_dev0() {
     {
         _controller_c_function_pi_current_controller__e_d = _controller_c_function_pi_current_controller__is_dq_ref [ 0 ] - _controller_c_function_pi_current_controller__is_dq [ 0 ] ;
         _controller_c_function_pi_current_controller__e_q = _controller_c_function_pi_current_controller__is_dq_ref [ 1 ] - _controller_c_function_pi_current_controller__is_dq [ 1 ] ;
-        _controller_c_function_pi_current_controller__y_d = _controller_c_function_pi_current_controller__y_d + 200.0 * 5e-05 * _controller_c_function_pi_current_controller__e_d ;
-        _controller_c_function_pi_current_controller__y_q = _controller_c_function_pi_current_controller__y_q + 200.0 * 5e-05 * _controller_c_function_pi_current_controller__e_q ;
+        _controller_c_function_pi_current_controller__y_d = _controller_c_function_pi_current_controller__y_d + _controller_c_function_pi_current_controller__Ki_i * 5e-05 * _controller_c_function_pi_current_controller__e_d ;
+        _controller_c_function_pi_current_controller__y_q = _controller_c_function_pi_current_controller__y_q + _controller_c_function_pi_current_controller__Ki_i * 5e-05 * _controller_c_function_pi_current_controller__e_q ;
         if ( _controller_c_function_pi_current_controller__startAC < 0.5 )     {
             _controller_c_function_pi_current_controller__y_d = 0 ;
             _controller_c_function_pi_current_controller__y_q = 0 ;
@@ -2815,6 +2854,8 @@ void TimerCounterHandler_1_user_sp_cpu0_dev0() {
     _scada_startac__out = XIo_InInt32(0x2f80000c);
     // Generated from the component: SCADA.startFSM
     _scada_startfsm__out = XIo_InInt32(0x2f800010);
+    // Generated from the component: SCADA.tau_c
+    _scada_tau_c__out = XIo_InFloat(0x2f800014);
     // Generated from the component: SCADA.CTRL
     _scada_ctrl__output_fnc();
     // Generated from the component: SCADA.ctrl
@@ -2827,6 +2868,8 @@ void TimerCounterHandler_1_user_sp_cpu0_dev0() {
     _scada_rate_transition8_output__state = _scada_startac__out;
     // Generated from the component: SCADA.Rate Transition7.Input
     _scada_rate_transition7_output__state = _scada_startfsm__out;
+    // Generated from the component: Rate Transition24.Input
+    _rate_transition24_output__state = _scada_tau_c__out;
 //@cmp.out.block.end
     //////////////////////////////////////////////////////////////////////////
     // Update block

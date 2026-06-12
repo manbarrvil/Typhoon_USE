@@ -142,6 +142,10 @@ while hil.capture_in_progress():
     time.sleep(0.1)
 ```
 
+Valid `trigType` values: `"Analog"`, `"Digital"`, `"Forced"` (immediate, no condition).
+Valid `edge` values: `"Rising edge"`, `"Falling edge"`.
+For `"Forced"` trigger pass only `trSettings=['Forced']` — remaining parameters are ignored and cause a warning if provided.
+
 ### Analog/digital outputs (physical HIL only)
 
 ```python

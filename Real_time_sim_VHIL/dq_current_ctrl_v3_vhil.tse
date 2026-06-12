@@ -194,20 +194,20 @@ e_q = 0.0;
 y_d = 0.0;
 y_q = 0.0;
 /*End code section*/"
-                input_terminals = "real is_dq_ref;real is_dq;real vs_dq;real omega_pll;real v_dc;uint startAC;"
-                input_terminals_dimensions = "(2,);(2,);(2,);(1,);(1,);inherit"
-                input_terminals_feedthrough = "True;True;True;True;True;True"
-                input_terminals_show_labels = "True;True;True;True;True;True"
+                input_terminals = "real is_dq_ref;real is_dq;real vs_dq;real omega_pll;real v_dc;uint startAC;inherit Kp_i;inherit Ki_i;"
+                input_terminals_dimensions = "2;2;2;1;1;inherit;inherit;inherit"
+                input_terminals_feedthrough = "True;True;True;True;True;True;True;True"
+                input_terminals_show_labels = "True;True;True;True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
 //modulating signal computation
 eta_d = (2/v_dc) * (Kp_i*e_d + y_d -   L*omega_pll*is_dq[1] + vs_dq[0]);
 eta_q = (2/v_dc )* (Kp_i*e_q + y_q +  L*omega_pll*is_dq[0] + vs_dq[1]);
 /*End code section*/"
                 output_terminals = "real eta_d;real eta_q;"
-                output_terminals_dimensions = "(1,);(1,)"
+                output_terminals_dimensions = "1;1"
                 output_terminals_feedthrough = "True;True"
                 output_terminals_show_labels = "True;True"
-                parameters = "real Kp_i;real Ki_i;real Ts_Control;real L;real T_on_contactor;"
+                parameters = "real Ts_Control;real L;real T_on_contactor;"
                 update_fnc = "/*Begin code section*/
 //error
 e_d = is_dq_ref[0] - is_dq[0];
@@ -222,8 +222,8 @@ if (startAC<0.5){
 /*End code section*/"
             }
             [
-                position = 8208, 7596
-                size = 256, 320
+                position = 8208, 7652
+                size = 256, 432
             ]
 
             component "core/Bus Join" "Bus Join6" {
@@ -286,6 +286,36 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             [
                 position = 6800, 7484
                 size = 32, 32
+            ]
+
+            component "core/Product" Product1 {
+                signs = "*/"
+            }
+            [
+                position = 7920, 7792
+            ]
+
+            component "core/Constant" Constant1 {
+                execution_rate = "Ts_Control"
+                value = "L"
+            }
+            [
+                position = 7788, 7740
+            ]
+
+            component "core/Product" Product2 {
+                signs = "*/"
+            }
+            [
+                position = 7920, 7884
+            ]
+
+            component "core/Constant" Constant2 {
+                execution_rate = "Ts_Control"
+                value = "R"
+            }
+            [
+                position = 7780, 7864
             ]
 
             port vs_a {
@@ -481,6 +511,19 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             }
             [
                 position = 6304, 8124
+            ]
+
+            port tau_c_ {
+                position = auto:auto
+                kind = sp
+                direction =  out
+                sp_type {
+                    default = auto
+                    readonly = True
+                }
+            }
+            [
+                position = 6308, 8208
             ]
 
             tag Goto42 {
@@ -1017,6 +1060,46 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
                 size = 60, 20
             ]
 
+            tag Goto61 {
+                value = "tau_c"
+                scope = local
+                kind = sp
+                direction = in
+            }
+            [
+                position = 6428, 8208
+                hide_name = True
+                size = 60, 20
+            ]
+
+            tag From83 {
+                value = "tau_c"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7792, 7796
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
+            tag From84 {
+                value = "tau_c"
+                scope = local
+                kind = sp
+                direction = out
+            }
+            [
+                position = 7796, 7916
+                rotation = down
+                hide_name = True
+                scale = -1, 1
+                size = 60, 20
+            ]
+
             junction Junction211 sp
             [
                 position = 7116, 7756
@@ -1154,10 +1237,17 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             ]
             connect From82 "C function PI current controller.startAC" as Connection820
             connect Goto60 time1 as Connection821
+            connect Goto61 tau_c_ as Connection822
+            connect From83 Product1.in1 as Connection823
+            connect Constant1.out Product1.in as Connection824
+            connect Product1.out "C function PI current controller.Kp_i" as Connection825
+            connect Product2.out "C function PI current controller.Ki_i" as Connection826
+            connect From84 Product2.in1 as Connection827
+            connect Constant2.out Product2.in as Connection828
         }
         [
-            position = 8588, 8484
-            size = 248, 464
+            position = 8588, 8536
+            size = 248, 568
         ]
 
         component Subsystem Plant {
@@ -2510,6 +2600,16 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
                 position = 8412, 8784
             ]
 
+            component "core/SCADA Input" tau_c {
+                def_value = "0.001"
+                execution_rate = "10e-3"
+                signal_access = "Inherit"
+                unit = ""
+            }
+            [
+                position = 8532, 8880
+            ]
+
             port vs_a {
                 position = left:1
                 kind = sp
@@ -2716,6 +2816,19 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             }
             [
                 position = 8668, 8668
+            ]
+
+            port tau_c_ {
+                position = auto:auto
+                kind = sp
+                direction =  in
+                sp_type {
+                    default = inherit
+                    readonly = True
+                }
+            }
+            [
+                position = 8628, 8876
             ]
 
             tag From50 {
@@ -3199,6 +3312,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             connect Junction9 start_AC as Connection860
             connect sAC.in Junction9 as Connection861
             connect startAC.out "Rate Transition8.in" as Connection862
+            connect tau_c_ tau_c.out as Connection863
         }
         [
             position = 9164, 8560
@@ -3313,7 +3427,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             execution_rate = "Ts_Control"
         }
         [
-            position = 9344, 8872
+            position = 9392, 8660
             size = 32, 32
         ]
 
@@ -3321,7 +3435,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             execution_rate = "Ts_Control"
         }
         [
-            position = 9328, 8560
+            position = 9364, 8464
             size = 32, 32
         ]
 
@@ -3330,6 +3444,14 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
         }
         [
             position = 9348, 8248
+            size = 32, 32
+        ]
+
+        component "core/Rate Transition" "Rate Transition24" {
+            execution_rate = "Ts_Control"
+        }
+        [
+            position = 9376, 8856
             size = 32, 32
         ]
 
@@ -3490,7 +3612,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8360, 8436
+            position = 8360, 8452
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3504,7 +3626,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8360, 8484
+            position = 8360, 8508
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3518,7 +3640,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8364, 8532
+            position = 8364, 8564
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3532,7 +3654,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8356, 8292
+            position = 8356, 8284
             hide_name = True
             size = 60, 20
         ]
@@ -3556,7 +3678,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8360, 8388
+            position = 8360, 8396
             hide_name = True
             size = 60, 20
         ]
@@ -3568,7 +3690,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8784, 8284
+            position = 8784, 8276
             hide_name = True
             size = 60, 20
         ]
@@ -3592,7 +3714,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8780, 8684
+            position = 8780, 8796
             hide_name = True
             size = 60, 20
         ]
@@ -3604,7 +3726,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8784, 8604
+            position = 8784, 8692
             hide_name = True
             size = 60, 20
         ]
@@ -3616,7 +3738,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8784, 8444
+            position = 8784, 8484
             hide_name = True
             size = 60, 20
         ]
@@ -3628,7 +3750,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8788, 8364
+            position = 8788, 8380
             hide_name = True
             size = 60, 20
         ]
@@ -3640,7 +3762,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 8780, 8524
+            position = 8784, 8588
             hide_name = True
             size = 60, 20
         ]
@@ -3676,7 +3798,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8372, 8628
+            position = 8368, 8676
             hide_name = True
             size = 60, 20
         ]
@@ -3742,7 +3864,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8368, 8580
+            position = 8368, 8620
             rotation = down
             hide_name = True
             scale = -1, 1
@@ -3792,7 +3914,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 9392, 8560
+            position = 9428, 8464
             hide_name = True
             size = 60, 20
         ]
@@ -3816,7 +3938,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = out
         }
         [
-            position = 8364, 8676
+            position = 8364, 8732
             hide_name = True
             size = 60, 20
         ]
@@ -3840,7 +3962,31 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             direction = in
         }
         [
-            position = 9416, 8872
+            position = 9464, 8660
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto56 {
+            value = "tau_c"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 9472, 8860
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From99 {
+            value = "tau_c"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8364, 8792
             hide_name = True
             size = 60, 20
         ]
@@ -3910,6 +4056,9 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
         connect "Rate Transition22.out" Goto54 as Connection871
         connect Goto53 "Rate Transition23.out" as Connection872
         connect "Rate Transition23.in" SCADA.is_dq_ref as Connection873
+        connect "Rate Transition24.in" SCADA.tau_c_ as Connection874
+        connect Goto56 "Rate Transition24.out" as Connection875
+        connect From99 Controller.tau_c_ as Connection876
     }
 
     logically_deleted {
@@ -3995,6 +4144,11 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
             signal_type = "generic"
             streaming_en = "False"
             streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/Product" {
+            signs = "2"
             execution_rate = "inherit"
         }
 
@@ -4244,11 +4398,11 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
         K_i_pll = 1.8/0.00251
         
         # PI current controller gains
-        tau_c = 1e-3
+        #tau_c = 1e-3
         L = Ls + Lt
         R = Rs + Rt
-        Kp_i = L/tau_c
-        Ki_i = R/tau_c
+        #Kp_i = L/tau_c
+        #Ki_i = R/tau_c
         
         #Ton contactor
         T_on_contactor = 0.1
