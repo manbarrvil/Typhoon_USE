@@ -1,0 +1,8 @@
+{
+  "dit_d": "it_q*omega + Rd*is_d/Lt - Rd*it_d/Lt - Rt*it_d/Lt - vc_d/Lt + vt_d/Lt",
+  "dit_q": "-it_d*omega + Rd*is_q/Lt - Rd*it_q/Lt - Rt*it_q/Lt - vc_q/Lt + vt_q/Lt",
+  "dvc_d": "omega*vc_q - is_d/C + it_d/C",
+  "dvc_q": "-omega*vc_d - is_q/C + it_q/C",
+  "dis_d": "is_q*omega - Rd*is_d/Ls + Rd*it_d/Ls - Rs*is_d/Ls + vc_d/Ls - vs_d/Ls",
+  "dis_q": "-is_d*omega - Rd*is_q/Ls + Rd*it_q/Ls - Rs*is_q/Ls + vc_q/Ls - vs_q/Ls"
+}
