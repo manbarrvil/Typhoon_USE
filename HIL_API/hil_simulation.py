@@ -110,7 +110,11 @@ def run_loop(stop_at_s, events, print_interval_s=0.1, signal_callback=None):
                     pending_events.remove(event)
                     print(f"t={sim_time:.4f} s  |  SCADA Input '{event['input']}' → {event['value']}")
 
-            if sim_time - last_print_time >= print_interval_s:
+            # Skip reads while events are still pending: read_analog_signal for
+            # SCADA probes blocks for real-time seconds, advancing sim_time by a
+            # variable amount and causing inconsistent step timing across runs.
+            # Reads resume once all events have fired.
+            if not pending_events and sim_time - last_print_time >= print_interval_s:
                 voltage_val = hil.read_analog_signal(name="Plant.VDC")
                 is_d_ref    = hil.read_analog_signal(name="SCADA.is_d_ref")
                 scada_id    = hil.read_analog_signal(name="SCADA.id")
@@ -123,6 +127,9 @@ def run_loop(stop_at_s, events, print_interval_s=0.1, signal_callback=None):
                       f"  Plant.S1 = {contactor_state}")
                 if signal_callback is not None:
                     signal_callback(sim_time, scada_id, scada_iq, is_d_ref, is_q_ref)
+                last_print_time = sim_time
+            elif pending_events:
+                # Advance the print timer so reads don't burst immediately after events clear
                 last_print_time = sim_time
 
             if sim_time >= stop_at_s:

@@ -1,7 +1,7 @@
 import os
 import webbrowser
 import dashboard
-from hil_simulation import (launch_control_center, kill_control_center,
+from hil_simulation import (launch_control_center,
                              compile_if_needed,
                              load_model, set_scada_input,
                              start_simulation_and_capture,
@@ -41,8 +41,6 @@ def run_batch():
         run_loop(stop_at_s=2.5, events=EVENTS)
         stop_simulation(log_file)
         runs.append({'log_file': log_file, 'tau_c': tau_c})
-
-    kill_control_center()
 
     comp_svg = os.path.join(results_dir, 'fig', 'svg', FIG_NAME + '_comparison.svg')
     comp_pdf = os.path.join(results_dir, 'fig', 'pdf', FIG_NAME + '_comparison.pdf')
@@ -88,52 +86,52 @@ def run_interactive():
     webbrowser.open(url)
 
     print("Interactive dashboard open. Set tau_c in the browser and click Run.")
-    print("Press Ctrl+C to stop.\n")
+    print("Press Ctrl+C to cancel.\n")
 
     try:
-        while True:
-            dashboard.set_status("idle")
+        dashboard.set_status("idle")
+        dashboard.clear_batch_info()
+        req = dashboard.wait_for_run_request()
+
+        if req['mode'] == 'single':
+            tau_c = req['tau_c']
+            print(f"\ntau_c = {tau_c}  — single run...")
+            _run_one(cpd_path, results_dir, tau_c)
+            dashboard.set_status("done")
+
+        elif req['mode'] == 'batch':
+            tau_c_values = req['tau_c_values']
+            print(f"\nBatch sweep: {tau_c_values}")
+            runs = []
+            for i, tau_c in enumerate(tau_c_values, 1):
+                print(f"\n[{i}/{len(tau_c_values)}] tau_c = {tau_c}")
+                dashboard.set_batch_info(i, len(tau_c_values), tau_c)
+                log_file = _run_one(cpd_path, results_dir, tau_c)
+                runs.append({'log_file': log_file, 'tau_c': tau_c})
+
+            dashboard.set_status("batch_done")
             dashboard.clear_batch_info()
-            req = dashboard.wait_for_run_request()
+            print("\nGenerating comparison figures...")
 
-            if req['mode'] == 'single':
-                tau_c = req['tau_c']
-                print(f"\ntau_c = {tau_c}  — single run...")
-                _run_one(cpd_path, results_dir, tau_c)
-                dashboard.set_status("done")
+            comp_svg = os.path.join(results_dir, 'fig', 'svg', FIG_NAME + '_comparison.svg')
+            comp_pdf = os.path.join(results_dir, 'fig', 'pdf', FIG_NAME + '_comparison.pdf')
+            plot_dq_currents_comparison(runs, comp_svg, comp_pdf)
 
-            elif req['mode'] == 'batch':
-                tau_c_values = req['tau_c_values']
-                print(f"\nBatch sweep: {tau_c_values}")
-                runs = []
-                for i, tau_c in enumerate(tau_c_values, 1):
-                    print(f"\n[{i}/{len(tau_c_values)}] tau_c = {tau_c}")
-                    dashboard.set_batch_info(i, len(tau_c_values), tau_c)
-                    log_file = _run_one(cpd_path, results_dir, tau_c)
-                    runs.append({'log_file': log_file, 'tau_c': tau_c})
+            zoom1_svg = os.path.join(results_dir, 'fig', 'svg', FIG_NAME + '_zoom_1p5s.svg')
+            zoom1_pdf = os.path.join(results_dir, 'fig', 'pdf', FIG_NAME + '_zoom_1p5s.pdf')
+            plot_dq_currents_zoom(runs, zoom_time=1.5, half_window=0.1,
+                                  svg_path=zoom1_svg, pdf_path=zoom1_pdf)
 
-                dashboard.set_status("batch_done")
-                dashboard.clear_batch_info()
-                print("\nGenerating comparison figures...")
+            zoom2_svg = os.path.join(results_dir, 'fig', 'svg', FIG_NAME + '_zoom_2p0s.svg')
+            zoom2_pdf = os.path.join(results_dir, 'fig', 'pdf', FIG_NAME + '_zoom_2p0s.pdf')
+            plot_dq_currents_zoom(runs, zoom_time=2.0, half_window=0.1,
+                                  svg_path=zoom2_svg, pdf_path=zoom2_pdf)
+            print("Batch complete — comparison figures saved.")
 
-                comp_svg = os.path.join(results_dir, 'fig', 'svg', FIG_NAME + '_comparison.svg')
-                comp_pdf = os.path.join(results_dir, 'fig', 'pdf', FIG_NAME + '_comparison.pdf')
-                plot_dq_currents_comparison(runs, comp_svg, comp_pdf)
-
-                zoom1_svg = os.path.join(results_dir, 'fig', 'svg', FIG_NAME + '_zoom_1p5s.svg')
-                zoom1_pdf = os.path.join(results_dir, 'fig', 'pdf', FIG_NAME + '_zoom_1p5s.pdf')
-                plot_dq_currents_zoom(runs, zoom_time=1.5, half_window=0.1,
-                                      svg_path=zoom1_svg, pdf_path=zoom1_pdf)
-
-                zoom2_svg = os.path.join(results_dir, 'fig', 'svg', FIG_NAME + '_zoom_2p0s.svg')
-                zoom2_pdf = os.path.join(results_dir, 'fig', 'pdf', FIG_NAME + '_zoom_2p0s.pdf')
-                plot_dq_currents_zoom(runs, zoom_time=2.0, half_window=0.1,
-                                      svg_path=zoom2_svg, pdf_path=zoom2_pdf)
-                print("Batch complete — comparison figures saved.")
+        print("\nAll tests finished. Shutting down.")
 
     except KeyboardInterrupt:
-        print("\nInteractive mode stopped.")
-        kill_control_center()
+        print("\nInteractive mode cancelled.")
 
 
 if __name__ == '__main__':
