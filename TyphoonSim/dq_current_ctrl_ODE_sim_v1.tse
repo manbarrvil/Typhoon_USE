@@ -3286,20 +3286,6 @@ dis_q_ant = 0.0;
 //vc_q + ic_q*Rd = Rs*is_q + Ls*dis_q + omega*Ls*is_d + vs_q
 //vc_d + (it_d - is_d)*Rd = Rs*is_d + Ls*dis_d - omega*Ls*is_q + vs_d
 //vc_q + (it_q - is_q)*Rd = Rs*is_q + Ls*dis_q + omega*Ls*is_d + vs_q
-
-it_d_out = it_d;
-it_q_out = it_q;
-vc_d_out = vc_d;
-vc_q_out = vc_q;
-is_d_out = is_d;
-is_q_out = is_q;
-/*End code section*/"
-            output_terminals = "real it_d_out;inherit it_q_out;inherit vc_d_out;inherit vc_q_out;inherit is_d_out;inherit is_q_out;inherit dit_d;inherit dit_q;inherit dvc_d;inherit dvc_q;inherit dis_d;inherit dis_q;"
-            output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
-            output_terminals_feedthrough = "True;True;True;True;True;True;False;False;False;False;False;False"
-            output_terminals_show_labels = "True;True;True;True;True;True;False;False;False;False;False;False"
-            parameters = "real Ls;real Rs;real Lt;real Rt;real C;real Rd;real Ts_Control;real T_on_contactor;"
-            update_fnc = "/*Begin code section*/
 //dit_d =  it_q*omega + Rd*is_d/Lt - Rd*it_d/Lt - Rt*it_d/Lt - vc_d/Lt + vt_d/Lt;
 dit_d =  1.0/Lt*(Lt*it_q*omega  + Rd*is_d - Rd*it_d - Rt*it_d - vc_d + vt_d);
 //dit_q = -it_d*omega + Rd*is_q/Lt - Rd*it_q/Lt - Rt*it_q/Lt - vc_q/Lt + vt_q/Lt;
@@ -3311,6 +3297,19 @@ dis_q =  1/Ls*(-is_d*Ls*omega - Rd*is_q + Rd*it_q - Rs*is_q + vc_q - vs_q);
 //dis_d = vt_d/(Ls+Lt) - vs_d/(Ls+Lt) - (Rs+Rt)*is_d/(Ls+Lt) + is_q*omega;
 //dis_q = vt_q/(Ls+Lt) - vs_q/(Ls+Lt) - (Rs+Rt)*is_q/(Ls+Lt) - is_d*omega;
 
+it_d_out = it_d;
+it_q_out = it_q;
+vc_d_out = vc_d;
+vc_q_out = vc_q;
+is_d_out = is_d;
+is_q_out = is_q;
+/*End code section*/"
+            output_terminals = "real it_d_out;inherit it_q_out;inherit vc_d_out;inherit vc_q_out;inherit is_d_out;inherit is_q_out;inherit dit_d;inherit dit_q;inherit dvc_d;inherit dvc_q;inherit dis_d;inherit dis_q;"
+            output_terminals_dimensions = "inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit;inherit"
+            output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True;True"
+            output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True;True"
+            parameters = "real Ls;real Rs;real Lt;real Rt;real C;real Rd;real Ts_Control;real T_on_contactor;"
+            update_fnc = "/*Begin code section*/
 //Backward Euler method
 //it_d = it_d + (dit_d)*Ts_Control;
 //it_q = it_q + (dit_q)*Ts_Control;
@@ -3346,8 +3345,8 @@ dis_q_ant = dis_q;
 /*End code section*/"
         }
         [
-            position = 8020, 8936
-            size = 208, 272
+            position = 8020, 9008
+            size = 208, 416
         ]
 
         component "core/Product" Product1 {
@@ -3383,7 +3382,7 @@ dis_q_ant = dis_q;
             execution_rate = "Ts_Control"
         }
         [
-            position = 7792, 9036
+            position = 7780, 9184
         ]
 
         component "core/Probe" it_d_ODE {
@@ -3446,7 +3445,7 @@ dis_q_ant = dis_q;
             user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
         }
         [
-            position = 8380, 9228
+            position = 8328, 9356
         ]
 
         component "core/C function" "C function PI current controller" {
@@ -3527,7 +3526,7 @@ if (time<T_on_contactor){
             user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
         }
         [
-            position = 8196, 9220
+            position = 8120, 9428
         ]
 
         component "core/Probe" eta_d_ODE {
@@ -3546,6 +3545,105 @@ if (time<T_on_contactor){
         }
         [
             position = 9488, 9056
+        ]
+
+        component "core/Integrator" Integrator1 {
+        }
+        [
+            position = 8672, 9208
+        ]
+
+        component "core/Probe" dit_d_ODE {
+            execution_rate = "Ts_Control"
+            signal_access = "Inherit"
+            signal_name = "q"
+        }
+        [
+            position = 8752, 9244
+        ]
+
+        component "core/Probe" dit_q_ODE {
+            execution_rate = "Ts_Control"
+            signal_access = "Inherit"
+            signal_name = "q"
+        }
+        [
+            position = 8752, 9300
+        ]
+
+        component "core/Probe" dvc_d_ODE {
+            execution_rate = "Ts_Control"
+            signal_access = "Inherit"
+            signal_name = "q"
+        }
+        [
+            position = 8752, 9372
+        ]
+
+        component "core/Probe" dvc_q_ODE {
+            execution_rate = "Ts_Control"
+            signal_access = "Inherit"
+            signal_name = "q"
+        }
+        [
+            position = 8752, 9440
+        ]
+
+        component "core/Probe" dis_q_ODE {
+            execution_rate = "Ts_Control"
+            signal_access = "Inherit"
+            signal_name = "q"
+        }
+        [
+            position = 8760, 9556
+        ]
+
+        component "core/Probe" dis_d_ODE {
+            execution_rate = "Ts_Control"
+            signal_access = "Inherit"
+            signal_name = "q"
+        }
+        [
+            position = 8752, 9500
+        ]
+
+        component "core/Scope" "Power Reference Tracking2" {
+            selected_signals = "[\'dis_d_ODE\', \'dis_q_ODE\', \'dit_d_ODE\', \'dit_q_ODE\', \'dvc_d_ODE\', \'dvc_q_ODE\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true, \"signals_tooltips_enabled\": true}, \"signals\": {\"dis_d_ODE\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"dis_q_ODE\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#0099FF\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"dit_d_ODE\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"dit_q_ODE\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"dvc_d_ODE\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}, \"is_manual\": {\"3\": false}}, \"dvc_q_ODE\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#00CC00\"}, \"display\": {\"3\": \"solid\"}, \"is_manual\": {\"3\": false}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"5\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"6\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
+        }
+        [
+            position = 8892, 9340
+        ]
+
+        component "core/Integrator" Integrator2 {
+        }
+        [
+            position = 8676, 9264
+        ]
+
+        component "core/Integrator" Integrator3 {
+        }
+        [
+            position = 8676, 9356
+        ]
+
+        component "core/Integrator" Integrator4 {
+        }
+        [
+            position = 8672, 9404
+        ]
+
+        component "core/Integrator" Integrator5 {
+        }
+        [
+            position = 8672, 9500
+        ]
+
+        component "core/Integrator" Integrator6 {
+        }
+        [
+            position = 8664, 9572
         ]
 
         tag From44 {
@@ -4107,7 +4205,7 @@ if (time<T_on_contactor){
             direction = in
         }
         [
-            position = 8224, 8824
+            position = 8224, 8832
             hide_name = True
             size = 60, 20
         ]
@@ -4131,7 +4229,7 @@ if (time<T_on_contactor){
             direction = in
         }
         [
-            position = 8216, 8892
+            position = 8216, 8896
             hide_name = True
             size = 60, 20
         ]
@@ -4143,7 +4241,7 @@ if (time<T_on_contactor){
             direction = in
         }
         [
-            position = 8216, 8924
+            position = 8216, 8928
             hide_name = True
             size = 60, 20
         ]
@@ -4155,7 +4253,7 @@ if (time<T_on_contactor){
             direction = in
         }
         [
-            position = 8224, 8968
+            position = 8220, 8960
             hide_name = True
             size = 60, 20
         ]
@@ -4167,7 +4265,7 @@ if (time<T_on_contactor){
             direction = in
         }
         [
-            position = 8224, 8996
+            position = 8220, 8992
             hide_name = True
             size = 60, 20
         ]
@@ -4251,11 +4349,11 @@ if (time<T_on_contactor){
             direction = out
         }
         [
-            position = 7516, 8888
+            position = 7488, 8888
             rotation = down
             hide_name = True
             scale = -1, 1
-            size = 60, 20
+            size = 116, 20
         ]
 
         tag From68 {
@@ -4370,6 +4468,150 @@ if (time<T_on_contactor){
             size = 60, 20
         ]
 
+        tag Goto64 {
+            value = "dit_d"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8216, 9024
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto65 {
+            value = "dit_q"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8212, 9056
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto66 {
+            value = "dvc_d"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8216, 9088
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto67 {
+            value = "dvc_q"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8216, 9120
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto68 {
+            value = "dis_d"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8216, 9152
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag Goto69 {
+            value = "dis_q"
+            scope = local
+            kind = sp
+            direction = in
+        }
+        [
+            position = 8216, 9184
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From112 {
+            value = "dis_d"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8580, 9464
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From113 {
+            value = "dis_q"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8572, 9572
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From114 {
+            value = "dit_d"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8596, 9208
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From115 {
+            value = "dit_q"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8592, 9264
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From116 {
+            value = "dvc_d"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8572, 9336
+            hide_name = True
+            size = 60, 20
+        ]
+
+        tag From117 {
+            value = "dvc_q"
+            scope = local
+            kind = sp
+            direction = out
+        }
+        [
+            position = 8568, 9404
+            hide_name = True
+            size = 60, 20
+        ]
+
         junction Junction6 sp
         [
             position = 9284, 8864
@@ -4458,7 +4700,6 @@ if (time<T_on_contactor){
         connect From108 it_q_ODE.in as Connection873
         connect From109 vc_d_ODE.in as Connection874
         connect From110 vc_q_ODE.in as Connection875
-        connect From111 Product1.in1 as Connection923
         connect Clock2.out "C function PI current controller.time" as Connection860
         connect From68 "C function PI current controller.vs_dq" as Connection524
         connect From69 "C function PI current controller.omega_pll" as Connection525
@@ -4488,6 +4729,25 @@ if (time<T_on_contactor){
         connect "Bus Join8.in1" Junction9 as Connection939
         connect Junction9 Junction7 as Connection940
         connect eta_q_ODE.in Junction9 as Connection941
+        connect From111 Product1.in1 as Connection942
+        connect Goto64 "C function ODE.dit_d" as Connection943
+        connect Goto65 "C function ODE.dit_q" as Connection944
+        connect Goto66 "C function ODE.dvc_d" as Connection945
+        connect Goto67 "C function ODE.dvc_q" as Connection946
+        connect Goto68 "C function ODE.dis_d" as Connection947
+        connect Goto69 "C function ODE.dis_q" as Connection948
+        connect From114 Integrator1.in as Connection955
+        connect Integrator1.out dit_d_ODE.in as Connection956
+        connect From115 Integrator2.in as Connection957
+        connect Integrator2.out dit_q_ODE.in as Connection958
+        connect dvc_d_ODE.in Integrator3.out as Connection959
+        connect Integrator3.in From116 as Connection960
+        connect From117 Integrator4.in as Connection961
+        connect Integrator4.out dvc_q_ODE.in as Connection962
+        connect dis_d_ODE.in Integrator5.out as Connection963
+        connect Integrator5.in From112 as Connection964
+        connect From113 Integrator6.in as Connection965
+        connect Integrator6.out dis_q_ODE.in as Connection966
     }
 
     logically_deleted {
@@ -4598,6 +4858,21 @@ if (time<T_on_contactor){
             multiplication = "Element-wise(K.*u)"
             force_tml = "True"
             _tunable = "False"
+            execution_rate = "inherit"
+        }
+
+        "core/Integrator" {
+            show_reset = "none"
+            reset_type = "asynchronous"
+            show_init_condition = "internal"
+            init_value = "0"
+            limit_output = "False"
+            limit_upper = "inf"
+            limit_lower = "-inf"
+            show_state = "False"
+            state_port_type = "inherit"
+            tml_file = "gen_accumulator_integrator"
+            mode = "integrator"
             execution_rate = "inherit"
         }
 
@@ -4857,8 +5132,8 @@ if (time<T_on_contactor){
         Rt = .1
         Ls = 1.25e-3
         Rs = .1
-        Rd = 15
-        C = 10e-6
+        Rd = 20.0
+        C = 4e-6
         # Switching frequency
         fs = 10e3
         #dead time
