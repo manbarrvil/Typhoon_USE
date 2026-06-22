@@ -4,12 +4,12 @@ version = 4.2
 // Saved by sw version: 2026.2
 //
 
-model "dq_current_ctrl_ODE_sim_v1" {
+model "dq_current_ctrl_ODE_sim_v2" {
     configuration {
         hil_device = "VHIL+"
         hil_configuration_id = 1
         simulation_method = trapezoidal
-        simulation_time_step = 1e-6
+        simulation_time_step = 20e-6
         simulation_discret_scaling = 1.0
         dsp_timer_periods = 100e-6, 50e-3
         ss_calc_method = "systematic elimination"
@@ -3445,7 +3445,7 @@ dis_q_ant = dis_q;
             user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
         }
         [
-            position = 9004, 9328
+            position = 9616, 9208
         ]
 
         component "core/C function" "C function PI current controller" {
@@ -3526,7 +3526,7 @@ if (time<T_on_contactor){
             user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
         }
         [
-            position = 8856, 9508
+            position = 9620, 9340
         ]
 
         component "core/Probe" eta_d_ODE {
@@ -3614,12 +3614,12 @@ if (time<T_on_contactor){
         ]
 
         component "core/Scope" "Power Reference Tracking2" {
-            selected_signals = "[\'it_d_ODE1\', \'it_q_ODE1\', \'is_d_ODE1\', \'is_q_ODE1\', \'vc_d_ODE1\', \'vc_q_ODE1\']"
-            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true, \"signals_tooltips_enabled\": true}, \"signals\": {\"it_d_ODE1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"it_q_ODE1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"is_d_ODE1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"is_q_ODE1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"vc_d_ODE1\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}, \"is_manual\": {\"3\": false}}, \"vc_q_ODE1\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#00CC00\"}, \"display\": {\"3\": \"solid\"}, \"is_manual\": {\"3\": false}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"5\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"6\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
+            selected_signals = "[\'it_d_ODE1\', \'it_q_ODE1\', \'is_d_ODE1\', \'is_q_ODE1\', \'vc_d_ODE1\', \'vc_q_ODE1\', \'SCADA.is_d\', \'SCADA.is_q\']"
+            signals_data = "{\"plot_settings\": {\"layout\": \"Vertical\", \"background_color\": \"white\", \"legend_visible\": true, \"signals_tooltips_enabled\": true}, \"signals\": {\"it_d_ODE1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#FF0000\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"it_q_ODE1\": {\"viewports\": [1], \"type\": \"analog\", \"color\": {\"1\": \"#00CC00\"}, \"display\": {\"1\": \"solid\"}, \"is_manual\": {\"1\": false}}, \"is_d_ODE1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FF0000\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"is_q_ODE1\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#00CC00\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"vc_d_ODE1\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#FF0000\"}, \"display\": {\"3\": \"solid\"}, \"is_manual\": {\"3\": false}}, \"vc_q_ODE1\": {\"viewports\": [3], \"type\": \"analog\", \"color\": {\"3\": \"#00CC00\"}, \"display\": {\"3\": \"solid\"}, \"is_manual\": {\"3\": false}}, \"SCADA.is_d\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#0099FF\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}, \"SCADA.is_q\": {\"viewports\": [2], \"type\": \"analog\", \"color\": {\"2\": \"#FFCC00\"}, \"display\": {\"2\": \"solid\"}, \"is_manual\": {\"2\": false}}}, \"viewports\": {\"1\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"2\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"3\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"4\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"5\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}, \"6\": {\"log_scale_x\": false, \"log_scale_y\": false, \"y_axis_db\": false}}}"
             user_range_data = "{\"1\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"2\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"3\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"4\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"5\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}, \"6\": {\"user_x_range_mode\": \"Zoom to fit\", \"user_y_range_mode\": \"Zoom to fit\", \"user_x_range\": [0, 1], \"user_y_range\": [0, 1]}}"
         }
         [
-            position = 7544, 9660
+            position = 7540, 9656
         ]
 
         component "core/Integrator" Integrator2 {
@@ -4680,7 +4680,7 @@ dis_q =  1/Ls*(-is_d*Ls*omega - Rd*is_q + Rd*it_q - Rs*is_q + vc_q - vs_q);
         ]
 
         tag From121 {
-            value = "eta_dq_ODE"
+            value = "eta_dq"
             scope = local
             kind = sp
             direction = out
@@ -4947,6 +4947,111 @@ dis_q =  1/Ls*(-is_d*Ls*omega - Rd*is_q + Rd*it_q - Rs*is_q + vc_q - vs_q);
         "Plant.Connection712"
         "Plant.Connection714"
         "Plant.Connection787"
+        "C function ODE"
+        "Product1"
+        "Gain1"
+        "Bus Split1"
+        "Bus Split2"
+        "Clock1"
+        "it_d_ODE"
+        "it_q_ODE"
+        "vc_d_ODE"
+        "vc_q_ODE"
+        "is_q_ODE"
+        "is_d_ODE"
+        "Power Reference Tracking"
+        "C function PI current controller"
+        "Bus Join8"
+        "Clock2"
+        "Bus Join9"
+        "Unit Delay1"
+        "Power Reference Tracking1"
+        "eta_d_ODE"
+        "eta_q_ODE"
+        "From97"
+        "From101"
+        "From102"
+        "Goto58"
+        "Goto59"
+        "Goto60"
+        "Goto61"
+        "Goto62"
+        "Goto63"
+        "From105"
+        "From106"
+        "From107"
+        "From108"
+        "From109"
+        "From110"
+        "From111"
+        "From68"
+        "From69"
+        "From70"
+        "From71"
+        "Goto55"
+        "Goto56"
+        "Goto57"
+        "From103"
+        "From104"
+        "Goto64"
+        "Goto65"
+        "Goto66"
+        "Goto67"
+        "Goto68"
+        "Goto69"
+        "Junction6"
+        "Junction7"
+        "Junction8"
+        "Junction9"
+        "Connection782"
+        "Connection817"
+        "Connection909"
+        "Connection910"
+        "Connection911"
+        "Connection912"
+        "Connection913"
+        "Connection914"
+        "Connection915"
+        "Connection916"
+        "Connection917"
+        "Connection918"
+        "Connection919"
+        "Connection920"
+        "Connection921"
+        "Connection922"
+        "Connection870"
+        "Connection871"
+        "Connection872"
+        "Connection873"
+        "Connection874"
+        "Connection875"
+        "Connection860"
+        "Connection524"
+        "Connection525"
+        "Connection605"
+        "Connection653"
+        "Connection901"
+        "Connection902"
+        "Connection904"
+        "Connection905"
+        "Connection924"
+        "Connection925"
+        "Connection933"
+        "Connection934"
+        "Connection935"
+        "Connection936"
+        "Connection937"
+        "Connection938"
+        "Connection939"
+        "Connection940"
+        "Connection941"
+        "Connection942"
+        "Connection943"
+        "Connection944"
+        "Connection945"
+        "Connection946"
+        "Connection947"
+        "Connection948"
     }
 
     default {
@@ -5288,9 +5393,9 @@ dis_q =  1/Ls*(-is_d*Ls*omega - Rd*is_q + Rd*it_q - Rs*is_q + vc_q - vs_q);
     CODE model_init
         # Numpy module is imported as 'np'
         # Scipy module is imported as 'sp'
-        Tfast = 50e-6
-        Ts_Control = 50e-6
-        Ts_Power = 50e-6
+        Tfast = 20e-6
+        Ts_Control = 20e-6
+        Ts_Power = 20e-6
         #LPF power
         fc = 30
         # Filter parameter
@@ -5298,7 +5403,7 @@ dis_q =  1/Ls*(-is_d*Ls*omega - Rd*is_q + Rd*it_q - Rs*is_q + vc_q - vs_q);
         Rt = .1
         Ls = 1.25e-3
         Rs = .1
-        Rd = 20.0
+        Rd = 10.0
         C = 4e-6
         # Switching frequency
         fs = 10e3
