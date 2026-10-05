@@ -13,6 +13,7 @@ This is a research/teaching repository (SUNRISE Summer School materials) for Har
 - **`TyphoonSim/`** — offline, software-only Typhoon models (`.tse` + `TyphoonSim.exe` target files), plus `ODE_plant.py` (analytic state-space ODE of the LCL plant) and JSON exports of its state-space (AB) matrices/equilibrium, used to cross-check the schematic model against hand-derived equations.
 - **`Andrei_unb_vsg/`, `chil_CCS/`, `chil_Auto_code_gen/`, `SS_Belgrade_25/`** — CHIL (Controller Hardware-in-the-Loop) projects: a Typhoon schematic model paired with auto-generated C control code for TI F2837x/F28335 DSPs, built/flashed via Code Composer Studio (CCS).
 - **`docs/`** — slide decks and PDFs for the course this repo supports (VSC modeling/control, CCS installation).
+- **`Goose_Protocol/`** — standalone Scapy scripts for layer-2 GOOSE publish/subscribe (and a PROFINET sketch) against Typhoon HIL; `main.py` runs both. See [`Goose_Protocol/CLAUDE.md`](Goose_Protocol/CLAUDE.md).
 - **`pss_design.ipynb`** — root-level notebook for controller/power-system-stability design work.
 
 ## File types cheat sheet
