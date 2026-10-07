@@ -21,10 +21,19 @@
         <Authentication none="true"/>
         <LDevice inst="CTRL">
           <LN0 lnClass="LLN0" inst="" lnType="LLN0_Type">
+            <!-- 8 valores publicados por GOOSE, en este orden (así los muestra
+                 subscriber_goose.py): Va, Vb, Vc, Ia, Ib, Ic, P, Q -->
             <DataSet name="ds_DoubleVal">
               <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="PhV.phsA" daName="cVal.mag.f" fc="MX"/>
+              <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="PhV.phsB" daName="cVal.mag.f" fc="MX"/>
+              <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="PhV.phsC" daName="cVal.mag.f" fc="MX"/>
+              <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="A.phsA" daName="cVal.mag.f" fc="MX"/>
+              <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="A.phsB" daName="cVal.mag.f" fc="MX"/>
+              <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="A.phsC" daName="cVal.mag.f" fc="MX"/>
+              <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="TotW" daName="mag.f" fc="MX"/>
+              <FCDA ldInst="CTRL" prefix="" lnClass="MMXU" lnInst="1" doName="TotVAr" daName="mag.f" fc="MX"/>
             </DataSet>
-            <GSEControl name="GoCB_Double" datSet="ds_DoubleVal" confRev="1" appID="HIL_GOOSE_PUB" goID="HIL101_GOOSE"/>
+            <GSEControl name="GoCB_Double" datSet="ds_DoubleVal" confRev="2" appID="HIL_GOOSE_PUB" goID="HIL101_GOOSE"/>
           </LN0>
           <LN lnClass="MMXU" inst="1" prefix="" lnType="MMXU_Type"/>
         </LDevice>

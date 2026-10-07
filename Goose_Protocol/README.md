@@ -1,12 +1,22 @@
 # Prueba de mensajes GOOSE con Scapy
 
-Scripts en Python para enviar y recibir tramas **GOOSE** (IEC 61850-8-1) a nivel Ethernet (capa 2). El publicador envía un valor **double** (por defecto `24.5678`) dentro de un mensaje GOOSE que sigue la norma, y el suscriptor lo decodifica y lo muestra. Sirven para comprobar que dos equipos intercambian datos por GOOSE, por ejemplo un PC y un HIL de Typhoon, o dos interfaces del mismo PC.
+Scripts en Python para enviar y recibir tramas **GOOSE** (IEC 61850-8-1) a nivel Ethernet (capa 2). Sirven para comprobar que dos equipos intercambian datos por GOOSE, por ejemplo un PC y un HIL de Typhoon, o dos interfaces del mismo PC.
 
-| Archivo | Qué hace |
+## Contenido de la carpeta
+
+| Carpeta / archivo | Qué hace |
 |---|---|
-| `publisher_goose.py` | Envía cada 2 segundos una trama GOOSE con un double en el dataset. |
-| `subscriber_goose.py` | Escucha las tramas GOOSE de una interfaz, las decodifica y muestra sus campos y valores. |
-| `main.py` | Ejecuta los dos scripts a la vez y los detiene juntos. |
+| `test_python/` | Ejemplo básico con **un solo double** (por defecto `24.5678`). |
+| `test_python/publisher_goose.py` | Envía cada 2 segundos una trama GOOSE con un double en el dataset. |
+| `test_python/subscriber_goose.py` | Escucha las tramas GOOSE de una interfaz, las decodifica y muestra sus campos y valores. |
+| `test_python/main.py` | Ejecuta los dos scripts a la vez y los detiene juntos. |
+| `Typhoon_python/` | Suscriptor para el montaje real con Typhoon, que recibe **8 doubles**. Ver [Typhoon_python: suscriptor de 8 valores](#typhoon_python-suscriptor-de-8-valores). |
+| `Typhoon_python/subscriber_goose.py` | Suscriptor de los 8 valores (Va, Vb, Vc, Ia, Ib, Ic, P, Q). |
+| `Typhoon_python/hil_publisher.icd` | Configuración IEC 61850 (ICD) del publicador GOOSE de Typhoon, con el dataset de 8 valores. |
+| `Typhoon_python/test/` | Publicador de prueba de 8 doubles, tests sin red y lanzador de la prueba en vivo. |
+| `Example_Typhoon/` | Modelo de Typhoon (`goose.tse`), panel SCADA (`goose.cus`) y fichero `.scd`. Se editan desde Typhoon. |
+
+Las secciones de *Configuración*, *Uso* y *Guía para interpretar el código* describen el ejemplo de `test_python/`. Los conceptos de GOOSE y BER son los mismos para `Typhoon_python/`.
 
 ## Requisitos
 
@@ -61,7 +71,7 @@ Los identificadores son de ejemplo. Si vas a recibir el mensaje con un HIL de Ty
 
 ## Uso
 
-Desde esta carpeta (`Goose_Protocol/test_python`):
+Desde la carpeta `test_python`:
 
 ```
 python main.py                 # suscriptor + publicador
@@ -197,10 +207,109 @@ Los dos scripts empiezan su bucle infinito en cuanto se cargan, así que no se p
 
 ---
 
+## Typhoon_python: suscriptor de 8 valores
+
+Typhoon publica por GOOSE **8 valores double** en un único mensaje. El suscriptor de `Typhoon_python/` los decodifica, los muestra con su nombre y los guarda para poder usarlos desde otro código.
+
+### Dataset: `hil_publisher.icd`
+
+El ICD configura el publicador GOOSE de Typhoon: IED `HIL_IED`, dispositivo lógico `CTRL`, bloque de control `GoCB_Double` (APPID `0001`, MAC `01-0C-CD-01-00-01`, `confRev="2"`) y el dataset `ds_DoubleVal`. El dataset tiene 8 entradas (FCDA) del nodo `MMXU1`. **El orden de las entradas es el orden en que llegan los valores:**
+
+| # | FCDA (`doName.daName`) | Nombre en el suscriptor | Significado |
+|---|---|---|---|
+| 0 | `PhV.phsA.cVal.mag.f` | `Va` | Tensión de fase A |
+| 1 | `PhV.phsB.cVal.mag.f` | `Vb` | Tensión de fase B |
+| 2 | `PhV.phsC.cVal.mag.f` | `Vc` | Tensión de fase C |
+| 3 | `A.phsA.cVal.mag.f` | `Ia` | Corriente de fase A |
+| 4 | `A.phsB.cVal.mag.f` | `Ib` | Corriente de fase B |
+| 5 | `A.phsC.cVal.mag.f` | `Ic` | Corriente de fase C |
+| 6 | `TotW.mag.f` | `P` | Potencia activa total |
+| 7 | `TotVAr.mag.f` | `Q` | Potencia reactiva total |
+
+Si cambias las señales del dataset, cambia también:
+- `NUM_VALORES` y `NOMBRES` en `subscriber_goose.py`;
+- `VALORES_BASE` y `CONF_REV` en `test/publisher_goose_8.py`;
+- `confRev` en el ICD (súbelo en 1 cada vez que cambie el dataset).
+
+### `Typhoon_python/subscriber_goose.py`
+
+Usa las mismas funciones que el suscriptor de `test_python` (`ber_items`, `decode_data`, `goose_callback`). Las diferencias son:
+
+| Elemento | Qué hace |
+|---|---|
+| `NUM_VALORES = 8` | Número de valores que se esperan en allData. |
+| `NOMBRES` | Nombre con el que se muestra cada valor, en el orden del dataset. |
+| `ultimos_valores` | Lista con los últimos 8 valores recibidos. Se actualiza con cada trama válida; empieza con `None`. |
+| `goose_callback(packet)`, paso 4 | Se queda solo con los elementos floating-point (`0x87`) de allData, así que si Typhoon añade la calidad (`q`) o la marca de tiempo (`t`) de cada valor, se ignoran. Si no llegan 8 valores, avisa (`Aviso: se esperaban 8 valores y llegaron N`). Muestra cada valor con su nombre y lo guarda en `ultimos_valores`: los que sobran se descartan y, si faltan, los demás conservan su valor anterior. |
+| `if __name__ == "__main__":` | La captura (`sniff`) solo arranca al ejecutar el script. Así los tests pueden importarlo sin quedarse bloqueados. |
+
+Para escuchar al HIL (con la terminal como administrador):
+
+```
+python Typhoon_python/subscriber_goose.py
+```
+
+Salida esperada por cada trama:
+
+```
+[+] ¡Trama GOOSE recibida!
+    MAC Origen:  xx:xx:xx:xx:xx:xx
+    MAC Destino: 01:0c:cd:01:00:01
+    APPID:   0x0001
+    gocbRef: HIL_IEDCTRL/LLN0$GO$GoCB_Double
+    stNum:   1  sqNum: 0
+            Va: 230.0
+            Vb: 231.5
+            ...
+             Q: 1234.5678
+```
+
+### Pruebas: `Typhoon_python/test/`
+
+| Archivo | Qué hace |
+|---|---|
+| `publisher_goose_8.py` | Simula al HIL: publica cada segundo una trama con 8 doubles (`VALORES_BASE`, desplazados 0.1 en cada envío para que se vea el cambio). Usa los mismos `GOCB_REF`, `DAT_SET`, `GO_ID` y `CONF_REV` que el ICD. Opciones: `--iface` (interfaz) y `--con-calidad` (añade la calidad `q`, bit-string `0x84`, detrás de cada valor). |
+| `test_subscriber_8.py` | Tests automáticos **sin red**: construye tramas con `build_goose()` del publicador y se las pasa directamente a `goose_callback()`. No necesita Npcap ni administrador. |
+| `main.py` | Prueba **en vivo**: arranca el suscriptor, espera 1 s y arranca el publicador; los para juntos con Ctrl+C o al cumplirse `--duracion`. Acepta `--con-calidad`. |
+
+**Funciones de `publisher_goose_8.py`.** `ber_tlv`, `ber_uint`, `ber_double` y `utc_time` son iguales que en `test_python/publisher_goose.py`. Cambia `build_goose(valores, st_num, sq_num, t_cambio, con_calidad=False)`: recibe una **lista** de doubles, mete cada uno en un elemento `0x87` de allData (con su calidad detrás si `con_calidad=True`) y pone en `numDatSetEntries` el número de elementos.
+
+**Qué comprueban los tests:**
+
+| Test | Comprueba que... |
+|---|---|
+| `test_publicador_y_suscriptor_esperan_8_valores` | Publicador y suscriptor esperan 8 valores y hay un nombre por valor. |
+| `test_decodifica_8_doubles` | Los 8 doubles llegan exactos y en orden, y se muestran stNum, sqNum, gocbRef y los nombres. |
+| `test_ignora_calidad_entre_valores` | Con la calidad entre los valores siguen saliendo los 8 doubles. |
+| `test_valores_especiales` | Se decodifican bien `0.0`, `-0.0`, `1e-300`, `-1e300`, `inf`, etc. |
+| `test_actualiza_con_cada_trama` | Cada trama nueva sustituye los valores guardados. |
+| `test_avisa_si_faltan_valores` / `test_avisa_si_sobran_valores` | Avisa si llegan 3 o 9 valores y guarda solo los que corresponden. |
+| `test_float_32_bits` | También entiende floats de 32 bits, por si Typhoon los envía así. |
+| `test_payload_no_goose` / `test_ignora_tramas_no_goose` | Las tramas que no son GOOSE válido no rompen el suscriptor ni cambian los valores. |
+
+**Uso:**
+
+```
+python Typhoon_python/test/test_subscriber_8.py         # tests sin red
+python Typhoon_python/test/main.py --duracion 10        # prueba en vivo durante 10 s
+python Typhoon_python/test/main.py --con-calidad        # en vivo, con calidad tras cada valor
+```
+
+Salida de los tests si todo va bien:
+
+```
+Ran 10 tests in 0.005s
+
+OK
+```
+
+---
+
 ## Limitaciones
 
-- **El dataset lleva un solo valor.** Para enviar más, añade más elementos a `all_data` en `build_goose()` y ajusta `numDatSetEntries` (`0x8A`).
+- **En `test_python`, el dataset lleva un solo valor.** Para enviar más, añade más elementos a `all_data` en `build_goose()` y ajusta `numDatSetEntries` (`0x8A`).
 - **Los identificadores son de ejemplo.** Un IED o un HIL solo acepta el mensaje si `APPID`, `GOCB_REF`, `DAT_SET`, `GO_ID` y `CONF_REV` coinciden con su configuración.
-- **El suscriptor no filtra por gocbRef ni comprueba `timeAllowedtoLive`.** Muestra cualquier trama GOOSE que llegue a la interfaz.
+- **El ICD no incluye las plantillas de tipos (`DataTypeTemplates`).** Declara `LLN0_Type` y `MMXU_Type` pero no los define. Si Typhoon da error al importarlo, hay que añadirlas.
+- **Los suscriptores no filtran por gocbRef ni comprueba `timeAllowedtoLive`.** Muestra cualquier trama GOOSE que llegue a la interfaz.
 - **`decode_data()` solo entiende booleanos, enteros, float y double.** Otros tipos (bit-string, estructuras, cadenas…) se muestran en hexadecimal.
 - **En Windows, con la misma interfaz para enviar y recibir**, si el suscriptor no ve las tramas del publicador, prueba con dos interfaces conectadas entre sí o con un equipo externo.

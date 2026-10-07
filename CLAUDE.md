@@ -13,7 +13,7 @@ This is a research/teaching repository (SUNRISE Summer School materials) for Har
 - **`TyphoonSim/`** — offline, software-only Typhoon models (`.tse` + `TyphoonSim.exe` target files), plus `ODE_plant.py` (analytic state-space ODE of the LCL plant) and JSON exports of its state-space (AB) matrices/equilibrium, used to cross-check the schematic model against hand-derived equations.
 - **`Andrei_unb_vsg/`, `chil_CCS/`, `chil_Auto_code_gen/`, `SS_Belgrade_25/`** — CHIL (Controller Hardware-in-the-Loop) projects: a Typhoon schematic model paired with auto-generated C control code for TI F2837x/F28335 DSPs, built/flashed via Code Composer Studio (CCS).
 - **`docs/`** — slide decks and PDFs for the course this repo supports (VSC modeling/control, CCS installation).
-- **`Goose_Protocol/test_python/`** — standalone Scapy scripts for layer-2 IEC 61850 GOOSE publish/subscribe against Typhoon HIL. The publisher sends a double in a standards-conformant GOOSE frame, the subscriber decodes it, and `main.py` runs both. See [`Goose_Protocol/test_python/CLAUDE.md`](Goose_Protocol/test_python/CLAUDE.md). Its `README.md` is a Spanish code guide for the user.
+- **`Goose_Protocol/`** — standalone Scapy scripts for layer-2 IEC 61850 GOOSE publish/subscribe against Typhoon HIL. `test_python/` is a single-double publisher/subscriber demo. `Typhoon_python/` holds the subscriber for the real HIL, which receives 8 doubles (Va, Vb, Vc, Ia, Ib, Ic, P, Q), plus the `hil_publisher.icd` that configures Typhoon; its `test/` subfolder has an 8-double test publisher and offline unittest tests. `Example_Typhoon/` holds vendor model files. See [`Goose_Protocol/CLAUDE.md`](Goose_Protocol/CLAUDE.md). Its `README.md` is a Spanish code guide for the user.
 - **`pss_design.ipynb`** — root-level notebook for controller/power-system-stability design work.
 
 ## File types cheat sheet
@@ -29,6 +29,6 @@ This is a research/teaching repository (SUNRISE Summer School materials) for Har
 ## Working in this repo
 
 - There's no root-level lint/build/test tooling and no `requirements.txt`/`pyproject.toml` — treat vendor project files (`.tse`, `.cus`, `.runx`, `.slx`, CCS projects) as opaque and edit them through their respective GUI tools, not by hand.
-- The only code meant to be edited/extended directly is `HIL_API/` (Python), `Goose_Protocol/test_python/` (Python), and the CCS C sources under `*_acg`/CHIL project folders — see the per-directory notes above for which files are generated vs. hand-maintained.
+- The only code meant to be edited/extended directly is `HIL_API/` (Python), `Goose_Protocol/test_python/` and `Goose_Protocol/Typhoon_python/` (Python), and the CCS C sources under `*_acg`/CHIL project folders — see the per-directory notes above for which files are generated vs. hand-maintained.
 - `HIL_API/hil_simulation.py`'s `compile_if_needed()` automates `.tse` → `.cpd` compilation via `typhoon.api.schematic_editor`; CCS DSP builds still require the Code Composer Studio IDE.
 - Compiled binaries, DLLs, `.pickle`/`.dat`/`.bin` artifacts, `__pycache__`, and `HIL_API/results/*.csv` are generated output, not source — don't hand-edit them.

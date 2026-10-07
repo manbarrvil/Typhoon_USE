@@ -3,16 +3,21 @@ Suscriptor GOOSE de prueba (IEC 61850-8-1) basado en Scapy.
 
 Escucha en una interfaz de red todas las tramas Ethernet con EtherType GOOSE
 (0x88B8), decodifica el goosePdu (BER/ASN.1) y muestra APPID, gocbRef, stNum,
-sqNum y los valores del dataset (allData), incluidos los double.
+sqNum y los NUM_VALORES (8) valores double que publica Typhoon en el dataset
+(allData). Los últimos valores recibidos quedan en la lista ultimos_valores.
 
-Funciona tanto con las tramas de publisher_goose.py como con las de cualquier
-equipo que publique GOOSE en la misma red (p. ej. un HIL de Typhoon).
+Pensado para el GOOSE que publica Typhoon HIL según hil_publisher.icd (dataset
+ds_DoubleVal: Va, Vb, Vc, Ia, Ib, Ic, P, Q). Para probarlo sin el HIL, usa el
+publicador y los tests de la carpeta test/.
 
 Pasos de la decodificación (en goose_callback):
   1. Coger los bytes que van detrás de la cabecera Ethernet.
   2. Leer la cabecera GOOSE de 8 bytes (APPID y Length).
   3. Separar el goosePdu en campos TLV con ber_items().
   4. Separar allData en sus valores y convertir cada uno con decode_data().
+
+Uso:
+    python subscriber_goose.py
 
 Requisitos: scapy + Npcap (Windows) o permisos de root (Linux).
 """
@@ -27,6 +32,18 @@ import sys
 # Para listar los nombres disponibles:
 #   python -c "from scapy.all import show_interfaces; show_interfaces()"
 INTERFACE = "veth0" if sys.platform != "win32" else "Ethernet"
+
+# Número de valores double que publica Typhoon en el dataset (allData).
+NUM_VALORES = 8
+
+# Nombres para mostrar cada valor, en el mismo orden que los FCDA del dataset
+# ds_DoubleVal de hil_publisher.icd (MMXU1): tensiones de fase PhV.phsA/B/C,
+# corrientes A.phsA/B/C, potencia activa TotW y reactiva TotVAr.
+NOMBRES = ["Va", "Vb", "Vc", "Ia", "Ib", "Ic", "P", "Q"]
+
+# Últimos valores recibidos (lista de NUM_VALORES floats). Se actualiza en cada
+# trama GOOSE válida, por si se quiere usar desde otro código.
+ultimos_valores = [None] * NUM_VALORES
 
 
 def ber_items(data):
@@ -120,17 +137,37 @@ def goose_callback(packet):
         sq = int.from_bytes(campos[0x86], "big")
         print(f"    stNum:   {st}  sqNum: {sq}")
 
-    # Paso 4: allData es una secuencia; cada elemento es un valor del dataset
-    # (con publisher_goose.py hay solo uno: el double VALOR).
-    if 0xAB in campos:
-        for k, (tag, value) in enumerate(ber_items(campos[0xAB])):
-            print(f"    allData[{k}]: {decode_data(tag, value)}")
+    # Paso 4: allData es una secuencia; cada elemento es un valor del dataset.
+    # Typhoon envía NUM_VALORES doubles. Solo se cogen los elementos de tipo
+    # floating-point (0x87), por si el dataset incluye también calidad (q) o
+    # marcas de tiempo (t) junto a cada valor.
+    if 0xAB not in campos:
+        print("    La trama no trae allData")
+        return
+    valores = [decode_data(tag, value)
+               for tag, value in ber_items(campos[0xAB]) if tag == 0x87]
+    if len(valores) != NUM_VALORES:
+        print(f"    Aviso: se esperaban {NUM_VALORES} valores y llegaron {len(valores)}")
+
+    # Se muestra cada valor con su nombre (zip para en el más corto, así que
+    # si llegan de más, los sobrantes no se muestran).
+    for nombre, valor in zip(NOMBRES, valores):
+        print(f"    {nombre:>10}: {valor}")
+
+    # Se guardan los valores recibidos en la lista global (se modifica en su
+    # sitio para que quien la haya importado vea los cambios). Si llegan
+    # menos de NUM_VALORES, el resto conserva el valor anterior; si llegan
+    # más, se descartan los sobrantes.
+    ultimos_valores[:len(valores[:NUM_VALORES])] = valores[:NUM_VALORES]
 
 
-print(f"Escuchando tráfico GOOSE en '{INTERFACE}'... (Presiona Ctrl+C para salir)")
+if __name__ == "__main__":
+    # Solo se captura al ejecutar el script directamente; así los tests de la
+    # carpeta test/ pueden importar goose_callback sin quedarse en sniff().
+    print(f"Escuchando tráfico GOOSE en '{INTERFACE}'... (Presiona Ctrl+C para salir)")
 
-# Captura bloqueante (no termina hasta Ctrl+C o hasta que se mata el proceso):
-#   - filter: filtro BPF que aplica Npcap/libpcap, para recibir solo GOOSE.
-#   - prn: función que se llama con cada paquete capturado.
-#   - store=0: no guarda los paquetes en memoria (captura indefinida).
-sniff(iface=INTERFACE, prn=goose_callback, filter="ether proto 0x88b8", store=0)
+    # Captura bloqueante (no termina hasta Ctrl+C o hasta que se mata el proceso):
+    #   - filter: filtro BPF que aplica Npcap/libpcap, para recibir solo GOOSE.
+    #   - prn: función que se llama con cada paquete capturado.
+    #   - store=0: no guarda los paquetes en memoria (captura indefinida).
+    sniff(iface=INTERFACE, prn=goose_callback, filter="ether proto 0x88b8", store=0)
