@@ -14,8 +14,7 @@
 
 #define DEVICE_SYSCLK_FREQ                 200000000U
 
-#define EX_RATE0                           (50U)
-#define EX_RATE1                           (100000U)
+#define EX_RATE0                           (0.0001U)
 
 
 #define SETUP_SCHEDULER(TickFunctsArray)   setupScheduler(TickFunctsArray)
@@ -80,7 +79,6 @@ void evalExRate(void);
 __interrupt void userISR(void);
 
 extern void TickFct_R0(void);
-extern void TickFct_R1(void);
 
 extern void TickFct_Idle(void);
 

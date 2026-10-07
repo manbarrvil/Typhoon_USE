@@ -64,7 +64,7 @@ model "dq_current_ctrl_ODE_sim_v2" {
         export_lock_top_level = True
         export_encrypt_library = True
         export_encrypt_resources = True
-        solver_type = "DAE"
+        solver_type = "ODE"
         integration_method = "BDF"
         max_sim_step = 1e-4
         simulation_time = 0.7

@@ -1,0 +1,312 @@
+version = 4.2
+
+//
+// Saved by sw version: 2026.2
+//
+
+model "goose" {
+    configuration {
+        hil_device = "HIL101"
+        hil_configuration_id = 1
+        simulation_method = exact
+        simulation_time_step = auto
+        simulation_discret_scaling = 1.0
+        dsp_timer_periods = 100e-6, 50e-3
+        ss_calc_method = "systematic elimination"
+        enb_pole_shift = True
+        enb_gds_oversampling = True
+        show_modes = False
+        device_ao_limit_enable = True
+        reset_analog_outputs_on_sim_stop = True
+        reset_analog_outputs_on_sim_stop_mode = Offset values
+        reset_digital_outputs_on_sim_stop = True
+        vhil_adio_loopback = False
+        dma_enable = False
+        cpl_stb = False
+        enb_dep_sw_detect = False
+        code_section = "internal memory"
+        data_section = "internal memory"
+        sys_sp_rate_1 = 0.0001
+        sys_sp_rate_2 = 0.05
+        sys_real_type_precision = "default"
+        user_real_type_precision = "default"
+        sys_cpu_optimization = "high"
+        user_cpu_optimization = "high"
+        user_cpu_part_option = "default"
+        matrix_based_reduction = True
+        cpl_dynamics_analysis = False
+        export_ss_to_pickle = False
+        ground_scope_core = False
+        dss_num_tol = 1e-15
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_platform = "generic"
+        cce_use_relative_names = False
+        cce_type_mapping_real = "double"
+        cce_type_mapping_uint = "unsigned int"
+        cce_type_mapping_int = "int"
+        cce_term_var_location = "local"
+        cce_directory = ""
+        cce_custom_type_int = ""
+        cce_custom_type_uint = ""
+        cce_custom_type_real = ""
+        tunable_params = "component defined"
+        sp_compiler_type = "C compiler"
+        sig_stim = "off"
+        export_resource_list = ""
+        export_dependency_list = ""
+        excluded_resource_list = ""
+        excluded_component_from_locking_list = ""
+        export_out_file = ""
+        export_lock_top_level = True
+        export_encrypt_library = True
+        export_encrypt_resources = True
+        solver_type = "DAE"
+        integration_method = "BDF"
+        max_sim_step = 1e-4
+        simulation_time = 1.0
+        abs_tol = 1e-3
+        rel_tol = 1e-3
+        init_sim_step = 1e-6
+        r_on_sw = 1e-3
+        v_on_diode = 0.2
+        data_sampling_rate = 0
+        feedthrough_validation_error_level = warning
+    }
+
+    component Subsystem Root {
+        component "core/Bus Join" "Bus Join1" {
+            inputs = "3"
+        }
+        [
+            position = 7968, 8192
+        ]
+
+        component "core/Constant" q_and_t {
+            execution_rate = "0.0001"
+            value = "0"
+        }
+        [
+            position = 7704, 8208
+        ]
+
+        component "core/Bus Split" "Bus Split1" {
+            outputs = "3"
+        }
+        [
+            position = 8536, 8192
+        ]
+
+        component "core/Termination" Termination1 {
+        }
+        [
+            position = 8824, 8192
+            hide_name = True
+        ]
+
+        component "core/Termination" Termination2 {
+        }
+        [
+            position = 8824, 8248
+            hide_name = True
+        ]
+
+        component "core/SCADA Input" _stVal {
+            execution_rate = "0.0001"
+            unit = ""
+        }
+        [
+            position = 7704, 8112
+        ]
+
+        component "core/Probe" stVal {
+        }
+        [
+            position = 8824, 8136
+        ]
+
+        component "core/GOOSE Publisher" "Goose Publisher" {
+            ControlBlocks_values = "[[\'gcbTEST\', \'TEST\', 0, 2], [\'gcbSTAT\', \'STAT\', 4096, 1]]"
+            configuration = "typhoon_2servers.scd"
+            data_set = "STAT"
+            eth_port = "1"
+            ethernet_port_per_device = "{\'HIL101\': {\'0\': \'1\', \'1\': \'1\', \'2\': \'1\', \'3\': \'1\', \'4\': \'1\', \'5\': \'1\', \'6\': \'1\', \'7\': \'1\', \'8\': \'1\', \'9\': \'1\', \'10\': \'1\', \'11\': \'1\', \'12\': \'1\', \'13\': \'1\', \'14\': \'1\', \'15\': \'1\'}, \'HIL402\': {\'0\': \'1\', \'1\': \'1\', \'2\': \'1\', \'3\': \'1\', \'4\': \'1\', \'5\': \'1\', \'6\': \'1\', \'7\': \'1\', \'8\': \'1\', \'9\': \'1\', \'10\': \'1\', \'11\': \'1\', \'12\': \'1\', \'13\': \'1\', \'14\': \'1\', \'15\': \'1\'}, \'HIL404\': {}, \'HIL506\': {}, \'HIL602+\': {}, \'HIL603\': {}, \'HIL604\': {}, \'HIL606\': {}, \'VHIL+\': {}}"
+            gcb_data_text = "{\'LD\': {\'LD0/LLN0.gcbTEST\': {\'GCB_name\': \'gcbTEST\', \'LD_name\': \'LD0\', \'vlan_VID\': 0, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 0, \'minTime\': 40, \'maxTime\': 2000, \'goID\': \'LA99B\', \'DS_name\': \'TEST\', \'datSetName\': \'LD0/LLN0$TEST\', \'confRev\': 2, \'LN_name\': \'LLN0\', \'gocbRef\': \'LD0/LLN0$GO$gcbTEST\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 2, \'Members\': [\'LD0$LSPTRC1$ST$Tr1$general\', \'LD0$LSPTRC1$ST$Tr1$q\'], \'All_elem_num\': 2, \'All_elements_full_names\': [\'LD0$LSPTRC1$ST$Tr1$general\', \'LD0$LSPTRC1$ST$Tr1$q\'], \'All_elements_reduced_names\': [\'LD0$LSPTRC1$ST$Tr1\', \'LD0$LSPTRC1$ST$Tr1\'], \'Types\': [\'boolean\', \'bitstring\'], \'Value_length_in_bits\': [1, 13]}, \'LD0/LLN0.gcbSTAT\': {\'GCB_name\': \'gcbSTAT\', \'LD_name\': \'LD0\', \'vlan_VID\': 273, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 4096, \'minTime\': 30, \'maxTime\': 2000, \'goID\': \'STAT\', \'DS_name\': \'STAT\', \'datSetName\': \'LD0/LLN0$STAT\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'LD0/LLN0$GO$gcbSTAT\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 1, \'Members\': [\'LD0$XCBR1$ST$Pos$stVal\'], \'All_elem_num\': 1, \'All_elements_full_names\': [\'LD0$XCBR1$ST$Pos$stVal\'], \'All_elements_reduced_names\': [\'LD0$XCBR1$ST$Pos\'], \'Types\': [\'bitstring\'], \'Value_length_in_bits\': [2]}, \'LD0/LLN0.gcbCBPOS\': {\'GCB_name\': \'gcbCBPOS\', \'LD_name\': \'LD0\', \'vlan_VID\': 546, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 8192, \'minTime\': 30, \'maxTime\': 2000, \'goID\': \'CBPOS\', \'DS_name\': \'CBPOS\', \'datSetName\': \'LD0/LLN0$CBPOS\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'LD0/LLN0$GO$gcbCBPOS\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 3, \'Members\': [\'LD0$XCBR1$ST$Pos$stVal\', \'LD0$XCBR1$ST$Pos$q\', \'LD0$XCBR1$ST$Pos$t\'], \'All_elem_num\': 4, \'All_elements_full_names\': [\'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos$stVal\', \'LD0$XCBR1$ST$Pos$q\', \'LD0$XCBR1$ST$Pos$t\'], \'All_elements_reduced_names\': [\'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos\'], \'Types\': [\'struct\', \'bitstring\', \'bitstring\', \'utctime\'], \'Value_length_in_bits\': [2, 13, 8]}}, \'IED\': {\'IED0/LLN0.gcbMEAS\': {\'GCB_name\': \'gcbMEAS\', \'LD_name\': \'IED0\', \'vlan_VID\': 0, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 0, \'minTime\': 30, \'maxTime\': 2000, \'goID\': \'MEAS\', \'DS_name\': \'MEAS\', \'datSetName\': \'IED0/LLN0$MEAS\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'IED0/LLN0$GO$gcbMEAS\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 9, \'Members\': [\'IED0$MMXU1$MX$W$phsA$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsA$q\', \'IED0$MMXU1$MX$W$phsA$t\', \'IED0$MMXU1$MX$W$phsB$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsB$q\', \'IED0$MMXU1$MX$W$phsB$t\', \'IED0$MMXU1$MX$W$phsC$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsC$q\', \'IED0$MMXU1$MX$W$phsC$t\'], \'All_elem_num\': 19, \'All_elements_full_names\': [\'IED0$MMXU1$MX$W\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsA$cVal\', \'IED0$MMXU1$MX$W$phsA$cVal$mag\', \'IED0$MMXU1$MX$W$phsA$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsA$q\', \'IED0$MMXU1$MX$W$phsA$t\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsB$cVal\', \'IED0$MMXU1$MX$W$phsB$cVal$mag\', \'IED0$MMXU1$MX$W$phsB$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsB$q\', \'IED0$MMXU1$MX$W$phsB$t\', \'IED0$MMXU1$MX$W$phsC\', \'IED0$MMXU1$MX$W$phsC$cVal\', \'IED0$MMXU1$MX$W$phsC$cVal$mag\', \'IED0$MMXU1$MX$W$phsC$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsC$q\', \'IED0$MMXU1$MX$W$phsC$t\'], \'All_elements_reduced_names\': [\'IED0$MMXU1$MX$W\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsA$cVal\', \'IED0$MMXU1$MX$W$phsA$cVal$mag\', \'IED0$MMXU1$MX$W$phsA$cVal$mag\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsB$cVal\', \'IED0$MMXU1$MX$W$phsB$cVal$mag\', \'IED0$MMXU1$MX$W$phsB$cVal$mag\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsC\', \'IED0$MMXU1$MX$W$phsC$cVal\', \'IED0$MMXU1$MX$W$phsC$cVal$mag\', \'IED0$MMXU1$MX$W$phsC$cVal$mag\', \'IED0$MMXU1$MX$W$phsC\', \'IED0$MMXU1$MX$W$phsC\'], \'Types\': [\'struct\', \'struct\', \'struct\', \'struct\', \'float\', \'bitstring\', \'utctime\', \'struct\', \'struct\', \'struct\', \'float\', \'bitstring\', \'utctime\', \'struct\', \'struct\', \'struct\', \'float\', \'bitstring\', \'utctime\'], \'Value_length_in_bits\': [4, 13, 8, 4, 13, 8, 4, 13, 8]}, \'IED0/LLN0.gcbSTRUCT\': {\'GCB_name\': \'gcbSTRUCT\', \'LD_name\': \'IED0\', \'vlan_VID\': 0, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 1, \'minTime\': 100, \'maxTime\': 2000, \'goID\': \'STRUCT\', \'DS_name\': \'STRUCT\', \'datSetName\': \'IED0/LLN0$STRUCT\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'IED0/LLN0$GO$gcbSTRUCT\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 6, \'Members\': [\'IED0$MMXU1$ST$Beh$stVal\', \'IED0$MMXU1$ST$Beh$q\', \'IED0$MMXU1$ST$Beh$t\', \'IED0$PTRC1$ST$Beh$stVal\', \'IED0$PTRC1$ST$Beh$q\', \'IED0$PTRC1$ST$Beh$t\'], \'All_elem_num\': 8, \'All_elements_full_names\': [\'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh$stVal\', \'IED0$MMXU1$ST$Beh$q\', \'IED0$MMXU1$ST$Beh$t\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh$stVal\', \'IED0$PTRC1$ST$Beh$q\', \'IED0$PTRC1$ST$Beh$t\'], \'All_elements_reduced_names\': [\'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh\'], \'Types\': [\'struct\', \'integer\', \'bitstring\', \'utctime\', \'struct\', \'integer\', \'bitstring\', \'utctime\'], \'Value_length_in_bits\': [1, 13, 8, 1, 13, 8]}}}"
+            gooseCB = "LD0/LLN0.gcbCBPOS"
+            gooseCB_values = "[\'LD0/LLN0.gcbTEST\', \'LD0/LLN0.gcbSTAT\', \'LD0/LLN0.gcbCBPOS\']"
+            ied = "LD"
+            ied_values = "[\'LD\', \'IED\']"
+            vlan_id = "546"
+            vlan_priority = "4"
+        }
+        [
+            position = 8152, 8192
+            size = 184, 184
+        ]
+
+        component "core/GOOSE Subscriber" "Goose Subscriber" {
+            GoCBRef = "LD0/LLN0$GO$TEST"
+            configuration = "typhoon_2servers.scd"
+            data_set = "LD0/LLN0.CBPOS"
+            data_set_values = "[\'LD0/LLN0.TEST\', \'LD0/LLN0.STAT\', \'LD0/LLN0.CBPOS\']"
+            ds_data_text = "{\'LD\': {\'LD0/LLN0.TEST\': {\'GCB_name\': \'gcbTEST\', \'LD_name\': \'LD0\', \'vlan_VID\': 0, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 0, \'minTime\': 40, \'maxTime\': 2000, \'goID\': \'LA99B\', \'DS_name\': \'TEST\', \'datSetName\': \'LD0/LLN0$TEST\', \'confRev\': 2, \'LN_name\': \'LLN0\', \'gocbRef\': \'LD0/LLN0$GO$gcbTEST\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 2, \'Members\': [\'LD0$LSPTRC1$ST$Tr1$general\', \'LD0$LSPTRC1$ST$Tr1$q\'], \'All_elem_num\': 2, \'All_elements_full_names\': [\'LD0$LSPTRC1$ST$Tr1$general\', \'LD0$LSPTRC1$ST$Tr1$q\'], \'All_elements_reduced_names\': [\'LD0$LSPTRC1$ST$Tr1\', \'LD0$LSPTRC1$ST$Tr1\'], \'Types\': [\'boolean\', \'bitstring\'], \'Value_length_in_bits\': [1, 13]}, \'LD0/LLN0.STAT\': {\'GCB_name\': \'gcbSTAT\', \'LD_name\': \'LD0\', \'vlan_VID\': 273, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 4096, \'minTime\': 30, \'maxTime\': 2000, \'goID\': \'STAT\', \'DS_name\': \'STAT\', \'datSetName\': \'LD0/LLN0$STAT\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'LD0/LLN0$GO$gcbSTAT\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 1, \'Members\': [\'LD0$XCBR1$ST$Pos$stVal\'], \'All_elem_num\': 1, \'All_elements_full_names\': [\'LD0$XCBR1$ST$Pos$stVal\'], \'All_elements_reduced_names\': [\'LD0$XCBR1$ST$Pos\'], \'Types\': [\'bitstring\'], \'Value_length_in_bits\': [2]}, \'LD0/LLN0.CBPOS\': {\'GCB_name\': \'gcbCBPOS\', \'LD_name\': \'LD0\', \'vlan_VID\': 546, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 8192, \'minTime\': 30, \'maxTime\': 2000, \'goID\': \'CBPOS\', \'DS_name\': \'CBPOS\', \'datSetName\': \'LD0/LLN0$CBPOS\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'LD0/LLN0$GO$gcbCBPOS\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 3, \'Members\': [\'LD0$XCBR1$ST$Pos$stVal\', \'LD0$XCBR1$ST$Pos$q\', \'LD0$XCBR1$ST$Pos$t\'], \'All_elem_num\': 4, \'All_elements_full_names\': [\'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos$stVal\', \'LD0$XCBR1$ST$Pos$q\', \'LD0$XCBR1$ST$Pos$t\'], \'All_elements_reduced_names\': [\'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos\', \'LD0$XCBR1$ST$Pos\'], \'Types\': [\'struct\', \'bitstring\', \'bitstring\', \'utctime\'], \'Value_length_in_bits\': [2, 13, 8]}}, \'IED\': {\'IED0/LLN0.MEAS\': {\'GCB_name\': \'gcbMEAS\', \'LD_name\': \'IED0\', \'vlan_VID\': 0, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 0, \'minTime\': 30, \'maxTime\': 2000, \'goID\': \'MEAS\', \'DS_name\': \'MEAS\', \'datSetName\': \'IED0/LLN0$MEAS\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'IED0/LLN0$GO$gcbMEAS\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 9, \'Members\': [\'IED0$MMXU1$MX$W$phsA$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsA$q\', \'IED0$MMXU1$MX$W$phsA$t\', \'IED0$MMXU1$MX$W$phsB$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsB$q\', \'IED0$MMXU1$MX$W$phsB$t\', \'IED0$MMXU1$MX$W$phsC$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsC$q\', \'IED0$MMXU1$MX$W$phsC$t\'], \'All_elem_num\': 19, \'All_elements_full_names\': [\'IED0$MMXU1$MX$W\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsA$cVal\', \'IED0$MMXU1$MX$W$phsA$cVal$mag\', \'IED0$MMXU1$MX$W$phsA$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsA$q\', \'IED0$MMXU1$MX$W$phsA$t\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsB$cVal\', \'IED0$MMXU1$MX$W$phsB$cVal$mag\', \'IED0$MMXU1$MX$W$phsB$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsB$q\', \'IED0$MMXU1$MX$W$phsB$t\', \'IED0$MMXU1$MX$W$phsC\', \'IED0$MMXU1$MX$W$phsC$cVal\', \'IED0$MMXU1$MX$W$phsC$cVal$mag\', \'IED0$MMXU1$MX$W$phsC$cVal$mag$f\', \'IED0$MMXU1$MX$W$phsC$q\', \'IED0$MMXU1$MX$W$phsC$t\'], \'All_elements_reduced_names\': [\'IED0$MMXU1$MX$W\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsA$cVal\', \'IED0$MMXU1$MX$W$phsA$cVal$mag\', \'IED0$MMXU1$MX$W$phsA$cVal$mag\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsA\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsB$cVal\', \'IED0$MMXU1$MX$W$phsB$cVal$mag\', \'IED0$MMXU1$MX$W$phsB$cVal$mag\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsB\', \'IED0$MMXU1$MX$W$phsC\', \'IED0$MMXU1$MX$W$phsC$cVal\', \'IED0$MMXU1$MX$W$phsC$cVal$mag\', \'IED0$MMXU1$MX$W$phsC$cVal$mag\', \'IED0$MMXU1$MX$W$phsC\', \'IED0$MMXU1$MX$W$phsC\'], \'Types\': [\'struct\', \'struct\', \'struct\', \'struct\', \'float\', \'bitstring\', \'utctime\', \'struct\', \'struct\', \'struct\', \'float\', \'bitstring\', \'utctime\', \'struct\', \'struct\', \'struct\', \'float\', \'bitstring\', \'utctime\'], \'Value_length_in_bits\': [4, 13, 8, 4, 13, 8, 4, 13, 8]}, \'IED0/LLN0.STRUCT\': {\'GCB_name\': \'gcbSTRUCT\', \'LD_name\': \'IED0\', \'vlan_VID\': 0, \'vlan_Priority\': 4, \'multicastAddr\': [1, 12, 205, 1, 0, 36], \'vlan_AppID\': 1, \'minTime\': 100, \'maxTime\': 2000, \'goID\': \'STRUCT\', \'DS_name\': \'STRUCT\', \'datSetName\': \'IED0/LLN0$STRUCT\', \'confRev\': 1, \'LN_name\': \'LLN0\', \'gocbRef\': \'IED0/LLN0$GO$gcbSTRUCT\', \'ndsCommissioning\': 0, \'test\': 0, \'Attr_number\': 6, \'Members\': [\'IED0$MMXU1$ST$Beh$stVal\', \'IED0$MMXU1$ST$Beh$q\', \'IED0$MMXU1$ST$Beh$t\', \'IED0$PTRC1$ST$Beh$stVal\', \'IED0$PTRC1$ST$Beh$q\', \'IED0$PTRC1$ST$Beh$t\'], \'All_elem_num\': 8, \'All_elements_full_names\': [\'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh$stVal\', \'IED0$MMXU1$ST$Beh$q\', \'IED0$MMXU1$ST$Beh$t\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh$stVal\', \'IED0$PTRC1$ST$Beh$q\', \'IED0$PTRC1$ST$Beh$t\'], \'All_elements_reduced_names\': [\'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh\', \'IED0$MMXU1$ST$Beh\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh\', \'IED0$PTRC1$ST$Beh\'], \'Types\': [\'struct\', \'integer\', \'bitstring\', \'utctime\', \'struct\', \'integer\', \'bitstring\', \'utctime\'], \'Value_length_in_bits\': [1, 13, 8, 1, 13, 8]}}}"
+            eth_port = "1"
+            ethernet_port_per_device = "{\'HIL101\': {\'0\': \'1\', \'1\': \'1\', \'2\': \'1\', \'3\': \'1\', \'4\': \'1\', \'5\': \'1\', \'6\': \'1\', \'7\': \'1\', \'8\': \'1\', \'9\': \'1\', \'10\': \'1\', \'11\': \'1\', \'12\': \'1\', \'13\': \'1\', \'14\': \'1\', \'15\': \'1\'}, \'HIL402\': {\'0\': \'1\', \'1\': \'1\', \'2\': \'1\', \'3\': \'1\', \'4\': \'1\', \'5\': \'1\', \'6\': \'1\', \'7\': \'1\', \'8\': \'1\', \'9\': \'1\', \'10\': \'1\', \'11\': \'1\', \'12\': \'1\', \'13\': \'1\', \'14\': \'1\', \'15\': \'1\'}, \'HIL404\': {}, \'HIL506\': {}, \'HIL602+\': {}, \'HIL603\': {}, \'HIL604\': {}, \'HIL606\': {}, \'VHIL+\': {}}"
+            execution_rate = "0.0001"
+            fcda_values = "[[\'gcbTEST\', \'TEST\', 0, u\'LD0/LLN0$GO$gcbTEST\', 2], [\'gcbSTAT\', \'STAT\', 4096, u\'LD0/LLN0$GO$gcbSTAT\', 1]]"
+            ied = "LD"
+            ied_values = "[\'LD\', \'IED\']"
+            out_num = "2"
+            vlan_id = "546"
+        }
+        [
+            position = 8352, 8192
+            size = 184, 184
+        ]
+
+        junction Junction1 sp
+        [
+            position = 7752, 8208
+        ]
+
+        comment Comment1 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">XCBR.Pos.stVal</p></body></html> ENDCOMMENT 
+        [
+            position = 7752, 8080
+        ]
+
+        comment Comment2 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">XCBR.Pos.q</p></body></html> ENDCOMMENT 
+        [
+            position = 7752, 8160
+        ]
+
+        comment Comment3 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">XCBR.Pos.t</p></body></html> ENDCOMMENT 
+        [
+            position = 7752, 8216
+        ]
+
+        comment Comment4 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">GOOSE protocol is configured by loading the SCL file. The parser parses the file and extracts the GOOSE data</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">and updates the comboboxes of Publisher/Subscriber component.</p><p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">Once the SCL is loaded, you can choose which IED and GOOSE messages you want to Send/Receive.</p><p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">The data preview can be inspected by clicking the Data preview button inside the dialog window once</p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">the SCL file is loaded.</p><p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><br /></p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">The input/output of Publisher/Subscriber components are vectorised, and the size of each vector is </p><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">dictated by the data of the message.</p></body></html> ENDCOMMENT 
+        [
+            position = 7680, 7792
+        ]
+
+        comment Comment5 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">XCBR.Pos.stVal</p></body></html> ENDCOMMENT 
+        [
+            position = 8600, 8104
+        ]
+
+        comment Comment6 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">XCBR.Pos.q</p></body></html> ENDCOMMENT 
+        [
+            position = 8600, 8160
+        ]
+
+        comment Comment7 START <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd"><html><head><meta name="qrichtext" content="1" /><style type="text/css">p, li { white-space: pre-wrap; }</style></head><body style=" font-family:'Arial'; font-size:12pt; font-weight:400; font-style:normal;"><p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">XCBR.Pos.t</p></body></html> ENDCOMMENT 
+        [
+            position = 8600, 8256
+        ]
+
+        connect "Bus Join1.out" "Goose Publisher.data" as Connection6
+        connect q_and_t.out Junction1 as Connection8
+        connect Junction1 "Bus Join1.in2" as Connection9
+        connect "Bus Join1.in1" Junction1 as Connection10
+        connect _stVal.out "Bus Join1.in" as Connection11
+        connect "Bus Split1.in" "Goose Subscriber.data" as Connection12
+        connect Termination1.in "Bus Split1.out1" as Connection13
+        connect Termination2.in "Bus Split1.out2" as Connection14
+        connect stVal.in "Bus Split1.out" as Connection15
+    }
+
+    default {
+        "core/Bus Join" {
+            inputs = "2"
+            force_tml = "True"
+            execution_rate = "inherit"
+        }
+
+        "core/Bus Split" {
+            outputs = "2"
+            execution_rate = "inherit"
+        }
+
+        "core/Constant" {
+            value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Probe" {
+            signal_access = "inherit"
+            addr = "0"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "generic"
+            streaming_en = "False"
+            streaming_er_idx = "0"
+            execution_rate = "inherit"
+        }
+
+        "core/SCADA Input" {
+            signal_access = "inherit"
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
+        }
+
+        "core/Termination" {
+            execution_rate = "inherit"
+        }
+
+        "core/GOOSE Publisher" {
+            hil_id = "0"
+            eth_port = ""
+            ethernet_port_per_device = "{ \"HIL101\": {}, \"HIL402\": {}, \"HIL404\": {}, \"HIL506\": {}, \"HIL602+\": {}, \"HIL603\": {}, \"HIL604\": {}, \"HIL606\": {}, \"VHIL+\": {} }"
+            configuration = "path to configuration file"
+            ied = ""
+            gooseCB = ""
+            preview = "Data preview"
+            gcb_data_text = "No information available"
+            ied_values = "None"
+            gooseCB_values = "None"
+            data_set = ""
+            ControlBlocks_values = "None"
+            input_simulated_bit = "False"
+            enable_vlan_tagging = "False"
+            vlan_priority = "1"
+            vlan_id = "0"
+            execution_rate = "inherit"
+            _supported_platforms = "[\'hil\']"
+        }
+
+        "core/GOOSE Subscriber" {
+            hil_id = "0"
+            eth_port = ""
+            ethernet_port_per_device = "{ \"HIL101\": {}, \"HIL402\": {}, \"HIL404\": {}, \"HIL506\": {}, \"HIL602+\": {}, \"HIL603\": {}, \"HIL604\": {}, \"HIL606\": {}, \"VHIL+\": {} }"
+            configuration = "path to configuration file"
+            ied = ""
+            out_num = "1"
+            data_set = ""
+            preview = "Data preview"
+            output_simulated_bit = "False"
+            ds_data_text = "No information available"
+            ied_values = "None"
+            data_set_values = "None"
+            fcda_values = "None"
+            appID = "0"
+            GoCBRef = " "
+            enable_vlan_tagging = "False"
+            vlan_id = "0"
+            execution_rate = "100e-6"
+            _supported_platforms = "[\'hil\']"
+        }
+    }
+}

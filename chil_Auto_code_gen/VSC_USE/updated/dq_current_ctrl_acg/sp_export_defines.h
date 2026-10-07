@@ -19,11 +19,8 @@
 #define DATA_TYPE_NAME        		           CONCATENATE(SUBSYS_NAME, _ModelData)
 #define MODEL_DATA                  	       CONCATENATE(SUBSYS_NAME, _m_Data)
 
-#define INIT_SP_EXPORT_R0()                    CONCATENATE(SUBSYS_NAME, _init0(&MODEL_DATA))
-#define STEP_SP_EXPORT_R0()                    CONCATENATE(SUBSYS_NAME, _step0(&MODEL_DATA))
-            
-#define INIT_SP_EXPORT_R1()                    CONCATENATE(SUBSYS_NAME, _init1(&MODEL_DATA))
-#define STEP_SP_EXPORT_R1()                    CONCATENATE(SUBSYS_NAME, _step1(&MODEL_DATA))
+#define INIT_SP_EXPORT_R0()                        CONCATENATE(SUBSYS_NAME, _init(&MODEL_DATA))
+#define STEP_SP_EXPORT_R0()                        CONCATENATE(SUBSYS_NAME, _step(&MODEL_DATA))
             
 
 

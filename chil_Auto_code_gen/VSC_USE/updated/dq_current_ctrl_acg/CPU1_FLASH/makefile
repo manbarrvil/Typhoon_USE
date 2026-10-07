@@ -1,6 +1,6 @@
 SHELL = cmd.exe
 
-CG_TOOL_ROOT := C:/ti/ccs1230/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS
+CG_TOOL_ROOT := C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS
 
 GEN_OPTS__FLAG :=
 GEN_CMDS__FLAG :=
@@ -152,11 +152,7 @@ all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 dq_current_ctrl_acg.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: C2000 Linker'
-<<<<<<< HEAD
-	"${CG_TOOL_ROOT}/bin/cl2000" -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --fp_mode=relaxed --opt_for_speed=5 --opt_level=3 --define=DEBUG --define=_FLASH --define=CPU1 --define=_LAUNCHXL_F28379D --define=SCHEDULER --define=F28379D --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"dq_current_ctrl_acg.map" --advice:performance=all --warn_sections --heap_size=0x200 --stack_size=0x3F8 -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib" -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include" -i"C:/ti/c2000/C2000Ware_5_04_00_00/device_support/f2837xd/headers/cmd" -i"c:/workspace/typhoon_use/auto_code_gen/vsc_use/updated/dq_current_ctrl_acg" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="dq_current_ctrl_acg_linkInfo.xml" --entry_point=code_start --rom_model -o "dq_current_ctrl_acg.out" $(ORDERED_OBJS)
-=======
-	"${CG_TOOL_ROOT}/bin/cl2000" -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --fp_mode=relaxed --opt_for_speed=5 --opt_level=3 --define=DEBUG --define=_FLASH --define=CPU1 --define=_LAUNCHXL_F28379D --define=SCHEDULER --define=F28379D --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"dq_current_ctrl_acg.map" --advice:performance=all --warn_sections --heap_size=0x200 --stack_size=0x3F8 -i"C:/ti/ccs1230/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/lib" -i"C:/ti/ccs1230/ccs/tools/compiler/ti-cgt-c2000_22.6.0.LTS/include" -i"C:/ti/c2000/C2000Ware_5_04_00_00/device_support/f2837xd/headers/cmd" -i"c:/workspace/typhoon_use/auto_code_gen/vsc_use/updated/dq_current_ctrl_acg" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="dq_current_ctrl_acg_linkInfo.xml" --entry_point=code_start --rom_model -o "dq_current_ctrl_acg.out" $(ORDERED_OBJS)
->>>>>>> aea9860927cf4b779f5bda26fb65a58d9e991a5c
+	"${CG_TOOL_ROOT}/bin/cl2000" -v28 -ml -mt --cla_support=cla1 --float_support=fpu32 --tmu_support=tmu0 --vcu_support=vcu2 --fp_mode=relaxed --opt_for_speed=5 --opt_level=3 --define=DEBUG --define=_FLASH --define=CPU1 --define=_LAUNCHXL_F28379D --define=SCHEDULER --define=F28379D --diag_suppress=10063 --diag_warning=225 --diag_wrap=off --display_error_number --abi=eabi -z -m"dq_current_ctrl_acg.map" --advice:performance=all --warn_sections --heap_size=0x200 --stack_size=0x3F8 -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/lib" -i"C:/ti/ccs1271/ccs/tools/compiler/ti-cgt-c2000_22.6.1.LTS/include" -i"C:/ti/c2000/C2000Ware_26_01_00_00/device_support/f2837xd/headers/cmd" -i"C:/workspace/Typhoon_USE/chil_Auto_code_gen/VSC_USE/updated/dq_current_ctrl_acg" --reread_libs --diag_wrap=off --display_error_number --xml_link_info="dq_current_ctrl_acg_linkInfo.xml" --entry_point=code_start --rom_model -o "dq_current_ctrl_acg.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 

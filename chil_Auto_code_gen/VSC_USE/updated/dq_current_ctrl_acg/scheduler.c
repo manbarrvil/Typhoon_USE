@@ -2,15 +2,14 @@
 
 
 // Define number of tasks. This number includes number of execution rates + 1 for the idle task
-#define NR_OF_TASKS              (3)
+#define NR_OF_TASKS              (2)
 
 
 const uint32_t tasksPeriodGCD   = EX_RATE0;  // Greatest common denominator for all periods - equal to fastest execution rate
 const uint32_t periodR0         = EX_RATE0;
-const uint32_t periodR1         = EX_RATE1;
 
 
-const uint32_t periods[NR_OF_TASKS] = { EX_RATE0, EX_RATE1, 0U};
+const uint32_t periods[NR_OF_TASKS] = { EX_RATE0, 0U};
 
 unsigned char runningTasks[NR_OF_TASKS];
 unsigned char currentTask = 0;

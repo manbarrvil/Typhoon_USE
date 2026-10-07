@@ -1,0 +1,8 @@
+{
+    "title": "IEC 61850 Goose setup",
+    "description": "This is a simple example that shows how to use IEC 61850 Goose protocol.",
+    "model": "goose.tse",
+    "images": ["goose.svg"],
+    "tags": ["goose ", "iec 61850", "communication", "protocol"],
+    "app_note":null
+}
