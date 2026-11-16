@@ -4,12 +4,12 @@ version = 4.2
 // Saved by sw version: 2026.2
 //
 
-model "dq_pi_cc_avm" {
+model "dq_ip_cc_avm" {
     configuration {
         hil_device = "VHIL+"
         hil_configuration_id = 1
         simulation_method = trapezoidal
-        simulation_time_step = 1e-6
+        simulation_time_step = 20e-6
         simulation_discret_scaling = 1.0
         dsp_timer_periods = 100e-6, 50e-3
         ss_calc_method = "systematic elimination"
@@ -67,7 +67,7 @@ model "dq_pi_cc_avm" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-4
-        simulation_time = 3
+        simulation_time = 4.0
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -311,7 +311,6 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             component "core/Step" pref {
                 execution_rate = "Ts_Control"
                 final_value = "0.2"
-                step_time = "0.5"
             }
             [
                 position = 7508, 7332
@@ -320,6 +319,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             component "core/Step" qref {
                 execution_rate = "Ts_Control"
                 final_value = "-0.1"
+                step_time = "1.5"
             }
             [
                 position = 7572, 7404
@@ -348,7 +348,7 @@ e_p = 0.0;
 e_q = 0.0;
 /*End code section*/"
                 input_terminals = "real p_m_ref;real q_s_ref;real time;real is_abc;real vs_abc;"
-                input_terminals_dimensions = "(1,);(1,);(1,);(3,);(3,)"
+                input_terminals_dimensions = "1;1;1;3;3"
                 input_terminals_feedthrough = "True;True;True;True;True"
                 input_terminals_show_labels = "True;True;True;True;True"
                 output_fnc = "/*Begin code section*/
@@ -365,7 +365,7 @@ p_s = (is_d* vs_d + is_q*vs_q)/(I_bdq*U_bdq);
 q_s = (is_d* vs_q -  is_q*vs_d)/(I_bdq*U_bdq);
 
 //omega VSG rads
-omega_vsg = (Kp_p*e_p + x_p + omega_base)*2.0*M_PI*50.0;
+omega_vsg = (Kp_p*(-p_s) + x_p + omega_base)*2.0*M_PI*50.0;
 //theta VSG
 theta_vsg= theta;
 
@@ -381,7 +381,7 @@ is_dq_ref_fil[0] = x_isd;
 is_dq_ref_fil[1] = x_isq;
 /*End code section*/"
                 output_terminals = "real is_dq_ref;real omega_vsg;real theta_vsg;real e;real p_s;real q_s;real vs_d;real vs_q;real is_d;real is_q;real is_dq_ref_fil;"
-                output_terminals_dimensions = "(2,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(1,);(2,)"
+                output_terminals_dimensions = "2;1;1;1;1;1;1;1;1;1;2"
                 output_terminals_feedthrough = "True;True;True;True;True;True;True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True;True;True;True;True;True;True"
                 parameters = "real Kp_p;real Ki_p;real omega_base;real Kp_q;real Ki_q;real Xv;real Rv;real I_bdq;real e_o;real U_bdq;real Ts_Control;real tau_vsg;"
@@ -1638,7 +1638,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
 theta = 0.0;
 /*End code section*/"
                 input_terminals = "real t;"
-                input_terminals_dimensions = "(1,)"
+                input_terminals_dimensions = "1"
                 input_terminals_feedthrough = "True"
                 input_terminals_show_labels = "True"
                 output_fnc = "/*Begin code section*/
@@ -1648,14 +1648,14 @@ delta_t = 0.0;
 vga =326.5*sin(omega*t);
 vgb =326.5*sin(omega*t - 2.0*M_PI/3.0);
 vgc = 326.5*sin(omega*t + 2.0*M_PI/3.0);
-if (t<1.5){
+if (t<2){
     omega = 2.0*M_PI*50.0;
 }
-if (t>=1.5){
-    delta_t = t-1.5;
+if (t>=2){
+    delta_t = t-2;
     omega = 2.0*M_PI*50.0 - 2.0*M_PI*0.5*delta_t;
 }
-if (t>=2.5){
+if (t>=3){
     omega = 2.0*M_PI*49.5;
 }
 
@@ -1664,7 +1664,7 @@ vgb =326.5*sin(theta - 2.0*M_PI/3.0);
 vgc = 326.5*sin(theta+ 2.0*M_PI/3.0);
 /*End code section*/"
                 output_terminals = "real vga;real vgb;real vgc;real delta_t;real omega;real f;"
-                output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,);(1,)"
+                output_terminals_dimensions = "1;1;1;1;1;1"
                 output_terminals_feedthrough = "True;True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True;True"
                 parameters = "real Ts_Control;"

@@ -67,7 +67,7 @@ model "dq_pi_cc_avm" {
         solver_type = "DAE"
         integration_method = "BDF"
         max_sim_step = 1e-4
-        simulation_time = 3
+        simulation_time = 4.0
         abs_tol = 1e-3
         rel_tol = 1e-3
         init_sim_step = 1e-6
@@ -311,7 +311,6 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             component "core/Step" pref {
                 execution_rate = "Ts_Control"
                 final_value = "0.2"
-                step_time = "0.5"
             }
             [
                 position = 7388, 7352
@@ -320,6 +319,7 @@ c= cos(theta +2.0/3.0*M_PI)*dq[0] - sin(theta+2.0/3.0*M_PI)*dq[1];
             component "core/Step" qref {
                 execution_rate = "Ts_Control"
                 final_value = "-0.1"
+                step_time = "1.5"
             }
             [
                 position = 7572, 7404
@@ -1649,7 +1649,7 @@ q_fil = q_fil + Ts_Control*2*M_PI*fc*(q - q_fil);
 theta = 0.0;
 /*End code section*/"
                 input_terminals = "real t;"
-                input_terminals_dimensions = "(1,)"
+                input_terminals_dimensions = "1"
                 input_terminals_feedthrough = "True"
                 input_terminals_show_labels = "True"
                 output_fnc = "/*Begin code section*/
@@ -1659,14 +1659,14 @@ delta_t = 0.0;
 vga =326.5*sin(omega*t);
 vgb =326.5*sin(omega*t - 2.0*M_PI/3.0);
 vgc = 326.5*sin(omega*t + 2.0*M_PI/3.0);
-if (t<1.5){
+if (t<2){
     omega = 2.0*M_PI*50.0;
 }
-if (t>=1.5){
-    delta_t = t-1.5;
+if (t>=2){
+    delta_t = t-2;
     omega = 2.0*M_PI*50.0 - 2.0*M_PI*0.5*delta_t;
 }
-if (t>=2.5){
+if (t>=3){
     omega = 2.0*M_PI*49.5;
 }
 
@@ -1675,7 +1675,7 @@ vgb =326.5*sin(theta - 2.0*M_PI/3.0);
 vgc = 326.5*sin(theta+ 2.0*M_PI/3.0);
 /*End code section*/"
                 output_terminals = "real vga;real vgb;real vgc;real delta_t;real omega;real f;"
-                output_terminals_dimensions = "(1,);(1,);(1,);(1,);(1,);(1,)"
+                output_terminals_dimensions = "1;1;1;1;1;1"
                 output_terminals_feedthrough = "True;True;True;True;True;True"
                 output_terminals_show_labels = "True;True;True;True;True;True"
                 parameters = "real Ts_Control;"
@@ -2134,7 +2134,7 @@ if (theta<0.0){
             connect Gain1.out "Bus Split1.in" as Connection839
         }
         [
-            position = 8184, 8312
+            position = 8112, 8292
             size = 248, 224
         ]
 
