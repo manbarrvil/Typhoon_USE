@@ -11,7 +11,7 @@ REM *****************************************:
 
 
 REM Setting the simulation time step...
-rtds_write 0x00000000 0x000000A0
+rtds_write 0x00000000 0x0000006E
 
 
 REM External SFP Link
@@ -21,7 +21,7 @@ rtds_write 0x00000030 0x00000000
 REM Fast SFP Send
 
 
-REM UltraCore setup
+REM Converter solvers setup
 
 
 REM Reset analog and digital outputs on simulation stop
@@ -35,10 +35,11 @@ rtds_write 0x00000003 0x00010000
 
 REM LUT solver inputs...
 rtds_write 0x01000000 0x00000000
-rtds_write 0x01000001 0x00000000
 
 
 REM HSSL configuration files...
+rtds_file_write 0x01C40000 hssl_tx_config.txt
+rtds_file_write 0x01C80000 hssl_rx_config.txt
 
 
 REM Parallel DTV configuration...
@@ -118,27 +119,6 @@ rtds_write 0x08100078 0x00000000
 rtds_write 0x08100079 0x00000000
 rtds_file_write 0x08150000 igbt_leg_imem.txt
 rtds_file_write 0x08152000 igbt_leg_lut.txt
-rtds_write 0x08100080 0x00000001
-rtds_write 0x08100081 0x00000000
-rtds_write 0x08100083 0x00000000
-rtds_write 0x08100084 0x00000000
-rtds_write 0x08100085 0x00000000
-rtds_write 0x08100086 0x00000000
-rtds_write 0x08100087 0x00000000
-rtds_write 0x0810008E 0x00000000
-rtds_write 0x0810008F 0x00000000
-rtds_write 0x08100090 0x00000000
-rtds_write 0x08100091 0x00000000
-rtds_write 0x08100092 0x00000000
-rtds_write 0x08100093 0x00000000
-rtds_write 0x08100094 0x00000000
-rtds_write 0x08100095 0x00000000
-rtds_write 0x08100096 0x00000000
-rtds_write 0x08100097 0x00000000
-rtds_write 0x08100098 0x00000000
-rtds_write 0x08100099 0x00000000
-rtds_file_write 0x08158000 trivial_imem.txt
-rtds_file_write 0x0815A000 trivial_lut.txt
 
 
 REM SPC0 Variable Delay initialization...
@@ -147,7 +127,7 @@ rtds_write 0x08100001 0x0
 
 REM SPC0 Output voltage compare mode...
 rtds_write 0x08100005 0x00000000
-rtds_write 0x08100006 0x00000005
+rtds_write 0x08100006 0x0000000A
 
 
 REM SPC0 Matrix multiplier initialization...
@@ -166,9 +146,9 @@ REM SPC0 Contactors initialization...
 REM SPC0 GDS compensation settings...
 rtds_write 0x080C0000 0x00000001
 rtds_write 0x080C0001 0x00000009
-rtds_write 0x080C0004 0x3BCCCCCC
-rtds_write 0x080C0005 0xCCCD0000
-rtds_write 0x08100000 0x000000A0
+rtds_write 0x080C0004 0x3C14F209
+rtds_write 0x080C0005 0x4F210000
+rtds_write 0x08100000 0x0000006E
 rtds_write 0x08100007 0x00000000
 
 
@@ -279,27 +259,6 @@ rtds_write 0x08500078 0x00000000
 rtds_write 0x08500079 0x00000000
 rtds_file_write 0x08550000 trivial_imem.txt
 rtds_file_write 0x08552000 trivial_lut.txt
-rtds_write 0x08500080 0x00000000
-rtds_write 0x08500081 0x00000000
-rtds_write 0x08500083 0x00000000
-rtds_write 0x08500084 0x00000000
-rtds_write 0x08500085 0x00000000
-rtds_write 0x08500086 0x00000000
-rtds_write 0x08500087 0x00000000
-rtds_write 0x0850008E 0x00000000
-rtds_write 0x0850008F 0x00000000
-rtds_write 0x08500090 0x00000000
-rtds_write 0x08500091 0x00000000
-rtds_write 0x08500092 0x00000000
-rtds_write 0x08500093 0x00000000
-rtds_write 0x08500094 0x00000000
-rtds_write 0x08500095 0x00000000
-rtds_write 0x08500096 0x00000000
-rtds_write 0x08500097 0x00000000
-rtds_write 0x08500098 0x00000000
-rtds_write 0x08500099 0x00000000
-rtds_file_write 0x08558000 trivial_imem.txt
-rtds_file_write 0x0855A000 trivial_lut.txt
 
 
 REM SPC1 Variable Delay initialization...
@@ -356,56 +315,30 @@ REM Setting the capture sample step...
 REM post SP Init calculation...
 rtds_write  
 rtds_write 0x00000041 0x000011C1
-rtds_write 0x00000005 0x00000000
+rtds_write 0x00000005 0x00000002
 rtds_write 0x00000043 0x00002710
 rtds_write 0x00000042 0x000001F3
-rtds_write 0x0000000A 0x00000000
+rtds_write 0x0000000A 0x00000001
+glbl_write 0xFD1A0104 0x0000380E
 
 
-REM CoProcessors uBlaze_1, uBlaze_2 and uBlaze_3 configuration
-glbl_write 0x40800000 0x7
-glbl_write 0xf8000008 0xdf0d
-
-
-REM CoProcessor ARM_1 configuration...
-glbl_write 0xfffffff0 0xffffff2c  
-glbl_write 0xFFFFFF00 0xe3e0000f
-glbl_write 0xFFFFFF04 0xe3a01000
-glbl_write 0xFFFFFF08 0xe5801000
-glbl_write 0xFFFFFF0C 0xe320f002
-glbl_write 0xFFFFFF10 0xe5902000
-glbl_write 0xFFFFFF14 0xe1520001
-glbl_write 0xFFFFFF18 0x0afffffb
-glbl_write 0xFFFFFF1C 0xe1a0f002
-glbl_write 0x00000000 0xe3e0f0ff
-glbl_write 0xf8000244 0x2
-glbl_write 0xf8000244 0x22
-
-
-REM disable active eth interfaces previously used by host applications, if required for bm apps
+REM disable active eth interfaces previously used by host applications
+sys_command_custom "ifconfig eth1 down"
+glbl_file_write 0x38000000 user_sp_cpu_0_imem.bin
 
 
 REM configure system synchronization
 sys_command_custom "echo -e '[global]\n{ \n} \n' > ptp_settings.txt"
-hil_app_var_write 0 0x0
+hil_app_var_write 0 0
 hil_app_var_write 1 -1
-hil_app_var_write 2 -1
 
 
 REM Communication peripherals reset and load sequence
-sys_command 0x0
-
-
-REM enable ETH0 Intr on Core0 CPU
-glbl_write 0xF8F01834 0x01010101
-sys_command 0x1
-
-
-REM Lock SLCR register
-
-
-REM glbl_write 0xf8000004 0x767b
-glbl_write 0x40800000 0x7
+# Disable CAN interfaces from OS
+# CAN bare metal app enables the clocks directly
+# CANopen app enables them through ip link commands
+sys_command 0x2
+glbl_write 0xFD1A0104 0x280a
 
 
 REM Restart counter for collected Linux OS communication apps
@@ -414,5 +347,5 @@ app_file_write 0x0 app_init
 
 REM Clear the /mnt/ext_files. directory
 file_write_custom clean_ext_files None
-rtds_write 0x00000027 0x000000A0
+rtds_write 0x00000027 0x0000006E
 rtds_write 0x00000040 0x00FFFFFF

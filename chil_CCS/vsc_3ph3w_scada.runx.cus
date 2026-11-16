@@ -1,5 +1,5 @@
 <ui_settings>
-    <version>2.9</version>
+    <version>2.8</version>
     <model_locked>False</model_locked>
     <canvas_bg_color>#ffffff</canvas_bg_color>
     <initialization_code><![CDATA[# NOTE: Variables and functions defined here will be
@@ -82,7 +82,7 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                     <label><![CDATA[]]></label>
                     <use_label>False</use_label>
                     <appearance><![CDATA[Flat]]></appearance>
-                    <state>Scope</state>
+                    <state>Capture</state>
                     <layout>None</layout>
                     <virtual_signals_definitions>
                     </virtual_signals_definitions>
@@ -90,8 +90,8 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                         <active_capture_preset><![CDATA[Default]]></active_capture_preset>
                         <active_scope_preset><![CDATA[Default]]></active_scope_preset>
                         <capture name="Default">
-                            <time_interval>0.2</time_interval>
-                            <sample_rate>1000000.0</sample_rate>
+                            <time_interval>1.5</time_interval>
+                            <sample_rate>50000.0</sample_rate>
                             <background_color>white</background_color>
                             <layout>Vertical</layout>
                             <legend>True</legend>
@@ -136,7 +136,7 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                     <channel>3</channel>
                                     <name><![CDATA[is_a]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_scale>10</vertical_scale>
                                     <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
@@ -148,7 +148,7 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                     <channel>4</channel>
                                     <name><![CDATA[is_b]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_scale>10</vertical_scale>
                                     <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
@@ -160,7 +160,7 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                     <channel>5</channel>
                                     <name><![CDATA[is_c]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_scale>10</vertical_scale>
                                     <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
@@ -177,16 +177,16 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                 <device>0</device>
                                 <is_force>False</is_force>
                                 <type>Analog</type>
-                                <source><![CDATA[vs_a]]></source>
+                                <source><![CDATA[is_a]]></source>
                                 <edge>Rising edge</edge>
-                                <treshold>0.0</treshold>
-                                <offset>0.0</offset>
+                                <treshold>23.0</treshold>
+                                <offset>33.33</offset>
                                 <useFirstTrigger>False</useFirstTrigger>
                             </trigger>
-                            <plotting_settings>
+                            <plotting_options in_use="False">
                                 <subplots>
                                     </subplots>
-                            </plotting_settings>
+                            </plotting_options>
                         </capture>
                         <scope name="Default">
                             <background_color>white</background_color>
@@ -275,26 +275,26 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                 <device>0</device>
                                 <is_force>False</is_force>
                                 <type>Analog</type>
-                                <source>vs_a</source>
+                                <source>is_a</source>
                                 <edge>Rising edge</edge>
-                                <treshold>0.0</treshold>
-                                <offset>0.0</offset>
+                                <treshold>26.0</treshold>
+                                <offset>25.0</offset>
                                 <useFirstTrigger>False</useFirstTrigger>
                             </trigger>
                         </scope>
                         </presets>
                     <capture>
-                        <time_interval>0.2</time_interval>
-                        <sample_rate>1000000.0</sample_rate>
+                        <time_interval>1.5</time_interval>
+                        <sample_rate>50000.0</sample_rate>
                         <background_color>white</background_color>
                         <layout>Vertical</layout>
                         <legend>True</legend>
                         <trigger>
                             <type>Analog</type>
-                            <source>vs_a</source>
+                            <source>is_a</source>
                             <edge>Rising edge</edge>
-                            <treshold>0.0</treshold>
-                            <offset>0.0</offset>
+                            <treshold>23.0</treshold>
+                            <offset>33.33</offset>
                             <useFirstTrigger>False</useFirstTrigger>
                         </trigger>
                         <analog_signals>
@@ -338,7 +338,7 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                     <channel>3</channel>
                                     <name><![CDATA[is_a]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_scale>10</vertical_scale>
                                     <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>3</row>
@@ -350,7 +350,7 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                     <channel>4</channel>
                                     <name><![CDATA[is_b]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_scale>10</vertical_scale>
                                     <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>4</row>
@@ -362,7 +362,7 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                                     <channel>5</channel>
                                     <name><![CDATA[is_c]]></name>
                                     <is_locked>False</is_locked>
-                                    <vertical_scale>Auto</vertical_scale>
+                                    <vertical_scale>10</vertical_scale>
                                     <vertical_offset>0.0</vertical_offset>
                                     <coupling>False</coupling>
                                     <row>5</row>
@@ -382,10 +382,10 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                         <trigger>
                             <mode>Auto</mode>
                             <type>Analog</type>
-                            <source>vs_a</source>
+                            <source>is_a</source>
                             <edge>Rising edge</edge>
-                            <treshold>0.0</treshold>
-                            <offset>0.0</offset>
+                            <treshold>26.0</treshold>
+                            <offset>25.0</offset>
                         </trigger>
                          <analog_signals>
                             <analog>
@@ -464,6 +464,11 @@ hil.set_contactor('S1', swControl=True, swState=True)]]></on_use_code>
                         <digital_signals>
                         </digital_signals>
                     </scope>
+                    <plotting_options in_use="False">
+                    
+                        <subplots>
+                            </subplots>
+                    </plotting_options>
                 </widget_settings>
 
             </component_data>
@@ -549,6 +554,140 @@ displayValue = 0.0
                     <orange_range>(0, 0, 0, 0)</orange_range>
                     <red_range>(0, 0, 0, 0)</red_range>
                 </advance_widget_settings>
+            </component_data>
+        <component_data>
+                <id>06f7e334ced911f18d599c971b9c76eb</id>
+                <name><![CDATA[Frequency]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+# 'inputValue' es la variable interna que captura lo escrito en el Text Box
+hil.set_scada_input_value('f', float(inputValue))]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it,
+# the widget value will not be changed.
+widgetValue = None
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <inputValue><![CDATA[50.0]]></inputValue>
+                <inputValueType>float</inputValueType>
+                <unit><![CDATA[Hz]]></unit>
+                <widget_settings>
+                    <x>662</x>
+                    <y>367</y>
+                    <width>152</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
+            </component_data>
+        <component_data>
+                <id>2126c2c9ced911f199b79c971b9c76eb</id>
+                <name><![CDATA[Voltage rms]]></name>
+                <type>TextBoxMacro</type>
+                <description><![CDATA[]]></description>
+                <on_use_code active="True"><![CDATA[# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+# NOTE: entered value is available through variable 'inputValue'
+# 'inputValue' es la variable interna que captura lo escrito en el Text Box
+hil.set_scada_input_value('V_rms', float(inputValue))]]></on_use_code>
+                <on_start_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed on simulation start.
+# NOTE: Variables specified here will be available in other handlers.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_start_code>
+                <on_stop_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed after simulation is stopped.
+# HIL API is imported as 'hil'
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change widget value by setting this variable.
+# NOTE: If you not specify 'widgetValue' variable or assign 'None' to it,
+# widget value won't be changed.
+widgetValue = None
+]]></on_stop_code>
+                <on_timer_code active="False"><![CDATA[# NOTE: The code specified in this handler will be executed periodically each 1000ms.
+# HIL API is imported as 'hil'
+# NOTE: Only read functions are available from the HIL API
+# SCADA API is imported as 'panel'
+# SCADA API constants are imported as 'api_const'
+# 'WIDGET_HANDLE' constant holds the WidgetHandle object of this widget.
+# This object can be used as an argument in SCADA API functions.
+
+# Change the widget value by setting this variable.
+# NOTE: If you do not specify a 'widgetValue' variable or assign 'None' to it,
+# the widget value will not be changed.
+widgetValue = None
+]]></on_timer_code>
+                <on_start_code_source><![CDATA[Custom code]]></on_start_code_source>
+                <inputValue><![CDATA[230.0]]></inputValue>
+                <inputValueType>float</inputValueType>
+                <unit><![CDATA[V]]></unit>
+                <widget_settings>
+                    <x>656</x>
+                    <y>424</y>
+                    <width>168</width>
+                    <height>32</height>
+                    <inputWidgetWidth>80</inputWidgetWidth>
+                    <appearance><![CDATA[Flat]]></appearance>
+                    <hierarchy_position>1</hierarchy_position>
+                    <label><![CDATA[]]></label>
+                    <use_label>False</use_label>
+                </widget_settings>
             </component_data>
         </components>
 </ui_settings>

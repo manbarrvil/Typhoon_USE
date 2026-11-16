@@ -1,6 +1,6 @@
-6SJQiWpFAavgGX0fUFO8n3Z0zlsYhMx+WX9r/HUYvig/IY1c5Ah7qbIuRbvYErCEI8kBOaq6hmEYVWpUOOukCQ==
+CvFSG+UGIFMZERKJ7aEHEBXOnKd5u25SpuMKffihgtqylDM6FQzfPgReRy8KPrpWsg+F1UpEUVUb9KqJzJX1Kw==
 {
-  "compilation_timestamp": "2026-10-06 13:09:30",
+  "compilation_timestamp": "2026-11-09 10:34:33",
   "sw_version": "2025.2",
   "devices": [
     {
@@ -101,9 +101,31 @@
       "paralleling": "Master",
       "not_supported": null,
       "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "628c6538428917a455eef543eb8a2d0161e473c37aba706f744800ed7c30d636",
+      "serial_no": "00101-00-00308",
+      "license_expiry": "2030-01-01",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
+    },
+    {
+      "device_type": "HIL101",
+      "hw_id": "da89378654ab51413e38dd03a6933c603c7819a9eb46cfcdf346601ad437f800",
+      "serial_no": "00101-00-00309",
+      "license_expiry": "2030-01-01",
+      "maintenance_expiry": null,
+      "access_type": "Full",
+      "paralleling": "Master",
+      "not_supported": null,
+      "toolboxes": []
     }
   ]
 }
 -----BEGIN SIGNATURE-----
-iIWQ7Qcx8FSm0RZcPTXSyybf5x2/+DYHEp4layhWTjW8hOL+Kxh5FYudwiRaap5IbCpzRUODafUOg0xHtFbi36MP1IVi92UdYxrX5q2LwqbXdyeE7EdrmddA5JC951H3kDjXZCGyl/fLFiod7FP2PN3p4zpp09Wtb6X5xaBOs5P0oXAdC5Rw2RcatApgGpHWEw09hUYSDw0TI+gSIjkh+fkyLvU516mtqsZeeLJzgVayUJ6hq/DauCG/oFLPHF85XFO9Vn0YngTbwTu/1jsX1fFI5iZzvFseFAvxcaVpl0gVWbiU/42Gf4g3i7vsvMw3MHC/7pSD3xvX97NbhByBNQ==
+l3nNRQVkelbr9qBWX/M8igkjgRQ9TC1KDPzkIxVuzGZhmfJqZadZpSpmqCVnJyHJVTGcmWeL1s+AWDpqqkA7ISvjadtTK5GKjdpuhsjYn4ygpuMhRlXkzdw4PG+/zIkl5MjNgXgbEhw5OtdtLcCSdEyx8ENMeMZPo6jnv43xqMKzJ5T5dGvhZQmYoBfF//0gmBj6+soZN/swsEwuCXbAIGeX8axhfiEu5CB5FP+Ef+VDNAVDdAt1CLINcsSnJTwgn2n5HHuEpP6Yq3Ax0ds0ZOLyg6a67MNZs3sSniByH4NUEhF9jnydv0ATqV/nPBBMFseCyvS9gLbAdEHcL3l5eA==
 -----END SIGNATURE-----

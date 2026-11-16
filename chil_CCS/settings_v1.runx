@@ -1,12 +1,12 @@
 <hil_settings>
-    <format_version>2.6</format_version>
+    <format_version>2.7</format_version>
     <number_of_devices>1</number_of_devices>
     <ao_limiting_forced>False</ao_limiting_forced>
     <hw_properties>
         <product_id>402</product_id>
         <hardware_id>3</hardware_id>
         <configuration_id>4</configuration_id>
-        <fw_release_date>132645891</fw_release_date>
+        <fw_release_date>132711434</fw_release_date>
     </hw_properties>
     <components>
         <inputs>
@@ -16,7 +16,7 @@
             	<input_type>OnePhaseInput</input_type>
                 <waveform_type>Constant</waveform_type>
                 <waveform></waveform>
-                <constant_value>730.0</constant_value>
+                <constant_value>800.0</constant_value>
                 <rms>0.0</rms>
                 <frequency>50.0</frequency>
                 <phase>0.0</phase>
@@ -25,26 +25,51 @@
                 <harmonics_type>per_rms_unit_harmonics</harmonics_type>
             </input>
             <input>
-                <name>Vs1</name>
+                <name>Vsp_sin1.Vs1</name>
                 <device>0</device>
-                <input_address>3</input_address>
-                <child_input_address>[1, 2, 3]</child_input_address>
-                <device>0</device>
-            	<input_type>ThreePhaseInput</input_type>
+            	<input_type>OnePhaseControlInput</input_type>
                 <waveform_type>Sine</waveform_type>
-                <rms>230.0</rms>
+                <waveform></waveform>
+                <constant_value>0.0</constant_value>
+                <rms>1.0</rms>
                 <frequency>50.0</frequency>
                 <phase>0.0</phase>
                 <use_harmonics>False</use_harmonics>
-                <harmonics>[(5, 0.05, 60.0), (7, 0.04, 30.0), (2, 0.0, 0.0), (2, 0.0, 0.0), (2, 0.0, 0.0), (2, 0.0, 0.0), (2, 0.0, 0.0), (2, 0.0, 0.0), (2, 0.0, 0.0), (2, 0.0, 0.0)]</harmonics>
+                <harmonics>[]</harmonics>
+                <harmonics_type>per_rms_unit_harmonics</harmonics_type>
+            </input>
+            <input>
+                <name>Vsp_sin1.Vs2</name>
+                <device>0</device>
+            	<input_type>OnePhaseControlInput</input_type>
+                <waveform_type>Sine</waveform_type>
+                <waveform></waveform>
+                <constant_value>0.0</constant_value>
+                <rms>1.0</rms>
+                <frequency>50.0</frequency>
+                <phase>0.0</phase>
+                <use_harmonics>False</use_harmonics>
+                <harmonics>[]</harmonics>
+                <harmonics_type>per_rms_unit_harmonics</harmonics_type>
+            </input>
+            <input>
+                <name>Vsp_sin1.Vs3</name>
+                <device>0</device>
+            	<input_type>OnePhaseControlInput</input_type>
+                <waveform_type>Sine</waveform_type>
+                <waveform></waveform>
+                <constant_value>0.0</constant_value>
+                <rms>1.0</rms>
+                <frequency>50.0</frequency>
+                <phase>0.0</phase>
+                <use_harmonics>False</use_harmonics>
+                <harmonics>[]</harmonics>
                 <harmonics_type>per_rms_unit_harmonics</harmonics_type>
             </input></inputs>
         <pvs>
         </pvs>
         <contactors>
         </contactors>
-        <dtsm_contactors>
-        </dtsm_contactors>
         <machines>
         </machines>
         <analog_channels>
@@ -678,7 +703,8 @@
         <switching_blocks>
             <switching_block>
                 <name>Three Phase Inverter1</name>
-                <type>igbt_leg</type>
+                <type>regular_conv</type>
+                <scm_comp_type>igbt_leg</scm_comp_type>
                 <device>0</device>
                 <site>0</site>
                 <switches>
@@ -730,6 +756,16 @@
         <batteries>
         </batteries>
         <scada_inputs>
+            <scada_input>
+                <name>V_rms</name>
+                <device>0</device>
+                <value>230.0</value>
+            </scada_input>
+            <scada_input>
+                <name>f</name>
+                <device>0</device>
+                <value>50.0</value>
+            </scada_input>
         </scada_inputs>
         <tunable_parameters>
         </tunable_parameters>

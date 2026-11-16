@@ -1,0 +1,346 @@
+// generated using template: cop_main.template---------------------------------------------
+/******************************************************************************************
+**
+**  Module Name: cop_main.c
+**  NOTE: Automatically generated file. DO NOT MODIFY!
+**  Description:
+**            Main file
+**
+******************************************************************************************/
+// generated using template: arm/custom_include.template-----------------------------------
+
+
+#ifdef __cplusplus
+#include <limits>
+
+extern "C" {
+#endif
+
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <math.h>
+#include <stdint.h>
+#include <complex.h>
+#include <time.h>
+
+// x86 libraries:
+#include "../include/sp_functions_dev0.h"
+
+
+#ifdef __cplusplus
+}
+#endif
+
+
+// ----------------------------------------------------------------------------------------                // generated using template:generic_macros.template-----------------------------------------
+/*********************** Macros (Inline Functions) Definitions ***************************/
+
+// ----------------------------------------------------------------------------------------
+
+#ifndef MAX
+#define MAX(value, limit) (((value) > (limit)) ? (value) : (limit))
+#endif
+#ifndef MIN
+#define MIN(value, limit) (((value) < (limit)) ? (value) : (limit))
+#endif
+
+// generated using template: VirtualHIL/custom_defines.template----------------------------
+
+typedef unsigned char X_UnInt8;
+typedef char X_Int8;
+typedef signed short X_Int16;
+typedef unsigned short X_UnInt16;
+typedef int X_Int32;
+typedef unsigned int X_UnInt32;
+typedef unsigned int uint;
+typedef double real;
+
+// ----------------------------------------------------------------------------------------
+// generated using template: custom_consts.template----------------------------------------
+
+// arithmetic constants
+#define C_SQRT_2                    1.4142135623730950488016887242097f
+#define C_SQRT_3                    1.7320508075688772935274463415059f
+#define C_PI                        3.1415926535897932384626433832795f
+#define C_E                         2.7182818284590452353602874713527f
+#define C_2PI                       6.283185307179586476925286766559f
+
+//@cmp.def.start
+//component defines
+
+
+
+
+
+
+
+
+
+#define _vsp_sin1_tdf_sg_ctrl_sine1__no_of_points 1000
+#define _vsp_sin1_tdf_sg_ctrl_sine1__max_int40 (1099511627775)
+#define _vsp_sin1_tdf_sg_ctrl_sine1__max_int32 (4294967295)
+
+//@cmp.def.end
+
+
+//-----------------------------------------------------------------------------------------
+// generated using template: common_variables.template-------------------------------------
+// true global variables
+
+
+
+
+
+// const variables
+
+//@cmp.var.start
+// variables
+static double _constant1__out[3] = { 0.0, -120.0, 120.0 };
+double _v_rms__out;
+double _f__out;
+double _bus_join1__out[3];
+double _rate_limiter1__out;
+
+double _rate_limiter1__rising_rate_lim[1];
+double _rate_limiter1__falling_rate_lim[1];
+
+double _vsp_sin1_limit1__out[3];
+double _limit1__out;
+double _bus_join2__out[3];
+double _vsp_sin1_limit2__out[3];
+X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__channels[3] = {1, 2, 3};
+double _vsp_sin1_tdf_sg_ctrl_sine1__gain[3] = {1, 2, 3};
+double _vsp_sin1_tdf_sg_ctrl_sine1__period[3] = {1, 2, 3};
+double _vsp_sin1_tdf_sg_ctrl_sine1__phase_pu[3] = {1, 2, 3};
+double _vsp_sin1_tdf_sg_ctrl_sine1__offset[3] = {1, 2, 3};
+X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__offset_uint[3] = {1, 2, 3};
+X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_lo[3] = {1, 2, 3};
+X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_hi[3] = {1, 2, 3};
+double _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_real[3] = {1, 2, 3};
+double _vsp_sin1_tdf_sg_ctrl_sine1__shift;
+X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__sg_update_value;
+double _vsp_sin1_tdf_sg_ctrl_sine1__xn;
+double _vsp_sin1_tdf_sg_ctrl_sine1__xn_1;
+double _vsp_sin1_tdf_sg_ctrl_sine1__yn;
+double _vsp_sin1_tdf_sg_ctrl_sine1__yn_1;
+double _vsp_sin1_tdf_sg_ctrl_sine1__k;
+//@cmp.var.end
+
+//@cmp.svar.start
+// state variables
+double _rate_limiter1__state;
+X_Int32 _rate_limiter1__first_step;
+//@cmp.svar.end
+
+//
+// Tunable parameters
+//
+static struct Tunable_params {
+} __attribute__((__packed__)) tunable_params;
+
+void *tunable_params_dev0_cpu0_ptr = &tunable_params;
+
+// Dll function pointers
+#if defined(_WIN64)
+#else
+// Define handles for loading dlls
+#endif
+
+
+
+
+
+
+
+
+// generated using template: virtual_hil/custom_functions.template---------------------------------
+void ReInit_user_sp_cpu0_dev0() {
+#if DEBUG_MODE
+    printf("\n\rReInitTimer");
+#endif
+    //@cmp.init.block.start
+    _rate_limiter1__state = 0;
+    _rate_limiter1__first_step = 1;
+    // write initial SG parameters
+    X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__i;
+    X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__j;
+    X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__enable_wg_update_uint;
+    _vsp_sin1_tdf_sg_ctrl_sine1__enable_wg_update_uint = 0;
+    for (_vsp_sin1_tdf_sg_ctrl_sine1__i = 0; _vsp_sin1_tdf_sg_ctrl_sine1__i < 3; _vsp_sin1_tdf_sg_ctrl_sine1__i++) {
+        HIL_OutFloat(0x400200 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], 0.0f);  // set gain to 0 (initial value)
+        HIL_OutInt32(0x400180 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], 0);      // set offset to 0 (initial value)
+        HIL_OutInt32(0x400000 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], 1);
+        HIL_OutInt32(0x400280 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], 0);
+        HIL_OutFloat(0x400100 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], 2.0f);
+        HIL_OutInt32(0x400300 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], _vsp_sin1_tdf_sg_ctrl_sine1__enable_wg_update_uint);   // enable wave update
+        _vsp_sin1_tdf_sg_ctrl_sine1__sg_update_value += 1 << _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i];
+    }
+    // calculate and write waveform data
+    _vsp_sin1_tdf_sg_ctrl_sine1__k = 2.0f * M_PI / _vsp_sin1_tdf_sg_ctrl_sine1__no_of_points;
+    // oscillator based sine implementation
+    // oscillator init
+    _vsp_sin1_tdf_sg_ctrl_sine1__xn_1 = sin(0.0f);
+    _vsp_sin1_tdf_sg_ctrl_sine1__yn_1 = cos(0.0f);
+    // oscillator
+    for (_vsp_sin1_tdf_sg_ctrl_sine1__i = 0; _vsp_sin1_tdf_sg_ctrl_sine1__i < _vsp_sin1_tdf_sg_ctrl_sine1__no_of_points; _vsp_sin1_tdf_sg_ctrl_sine1__i++) {
+        _vsp_sin1_tdf_sg_ctrl_sine1__xn = _vsp_sin1_tdf_sg_ctrl_sine1__xn_1 + _vsp_sin1_tdf_sg_ctrl_sine1__k * _vsp_sin1_tdf_sg_ctrl_sine1__yn_1;
+        _vsp_sin1_tdf_sg_ctrl_sine1__yn = _vsp_sin1_tdf_sg_ctrl_sine1__yn_1 - _vsp_sin1_tdf_sg_ctrl_sine1__k * _vsp_sin1_tdf_sg_ctrl_sine1__xn;
+        // write the same data to all the channels
+        for (_vsp_sin1_tdf_sg_ctrl_sine1__j = 0; _vsp_sin1_tdf_sg_ctrl_sine1__j < 3; _vsp_sin1_tdf_sg_ctrl_sine1__j++) {
+            HIL_OutFloat(0x600000 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__j] * 0x800 + _vsp_sin1_tdf_sg_ctrl_sine1__i, (float) _vsp_sin1_tdf_sg_ctrl_sine1__xn_1);
+        }
+        _vsp_sin1_tdf_sg_ctrl_sine1__xn_1 = _vsp_sin1_tdf_sg_ctrl_sine1__xn;
+        _vsp_sin1_tdf_sg_ctrl_sine1__yn_1 = _vsp_sin1_tdf_sg_ctrl_sine1__yn;
+    }
+    HIL_OutInt32(0x400080, _vsp_sin1_tdf_sg_ctrl_sine1__sg_update_value);  // update both parameters and waveforms on all channels
+    //@cmp.init.block.end
+}
+
+
+// Dll function pointers and dll reload function
+#if defined(_WIN64)
+// Define method for reloading dll functions
+void ReloadDllFunctions_user_sp_cpu0_dev0(void) {
+    // Load each library and setup function pointers
+}
+
+void FreeDllFunctions_user_sp_cpu0_dev0(void) {
+}
+
+#else
+// Define method for reloading dll functions
+void ReloadDllFunctions_user_sp_cpu0_dev0(void) {
+    // Load each library and setup function pointers
+}
+
+void FreeDllFunctions_user_sp_cpu0_dev0(void) {
+}
+#endif
+
+void load_fmi_libraries_user_sp_cpu0_dev0(void) {
+#if defined(_WIN64)
+#else
+#endif
+}
+
+
+void ReInit_sp_scope_user_sp_cpu0_dev0() {
+    // initialise SP Scope buffer pointer
+}
+
+
+// generated using template: virtual_hil/common_timer_counter_handler.template-------------------------
+
+/*****************************************************************************************/
+/**
+* This function is the handler which performs processing for the timer counter.
+* It is called from an interrupt context such that the amount of processing
+* performed should be minimized.  It is called when the timer counter expires
+* if interrupts are enabled.
+*
+*
+* @param    None
+*
+* @return   None
+*
+* @note     None
+*
+*****************************************************************************************/
+
+void TimerCounterHandler_0_user_sp_cpu0_dev0() {
+#if DEBUG_MODE
+    printf("\n\rTimerCounterHandler_0");
+#endif
+    //////////////////////////////////////////////////////////////////////////
+    // Set tunable parameters
+    //////////////////////////////////////////////////////////////////////////
+    // Generated from the component: Constant1
+//////////////////////////////////////////////////////////////////////////
+    // Output block
+    //////////////////////////////////////////////////////////////////////////
+    //@cmp.out.block.start
+    // Generated from the component: V_rms
+    _v_rms__out = XIo_InFloat(0x14400000);
+    // Generated from the component: f
+    _f__out = XIo_InFloat(0x14400004);
+    // Generated from the component: Bus Join1
+    _bus_join1__out[0] = _v_rms__out;
+    _bus_join1__out[1] = _v_rms__out;
+    _bus_join1__out[2] = _v_rms__out;
+    // Generated from the component: Rate Limiter1
+    _rate_limiter1__rising_rate_lim[0] = 0.5 * 0.0001;
+    _rate_limiter1__falling_rate_lim[0] = -0.5 * 0.0001;
+    if (_rate_limiter1__first_step) {
+        _rate_limiter1__out = _f__out;
+        _rate_limiter1__state = _f__out;
+    } else {
+        _rate_limiter1__out = _f__out;
+        if (_f__out - _rate_limiter1__state > _rate_limiter1__rising_rate_lim[0])
+            _rate_limiter1__out = _rate_limiter1__state + (_rate_limiter1__rising_rate_lim[0]);
+        if (_f__out - _rate_limiter1__state < _rate_limiter1__falling_rate_lim[0])
+            _rate_limiter1__out = _rate_limiter1__state + (_rate_limiter1__falling_rate_lim[0]);
+    }
+    // Generated from the component: Vsp_sin1.Limit1
+    _vsp_sin1_limit1__out[0] = MAX(_bus_join1__out[0], 0.0);
+    _vsp_sin1_limit1__out[1] = MAX(_bus_join1__out[1], 0.0);
+    _vsp_sin1_limit1__out[2] = MAX(_bus_join1__out[2], 0.0);
+    // Generated from the component: Limit1
+    _limit1__out = MIN(MAX(_rate_limiter1__out, 49.0), 51.0);
+    // Generated from the component: Bus Join2
+    _bus_join2__out[0] = _limit1__out;
+    _bus_join2__out[1] = _limit1__out;
+    _bus_join2__out[2] = _limit1__out;
+    // Generated from the component: Vsp_sin1.Limit2
+    _vsp_sin1_limit2__out[0] = MIN(MAX(_bus_join2__out[0], 0.1), 10000.0);
+    _vsp_sin1_limit2__out[1] = MIN(MAX(_bus_join2__out[1], 0.1), 10000.0);
+    _vsp_sin1_limit2__out[2] = MIN(MAX(_bus_join2__out[2], 0.1), 10000.0);
+    // Generated from the component: Vsp_sin1.tdf_sg_ctrl_sine1
+    // calculate and write SG parameters
+    X_UnInt32 _vsp_sin1_tdf_sg_ctrl_sine1__i;
+    _vsp_sin1_tdf_sg_ctrl_sine1__sg_update_value = 0;
+    for (_vsp_sin1_tdf_sg_ctrl_sine1__i = 0; _vsp_sin1_tdf_sg_ctrl_sine1__i < 3; _vsp_sin1_tdf_sg_ctrl_sine1__i++) {
+        // calculate amplitude
+        _vsp_sin1_tdf_sg_ctrl_sine1__gain[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = _vsp_sin1_limit1__out[_vsp_sin1_tdf_sg_ctrl_sine1__i ] * M_SQRT2;
+        // calculate period
+        _vsp_sin1_tdf_sg_ctrl_sine1__period[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = 1.0f / _vsp_sin1_limit2__out[_vsp_sin1_tdf_sg_ctrl_sine1__i ];
+        // calculate sample_cnt increment value
+        _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_real[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = _vsp_sin1_tdf_sg_ctrl_sine1__max_int40 / (_vsp_sin1_tdf_sg_ctrl_sine1__period[_vsp_sin1_tdf_sg_ctrl_sine1__i ] / 1e-06);
+        _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_lo[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = (X_UnInt32)(fmod(_vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_real[_vsp_sin1_tdf_sg_ctrl_sine1__i ], _vsp_sin1_tdf_sg_ctrl_sine1__max_int32));
+        _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_hi[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = (X_UnInt32)(_vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_real[_vsp_sin1_tdf_sg_ctrl_sine1__i ] / _vsp_sin1_tdf_sg_ctrl_sine1__max_int32);
+        //calculate offset for each channel
+        _vsp_sin1_tdf_sg_ctrl_sine1__shift = (double)(_vsp_sin1_tdf_sg_ctrl_sine1__i) * 0.0;
+        _vsp_sin1_tdf_sg_ctrl_sine1__phase_pu[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = fmod((_constant1__out[_vsp_sin1_tdf_sg_ctrl_sine1__i ] / 360.0f + _vsp_sin1_tdf_sg_ctrl_sine1__shift / (2.0f * M_PI)), 1.0f);
+        if (_vsp_sin1_tdf_sg_ctrl_sine1__phase_pu[_vsp_sin1_tdf_sg_ctrl_sine1__i ] < 0.0f) {
+            _vsp_sin1_tdf_sg_ctrl_sine1__phase_pu[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = _vsp_sin1_tdf_sg_ctrl_sine1__phase_pu[_vsp_sin1_tdf_sg_ctrl_sine1__i ] + 1.0f;
+        }
+        _vsp_sin1_tdf_sg_ctrl_sine1__offset[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = (_vsp_sin1_tdf_sg_ctrl_sine1__max_int32 * _vsp_sin1_tdf_sg_ctrl_sine1__phase_pu[_vsp_sin1_tdf_sg_ctrl_sine1__i ]);  // offset in SP
+        _vsp_sin1_tdf_sg_ctrl_sine1__offset_uint[_vsp_sin1_tdf_sg_ctrl_sine1__i ] = (X_UnInt32)_vsp_sin1_tdf_sg_ctrl_sine1__offset[_vsp_sin1_tdf_sg_ctrl_sine1__i ];  // offset in fp32
+        // write parameters
+        HIL_OutFloat(0x400200 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], (float) _vsp_sin1_tdf_sg_ctrl_sine1__gain[_vsp_sin1_tdf_sg_ctrl_sine1__i ]);
+        HIL_OutInt32(0x400180 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], _vsp_sin1_tdf_sg_ctrl_sine1__offset_uint[_vsp_sin1_tdf_sg_ctrl_sine1__i ]); // offset in fp32
+        HIL_OutInt32(0x400000 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_lo[_vsp_sin1_tdf_sg_ctrl_sine1__i ]);
+        HIL_OutInt32(0x400280 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], _vsp_sin1_tdf_sg_ctrl_sine1__sample_cnt_inc_hi[_vsp_sin1_tdf_sg_ctrl_sine1__i ]);
+        HIL_OutFloat(0x400100 + _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i], (float) _vsp_sin1_tdf_sg_ctrl_sine1__no_of_points);
+        _vsp_sin1_tdf_sg_ctrl_sine1__sg_update_value += 1 << _vsp_sin1_tdf_sg_ctrl_sine1__channels[_vsp_sin1_tdf_sg_ctrl_sine1__i];
+    }
+    HIL_OutInt32(0x400080, _vsp_sin1_tdf_sg_ctrl_sine1__sg_update_value);  // update SG parameters for all channels
+//@cmp.out.block.end
+    //////////////////////////////////////////////////////////////////////////
+    // Update block
+    //////////////////////////////////////////////////////////////////////////
+    //@cmp.update.block.start
+    // Generated from the component: Rate Limiter1
+    _rate_limiter1__rising_rate_lim[0] = 0.5 * 0.0001;
+    _rate_limiter1__falling_rate_lim[0] = -0.5 * 0.0001;
+    if (_f__out - _rate_limiter1__state > _rate_limiter1__rising_rate_lim[0])
+        _rate_limiter1__state += _rate_limiter1__rising_rate_lim[0];
+    else  if (_f__out - _rate_limiter1__state < _rate_limiter1__falling_rate_lim[0])
+        _rate_limiter1__state += (_rate_limiter1__falling_rate_lim[0]);
+    else
+        _rate_limiter1__state = _f__out;
+    _rate_limiter1__first_step = 0;
+    //@cmp.update.block.end
+}
+// ----------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------

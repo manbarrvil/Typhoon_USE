@@ -50,6 +50,29 @@
     </pesb>
     <analog_variables>
         <cell>
+            <name>Capacitor and damping resistor.C3</name>
+            <address>2</address>
+            <type>voltage</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>VSC side inductor_Rt_Lt.L2</name>
+            <address>7</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>vs_a</name>
+            <address>10</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
             <name>Cdc</name>
             <address>3</address>
             <type>voltage</type>
@@ -57,11 +80,29 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Capacitor and damping resistor.C3</name>
-            <address>2</address>
-            <type>voltage</type>
+            <name>Grid side inductor_Rs_Ls1.L1</name>
+            <address>4</address>
+            <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
+        </cell>
+        <cell>
+            <name>VDC</name>
+            <address>9</address>
+            <type>voltage</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
+        </cell>
+        <cell>
+            <name>is_a</name>
+            <address>13</address>
+            <type>current</type>
+            <initial_condition>None</initial_condition>
+            <visible>True</visible>
+            <previous_names>
+            </previous_names>
         </cell>
         <cell>
             <name>vs_c</name>
@@ -82,48 +123,11 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Capacitor and damping resistor.C1</name>
-            <address>0</address>
-            <type>voltage</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Grid side inductor_Rs_Ls.L2</name>
-            <address>5</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>Grid side inductor_Rs_Ls.L3</name>
-            <address>6</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
             <name>Capacitor and damping resistor.C2</name>
             <address>1</address>
             <type>voltage</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
-        </cell>
-        <cell>
-            <name>VSC side inductor_Rt_Lt.L2</name>
-            <address>7</address>
-            <type>current</type>
-            <initial_condition>0.0</initial_condition>
-            <visible>True</visible>
-        </cell>
-        <cell>
-            <name>VDC</name>
-            <address>9</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
         </cell>
         <cell>
             <name>VSC side inductor_Rt_Lt.L3</name>
@@ -142,29 +146,11 @@
             </previous_names>
         </cell>
         <cell>
-            <name>Grid side inductor_Rs_Ls.L1</name>
-            <address>4</address>
+            <name>Grid side inductor_Rs_Ls1.L3</name>
+            <address>6</address>
             <type>current</type>
             <initial_condition>0.0</initial_condition>
             <visible>True</visible>
-        </cell>
-        <cell>
-            <name>vs_a</name>
-            <address>10</address>
-            <type>voltage</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
-        </cell>
-        <cell>
-            <name>is_a</name>
-            <address>13</address>
-            <type>current</type>
-            <initial_condition>None</initial_condition>
-            <visible>True</visible>
-            <previous_names>
-            </previous_names>
         </cell>
         <cell>
             <name>is_c</name>
@@ -176,6 +162,20 @@
             </previous_names>
         </cell>
         <cell>
+            <name>Grid side inductor_Rs_Ls1.L2</name>
+            <address>5</address>
+            <type>current</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
+            <name>Capacitor and damping resistor.C1</name>
+            <address>0</address>
+            <type>voltage</type>
+            <initial_condition>0.0</initial_condition>
+            <visible>True</visible>
+        </cell>
+        <cell>
             <name>Vdc_link</name>
             <address>33280</address>
             <type>voltage</type>
@@ -183,21 +183,21 @@
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Vs1_a</name>
+            <name>Vsp_sin1.Vs1</name>
             <address>33281</address>
             <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Vs1_b</name>
+            <name>Vsp_sin1.Vs2</name>
             <address>33282</address>
             <type>voltage</type>
             <initial_condition>None</initial_condition>
             <visible>True</visible>
         </cell>
         <cell>
-            <name>Vs1_c</name>
+            <name>Vsp_sin1.Vs3</name>
             <address>33283</address>
             <type>voltage</type>
             <initial_condition>None</initial_condition>
@@ -476,35 +476,32 @@
             <address>159</address>
             </cell>
         <cell>
-            <name>Three Phase Inverter1.Sa_top</name>
-            <address>157</address>
-            </cell>
-        <cell>
             <name>Three Phase Inverter1.Sa_bot</name>
             <address>151</address>
             </cell>
         <cell>
-            <name>Three Phase Inverter1.Sb_top</name>
-            <address>156</address>
+            <name>Three Phase Inverter1.Sa_top</name>
+            <address>157</address>
             </cell>
         <cell>
             <name>Three Phase Inverter1.Sb_bot</name>
             <address>150</address>
             </cell>
         <cell>
-            <name>Three Phase Inverter1.Sc_bot</name>
-            <address>153</address>
+            <name>Three Phase Inverter1.Sb_top</name>
+            <address>156</address>
             </cell>
         <cell>
             <name>Three Phase Inverter1.Sc_top</name>
             <address>159</address>
             </cell>
         <cell>
-            <name>Three Phase Inverter1.Phase A.S1</name>
-            <address>157</address>
-                <previous_names>
-                        <previous_name>Three Phase Inverter1.Sa_top</previous_name>
-                    </previous_names>
+            <name>Three Phase Inverter1.Sc_bot</name>
+            <address>153</address>
+            </cell>
+        <cell>
+            <name>Three Phase Inverter1.Sen</name>
+            <address>148</address>
             </cell>
         <cell>
             <name>Three Phase Inverter1.Phase A.S2</name>
@@ -514,14 +511,10 @@
                     </previous_names>
             </cell>
         <cell>
-            <name>Three Phase Inverter1.Sen</name>
-            <address>148</address>
-            </cell>
-        <cell>
-            <name>Three Phase Inverter1.Phase B.S1</name>
-            <address>156</address>
+            <name>Three Phase Inverter1.Phase A.S1</name>
+            <address>157</address>
                 <previous_names>
-                        <previous_name>Three Phase Inverter1.Sb_top</previous_name>
+                        <previous_name>Three Phase Inverter1.Sa_top</previous_name>
                     </previous_names>
             </cell>
         <cell>
@@ -532,10 +525,10 @@
                     </previous_names>
             </cell>
         <cell>
-            <name>Three Phase Inverter1.Phase C.S2</name>
-            <address>153</address>
+            <name>Three Phase Inverter1.Phase B.S1</name>
+            <address>156</address>
                 <previous_names>
-                        <previous_name>Three Phase Inverter1.Sc_bot</previous_name>
+                        <previous_name>Three Phase Inverter1.Sb_top</previous_name>
                     </previous_names>
             </cell>
         <cell>
@@ -543,6 +536,13 @@
             <address>159</address>
                 <previous_names>
                         <previous_name>Three Phase Inverter1.Sc_top</previous_name>
+                    </previous_names>
+            </cell>
+        <cell>
+            <name>Three Phase Inverter1.Phase C.S2</name>
+            <address>153</address>
+                <previous_names>
+                        <previous_name>Three Phase Inverter1.Sc_bot</previous_name>
                     </previous_names>
             </cell>
         <cell>
@@ -621,11 +621,25 @@
             <init_settings>['Constant', 0.0]</init_settings>
         </cell>
         <cell>
-            <name>Vs1</name>
-            <type>3phase</type>
-            <address>[1, 2, 3]</address>
+            <name>Vsp_sin1.Vs1</name>
+            <type>1phase_sp_ctrl</type>
+            <address>[1]</address>
             <unit>V</unit>
-            <init_settings>['Sine', 0.0, 50.0, 0.0]</init_settings>
+            <init_settings>['Sine', 1.0, 50.0, 0.0]</init_settings>
+        </cell>
+        <cell>
+            <name>Vsp_sin1.Vs2</name>
+            <type>1phase_sp_ctrl</type>
+            <address>[2]</address>
+            <unit>V</unit>
+            <init_settings>['Sine', 1.0, 50.0, 0.0]</init_settings>
+        </cell>
+        <cell>
+            <name>Vsp_sin1.Vs3</name>
+            <type>1phase_sp_ctrl</type>
+            <address>[3]</address>
+            <unit>V</unit>
+            <init_settings>['Sine', 1.0, 50.0, 0.0]</init_settings>
         </cell>
     </sources>
     <machines>
@@ -664,7 +678,7 @@
 <!-- ******* SP DATA ******** -->
 
     <model_properties>
-        <execution_rates>[[[], [], []]]</execution_rates>
+        <execution_rates>[[[0.0001], [], []]]</execution_rates>
         <sys_real_type_precision>float</sys_real_type_precision>
         <user_real_type_precision>double</user_real_type_precision>
         <sig_stim>off</sig_stim>
@@ -675,8 +689,53 @@
 <digital_variables>
     </digital_variables>
 
+    <tunable_params>
+        <tunable_param>
+            <name>V_rms</name>
+            <addr>[339738624]</addr>
+            <min>200.0</min>
+            <max>260.0</max>
+            <def_value>230.0</def_value>
+            <unit></unit>
+            <widget_type>float</widget_type>
+            <format>real</format>
+            <size>1</size>
+            <param_type>scada input</param_type>
+            <cpu_type>user_sp_cpu</cpu_type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rate>0.0001</execution_rate>
+            <visible>True</visible>
+        </tunable_param>
+        <tunable_param>
+            <name>f</name>
+            <addr>[339738628]</addr>
+            <min>49.0</min>
+            <max>51.0</max>
+            <def_value>50.0</def_value>
+            <unit></unit>
+            <widget_type>float</widget_type>
+            <format>real</format>
+            <size>1</size>
+            <param_type>scada input</param_type>
+            <cpu_type>user_sp_cpu</cpu_type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rate>0.0001</execution_rate>
+            <visible>True</visible>
+        </tunable_param>
+    </tunable_params>
 
 
+    <dsp_monitors>
+        <monitor>
+            <type>user</type>
+            <cpu_idx>0</cpu_idx>
+            <execution_rates>[0.0001]</execution_rates>
+            <execution_rate_labels>['ER0 (0.0001)']</execution_rate_labels>
+            <timer_counters>[15999]</timer_counters>
+
+            
+        </monitor>
+    </dsp_monitors>
 
     <sp_compiler_type>gcc</sp_compiler_type>
 

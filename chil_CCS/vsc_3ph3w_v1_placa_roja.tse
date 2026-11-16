@@ -6,8 +6,8 @@ version = 4.2
 
 model "vsc_3ph3w_v1_placa_roja" {
     configuration {
-        hil_device = "HIL402"
-        hil_configuration_id = 4
+        hil_device = "HIL101"
+        hil_configuration_id = 1
         simulation_method = exact
         simulation_time_step = auto
         simulation_discret_scaling = 1.0
@@ -80,7 +80,7 @@ model "vsc_3ph3w_v1_placa_roja" {
         component "core/Three Phase Voltage Source" Vs1 {
         }
         [
-            position = 10124, 8236
+            position = 11244, 8124
             rotation = down
             scale = 1, -1
             size = 62, 256
@@ -181,7 +181,7 @@ model "vsc_3ph3w_v1_placa_roja" {
         component "core/Ground" gnd2 {
         }
         [
-            position = 10244, 8340
+            position = 11364, 8228
         ]
 
         component "core/Ground" gnd3 {
@@ -241,6 +241,85 @@ model "vsc_3ph3w_v1_placa_roja" {
         [
             position = 9908, 8236
             size = 128, 256
+        ]
+
+        component "core/Ground" gnd4 {
+        }
+        [
+            position = 10336, 8312
+        ]
+
+        component "core/Signal Controlled Sinusoidal Voltage Source" Vsp_sin1 {
+            phase_number = "3"
+        }
+        [
+            position = 10132, 8240
+            rotation = down
+            size = 62, 256
+        ]
+
+        component "core/SCADA Input" f {
+            def_value = "50"
+            max = "51"
+            min = "49"
+            unit = ""
+        }
+        [
+            position = 10584, 8412
+            rotation = down
+        ]
+
+        component "core/SCADA Input" V_rms {
+            def_value = "230"
+            max = "260"
+            min = "200"
+            unit = ""
+        }
+        [
+            position = 10432, 8472
+            rotation = down
+        ]
+
+        component "core/Constant" Constant1 {
+            value = "[0, -120, 120]"
+        }
+        [
+            position = 10232, 8264
+            rotation = down
+        ]
+
+        component "core/Bus Join" "Bus Join1" {
+            inputs = "3"
+        }
+        [
+            position = 10236, 8472
+            rotation = down
+        ]
+
+        component "core/Bus Join" "Bus Join2" {
+            inputs = "3"
+        }
+        [
+            position = 10244, 8384
+            rotation = down
+        ]
+
+        component "core/Limit" Limit1 {
+            lower_limit = "49"
+            upper_limit = "51"
+        }
+        [
+            position = 10408, 8412
+            rotation = down
+        ]
+
+        component "core/Rate Limiter" "Rate Limiter1" {
+            falling_limit = "-0.5"
+            rising_limit = "0.5"
+        }
+        [
+            position = 10504, 8412
+            rotation = down
         ]
 
         junction Junction4 pe
@@ -308,6 +387,16 @@ model "vsc_3ph3w_v1_placa_roja" {
             position = 9572, 8144
         ]
 
+        junction Junction26 sp
+        [
+            position = 10400, 8472
+        ]
+
+        junction Junction28 sp
+        [
+            position = 10360, 8384
+        ]
+
         connect "Capacitor and damping resistor.P3_neg" Junction4 as Connection19
         [
             breakpoints = 8736, 8648
@@ -359,7 +448,6 @@ model "vsc_3ph3w_v1_placa_roja" {
         connect "Capacitor and damping resistor.P3_pos" Junction22 as Connection204
         connect Junction22 "VSC side inductor_Rt_Lt.P1_neg" as Connection205
         connect is_a.p_node Junction22 as Connection206
-        connect "Grid side inductor_Rs_Ls1.P2_neg" Vs1.b_node as Connection210
         connect "Grid side inductor_Rs_Ls.P2_neg" Junction23 as Connection211
         connect Junction23 vs_b.p_node as Connection212
         [
@@ -372,14 +460,58 @@ model "vsc_3ph3w_v1_placa_roja" {
             breakpoints = 9704, 8420
         ]
         connect "Grid side inductor_Rs_Ls1.P3_pos" Junction24 as Connection216
-        connect "Grid side inductor_Rs_Ls1.P3_neg" Vs1.c_node as Connection217
         connect "Grid side inductor_Rs_Ls.P1_neg" Junction25 as Connection218
         connect Junction25 vs_a.p_node as Connection219
         connect "Grid side inductor_Rs_Ls1.P1_pos" Junction25 as Connection220
-        connect "Grid side inductor_Rs_Ls1.P1_neg" Vs1.a_node as Connection221
+        connect gnd4.node Vsp_sin1.N as Connection237
+        connect Constant1.out Vsp_sin1.Ph as Connection238
+        connect "Bus Join1.out" Vsp_sin1.Rms as Connection244
+        connect "Bus Join2.out" Vsp_sin1.f as Connection249
+        [
+            breakpoints = 10192, 8384; 10192, 8288
+        ]
+        connect V_rms.out Junction26 as Connection251
+        connect Junction26 "Bus Join1.in2" as Connection252
+        [
+            breakpoints = 10400, 8456; 10276, 8456
+        ]
+        connect "Bus Join1.in1" Junction26 as Connection253
+        connect "Bus Join1.in" Junction26 as Connection254
+        connect "Bus Join2.in1" Junction28 as Connection259
+        connect "Bus Join2.in" Junction28 as Connection261
+        connect Junction28 "Bus Join2.in2" as Connection265
+        [
+            breakpoints = 10360, 8384
+        ]
+        connect Limit1.out Junction28 as Connection270
+        connect f.out "Rate Limiter1.in" as Connection276
+        connect "Rate Limiter1.out" Limit1.in as Connection277
+        connect Vsp_sin1.B "Grid side inductor_Rs_Ls1.P2_neg" as Connection278
+        [
+            breakpoints = 10084, 8236; 9988, 8236
+        ]
+        connect Vsp_sin1.A "Grid side inductor_Rs_Ls1.P1_neg" as Connection279
+        [
+            breakpoints = 10084, 8344; 9988, 8344
+        ]
+        connect Vsp_sin1.C "Grid side inductor_Rs_Ls1.P3_neg" as Connection280
+        [
+            breakpoints = 10044, 8144; 10044, 8312; 10012, 8312; 10012, 8332
+        ]
+    }
+
+    logically_deleted {
+        "Vs1"
+        "gnd2"
+        "Connection45"
     }
 
     default {
+        "core/Bus Join" {
+            inputs = "2"
+            execution_rate = "inherit"
+        }
+
         "core/Capacitor" {
             signal_access = "inherit"
             capacitance = "1e-6"
@@ -388,9 +520,44 @@ model "vsc_3ph3w_v1_placa_roja" {
             visible = "True"
         }
 
+        "core/Constant" {
+            value = "1"
+            signal_type = "real"
+            execution_rate = "100e-6"
+            _tunable = "False"
+        }
+
+        "core/Limit" {
+            upper_limit = "[\'inf\']"
+            lower_limit = "[\'-inf\']"
+            execution_rate = "inherit"
+        }
+
+        "core/Rate Limiter" {
+            rising_limit = "1"
+            rising_limit_source = "internal"
+            falling_limit = "-1"
+            falling_limit_source = "internal"
+            execution_rate = "inherit"
+        }
+
         "core/Resistor" {
             resistance = "1"
             param_set = ""
+        }
+
+        "core/SCADA Input" {
+            signal_access = "inherit"
+            addr = "0"
+            format = "real"
+            override_signal_name = "False"
+            signal_name = ""
+            signal_type = "real"
+            min = "-1e6"
+            max = "1e6"
+            def_value = "0"
+            unit = " "
+            execution_rate = "100e-6"
         }
 
         "core/Voltage Source" {
@@ -448,6 +615,11 @@ model "vsc_3ph3w_v1_placa_roja" {
             initial_current = "0"
             capacitance = "10e-6"
             initial_voltage = "0"
+        }
+
+        "core/Signal Controlled Sinusoidal Voltage Source" {
+            phase_number = "1"
+            execution_rate = "inherit"
         }
 
         "core/Three Phase Inverter" {
