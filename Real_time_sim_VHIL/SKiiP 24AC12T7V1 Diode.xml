@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SemiconductorLibrary xmlns="http://www.plexim.com/xml/semiconductors/" version="1.1">
+    <Package class="Diode" vendor="Semikron Danfoss" partnumber="SKiiP 24AC12T7V1">
+        <Variables>
+            <Variable>
+                <Name>Rg_on</Name>
+                <Description>Gate resistor on</Description>
+                <MinValue>6.825</MinValue>
+                <MaxValue>36.4</MaxValue>
+            </Variable>
+        </Variables>
+        <CustomTables>
+            <Table3D>
+                <Name>Turn-off loss Rg=6.825</Name>
+                <XAxis> 0 8.75 17.5 35 52.5 70</XAxis>
+                <YAxis> -900 -600 -300 0 150</YAxis>
+                <ZAxis> 25 150 175</ZAxis>
+                <FunctionValues scale="1">
+                    <ZDimension>
+                        <YDimension> 0 0.000364 0.000629 0.000899 0.001056 0.001168</YDimension>
+                        <YDimension> 0 0.000285 0.000493 0.000705 0.000828 0.000916</YDimension>
+                        <YDimension> 0 0.000188 0.000325 0.000465 0.000546 0.000604</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.001193 0.002062 0.002946 0.003462 0.00383</YDimension>
+                        <YDimension> 0 0.000936 0.001617 0.00231 0.002714 0.003003</YDimension>
+                        <YDimension> 0 0.000617 0.001067 0.001524 0.001791 0.001981</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.001551 0.002681 0.00383 0.0045 0.004979</YDimension>
+                        <YDimension> 0 0.001216 0.002102 0.003003 0.003529 0.003904</YDimension>
+                        <YDimension> 0 0.000802 0.001387 0.001981 0.002328 0.002576</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                </FunctionValues>
+            </Table3D>
+            <Table3D>
+                <Name>Turn-off loss Rg=9.1</Name>
+                <XAxis> 0 8.75 17.5 35 52.5 70</XAxis>
+                <YAxis> -900 -600 -300 0 150</YAxis>
+                <ZAxis> 25 150 175</ZAxis>
+                <FunctionValues scale="1">
+                    <ZDimension>
+                        <YDimension> 0 0.000315 0.000545 0.000778 0.000914 0.001011</YDimension>
+                        <YDimension> 0 0.000247 0.000427 0.00061 0.000717 0.000793</YDimension>
+                        <YDimension> 0 0.000163 0.000282 0.000402 0.000473 0.000523</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.001033 0.001786 0.002551 0.002997 0.003316</YDimension>
+                        <YDimension> 0 0.00081 0.0014 0.002 0.00235 0.0026</YDimension>
+                        <YDimension> 0 0.000534 0.000924 0.00132 0.00155 0.001715</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.001343 0.002321 0.003316 0.003896 0.004311</YDimension>
+                        <YDimension> 0 0.001053 0.00182 0.0026 0.003055 0.00338</YDimension>
+                        <YDimension> 0 0.000695 0.001201 0.001715 0.002016 0.00223</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                </FunctionValues>
+            </Table3D>
+            <Table3D>
+                <Name>Turn-off loss Rg=13.65</Name>
+                <XAxis> 0 8.75 17.5 35 52.5 70</XAxis>
+                <YAxis> -900 -600 -300 0 150</YAxis>
+                <ZAxis> 25 150 175</ZAxis>
+                <FunctionValues scale="1">
+                    <ZDimension>
+                        <YDimension> 0 0.000257 0.000444 0.000634 0.000745 0.000824</YDimension>
+                        <YDimension> 0 0.000201 0.000348 0.000497 0.000584 0.000646</YDimension>
+                        <YDimension> 0 0.000133 0.00023 0.000328 0.000385 0.000426</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.000842 0.001455 0.002079 0.002443 0.002703</YDimension>
+                        <YDimension> 0 0.00066 0.001141 0.00163 0.001915 0.002119</YDimension>
+                        <YDimension> 0 0.000436 0.000753 0.001075 0.001264 0.001398</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.001095 0.001892 0.002703 0.003176 0.003513</YDimension>
+                        <YDimension> 0 0.000858 0.001483 0.002119 0.00249 0.002755</YDimension>
+                        <YDimension> 0 0.000566 0.000979 0.001398 0.001643 0.001817</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                </FunctionValues>
+            </Table3D>
+            <Table3D>
+                <Name>Turn-off loss Rg=18.2</Name>
+                <XAxis> 0 8.75 17.5 35 52.5 70</XAxis>
+                <YAxis> -900 -600 -300 0 150</YAxis>
+                <ZAxis> 25 150 175</ZAxis>
+                <FunctionValues scale="1">
+                    <ZDimension>
+                        <YDimension> 0 0.000222 0.000384 0.000548 0.000644 0.000713</YDimension>
+                        <YDimension> 0 0.000174 0.000301 0.00043 0.000505 0.000559</YDimension>
+                        <YDimension> 0 0.000115 0.000199 0.000284 0.000333 0.000369</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.000728 0.001259 0.001798 0.002113 0.002338</YDimension>
+                        <YDimension> 0 0.000571 0.000987 0.00141 0.001657 0.001833</YDimension>
+                        <YDimension> 0 0.000377 0.000651 0.00093 0.001093 0.001209</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.000947 0.001636 0.002338 0.002747 0.003039</YDimension>
+                        <YDimension> 0 0.000742 0.001283 0.001833 0.002154 0.002383</YDimension>
+                        <YDimension> 0 0.00049 0.000847 0.001209 0.001421 0.001572</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                </FunctionValues>
+            </Table3D>
+            <Table3D>
+                <Name>Turn-off loss Rg=36.4</Name>
+                <XAxis> 0 8.75 17.5 35 52.5 70</XAxis>
+                <YAxis> -900 -600 -300 0 150</YAxis>
+                <ZAxis> 25 150 175</ZAxis>
+                <FunctionValues scale="1">
+                    <ZDimension>
+                        <YDimension> 0 0.000158 0.000272 0.000389 0.000457 0.000506</YDimension>
+                        <YDimension> 0 0.000124 0.000214 0.000305 0.000358 0.000397</YDimension>
+                        <YDimension> 0 8.2e-05 0.000141 0.000201 0.000236 0.000262</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.000517 0.000893 0.001275 0.001499 0.001658</YDimension>
+                        <YDimension> 0 0.000405 0.0007 0.001 0.001175 0.0013</YDimension>
+                        <YDimension> 0 0.000267 0.000462 0.00066 0.000775 0.000858</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                    <ZDimension>
+                        <YDimension> 0 0.000672 0.001161 0.001658 0.001948 0.002155</YDimension>
+                        <YDimension> 0 0.000527 0.00091 0.0013 0.001528 0.00169</YDimension>
+                        <YDimension> 0 0.000347 0.0006 0.000858 0.001008 0.001115</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                        <YDimension> 0 0 0 0 0 0</YDimension>
+                    </ZDimension>
+                </FunctionValues>
+            </Table3D>
+        </CustomTables>
+        <SemiconductorData type="Diode">
+            <TurnOnLoss>
+                <ComputationMethod>Table only</ComputationMethod>
+                <CurrentAxis> 0</CurrentAxis>
+                <VoltageAxis> 0</VoltageAxis>
+                <TemperatureAxis> 0</TemperatureAxis>
+                <Energy scale="1">
+                    <Temperature>
+                        <Voltage> 0</Voltage>
+                    </Temperature>
+                </Energy>
+            </TurnOnLoss>
+            <TurnOffLoss>
+                <ComputationMethod>Formula only</ComputationMethod>
+                <Formula>max(min(1/(9.1-6.825)*(9.1-Rg_on),1),0)*lookup('Turn-off loss Rg=6.825',i,v,T)    +(max(-1/(9.1-6.825)*(6.825-Rg_on),0) * ( tanh((9.1-Rg_on)*100000)/2+0.5) + max(1/(13.65-9.1)*(13.65-Rg_on),0)*(tanh((Rg_on-9.1)*100000)/2+0.5))*lookup('Turn-off loss Rg=9.1',i,v,T)    +(max(-1/(13.65-9.1)*(9.1-Rg_on),0) * ( tanh((13.65-Rg_on)*100000)/2+0.5) + max(1/(18.2-13.65)*(18.2-Rg_on),0)*(tanh((Rg_on-13.65)*100000)/2+0.5))*lookup('Turn-off loss Rg=13.65',i,v,T)     +(max(-1/(18.2-13.65)*(13.65-Rg_on),0) * ( tanh((18.2-Rg_on)*100000)/2+0.5) + max(1/(36.4-18.2)*(36.4-Rg_on),0)*(tanh((Rg_on-18.2)*100000)/2+0.5))*lookup('Turn-off loss Rg=18.2',i,v,T)           +min(max(-1/(36.4-18.2)*(18.2-Rg_on),0),1)*lookup('Turn-off loss Rg=36.4',i,v,T) </Formula>
+                <CurrentAxis> 0</CurrentAxis>
+                <VoltageAxis> 0</VoltageAxis>
+                <TemperatureAxis> 0</TemperatureAxis>
+                <Energy scale="1">
+                    <Temperature>
+                        <Voltage> 0</Voltage>
+                    </Temperature>
+                </Energy>
+            </TurnOffLoss>
+            <ConductionLoss>
+                <ComputationMethod>Table only</ComputationMethod>
+                <CurrentAxis> 0 0.0175 0.105 0.175 0.7 1.75 17.5 35 70</CurrentAxis>
+                <TemperatureAxis> 25 150 175</TemperatureAxis>
+                <VoltageDrop scale="1">
+                    <Temperature> 0 0.849 0.992 1.034 1.155 1.253 1.818 2.3 3.209</Temperature>
+                    <Temperature> 0 0.258 0.455 0.515 0.689 0.829 1.621 2.29 3.549</Temperature>
+                    <Temperature> 0 0.124 0.311 0.376 0.569 0.722 1.511 2.14 3.307</Temperature>
+                </VoltageDrop>
+            </ConductionLoss>
+        </SemiconductorData>
+        <ThermalModel>
+            <Branch type="Foster">
+                <RTauElement R="0.141" Tau="0.0004"/>
+                <RTauElement R="0.382" Tau="0.0169"/>
+                <RTauElement R="0.607" Tau="0.124"/>
+            </Branch>
+        </ThermalModel>
+        <Comment>
+            <Line>Semikron Danfoss</Line>
+            <Line>Module: SKiiP 24AC12T7V1 </Line>
+            <Line>Device: IGBT B6-Inverter </Line>
+            <Line>Package: MiniSKiiP 2 </Line>
+            <Line>Technology: CAL4F </Line>
+            <Line>Version: Rev.2.0 23.07.2021 </Line>
+            <Line></Line>
+            <Line></Line>
+            <Line>Additional Device Parameters:  </Line>
+            <Line>Vrrm [V]:  1200 </Line>
+            <Line>Ifnom [A]:  35 </Line>
+            <Line>Tj(max) [°C]:  175 </Line>
+            <Line>Tj(op) [°C]:  150 </Line>
+            <Line>Rgon (nom) [ohm]:  9.1 </Line>
+            <Line>TIM:  HPTP</Line>
+            <Line></Line>
+            <Line></Line>
+            <Line></Line>
+            <Line>Disclaimer:</Line>
+            <Line>The information provided in this document may not be considered as guarantee or assurance of product</Line>
+            <Line>characteristics (&quot;Beschaffenheitsgarantie&quot;). Semikron Danfoss does not assume any warranty or liability with</Line>
+            <Line>respect to the accuracy, correctness, completeness and/or use of any information in this document. This</Line>
+            <Line>document describes only the usual characteristics of products to be expected in typical applications, which</Line>
+            <Line>may still vary depending on the specific application. Therefore, products must be tested for the respective</Line>
+            <Line>application in advance. Application adjustments may be necessary. The user of Semikron Danfoss products is</Line>
+            <Line>responsible for the safety of their applications embedding Semikron Danfoss products and must take adequate</Line>
+            <Line>safety measures to prevent the applications from causing a physical injury, fire or other problem if any of</Line>
+            <Line>Semikron Danfoss products become faulty. The user is responsible to make sure that the application design is</Line>
+            <Line>compliant with all applicable laws, regulations and standards. Except as otherwise explicitly approved by</Line>
+            <Line>Semikron Danfoss in a written document signed by authorized representatives of Semikron Danfoss, Semikron Danfoss</Line>
+            <Line>products may not be used in any applications where a failure of the product or any consequences of the use</Line>
+            <Line>thereof can reasonably be expected to result in personal injury.</Line>
+        </Comment>
+    </Package>
+</SemiconductorLibrary>

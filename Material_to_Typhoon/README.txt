@@ -39,19 +39,34 @@ RT_sim/           Real-time simulation (HIL / Virtual HIL).
                                  in a web browser).
 
 chil/             Controller-HIL: the plant is simulated on the HIL and the
-                  controller runs on a TI DSP.
-  dq_*_ctrl_v2.tse               Schematic Editor models.
-  dq_*_ctrl_SCADA.runx.cus       HIL SCADA panels.
-  settings_v2.runx               Run configuration.
-  settings_statcom_v2.runx       Run configuration (STATCOM).
-  dq_current_ctrl_v2 Target files/  Compiled files (.cpd).
-  dq_current_ctrl_acg/           Code Composer Studio project with the
-                                 current controller auto-generated from
-                                 Typhoon.
-  CCS/                           Earlier version for the F28335 DSP:
-                                 vsc_3ph3w_v1 models (converter and
-                                 STATCOM), SCADA panel, run configuration
-                                 and zipped CCS projects (.zip).
+                  controller runs on a TI DSP. Two versions are provided:
+
+  chil_CCS/                      Course version, with a ready-made
+                                 Code Composer Studio project.
+    dq_*_ctrl_v2.tse               Schematic Editor models.
+    dq_*_ctrl_SCADA.runx.cus       HIL SCADA panels.
+    settings_v2.runx               Run configuration.
+    settings_statcom_v2.runx       Run configuration (STATCOM).
+    dq_current_ctrl_v2 Target files/  Compiled files (.cpd).
+    dq_current_ctrl_acg/           Code Composer Studio project with the
+                                   current controller auto-generated
+                                   from Typhoon.
+    CCS/                           Earlier version for the F28335 DSP:
+                                   vsc_3ph3w_v1 models (converter and
+                                   STATCOM), SCADA panel, run
+                                   configuration and zipped CCS projects
+                                   (.zip).
+
+  chil_Automatic_Code_Generation/  Models prepared for Typhoon's automatic
+                                 code generation for the TI DSP. Only the
+                                 models, panels and run configurations are
+                                 included; the CCS project is generated
+                                 from each model.
+    dq_*_ctrl_v2.tse               Schematic Editor models.
+    dq_*_ctrl_SCADA.runx.cus       HIL SCADA panels (STATCOM panel:
+                                   dq_STATCOM_ctrl_SCADA.runx.cus).
+    settings_v2.runx               Run configuration.
+    settings_statcom_v2.runx       Run configuration (STATCOM).
 
 
 -------------------------------------------------------------------------------
@@ -60,10 +75,13 @@ chil/             Controller-HIL: the plant is simulated on the HIL and the
 
   - Typhoon HIL Control Center (Schematic Editor and HIL SCADA).
   - For RT_sim and chil: a Typhoon HIL device or Virtual HIL.
-  - For chil: Code Composer Studio 11 and a TI board.
-      * dq_current_ctrl_acg: TMS320F28379D (C2000 compiler 21.6.0.LTS,
-        XDS100v2 debug probe).
-      * CCS/: TMS320F28335.
+  - For chil: Code Composer Studio and a TI board.
+      * chil_CCS/dq_current_ctrl_acg: CCS 11, TMS320F28379D (C2000
+        compiler 21.6.0.LTS, XDS100v2 debug probe).
+      * chil_CCS/CCS/: TMS320F28335.
+      * chil_Automatic_Code_Generation: models configured for CCS 12.1
+        (C:\ti\ccs1210). Some models were saved with Typhoon HIL 2025.4,
+        so use that version or later.
 
 
 -------------------------------------------------------------------------------
@@ -80,12 +98,23 @@ Real-time simulation (RT_sim)
      (or load the associated .runx file).
   3. Load the model onto the HIL/VHIL and start the simulation.
 
-Controller-HIL (chil)
+Controller-HIL with the ready-made project (chil/chil_CCS)
   1. Open and compile the dq_*_ctrl_v2.tse model.
   2. Import the dq_current_ctrl_acg project into Code Composer Studio,
      build it and flash it to the DSP.
   3. Connect the DSP to the HIL, open the matching SCADA panel and run
      the simulation.
+
+Controller-HIL with automatic code generation
+(chil/chil_Automatic_Code_Generation)
+  1. Open the dq_*_ctrl_v2.tse model in Schematic Editor.
+  2. In the TI setup component of the model, set the CCS project path
+     and the CCS installation path for your computer. The saved values
+     are absolute paths from the author's computer.
+  3. Generate the controller code from the model, then build the
+     generated project in Code Composer Studio and flash it to the DSP.
+  4. Compile the model, connect the DSP to the HIL, open the matching
+     SCADA panel and run the simulation.
 
   The files dq_current_ctrl.c/.h, sp_export_defines.h and custom_types.h
   are generated automatically by Typhoon. If the controller is changed,
