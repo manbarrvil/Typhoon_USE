@@ -5305,7 +5305,7 @@ if (theta<0.0){
         omega_n = 1*omega_no  
         alpha = 10
         #damping
-        delta = 0.5 
+        delta = 1.0 
         
         K = K_g/(alpha*delta*omega_n*omega_n*omega_n)
         F = (alpha + 2)/(alpha*omega_n*omega_n) - 2*H/K_g
